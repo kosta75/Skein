@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+  <definition name="index" template="/WEB-INF/views/comm/layout.jsp">
+  	<put-attribute name="title" value="Skein" />
+  	<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
+  	<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+  	<put-attribute name="content" value="/WEB-INF/views/index.jsp" />
+  </definition>
+
+  <definition name="*.*" template="/WEB-INF/views/{1}/comm/layout.jsp">
+    <put-attribute name="title" value="Notice" />
+    <put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
+    <!-- <put-attribute name="aside" value="/WEB-INF/views/{1}/comm/aside.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/views/{1}/comm/visual.jsp" /> -->
+    <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+  </definition>
+  
+</tiles-definitions>
