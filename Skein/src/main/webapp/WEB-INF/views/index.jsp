@@ -5,5 +5,8 @@
 <h1>
 	Hello world!  
 </h1>
+<div>
+	<a href="registermember">회원가입</a>
+</div>
 </div>
 
