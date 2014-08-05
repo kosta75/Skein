@@ -11,6 +11,7 @@
 </div>
 <div id="response-message">
 </div>
+<div id="moreBtn">More</div>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -30,6 +31,25 @@
 			});
 			return false;
 		})
+		
+		$("#moreBtn").on('click', function(){
+			$.ajax({
+				type:'get',
+				url:'post/morePost',
+				cache: false,				
+			    success:function(data){ //callback
+			    	alert(data.member);
+			    	$("#response-message").html(data.member.email);
+			    	
+					//$('#menuView').html("First Name:- " + response.firstName +"</br>Last Name:- " + response.lastName  + "</br>Email:- " + response.email);
+			        //$("#response-message").empty();
+			        //$("#response-message").html(data.email);
+			     },
+				error: function(){						
+					alert('Error while request..'	);
+				}
+			});
+		});
 		
 	});
 </script>
