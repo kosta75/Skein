@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <div>헤더</div>
+<p><a href="${pageContext.request.contextPath}">Main</a></p>
 <se:authorize ifNotGranted="ROLE_USER">
 <div>
-	<form action="j_spring_security_check" method="post">
+	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 		<fieldset>
 			<legend>로그인 정보</legend>
 			이메일(name="email")<input type="email" name="j_username" value="abc@abc.com" /><br />
@@ -16,5 +17,8 @@
 		
 <se:authentication property="name" var="LoginUser"/>
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	<li><a href="${pageContext.request.contextPath}/j_spring_security_logout">(${LoginUser})로그아웃</a></li>	
+	<p><a href="${pageContext.request.contextPath}/${LoginUser}">(${LoginUser})</a></p>
+	<p><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></p>
+	<p><a href="${pageContext.request.contextPath}/notifications/list">알림리스트</a></p>
+	<p><a href="${pageContext.request.contextPath}/friendship/list">친구리스트</a></p>	
 </se:authorize>

@@ -4,8 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1"></property>
+	</bean>
+	
 	<bean id="urlBasedViewResolver"  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="order" value="2"></property>
 	</bean>
 
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
@@ -39,6 +44,5 @@
 		<constructor-arg index="0" ref="sqlSeesionFactoryBean" />
 	</bean>
 	
-	
-		
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />	
 </beans>

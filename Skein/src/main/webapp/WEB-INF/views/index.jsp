@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
-<%@ page session="false" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
+<%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
+<h3>회원가입</h3>
 <div>
-<h1>
-	Hello world!  
-</h1>
-
-<se:authorize ifNotGranted="ROLE_USER">
-<%-- <li><a href="${pageContext.request.contextPath}/joinus/login">로그인</a></li> --%>
-<div>
-	<form action="joinus/registerMember" method="post">
+	<form action="${pageContext.request.contextPath}/joinus/registerMember" method="post">	 
 	<fieldset>
 		<legend>기본 계정 정보</legend>
 		이메일(name="email")<input type="email" name="email" value="abc@abc.com" /><br />
@@ -44,13 +37,21 @@
 		<br />
 		년(type="text", name="date")<input type="text" name="date" value="20" /><br />
 	</fieldset>
+	<fieldset>
+		<legend>자동가입방지</legend>
+	<%
+	ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LedCfgSAAAAANXE1N6vs_WLC0otH2jJkc4cXida", "6LedCfgSAAAAAKFaVC8NM209qL-CFiOWd0C7ICXV", false);
+	out.print(c.createRecaptchaHtml(null, null));
+	%>
+	</fieldset>
 	<input type="submit" value="Reg">
 	</form>
 </div>
 <hr />
-
+<br />
+<h3>로그인</h3>
 <div>
-	<form action="j_spring_security_check" method="post">
+	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 		<fieldset>
 			<legend>로그인 정보</legend>
 			이메일(name="email")<input type="email" name="j_username" value="abc@abc.com" /><br />
@@ -59,14 +60,9 @@
 		<input type="submit" value="Login" />
 	</form>
 </div>
-</se:authorize>
-		
-<se:authentication property="name" var="LoginUser"/>
-<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	<li>내용 고고!</li>	
-</se:authorize>
-
 <hr />
-
+<br />
+<h3>아이디/비밀번호 찾기</h3>
+<div>
+	<a href="${pageContext.request.contextPath}/joinus/refind"></a>
 </div>
-

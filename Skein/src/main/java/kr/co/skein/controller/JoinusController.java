@@ -2,9 +2,13 @@ package kr.co.skein.controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.skein.dao.MemberDao;
 import kr.co.skein.model.Member;
 import kr.co.skein.util.CustomFormChecker;
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +30,7 @@ public class JoinusController {
 	}
 	
 	@RequestMapping(value="/registerMember", method=RequestMethod.POST)
-	public String createMember(@RequestParam("year") int year,@RequestParam("month") int month,@RequestParam("date") int date, Member member) throws ClassNotFoundException, SQLException{
+	public String createMember(@RequestParam("year") int year,@RequestParam("month") int month,@RequestParam("date") int date, Member member, HttpServletRequest request) throws ClassNotFoundException, SQLException{
 		/*
 		 * set 해야할 데이터
 		 * fullName : lastName + firstName
@@ -48,9 +52,25 @@ public class JoinusController {
 		System.out.println("date: " + date);
 		
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
-		memberDao.memberReg(member);
 		
-		return "redirect:/";
+		
+		
+		String remoteAddr = request.getRemoteAddr();
+        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+        reCaptcha.setPrivateKey("6LedCfgSAAAAAKFaVC8NM209qL-CFiOWd0C7ICXV");
+
+        String challenge = request.getParameter("recaptcha_challenge_field");
+        String uresponse = request.getParameter("recaptcha_response_field");
+        ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+
+        if (reCaptchaResponse.isValid()) {
+          System.out.println("Answer was entered correctly!");
+          memberDao.memberReg(member);
+          return "redirect:/";
+        } else {
+          System.out.println("Answer is wrong");
+          return "joinus.registerMember";
+        }
 	}
 	
 	
