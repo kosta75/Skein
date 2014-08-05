@@ -6,15 +6,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
-<input type="text" name="" />
-<input type="text" name="" />
-<input type="text" name="" />
-<input type="password" name="" />
-년(type="text", name="year")<input type="text" name="year" />
+<form method="post">
+이메일(name="email")<input type="email" name="email" value="abc@abc.com" /><br />
+성(name="lastName")<input type="text" name="lastName" value="Chang" /><br />
+이름(name="firstName")<input type="text" name="firstName" value="Sungsil" /><br />
+비밀번호(name="password")<input type="password" name="password" value="1004" /><br />
+년(type="text", name="year")<input type="text" name="year" value="1985" /><br />
 월(name="month")
 <select name="month">
-	<option value="1">1</option>
+	<option value="1" selected="selected">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
 	<option value="4">4</option>
@@ -27,8 +27,8 @@
 	<option value="11">11</option>
 	<option value="12">12</option>
 </select>
-
-년(type="text", name="day")<input type="text" name="day" />
+<br />
+년(type="text", name="date")<input type="text" name="date" value="20" /><br />
 <input type="submit" value="Reg">
 </form>
 </body>

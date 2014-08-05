@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-프로필 보기 <br />
-${name}
+찾을 수 없는 페이지 입니다.
 </body>
 </html>

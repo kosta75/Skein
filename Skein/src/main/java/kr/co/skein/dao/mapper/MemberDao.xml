@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.skein.dao.MemberDao">
 	<insert id="memberReg" parameterType="kr.co.skein.model.Member" >
-		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate, LastLoginDate, Enabled, Closed, LastPasswordChangedDate)
-		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, '1985-07-06', SYSDATE, SYSDATE, 1, 0, SYSDATE)
+		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate)
+		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, '1985-07-06', SYSDATE)
 	</insert>
 </mapper>

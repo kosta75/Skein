@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-프로필 보기 <br />
-${name}
+잘못된 접근 입니다.
 </body>
 </html>
