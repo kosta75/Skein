@@ -19,9 +19,15 @@
 		SELECT COUNT(PersonalURI) FROM Members WHERE personalURI LIKE '%${personalURI}%'
 	</select>
 	
-	<select id="getMemberProfile" resultType="kr.co.skein.model.Member">
-		SELECT Email, LastName, FirstName, PersonalURI WHERE Email = #{email}
+	<select id="getMemberProfile" resultType="kr.co.skein.model.MemberProfile">
+		SELECT m.Email, m.LastName, m.FirstName, m.FullName, m.Password, m.Birthday, m.CreateDate, m.LastLoginDate, m.Enabled, m.Closed, m.PersonalURI, m.LastPasswordChangedDate, m.FailedPasswordAttemptCount, p.Address, p.ProfileImage, p.OpenEmail, p.PhoneNumber, p.StatusComment, p.Religion, p.Politics, P.Language, p.Blog
+		FROM MEMBERS m JOIN PROFILE p ON m.email = p.email WHERE m.PersonalURI = #{personalURI}
 	</select>
+	
+	<insert id="memberProfileReg" parameterType="kr.co.skein.model.MemberProfile">
+		INSERT INTO Profile(Email, Address, ProfileImage, OpenEmail, PhoneNumber, StatusComment, Religion, Politics, Language, Blog)
+		VALUES(#{email}, #{address}, #{profileImage}, #{openEmail}, #{phoneNumber}, #{statusComment}, #{religion}, #{politics}, #{language}, #{blog})
+	</insert>
 
 	<insert id="memberReg" parameterType="kr.co.skein.model.Member">
 		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate, PersonalURI)

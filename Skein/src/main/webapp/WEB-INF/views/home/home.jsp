@@ -21,8 +21,21 @@
 				data:'content=' + $("#content").val(),
 			    success:function(data){ //callback
 			    	var post = data.post;
+			    	/* historyPost.setBoardSeq(1);
+					historyPost.setContent(content);
+					historyPost.setBoardKindSeq(1);
+					historyPost.setHistorySeq(1);
+					historyPost.setFeeling("기분 좋음");
+					historyPost.setWeather("비오는날");
+					historyPost.setIsImportant(0);
+					historyPost.setIsShare(0);
+					historyPost.setKeyword("키워드");
+					historyPost.setPlace("장소");
+					historyPost.setGroupSeq(1); */
+			    	var msg = post.boardSeq + " / " + post.content + " / "+ post.boardKindSeq + " / ";
+					msg += post.historySeq + " / " + post.feeling + " / "+ post.weather + " / ";
 			        $("#response-message").empty();
-			        $("#response-message").html(post.content);
+			        $("#response-message").html(msg);
 			     },
 				error: function(){						
 					alert('Error while request..'	);

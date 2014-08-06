@@ -1,5 +1,7 @@
 package kr.co.skein.controller;
 
+import java.util.Date;
+
 import kr.co.skein.model.HistoryPost;
 import kr.co.skein.model.Member;
 
@@ -30,7 +32,39 @@ public class PostController {
 	public View postReg(String content, Model model){
 		HistoryPost historyPost = new HistoryPost();
 		
+		/*private int boardSeq;
+		private String content;
+		private Date writeDate;
+		private int boardKindSeq;
+		private String email;
+		private int publicLevelCode;
+		private int historySeq;
+		private Date startDate;
+		private Date endDate;
+		private String feeling;
+		private String weather;
+		private int isImportant;
+		private int isShare;
+		private String keyword;
+		private String place;
+		private int groupSeq;*/
+		historyPost.setBoardSeq(1);
 		historyPost.setContent(content);
+		historyPost.setBoardKindSeq(1);
+		historyPost.setHistorySeq(1);
+		historyPost.setFeeling("기분 좋음");
+		historyPost.setWeather("비오는날");
+		historyPost.setIsImportant(0);
+		historyPost.setIsShare(0);
+		historyPost.setKeyword("키워드");
+		historyPost.setPlace("장소");
+		historyPost.setGroupSeq(1);
+		
+		//DB에 저장되는 순서!
+		//1. Board 테이블에 최초 글 생성!
+		//2. History 테이블에서 Board 테이블에서 생긴 식별번호 참조
+		
+		
 		model.addAttribute("post", historyPost);
 		return jsonView;
 	}

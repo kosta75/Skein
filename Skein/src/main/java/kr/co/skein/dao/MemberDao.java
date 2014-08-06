@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.skein.model.Member;
 import kr.co.skein.model.MemberAuthority;
+import kr.co.skein.model.MemberProfile;
 
 public interface MemberDao {
 	
@@ -31,5 +32,7 @@ public interface MemberDao {
 	
 	//사용자 프로필 조회
 	public Member getMemberProfile (Map<String, String> parameters) throws ClassNotFoundException, SQLException;
+	
+	public int memberProfileReg(MemberProfile memberProfile) throws ClassNotFoundException, SQLException;
 
 }
