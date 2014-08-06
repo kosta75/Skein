@@ -24,7 +24,7 @@
 	<!-- Spring 통한 JDBC 작업 -->
 	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@192.168.7.127:1521:ORCL"></property>
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.9:1521:ORCL"></property>
 		<property name="username" value="skein"></property>
 		<property name="password" value="1004"></property>
 	</bean>
@@ -44,5 +44,9 @@
 		<constructor-arg index="0" ref="sqlSeesionFactoryBean" />
 	</bean>
 	
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />	
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource" /> 
+	</bean>	
 </beans>

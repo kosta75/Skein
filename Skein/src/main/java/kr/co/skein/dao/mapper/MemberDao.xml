@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.skein.dao.MemberDao">
-	<insert id="memberReg" parameterType="kr.co.skein.model.Member" >
-		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate)
-		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, '1985-07-06', SYSDATE)
+	
+	<!-- 사용자 로그인 정보 확인 - Security 사용 하지 않을 경우를 위해 작성  -->
+	<select id="validMember" resultType="Integer">
+		SELECT COUNT(*) FROM Members WHERE Email = #{email} AND Password = #{password} 
+	</select>
+
+	<select id="getMember" resultType="kr.co.skein.model.Member">
+		SELECT Email FROM Members WHERE Email = #{email}
+	</select>
+	
+	<select id="getPersonalURI" resultType="String">
+		SELECT PersonalURI FROM Members WHERE Email = #{email}
+	</select>
+	
+	<select id="getCountOfPersonalURI" resultType="Integer">
+		SELECT COUNT(PersonalURI) FROM Members WHERE personalURI LIKE '%${personalURI}%'
+	</select>
+	
+	<select id="getMemberProfile" resultType="kr.co.skein.model.Member">
+		SELECT Email, LastName, FirstName, PersonalURI WHERE Email = #{email}
+	</select>
+
+	<insert id="memberReg" parameterType="kr.co.skein.model.Member">
+		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate, PersonalURI)
+		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, '1985-07-06', SYSDATE, #{personalURI})
+	</insert>
+	
+	<insert id="createMemberAuthority" parameterType="kr.co.skein.model.MemberAuthority">
+		INSERT INTO Authorities(Authority, Email)
+		VALUES(#{authority}, #{email})
 	</insert>
 </mapper>

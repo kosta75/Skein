@@ -1,5 +1,6 @@
 package kr.co.skein.controller;
 
+import kr.co.skein.model.HistoryPost;
 import kr.co.skein.model.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,19 @@ public class PostController {
 	@Autowired
 	private View jsonView;
 
-	@RequestMapping(value="/postReg", method=RequestMethod.POST)
+	/*@RequestMapping(value="/postReg", method=RequestMethod.POST)
 	public @ResponseBody String postReg(String content, Model model){
-		 
+		
 		return content + " Add Message";
+	}*/
+	
+	@RequestMapping(value="/postReg", method=RequestMethod.POST)
+	public View postReg(String content, Model model){
+		HistoryPost historyPost = new HistoryPost();
+		
+		historyPost.setContent(content);
+		model.addAttribute("post", historyPost);
+		return jsonView;
 	}
 	
 	@RequestMapping(value="/morePost", method=RequestMethod.GET)

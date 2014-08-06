@@ -5,6 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
 <title><tiles:getAsString name="title"/></title>
 </head>
 <body>

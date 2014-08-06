@@ -37,13 +37,13 @@
 		<br />
 		년(type="text", name="date")<input type="text" name="date" value="20" /><br />
 	</fieldset>
-	<fieldset>
+	<%-- <fieldset>
 		<legend>자동가입방지</legend>
 	<%
 	ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LedCfgSAAAAANXE1N6vs_WLC0otH2jJkc4cXida", "6LedCfgSAAAAAKFaVC8NM209qL-CFiOWd0C7ICXV", false);
 	out.print(c.createRecaptchaHtml(null, null));
 	%>
-	</fieldset>
+	</fieldset> --%>
 	<input type="submit" value="Reg">
 	</form>
 </div>
@@ -54,8 +54,8 @@
 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 		<fieldset>
 			<legend>로그인 정보</legend>
-			이메일(name="email")<input type="email" name="j_username" value="abc@abc.com" /><br />
-			비밀번호(name="password")<input type="password" name="j_password" value="1004" /><br />
+			이메일(name="email")<input type="email" name="j_username" /><br />
+			비밀번호(name="password")<input type="password" name="j_password" /><br />
 		</fieldset>
 		<input type="submit" value="Login" />
 	</form>
