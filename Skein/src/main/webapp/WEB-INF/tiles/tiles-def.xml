@@ -2,7 +2,9 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
 
-  <definition name="index" template="/WEB-INF/views/home/comm/layout.jsp">
+  <definition name="index"
+  	template="/WEB-INF/views/home/comm/layout.jsp"
+  	preparer="publicLevelPreparer">
   	<put-attribute name="title" value="Skein" />
   	<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
   	<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />

@@ -19,6 +19,11 @@
 				<value>/WEB-INF/tiles/tiles-def.xml</value>
 			</list>
 		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+	</bean>
+	
+	<bean id="publicLevelPreparer" class="kr.co.skein.preparer.PublicLevelPreparer">
+		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 	
 	<!-- Spring 통한 JDBC 작업 -->

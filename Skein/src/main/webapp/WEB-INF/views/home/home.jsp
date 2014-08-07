@@ -16,11 +16,10 @@
 <div>
 <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post">
 	<select name="publicLevelCode">
-		<option value="1">비공개</option>
-		<option value="2">공유한사용자만</option>
-		<option value="3">친구에게</option>
-		<option value="4">사용자에게</option>
-		<option value="5">전체공개</option>
+	<c:forEach var="publicLevelList" items="${publicLevelList}">
+		<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+	</c:forEach>
+		
 	</select>
 	<textarea name="content" id="content" cols="30" rows="10">
 	</textarea>
@@ -35,6 +34,7 @@
 		<th>작성자</th>
 		<th>글내용</th>
 		<th>작성일</th>
+		<th>공개범위</th>
 	</tr>
 	<c:forEach var="list" items="${list}">
 	<tr>
@@ -42,6 +42,7 @@
 		<td>${list.fullName}</td>
 		<td>${list.content}</td>
 		<td>${list.writeDate}</td>
+		<td>${list.publicLevelCode}</td>
 	</tr>	
 	</c:forEach>
 </table>
