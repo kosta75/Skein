@@ -15,13 +15,13 @@ public class MemberProfile extends Member {
 	
 	private String address;
 	private String profileImage;
+	private String openEmail;
 	private String phoneNumber;
 	private String statusComment;
 	private String religion;
 	private String politics;
 	private String language;
 	private String blog;
-	
 	public String getAddress() {
 		return address;
 	}
@@ -33,6 +33,12 @@ public class MemberProfile extends Member {
 	}
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
+	}
+	public String getOpenEmail() {
+		return openEmail;
+	}
+	public void setOpenEmail(String openEmail) {
+		this.openEmail = openEmail;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -70,6 +76,8 @@ public class MemberProfile extends Member {
 	public void setBlog(String blog) {
 		this.blog = blog;
 	}
+	
+	
 	
 	
 }

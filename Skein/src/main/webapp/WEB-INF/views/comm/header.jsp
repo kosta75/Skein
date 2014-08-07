@@ -18,7 +18,5 @@
 <se:authentication property="name" var="LoginUser"/>
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<p><a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">(${sessionScope.PersonalURI})</a></p>
-	<p><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></p>
-	<p><a href="${pageContext.request.contextPath}/notifications/list">알림리스트</a></p>
-	<p><a href="${pageContext.request.contextPath}/friendship/list">친구리스트</a></p>	
+	<p><a href="${pageContext.request.contextPath}/j_spring_security_logout">로그아웃</a></p>	
 </se:authorize>

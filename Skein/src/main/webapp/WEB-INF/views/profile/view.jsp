@@ -7,6 +7,12 @@
 </head>
 <body>
 프로필 보기 <br />
-${name}
+${memberProfile.email}<br />
+${memberProfile.lastName}<br />
+${memberProfile.firstName}<br />
+${memberProfile.statusComment}<br />
+${memberProfile.openEmail}<br />
+${memberProfile.phoneNumber}<br />
+
 </body>
 </html>
