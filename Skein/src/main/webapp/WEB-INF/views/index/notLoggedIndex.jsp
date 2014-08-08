@@ -6,19 +6,19 @@
 	<form action="${pageContext.request.contextPath}/joinus/registerMember" method="post">	 
 	<fieldset>
 		<legend>기본 계정 정보</legend>
-		이메일(name="email")<input type="email" name="email" value="abc@abc.com" /><br />
-		비밀번호(name="password")<input type="password" name="password" value="1004" /><br />
+		이메일(name="email")<input type="email" name="email" /><br />
+		비밀번호(name="password")<input type="password" name="password" /><br />
 	</fieldset>
 	
 	<fieldset>
 		<legend>기본 사용자 정보</legend>
-		성(name="lastName")<input type="text" name="lastName" value="Chang" /><br />
-		이름(name="firstName")<input type="text" name="firstName" value="Sungsil" /><br />
+		성(name="lastName")<input type="text" name="lastName" /><br />
+		이름(name="firstName")<input type="text" name="firstName" /><br />
 	</fieldset>
 	
-	<fieldset>
+<!-- 	<fieldset>
 		<legend>생년월일</legend>
-		년(type="text", name="year")<input type="text" name="year" value="1985" /><br />
+		년(type="text", name="year")<input type="text" name="year" /><br />
 		월(name="month")
 		<select name="month">
 			<option value="1" selected="selected">1</option>
@@ -36,14 +36,13 @@
 		</select>
 		<br />
 		년(type="text", name="date")<input type="text" name="date" value="20" /><br />
+	</fieldset> -->
+	
+	<fieldset>
+		<legend>생년월일</legend>
+		<input type="date" name="birthday" />
 	</fieldset>
-	<%-- <fieldset>
-		<legend>자동가입방지</legend>
-	<%
-	ReCaptcha c = ReCaptchaFactory.newReCaptcha("6LedCfgSAAAAANXE1N6vs_WLC0otH2jJkc4cXida", "6LedCfgSAAAAAKFaVC8NM209qL-CFiOWd0C7ICXV", false);
-	out.print(c.createRecaptchaHtml(null, null));
-	%>
-	</fieldset> --%>
+
 	<input type="submit" value="Reg">
 	</form>
 </div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.skein.dao.FriendshipDao">
+	<select id="searchFriends" resultType="kr.co.skein.model.Member"> 
+		SELECT m.fullname FROM friendship f JOIN members m ON f.FRIENDEMAIL = m.email
+		WHERE f.email = #{email} AND m.fullname LIKE '${friendName}%'
+	</select>
+	
+	<select id="searchMembers" resultType="kr.co.skein.model.Member">
+		SELECT fullName FROM members
+		WHERE fullName LIKE '${friendName}%'
+	</select>
+</mapper>

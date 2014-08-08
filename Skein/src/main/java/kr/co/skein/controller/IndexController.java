@@ -39,14 +39,10 @@ public class IndexController {
 			if(session.getAttribute("PersonalURI") == null){
 				session.setAttribute("PersonalURI", memberDao.getPersonalURI(user.getUsername()));
 			}
-			PostDao postDao = sqlsession.getMapper(PostDao.class);
-			List<HistoryPost> list = postDao.getHistoryPosts(user.getUsername());
-			model.addAttribute("list", list);
+			//PostDao postDao = sqlsession.getMapper(PostDao.class);
+			//List<HistoryPost> list = postDao.getHistoryPosts(user.getUsername());
+			//model.addAttribute("list", list);
 		}
-		
-		
-		
-		
 		return "index";
 	}
 	

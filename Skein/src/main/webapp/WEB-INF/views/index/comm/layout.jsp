@@ -5,18 +5,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
 <title><tiles:getAsString name="title"/></title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <se:authorize ifNotGranted="ROLE_USER">
-	<tiles:insertAttribute name="index" />
+	<tiles:insertAttribute name="notLoggedContent" />
 </se:authorize>
 		
 <se:authentication property="name" var="LoginUser"/>
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="content" />
+	<tiles:insertAttribute name="loggedContent" />
 	<tiles:insertAttribute name="footer" />	
 </se:authorize>
 </body>

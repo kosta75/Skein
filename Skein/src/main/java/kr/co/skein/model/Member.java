@@ -2,6 +2,8 @@ package kr.co.skein.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Member {
 
 	private String email;
@@ -9,15 +11,23 @@ public class Member {
 	private String firstName;
 	private String fullName;
 	private String password;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
+	private String personalURI;
+	
+	private int isApproved;//default 0
+	private int isLockedOut;//default 0
+	private int isDomranted;//default 0
+	private int isDropedOut;//default 0
+	
 	private Date createDate; //SYSDATE
 	private Date lastLoginDate; //null, 로그인 할 때 SYSDATE
-	private int enabled; //default 1
-	private int closed;//default 0
-	private String personalURI;
 	private Date lastPasswordChangedDate;//null, 비밀번호 변경시 SYSDATE
+	
 	private int failedPasswordAttemptCount;//default 0
-		
+	private String certificationText;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -66,6 +76,46 @@ public class Member {
 		this.birthday = birthday;
 	}
 
+	public String getPersonalURI() {
+		return personalURI;
+	}
+
+	public void setPersonalURI(String personalURI) {
+		this.personalURI = personalURI;
+	}
+
+	public int getIsApproved() {
+		return isApproved;
+	}
+
+	public void setIsApproved(int isApproved) {
+		this.isApproved = isApproved;
+	}
+
+	public int getIsLockedOut() {
+		return isLockedOut;
+	}
+
+	public void setIsLockedOut(int isLockedOut) {
+		this.isLockedOut = isLockedOut;
+	}
+
+	public int getIsDomranted() {
+		return isDomranted;
+	}
+
+	public void setIsDomranted(int isDomranted) {
+		this.isDomranted = isDomranted;
+	}
+
+	public int getIsDropedOut() {
+		return isDropedOut;
+	}
+
+	public void setIsDropedOut(int isDropedOut) {
+		this.isDropedOut = isDropedOut;
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -80,30 +130,6 @@ public class Member {
 
 	public void setLastLoginDate(Date lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
-	}
-
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
-	public int getClosed() {
-		return closed;
-	}
-
-	public void setClosed(int closed) {
-		this.closed = closed;
-	}
-
-	public String getPersonalURI() {
-		return personalURI;
-	}
-
-	public void setPersonalURI(String personalURI) {
-		this.personalURI = personalURI;
 	}
 
 	public Date getLastPasswordChangedDate() {
@@ -122,43 +148,41 @@ public class Member {
 		this.failedPasswordAttemptCount = failedPasswordAttemptCount;
 	}
 
-	public void viewDefaultData(){
-		System.out.println("{email:"+this.email+",lastName:"+this.lastName+",firstName:"+this.firstName+",fullName:"+this.fullName+",password:"+this.password+"}");
+	public String getCertificationText() {
+		return certificationText;
 	}
-	
+
+	public void setCertificationText(String certificationText) {
+		this.certificationText = certificationText;
+	}
+
 	@Override
-	public String toString() {
+	public String toString() {	
+		System.out.println("===== 사용자 필수 입력 정보 =====");
 		System.out.println("email: "+this.email);
 		System.out.println("lastName: "+this.lastName);
 		System.out.println("firstName: "+this.firstName);
-		System.out.println("fullName: "+this.fullName);
 		System.out.println("password: "+this.password);
 		System.out.println("birthday: "+this.birthday);
-		System.out.println("createDate: "+this.createDate);
-		System.out.println("lastLoginDate: "+this.lastLoginDate);
-		System.out.println("enabled: "+this.enabled);
-		System.out.println("closed: "+this.closed);
+		System.out.println();
+		System.out.println("===== 시스템 설정 정보 =====");
+		System.out.println("fullName: "+this.fullName);
 		System.out.println("personalURI: "+this.personalURI);
+		System.out.println("createDate: "+this.createDate);
+		System.out.println("certificationText: "+this.certificationText);
+		System.out.println();
+		System.out.println("===== 사용자 계정 정보 =====");
+		System.out.println("isApproved(계정승인여부): "+this.isApproved);
+		System.out.println("isLockedOut(계정폐쇄여부): "+this.isLockedOut);
+		System.out.println("isDomranted(계정휴면여부): "+this.isDomranted);
+		System.out.println("isDropedOut(계정탈퇴여부): "+this.isDropedOut);
+		System.out.println();
+		System.out.println("===== 계정 정보 변경 내용 =====");
+		System.out.println("lastLoginDate: "+this.lastLoginDate);
 		System.out.println("lastPasswordChangedDate: "+this.lastPasswordChangedDate);
 		System.out.println("failedPasswordAttemptCount: "+this.failedPasswordAttemptCount);
 
-	/*	private String email;
-		private String lastName;
-		private String firstName;
-		private String fullName;
-		private String password;
-		private Date birthday;
-		private Date createDate;
-		private Date lastLoginDate;
-		private int enabled;
-		private int closed;
-		private Date lastPasswordChangedDate;
-		private int failedPasswordAttemptCount;*/
-		return "{email:"+this.email+",lastName:"+this.lastName+",firstName:"+this.firstName+",fullName:"+this.fullName+",password:"+this.password+"}";
+		return "";
 	}
-	
-	
-	
-	
-	
+
 }

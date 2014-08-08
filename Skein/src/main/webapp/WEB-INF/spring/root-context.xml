@@ -22,16 +22,16 @@
 		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
 	</bean>
 	
-	<bean id="publicLevelPreparer" class="kr.co.skein.preparer.PublicLevelPreparer">
+	<!-- <bean id="publicLevelPreparer" class="kr.co.skein.preparer.PublicLevelPreparer">
 		<property name="sqlSession" ref="sqlSession" />
-	</bean>
+	</bean> -->
 	
 	<!-- Spring 통한 JDBC 작업 -->
 	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.0.9:1521:ORCL"></property> -->
 		<property name="url" value="jdbc:oracle:thin:@192.168.7.127:1521:ORCL"></property>
-		<property name="username" value="skein"></property>
+		<property name="username" value="skeintest"></property>
 		<property name="password" value="1004"></property>
 	</bean>
 	
@@ -54,5 +54,20 @@
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="driverManagerDataSource" /> 
-	</bean>	
+	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="username" value="univcss@gmail.com" />
+		<property name="password" value="tjdsil2670" />
+		<property name="port" value="587" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.timeout">8500</prop>
+			</props>
+		</property>
+	</bean>
+	
 </beans>

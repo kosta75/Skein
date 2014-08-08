@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.skein.dao.MemberDao">
+
+	<!-- 사용자 목록(기본정보) 조회 -->
+	<select id="getMembers" resultType="kr.co.skein.model.Member">
+		SELECT * FROM Members
+		<where>
+			<if test="searchKey != null">
+				<choose>
+					<when test="searchKey == customURI">
+						personalURI LIKE '%${searchValue}%' 
+					</when>
+					<otherwise>
+						${searchKey} = #{searchValue}
+					</otherwise>
+				</choose>
+			</if>
+			
+		</where>
+	</select>
+	
+	<!-- 사용자 등록(기본정보) -->
+	<insert id="registerMember" parameterType="kr.co.skein.model.Member">
+		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, PersonalURI, IsApproved, IsLockedOut, IsDomranted, IsDropedOut, CreateDate, CertificationText)
+		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, #{birthday}, #{personalURI}, #{isApproved}, #{isLockedOut}, #{isDomranted}, #{isDropedOut}, SYSDATE, #{certificationText})
+	</insert>
+	
+	<!-- 사용자 정보 갱신(기본 계정정보) -->
+	<update id="updateMemberAccount" parameterType="kr.co.skein.model.Member">
+		UPDATE Members
+		<set>
+			<if test="isLockedOut != null">IsLockedOut = #{isLockedOut},</if>
+			<if test="isDropedOut != null">IsDropedOut = #{isDropedOut},</if>
+			<if test="isDomranted != null">IsDomranted = #{isDomranted},</if>
+			<if test="isApproved != null">IsApproved = #{isApproved},</if>			
+			<if test="certificationText != null">CertificationText = #{certificationText}</if>
+		</set>
+		WHERE email = #{email}
+	</update>
+
+	<!-- 사용자 권한 등록(기본권한) -->
+	<insert id="createMemberAuthority" parameterType="kr.co.skein.model.MemberAuthority">
+		INSERT INTO Authorities(Authority, Email)
+		VALUES(#{authority}, #{email})
+	</insert>
+
+
+
+
+	
+	<select id="isRegisteredMember" resultType="Integer">
+		SELECT COUNT(*) FROM Members WHERE Email = #{email}
+	</select>
 	
 	<!-- 사용자 로그인 정보 확인 - Security 사용 하지 않을 경우를 위해 작성  -->
 	<select id="validMember" resultType="Integer">
 		SELECT COUNT(*) FROM Members WHERE Email = #{email} AND Password = #{password} 
 	</select>
 
-	<select id="getMember" resultType="kr.co.skein.model.Member">
-		SELECT Email FROM Members WHERE Email = #{email}
-	</select>
-	
 	<select id="getPersonalURI" resultType="String">
 		SELECT PersonalURI FROM Members WHERE Email = #{email}
 	</select>
@@ -29,13 +76,4 @@
 		VALUES(#{email}, #{address}, #{profileImage}, #{openEmail}, #{phoneNumber}, #{statusComment}, #{religion}, #{politics}, #{language}, #{blog})
 	</insert>
 
-	<insert id="memberReg" parameterType="kr.co.skein.model.Member">
-		INSERT INTO Members(Email, LastName, FirstName, FullName, Password, Birthday, CreateDate, PersonalURI)
-		VALUES(#{email}, #{lastName}, #{firstName}, #{fullName}, #{password}, '1985-07-06', SYSDATE, #{personalURI})
-	</insert>
-	
-	<insert id="createMemberAuthority" parameterType="kr.co.skein.model.MemberAuthority">
-		INSERT INTO Authorities(Authority, Email)
-		VALUES(#{authority}, #{email})
-	</insert>
 </mapper>

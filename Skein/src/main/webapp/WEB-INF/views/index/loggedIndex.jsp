@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<se:authentication property="name" var="LoginUser"/>
 <!--
 추가 작업해야할 내용
 1. ajax로 내용 추가시 html 업데이트
@@ -10,11 +12,19 @@
 <p><a href="${pageContext.request.contextPath}">타임라인</a></p>
 <div id="notificationList">
 </div>
+<p><a href="${pageContext.request.contextPath}/joinus/registerMember">회원가입</a></p>
 <p><a href="${pageContext.request.contextPath}/notifications/list">알림리스트</a></p>
 <p><a href="${pageContext.request.contextPath}/friendship/list">친구리스트</a></p>
+<p><a href="${pageContext.request.contextPath}/friendship/searchMembers">사용자검색</a></p>
+<h2>친구검색(이미 친구 맺은 사이)</h2>
+<div>
+	<input id="searchFriendsInput" type="text" />
+</div>
+<div id="searchFriends">
+</div>
 
 <div>
-<form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post">
+<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post">
 	<select name="publicLevelCode">
 	<c:forEach var="publicLevelList" items="${publicLevelList}">
 		<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
@@ -25,7 +35,7 @@
 	</textarea>
 	
 	<input type="submit" value="Registry" />
-</form>
+</form> --%>
 </div>
 <div>
 <table>
@@ -52,9 +62,43 @@
 <div id="response-message">
 </div>
 
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
+
 <script>
 	$(document).ready(function(){
+		$("#searchFriendsInput").on('keyup', function(){
+			console.log($("#searchFriendsInput").val());
+			if($("#searchFriendsInput").val().length > 0){
+				$.ajax({
+					type:'post',
+					url:'friendship/searchFriends',
+					data:"email=${LoginUser}&friendName=" + $("#searchFriendsInput").val(),
+					datatype:'json',
+					success:function(data){
+						//alert('sd');
+						console.log(data);
+						var obj = data.list;
+						console.log(obj);
+						var list = obj.length;
+						console.log(list);
+						var msg = "";
+						for(var i=0;i<obj.length;i++){
+							msg += obj[i].fullName + "<br />";
+							//console.log(obj[i].fullName);
+						}
+						$("#searchFriends").html(msg);
+						
+					},
+					error: function(){						
+						alert('Error while request..'	);
+					}
+				});
+			}
+			
+		});
+		
+		
+		
+		
 		/* $("#postReg").on('submit', function(){
 			$.ajax({
 				type:'post',

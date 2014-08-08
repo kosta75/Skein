@@ -19,7 +19,7 @@
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="driverManagerDataSource"
-				users-by-username-query="SELECT Email AS USER_ID, Password, Enabled
+				users-by-username-query="SELECT Email AS USER_ID, Password, IsApproved AS Enabled
 			FROM Members WHERE Email = ?"
 				authorities-by-username-query="SELECT Email as USER_ID, Authority AS ROLE_NAME
 			 FROM Authorities WHERE Email = ?" />

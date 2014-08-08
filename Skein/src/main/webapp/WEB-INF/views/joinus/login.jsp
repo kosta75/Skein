@@ -13,6 +13,7 @@
 		<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
 		이유 : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"></c:out>
 		</c:if>
+		
 	</div>
 </c:if>
 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">

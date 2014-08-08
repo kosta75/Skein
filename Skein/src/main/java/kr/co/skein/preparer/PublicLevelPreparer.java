@@ -25,7 +25,7 @@ public class PublicLevelPreparer implements ViewPreparer {
 	@Override
 	public void execute(TilesRequestContext tilesContext, AttributeContext attributeContext) {
 		// TODO Auto-generated method stub
-		PublicLevelDao publicLevelDao = sqlSession.getMapper(PublicLevelDao.class);
+		/*PublicLevelDao publicLevelDao = sqlSession.getMapper(PublicLevelDao.class);
 		try {
 			List<PublicLevel> publicLevelList =  publicLevelDao.getPublicLevelList();
 			tilesContext.getRequestScope().put("publicLevelList", publicLevelList);
@@ -35,7 +35,7 @@ public class PublicLevelPreparer implements ViewPreparer {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 

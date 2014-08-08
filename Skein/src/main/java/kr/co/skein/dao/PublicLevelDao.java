@@ -7,5 +7,5 @@ import kr.co.skein.model.PublicLevel;
 
 public interface PublicLevelDao {
 	
-	public List<PublicLevel> getPublicLevelList() throws ClassNotFoundException, SQLException;
+	//public List<PublicLevel> getPublicLevelList() throws ClassNotFoundException, SQLException;
 }
