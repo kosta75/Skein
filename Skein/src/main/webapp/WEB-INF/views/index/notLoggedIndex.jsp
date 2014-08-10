@@ -2,7 +2,7 @@
 <%@ page import="net.tanesha.recaptcha.ReCaptcha" %>
 <%@ page import="net.tanesha.recaptcha.ReCaptchaFactory" %>
 <h3>회원가입</h3>
-<div>
+<div id="memberRegistryForm">
 	<form action="${pageContext.request.contextPath}/joinus/registerMember" method="post">	 
 	<fieldset>
 		<legend>기본 계정 정보</legend>

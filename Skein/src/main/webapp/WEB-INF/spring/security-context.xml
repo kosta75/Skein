@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http auto-config="true">
-		<security:form-login login-page="/joinus/login" authentication-failure-url="/joinus/login?error" />
+		<security:form-login login-page="/joinus/login" authentication-failure-url="/joinus/notApprovedAccept" />
 		<security:logout logout-success-url="/" />
 		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
 		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />

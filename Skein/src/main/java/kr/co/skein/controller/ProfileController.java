@@ -91,7 +91,6 @@ public class ProfileController {
 							System.out.println("INFO : Skein-P016 - 계정승인여부, isApproved=" + member.getIsApproved());
 							if(certificationText.equals(member.getCertificationText())){
 								System.out.println("INFO : Skein-P017 - 신규 계정 인증 확인");
-								member.setIsDomranted(0);
 								member.setIsApproved(1);
 								memberDao.updateMemberAccount(member);
 								memberDao.createMemberAuthority(new MemberAuthority("ROLE_USER", member.getEmail()));

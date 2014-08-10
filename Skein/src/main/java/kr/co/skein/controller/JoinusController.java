@@ -5,13 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import kr.co.skein.dao.MemberDao;
 import kr.co.skein.model.Member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -111,6 +116,35 @@ public class JoinusController {
 		
 		return "redirect:/";
 	}
+	
+	
+/*	@RequestMapping(value="/registerMember", method=RequestMethod.GET)
+	public String sendCertificationText(HttpSession session){
+		
+		if(session.getAttribute("SPRING_SECURITY_CONTEXT") != null){
+			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+		}
+		
+		return "redirect:/";
+	}*/
+	
+	@RequestMapping(value="/notApprovedAccept", method=RequestMethod.GET)
+	public String notApprovedAccept(HttpServletRequest request,HttpSession session, Model model){
+		System.out.println("INFO : Skein-P020 - 로그인 인증 예외 처리");
+		if(session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION") != null){
+			DisabledException exception = (DisabledException) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+			String message = exception.getMessage();
+			if(message.equals("User is disabled")){
+				System.out.println("INFO : Skein-U020 - 인증되지 않은 계정입니다.");
+				model.addAttribute("LOGIN_ERROR_CODE", 1);
+			}else{
+				model.addAttribute("LOGIN_ERROR_CODE", 0);
+			}	        
+		}
+		return "joinus.login";
+	}
+	//sendCertificationText
 	
 	/*@InitBinder
 	protected void initBinder(WebDataBinder binder){

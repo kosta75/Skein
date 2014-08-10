@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="default-css"/>" />
 </head>
 <body>
 <se:authorize ifNotGranted="ROLE_USER">

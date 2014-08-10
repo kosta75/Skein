@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+body{margin:0px;padding:0px;overflow-y:scroll;}
+#memberRegistryForm{color:#f00;}
+#memberRegistryForm fieldset{border:0px;margin:0px;padding:0px;}
+#memberRegistryForm fieldset legend{width:0px;height:0px;text-indent:-10000px;}
