@@ -1,0 +1,20 @@
+SELECT * FROM ROLES;
+SELECT * FROM AUTHORITIES;
+SELECT * FROM MEMBERS;
+
+DESC MEMBERS;
+
+DELETE FROM members WHERE email = 'univcss@naver.com';
+COMMIT;
+
+-- 계정 권한 테스트
+UPDATE members SET isApproved = 0;
+COMMIT;
+
+DELETE FROM authorities
+COMMIT;
+
+--
+SELECT * FROM BOARD;
+SELECT * FROM BOARDFORM;
+SELECT * FROM BOARDKIND;
