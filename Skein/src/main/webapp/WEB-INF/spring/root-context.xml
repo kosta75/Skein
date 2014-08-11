@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- Resolver 설정 Start -->
+	<!-- BeanNameViewResolver 등록(JacksonJson 사용) -->
+	<bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1"></property>
+	</bean>
+	
+	<!-- UrlBasedViewResolver 등록(Tiles2 사용) -->
+	<bean id="urlBasedViewResolver"  class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="order" value="2"></property>
+	</bean>
+	
+	<!-- CommonsMultipartResolver 등록(File Upload/Download 사용) -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760"></property>
+	</bean>
+	<!-- Resolver 설정 End -->
+	
+	<!-- Tiles2 설정 Start -->
+	<!-- Tiles2 환경 설정 xml 연결 -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-default-definitions.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+	</bean>
+	
+	<!-- Preparer 등록 -->
+	<!-- 1. PublicLevelPreparer 등록 -->
+	<!-- <bean id="publicLevelPreparer" class="kr.co.skein.preparer.PublicLevelPreparer">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean> -->
+	<!-- Tiles2 설정 End -->
+	
+	<!-- MyBATIS 설정 Start -->
+	<!-- MyBatis 세팅 -->
+	<bean id="sqlSeesionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="driverManagerDataSource" />
+		<property name="mapperLocations" value="classpath*:kr/co/skein/model/mapper/*xml" />
+	</bean> 
+
+	<!-- SqlSession 주입을 위한 템플릿 등록 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSeesionFactoryBean" />
+	</bean>
+	<!-- MyBATIS 설정 End -->
+	
+	<!-- JDBC 연동 설정 Start -->
+	<!-- JDBC Datasource 설정 -->
+	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.0.9:1521:ORCL"></property> -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.7.127:1521:ORCL"></property> -->
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL"></property>
+		<property name="username" value="skeintest"></property>
+		<property name="password" value="1004"></property>
+	</bean>
+	<!-- JDBC 연동 설정 End -->
+	
+	<!-- SMTP 메일 Sender 설정 Start -->
+	<!-- MailSender 환경 설정 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="username" value="univcss@gmail.com" />
+		<property name="password" value="tjdsil2670" />
+		<property name="port" value="587" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.timeout">8500</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- SMTP 메일 Sender 설정 End -->
+	
+	<!-- 기타 공통 사항 설정 Start -->
+	<!-- MappingJacksonJsonView 등록 -->
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+	
+	<!-- DataSourceTransactionManager 등록 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource" /> 
+	</bean>
+	<!-- 기타 공통 사항 설정 End -->
+	
+</beans>
