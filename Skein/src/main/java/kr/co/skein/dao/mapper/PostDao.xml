@@ -23,8 +23,8 @@
 	</insert>
 	
 	<select id="getHistoryPost" resultType="kr.co.skein.model.HistoryPost">
-		SELECT b.BoardSeq, b.Content, b.WriteDate, b.BoardKindSeq, b.Email, b.PublicLevelCode, h.HistorySeq, h.StartDate, h.EndDate, h.Feelings, h.Weather, h.IsImportant, h.IsShare, h.Keyword, h.Place, h.GroupSeq
-		FROM board b JOIN history h ON b.boardSeq = h.boardSeq
+		SELECT  m.FullName, b.BoardSeq, b.Content, b.WriteDate, b.BoardKindSeq, b.Email, b.PublicLevelCode, h.HistorySeq, h.StartDate, h.EndDate, h.Feelings, h.Weather, h.IsImportant, h.IsShare, h.Keyword, h.Place, h.GroupSeq
+		FROM board b JOIN history h ON b.boardSeq = h.boardSeq JOIN MEMBERS m ON b.Email = m.Email 
 		WHERE b.boardSeq = #{boardSeq} 
 	</select>
 	
@@ -33,6 +33,11 @@
 		FROM board b JOIN history h ON b.boardSeq = h.boardSeq JOIN MEMBERS m ON b.Email = m.Email 
 		WHERE b.email = #{email}
 	</select>
+	
+	
+	
+	
+	
 	
 	
 	

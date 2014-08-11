@@ -17,4 +17,6 @@ public interface PostDao {
 	public HistoryPost getHistoryPost(int boardSeq) throws ClassNotFoundException, SQLException;
 	
 	public List<HistoryPost> getHistoryPosts(String email) throws ClassNotFoundException, SQLException;
+	
+	public Post detailView(int boardSeq) throws ClassNotFoundException, SQLException;
 }

@@ -45,6 +45,7 @@
 		<url-pattern>*.JPG</url-pattern>
 		<url-pattern>*.png</url-pattern>
 		<url-pattern>*.PNG</url-pattern>
+		<url-pattern>*.mp4</url-pattern>
 	</servlet-mapping>
 	
 	<filter>

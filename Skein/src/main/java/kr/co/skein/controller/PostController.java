@@ -2,6 +2,7 @@ package kr.co.skein.controller;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.skein.dao.PostDao;
 import kr.co.skein.model.HistoryPost;
 import kr.co.skein.model.Member;
+import kr.co.skein.model.Post;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,25 +76,25 @@ public class PostController {
 		private String place;
 		private int groupSeq;*/
 		
-		//historyPost.setBoardSeq(1); //set 안해도 됨
+		//historyPost.setBoardSeq(1); //set �븞�빐�룄 �맖
 		//historyPost.setContent(content);
-		historyPost.setBoardKindSeq(2); //set 해주어야 됨
-		//historyPost.setHistorySeq(1);  //set 안해도 됨
-		historyPost.setEmail(email); //set 해야 함
-		//historyPost.setPublicLevelCode(1); //set 해야 함
+		historyPost.setBoardKindSeq(2); //set �빐二쇱뼱�빞 �맖
+		//historyPost.setHistorySeq(1);  //set �븞�빐�룄 �맖
+		historyPost.setEmail(email); //set �빐�빞 �븿
+		//historyPost.setPublicLevelCode(1); //set �빐�빞 �븿
 		
-		historyPost.setFeeling("기분 좋음");
-		historyPost.setWeather("비오는날");
+		historyPost.setFeeling("湲곕텇 醫뗭쓬");
+		historyPost.setWeather("鍮꾩삤�뒗�궇");
 		historyPost.setIsImportant(0);
 		historyPost.setIsShare(0);
-		historyPost.setKeyword("키워드");
-		historyPost.setPlace("장소");
-		//historyPost.setGroupSeq(1); //set 안해도 됨
+		historyPost.setKeyword("�궎�썙�뱶");
+		historyPost.setPlace("�옣�냼");
+		//historyPost.setGroupSeq(1); //set �븞�빐�룄 �맖
 		
-		//DB에 저장되는 순서!
-		//1. Board 테이블에 최초 글 생성!
-		//2. History 테이블에서 Board 테이블에서 생긴 식별번호 참조
-		//3. 참조한 글 번호를 이용해서 추가정보 입력
+		//DB�뿉 ���옣�릺�뒗 �닚�꽌!
+		//1. Board �뀒�씠釉붿뿉 理쒖큹 湲� �깮�꽦!
+		//2. History �뀒�씠釉붿뿉�꽌 Board �뀒�씠釉붿뿉�꽌 �깮湲� �떇蹂꾨쾲�샇 李몄“
+		//3. 李몄“�븳 湲� 踰덊샇瑜� �씠�슜�빐�꽌 異붽��젙蹂� �엯�젰
 		postDao.postReg(historyPost);
 		int boardSeq = postDao.getMaxNumberOfPost();
 		historyPost.setBoardSeq(boardSeq);
@@ -109,6 +111,17 @@ public class PostController {
 		Member member = new Member();
 		member.setEmail("Test");
 		model.addAttribute("member", member);
+		return jsonView;
+	}
+	
+	
+	@RequestMapping(value="/getHistoryPost", method=RequestMethod.POST)
+	public View detailView(Model model,@RequestParam("boardSeq") int boardSeq ) throws ClassNotFoundException, SQLException{
+		PostDao postDao = sqlSession.getMapper(PostDao.class);
+		HistoryPost post = postDao.getHistoryPost(boardSeq);
+		model.addAttribute("post",post);
+		
+		System.out.println(post.getContent()+post.getFullName()+post.getWriteDate());
 		return jsonView;
 	}
 }
