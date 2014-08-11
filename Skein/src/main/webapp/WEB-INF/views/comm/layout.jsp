@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="default-css"/>" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.MultiFile.js"></script>
 </head>
 <body>
 <div class="header-container">

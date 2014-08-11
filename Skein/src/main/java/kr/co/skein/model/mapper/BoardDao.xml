@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.skein.model.dao.BoardDao">
+	
+	<insert id="historyReg" parameterType="kr.co.skein.model.vo.HistoryCommand">
+		<selectKey keyProperty="boardSeq" resultType="Integer">
+			SELECT NVL(MAX(BoardSeq),0)+1 FROM Board
+		</selectKey>
+		INSERT INTO 
+	
+	</insert>
+	
+	<!--  insert all 
+            into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+            values (#seq#, #name#, #id#, #email#, #subject#, #content:CLOB#, 0, sysdate, #bcode#)
+            into album (aseq, seq, orign_picture, save_picture, savefolder)
+            values (album_aseq.nextval, #seq#, #orign_picture#, #save_picture#, #savefolder#)
+        select * from dual -->
+	
+</mapper>
