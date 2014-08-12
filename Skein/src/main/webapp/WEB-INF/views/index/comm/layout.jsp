@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="default-css"/>" />
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
+
+<!-- 공통으로 적용되는 요소 Load -->
+<tiles:insertAttribute name="common-resources" />
+
+<!-- 인덱스 페이지에 추가하려는 요소 Load -->
+<tiles:insertAttribute name="custom-index-resources" />
+
 </head>
 <body>
 <se:authorize ifNotGranted="ROLE_USER">

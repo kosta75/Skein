@@ -36,6 +36,7 @@
 			
 		<!-- 로그아웃 페이지 / 로그아웃 성공시 경로 / 쿠키 삭제 / 세션 삭제 -->
 		<security:logout
+		logout-url="/logout"
 		logout-success-url="/" 
 		delete-cookies="true" 
 		invalidate-session="true"/>

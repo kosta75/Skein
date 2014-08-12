@@ -205,6 +205,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+		<!-- COS 등록 -->
+		<dependency>
+			<groupId>oreilly</groupId>
+			<artifactId>cos</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<!-- 파일 업로드/다운로드 설정 End -->
 		
 		

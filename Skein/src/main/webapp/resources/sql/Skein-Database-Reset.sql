@@ -725,9 +725,9 @@ ALTER TABLE Profiles
 
 
 -----------------------------------------------------------------------------------------------
--- 11. History(과거기록그룹)
+-- 11. History(과거기록)
 -----------------------------------------------------------------------------------------------
--- 11.1 History(과거기록그룹) 테이블 삭제 및 생성
+-- 11.1 History(과거기록) 테이블 삭제 및 생성
 ALTER TABLE History
 	DROP
 		CONSTRAINT FK_Board_TO_History
@@ -802,6 +802,87 @@ ALTER TABLE History
 		REFERENCES Board (
 			BoardSeq
 		);
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+-- 12. Media(미디어)
+-----------------------------------------------------------------------------------------------
+-- 12.1 Media(미디어) 테이블 삭제 및 생성
+ALTER TABLE Media
+	DROP
+		CONSTRAINT FK_Board_TO_Media
+		CASCADE;
+
+ALTER TABLE Media
+	DROP
+		PRIMARY KEY
+		CASCADE
+		KEEP INDEX;
+
+DROP INDEX PK_Media;
+
+/* 미디어 */
+DROP TABLE Media
+	CASCADE CONSTRAINTS;
+
+/* 미디어 */
+CREATE TABLE Media (
+	MediaSeq NUMBER NOT NULL, /* 미디어식별번호 */
+	BoardSeq NUMBER NOT NULL, /* 글번호 */
+	Filename VARCHAR2(127) NOT NULL, /* 파일명 */
+	Filesize NUMBER NOT NULL, /* 파일크기 */
+	Extension VARCHAR2(127) NOT NULL /* 파일확장자 */
+);
+
+COMMENT ON TABLE Media IS '미디어';
+
+COMMENT ON COLUMN Media.MediaSeq IS '미디어식별번호';
+
+COMMENT ON COLUMN Media.BoardSeq IS '글번호';
+
+COMMENT ON COLUMN Media.Filename IS '파일명';
+
+COMMENT ON COLUMN Media.Filesize IS '파일크기';
+
+COMMENT ON COLUMN Media.Extension IS '파일확장자';
+
+CREATE UNIQUE INDEX PK_Media
+	ON Media (
+		MediaSeq ASC
+	);
+
+ALTER TABLE Media
+	ADD
+		CONSTRAINT PK_Media
+		PRIMARY KEY (
+			MediaSeq
+		);
+
+ALTER TABLE Media
+	ADD
+		CONSTRAINT FK_Board_TO_Media
+		FOREIGN KEY (
+			BoardSeq
+		)
+		REFERENCES Board (
+			BoardSeq
+		);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

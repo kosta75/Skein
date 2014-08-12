@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="default-css"/>" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.MultiFile.js"></script>
+<!-- 공통으로 적용되는 요소 Load -->
+<tiles:insertAttribute name="common-resources" />
+
+<!-- 각 페이지에 추가하려는 요소 Load -->
+<tiles:insertAttribute name="custom-page-resources" />
+
 </head>
 <body>
 <div class="header-container">

@@ -91,6 +91,12 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="driverManagerDataSource" /> 
 	</bean>
+	
+	<!-- TransactionTemplate -->
+	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager" ref="transactionManager" /> 
+	</bean>
+	
 	<!-- 기타 공통 사항 설정 End -->
 	
 </beans>
