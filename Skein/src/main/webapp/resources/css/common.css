@@ -1,30 +1,46 @@
 @CHARSET "UTF-8";
+/* 헤더/본문/푸터 의 가로 크기 */
+.wrapper{width:960px;margin:0px auto;}
+
+/* 헤더의 Bar  */
+.header-container{background:#00B4DB;height:57px;}
+.heder-container:after {
+   content:"."; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+/* 헤더에 있는 로고 */
+.logo{width: 100px;float:left;  font-size:50px;}
+
+/* 헤더에 있는 알람페이지 */
+#alrampage{
+	
+	color:black;
+	border:1px solid;
+	border-bottom-color:gray;
+    display:none; 
+	background-color: #fff ;
+	 width: 400px;
+	 height: 100px;
+	 position:absolute;
+	  top:6%;
+	  left:55%;
+	  
+	
+}
+
 body{
 background-color:#e9eaed;
-	
+	margin:0;
 }
-#header{
-width: 100%;
 
-}
-#bar{
-width:960px;
-height:60px; 
-margin:auto;  
-background-color: #7F6C62;
-
-}
-#bar div{
-	float: left;
-text-align: center; 
-font-weight:bold;
-color: #fff;	
-	
-	
-}
 #myinfo div{
 	
 	padding-top:15px;
+	float:left;
 }
 
 #search{
@@ -36,7 +52,17 @@ padding-top:15px;
 float: left;
 width: 270px;	
 }
-
+#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4,#mon :HOVER{
+	cursor: pointer;
+}
+#modal-close{
+	cursor: pointer;
+	
+}
+#modal-close :HOVER{
+	aria-label="ㅇㅇㅇㅇㅇㅇ";
+	
+}
 #header a:LINK {color: #fff;text-decoration: none;}
 #header a:visited {color: #fff;text-decoration: none;} 
 #header a:hover {color: #fff;text-decoration: none;}
@@ -204,15 +230,73 @@ textarea{
 }
 
 #modal-content {
-
+   
     background:#fff;
     display: none;
-    height: 500px;
+    height: 520px;
     position: fixed;
     width: 960px;
     z-index: 1;
+   
 }
 
 #modal-background.active, #modal-content.active {
     display: block;
 }
+
+
+
+
+
+
+
+
+#menu {
+background-color:#bbb; 
+color:#fff; 
+clear: both; 
+width: 960px; 
+margin: auto; 
+height: 60px;
+z-index: 1; 
+/* background-color: #fff; */
+} 
+#menu2{
+display:none;
+clear: both; 
+width: 100%; 
+z-index: 1; 
+background-color:#bbb; 
+/* background-color: #fff; */	
+	color:#fff; 
+	
+}
+
+#menu2-1{
+background-color:#bbb; 
+width: 960px; 
+
+margin: auto; 
+height: 60px;
+z-index: 2; 
+}
+
+#menu_username {
+float: left; 
+width: 200px; 
+height: 50px; 
+text-align: center; 
+font-weight: bold; 
+font-size: 30px; 
+padding-top: 20px;
+}
+/* #menu2 {
+   background-color: #fff;
+   height: 100px;
+   width: 100%;
+   display: none;
+   border-bottom: 1px solid skyblue;
+   z-index: 1;
+} */
+
+	​}
