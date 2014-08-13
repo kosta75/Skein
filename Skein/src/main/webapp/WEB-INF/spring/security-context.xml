@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+		
+		
+	<!-- access-decision-manager-ref : 접근결정관리자(스프링 기본설정 접두사 변경용) -->
+	<!-- use-expressions : 스프링 표현식 SpEL(Spring Expression Language)을 사용유무 -->
+	<!-- access-denied-page : 권한이 맞지 않을때 이동할 페이지 -->
+	<security:http access-decision-manager-ref="accessDecisionManager"
+		access-denied-page="/joinus/login?notApproved"		
+		use-expressions="true">
+				
+		<!-- 세션 관리 -->
+		<!-- invalid-session-url : 세션이 끊겼을때 이동 할 페이지 -->
+		<!-- <security:session-management invalid-session-url="/login?sessionInvalidate"> -->
+		<security:session-management >
+			<!-- max-sessions : 최대 허용 세션 수 -->
+			<!-- expired-url : 중복 발생시 이동할 URL 
+			(이때 중복 로그인 발생시 처음 로그인한 사용자는 접속이 끊기고 다음 request시 expired-url​에 지정한 주소로 이동 
+			(invalid-session-url​이 있을경우 invalid-session-url​로 이동)) -->
+			<!-- 만약 두번째 인증을 거부하게 하고 싶은 경우 
+				concurrency-control에​ error-if-maximum-exceeded="true"속성을 지정 -->
+			<security:concurrency-control max-sessions="1" expired-url="/joinus/login?error=expired" />
+		</security:session-management>
+			
+		
+		<!-- 로그인 페이지 / 폼에서 전송할 URL값 / 로그인 파라메터 변경 / 로그인 성공 핸들러 / 로그인 실패 핸들러 -->
+		<security:form-login login-page="/login"
+			login-processing-url="/security"
+			username-parameter="email"
+			password-parameter="password"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler" />
+			
+		<!-- 로그아웃 페이지 / 로그아웃 성공시 경로 / 쿠키 삭제 / 세션 삭제 -->
+		<security:logout
+		logout-url="/logout"
+		logout-success-url="/" 
+		delete-cookies="true" 
+		invalidate-session="true"/>
+
+		<!-- 권한별 URL Pattern  -->
+		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
+		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+		<!-- <security:intercept-url pattern="/post/*" access="permitAll" />
+		<security:intercept-url pattern="/admin/*" access="hasAnyRole('TEACHER','MANAGER','CENTER','MASTER')" /> -->
+	</security:http>
+	
+	<!-- 권한명 prefix 커스텀 빈 -->
+	<!-- accessDecisionManager 사용으로 권한명 접두사 생략 -->
+	<bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="decisionVoters">
+			<list>
+				<bean 	class="org.springframework.security.web.access.expression.WebExpressionVoter" />
+				<!-- <bean class="org.springframework.security.access.vote.RoleVoter">
+					<property name="rolePrefix" value="" />
+				</bean> -->
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 로그인 처리 핸들러 빈 -->
+	<bean id="loginSuccessHandler" class="kr.co.skein.handler.LoginSuccessHandler">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	<bean id="loginFailureHandler" class="kr.co.skein.handler.LoginFailureHandler">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+	
+	<!-- 세션 삭제 리스너 -->
+	<bean id="sessionDestroyListener" class="kr.co.skein.handler.SessionDestroyListener" />
+		
+	<!-- <security:http auto-config="true">
+		<security:form-login login-page="/joinus/login" authentication-failure-url="/joinus/notApprovedAccept" />
+		<security:logout logout-success-url="/" />
+		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
+		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+	</security:http> -->
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="driverManagerDataSource"
+				users-by-username-query="SELECT Email AS USER_ID, Password, IsApproved AS Enabled
+			FROM Members WHERE Email = ?"
+				authorities-by-username-query="SELECT Email as USER_ID, Authority AS ROLE_NAME
+			 FROM Authorities WHERE Email = ?" />
+		</security:authentication-provider>
+	</security:authentication-manager> 
+
+
+</beans>
