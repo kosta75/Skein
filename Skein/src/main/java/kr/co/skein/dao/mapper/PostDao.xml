@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.skein.dao.PostDao">
+	
+	<insert id="postReg" parameterType="kr.co.skein.model.Post">
+		<selectKey order="BEFORE" keyProperty="boardSeq" resultType="Integer">
+			SELECT NVL(MAX(BoardSeq),0)+1 FROM Board
+		</selectKey>
+		INSERT INTO Board(BoardSeq, Content, WriteDate, BoardKindSeq, Email, PublicLevelCode)
+		VALUES(#{boardSeq}, #{content}, SYSDATE, #{boardKindSeq}, #{email}, #{publicLevelCode})
+	</insert>
+	
+	<select id="getMaxNumberOfPost" resultType="Integer">
+		SELECT NVL(MAX(BoardSeq),0) FROM Board
+	</select>
+	
+	<insert id="historyPostReg" parameterType="kr.co.skein.model.HistoryPost">
+		<selectKey order="BEFORE" keyProperty="historySeq" resultType="Integer">
+			SELECT NVL(MAX(HistorySeq),0)+1 FROM History
+		</selectKey>
+		INSERT INTO History(HistorySeq, BoardSeq)
+		VALUES(#{historySeq}, #{boardSeq})
+	</insert>
+	
+	<select id="getHistoryPost" resultType="kr.co.skein.model.HistoryPost">
+		SELECT b.BoardSeq, b.Content, b.WriteDate, b.BoardKindSeq, b.Email, b.PublicLevelCode, h.HistorySeq, h.StartDate, h.EndDate, h.Feelings, h.Weather, h.IsImportant, h.IsShare, h.Keyword, h.Place, h.GroupSeq
+		FROM board b JOIN history h ON b.boardSeq = h.boardSeq
+		WHERE b.boardSeq = #{boardSeq} 
+	</select>
+	
+	<select id="getHistoryPosts" resultType="kr.co.skein.model.HistoryPost">
+		SELECT m.FullName, b.BoardSeq, b.Content, b.WriteDate, b.BoardKindSeq, b.Email, b.PublicLevelCode, h.HistorySeq, h.StartDate, h.EndDate, h.Feelings, h.Weather, h.IsImportant, h.IsShare, h.Keyword, h.Place, h.GroupSeq
+		FROM board b JOIN history h ON b.boardSeq = h.boardSeq JOIN MEMBERS m ON b.Email = m.Email 
+		WHERE b.email = #{email}
+	</select>
+	
+	
+	
+</mapper>

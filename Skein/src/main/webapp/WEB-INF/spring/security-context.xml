@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http auto-config="true">
+		<security:form-login login-page="/joinus/login" authentication-failure-url="/joinus/notApprovedAccept" />
+		<security:logout logout-success-url="/" />
+		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
+		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+
+		<!-- <security:intercept-url pattern="/customer/noticeDetail.htm" access="ROLE_USER" 
+			/> <security:intercept-url pattern="/customer/noticeReg.htm" access="ROLE_ADMIN" 
+			/> -->
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="driverManagerDataSource"
+				users-by-username-query="SELECT Email AS USER_ID, Password, IsApproved AS Enabled
+			FROM Members WHERE Email = ?"
+				authorities-by-username-query="SELECT Email as USER_ID, Authority AS ROLE_NAME
+			 FROM Authorities WHERE Email = ?" />
+			<!-- <security:user-service> <security:user name="kglim" password="1004" 
+				authorities="ROLE_USER"/> <security:user name="admin" password="1004" authorities="ROLE_ADMIN,ROLE_USER"/> 
+				</security:user-service> -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+  <definition name="index"
+  	template="/WEB-INF/views/index/comm/layout.jsp"
+  	>
+  	<!-- preparer="publicLevelPreparer" -->
+  	<put-attribute name="default-css" value="/css/common.css" />
+  	<put-attribute name="title" value="Skein" />
+  	<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
+  	<put-attribute name="loggedContent" value="/WEB-INF/views/index/loggedIndex.jsp" />
+  	<put-attribute name="notLoggedContent" value="/WEB-INF/views/index/notLoggedIndex.jsp" />
+  	<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+  </definition>
+
+  <definition name="*.*" template="/WEB-INF/views/comm/layout.jsp">
+  	<put-attribute name="default-css" value="/css/common.css" />
+    <put-attribute name="title" value="Notice" />
+    <put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
+    <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+  </definition>
+  
+  <definition name="joinus.login" template="/WEB-INF/views/comm/layout.jsp">
+  	<put-attribute name="default-css" value="/css/common.css" />
+  	<put-attribute name="title" value="Login" />
+  	<put-attribute name="header" value="/WEB-INF/views/joinus/comm/header.jsp" />
+  	<put-attribute name="content" value="/WEB-INF/views/joinus/login.jsp" />
+  	<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+  </definition>
+  
+</tiles-definitions>
