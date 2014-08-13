@@ -332,6 +332,11 @@ ALTER TABLE BoardKind
 			FormCode
 		);
 
+-- 5.2 BoardKind(게시판형식코드) 데이터 입력
+INSERT INTO BOARDKIND VALUES(1, '공지사항', 1);
+INSERT INTO BOARDKIND VALUES(2, '개인기록', 2);
+INSERT INTO BOARDKIND VALUES(3, '다이어리', 3);
+COMMIT;
 
 
 -----------------------------------------------------------------------------------------------
@@ -380,23 +385,23 @@ ALTER TABLE PublicLevel
 
 
 -----------------------------------------------------------------------------------------------
--- 10. HistoryGroup(과거기록그룹) > 7
+-- 10. BoardGroup(과거기록그룹) > 7
 -----------------------------------------------------------------------------------------------
--- 10.1 HistoryGroup(과거기록그룹) 테이블 삭제 및 생성
-ALTER TABLE HistoryGroup
+-- 10.1 BoardGroup(과거기록그룹) 테이블 삭제 및 생성
+ALTER TABLE BoardGroup
 	DROP
 		PRIMARY KEY
 		CASCADE
 		KEEP INDEX;
 
-DROP INDEX PK_HistoryGroup;
+DROP INDEX PK_BoardGroup;
 
 /* 과거기록그룹 */
-DROP TABLE HistoryGroup
+DROP TABLE BoardGroup
 	CASCADE CONSTRAINTS;
 
 /* 과거기록그룹 */
-CREATE TABLE HistoryGroup (
+CREATE TABLE BoardGroup (
 	GroupSeq NUMBER NOT NULL, /* 과거기록그룹식별번호 */
 	GroupName VARCHAR2(127) NOT NULL, /* 과거기록그룹명 */
 	IsImportantGroup INT, /* 중요그룹 */
@@ -404,26 +409,26 @@ CREATE TABLE HistoryGroup (
 	GroupEndDate DATE /* 그룹발생종료일 */
 );
 
-COMMENT ON TABLE HistoryGroup IS '과거기록그룹';
+COMMENT ON TABLE BoardGroup IS '과거기록그룹';
 
-COMMENT ON COLUMN HistoryGroup.GroupSeq IS '과거기록그룹식별번호';
+COMMENT ON COLUMN BoardGroup.GroupSeq IS '과거기록그룹식별번호';
 
-COMMENT ON COLUMN HistoryGroup.GroupName IS '과거기록그룹명';
+COMMENT ON COLUMN BoardGroup.GroupName IS '과거기록그룹명';
 
-COMMENT ON COLUMN HistoryGroup.IsImportantGroup IS '중요그룹';
+COMMENT ON COLUMN BoardGroup.IsImportantGroup IS '중요그룹';
 
-COMMENT ON COLUMN HistoryGroup.GroupStartDate IS '그룹발생시작일';
+COMMENT ON COLUMN BoardGroup.GroupStartDate IS '그룹발생시작일';
 
-COMMENT ON COLUMN HistoryGroup.GroupEndDate IS '그룹발생종료일';
+COMMENT ON COLUMN BoardGroup.GroupEndDate IS '그룹발생종료일';
 
-CREATE UNIQUE INDEX PK_HistoryGroup
-	ON HistoryGroup (
+CREATE UNIQUE INDEX PK_BoardGroup
+	ON BoardGroup (
 		GroupSeq ASC
 	);
 
-ALTER TABLE HistoryGroup
+ALTER TABLE BoardGroup
 	ADD
-		CONSTRAINT PK_HistoryGroup
+		CONSTRAINT PK_BoardGroup
 		PRIMARY KEY (
 			GroupSeq
 		);
@@ -450,7 +455,7 @@ ALTER TABLE Board
 
 ALTER TABLE Board
 	DROP
-		CONSTRAINT FK_HistoryGroup_TO_Board
+		CONSTRAINT FK_BoardGroup_TO_Board
 		CASCADE;
 
 ALTER TABLE Board
@@ -539,11 +544,11 @@ ALTER TABLE Board
 
 ALTER TABLE Board
 	ADD
-		CONSTRAINT FK_HistoryGroup_TO_Board
+		CONSTRAINT FK_BoardGroup_TO_Board
 		FOREIGN KEY (
 			GroupSeq
 		)
-		REFERENCES HistoryGroup (
+		REFERENCES BoardGroup (
 			GroupSeq
 		);
 
@@ -748,7 +753,7 @@ DROP TABLE History
 /* 개인기록 */
 CREATE TABLE History (
 	HistorySeq NUMBER NOT NULL, /* 기록식별번호 */
-	BoardSeq NUMBER, /* 글번호 */
+	BoardSeq NUMBER NOT NULL, /* 글번호 */
 	StartDate DATE, /* 발생시작일 */
 	EndDate DATE, /* 발생종료일 */
 	Feelings VARCHAR2(127), /* 기분 */

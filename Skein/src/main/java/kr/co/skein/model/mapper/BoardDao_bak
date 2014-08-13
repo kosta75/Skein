@@ -5,7 +5,7 @@
 	<!-- 1. 그룹 등록 -->
 	<insert id="groupReg" parameterType="kr.co.skein.model.vo.BoardCommand">
 		<selectKey keyProperty="groupSeq" resultType="Integer">
-			SELECT NVL(MAX(GroupSeq)+1,1) FROM BoardGroup
+			SELECT NVL(MAX(GroupSeq),0)+1 FROM BoardGroup
 		</selectKey>
 		INSERT INTO BoardGroup(GroupSeq, GroupName, IsImportantGroup, GroupStartDate, GroupEndDate)
 		VALUES(#{groupSeq}, #{groupName}, #{isImportantGroup}, #{groupStartDate}, #{groupEndDate})
@@ -13,13 +13,13 @@
 	
 	<!-- 1.1. 공통 게시물 시퀀스 뽑아내기 -->
 	<select id="getGroupMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(GroupSeq)+1,1) FROM BoardGroup
+		SELECT NVL(MAX(GroupSeq),0) FROM BoardGroup
 	</select>
 	
 	<!-- 2. 공통 게시물 등록 -->
 	<insert id="boardReg" parameterType="kr.co.skein.model.vo.BoardCommand">
 		<selectKey keyProperty="boardSeq" resultType="Integer">
-			SELECT NVL(MAX(BoardSeq)+1,1) FROM Board 
+			SELECT NVL(MAX(BoardSeq),0)+1 FROM Board 
 		</selectKey>
 		INSERT INTO Board(BoardSeq, BoardKindSeq, Email, Content, WriteDate, PublicLevelCode, IsActivated, GroupSeq)
 		VALUES(#{boardSeq}, #{boardKindSeq}, #{email}, #{content}, SYSDATE, #{publicLevelCode}, #{isActivated}, #{groupSeq})
@@ -27,35 +27,68 @@
 	
 	<!-- 2. 공통 게시물 시퀀스 뽑아내기 -->
 	<select id="getBoardMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(BoardSeq)+1,1) FROM Board
+		SELECT NVL(MAX(BoardSeq),0) FROM Board
 	</select>
 	
 	<!-- 3. History 게시물 등록 -->
 	<insert id="historyReg" parameterType="kr.co.skein.model.vo.HistoryCommand">
 		<selectKey keyProperty="historySeq" resultType="Integer">
-			SELECT NVL(MAX(HistorySeq)+1,1) FROM History
+			SELECT NVL(MAX(HistorySeq),0)+1 FROM History
 		</selectKey>
 		INSERT INTO History(HistorySeq, BoardSeq, StartDate, EndDate, Feelings, Weather, IsImportant, IsShare, Keyword, Place)
 		VALUES(#{historySeq}, #{boardSeq}, #{startDate}, #{endDate}, #{feelings}, #{weather}, #{isImportant}, #{isShare}, #{keyword}, #{place})
-	</insert>
+
+		
+		<!-- PK	BOARDSEQ	NUMBER
+		BOARDKINDSEQ	NUMBER
+		EMAIL	VARCHAR2(127 BYTE)
+		CONTENT	VARCHAR2(127 BYTE)
+		WRITEDATE	DATE
+		PUBLICLEVELCODE	NUMBER
+		ISACTIVATED	NUMBER
+		GROUPSEQ	NUMBER -->
+		
+		<!-- PK	HISTORYSEQ	NUMBER	
+		BOARDSEQ	NUMBER	
+		STARTDATE	DATE	
+		ENDDATE	DATE	
+		FEELINGS	VARCHAR2(127 BYTE)	
+		WEATHER	VARCHAR2(127 BYTE)	
+		ISIMPORTANT	NUMBER	
+		ISSHARE	NUMBER	
+		KEYWORD	VARCHAR2(127 BYTE)	
+		PLACE	VARCHAR2(255 BYTE)	 -->
+		
+		<!-- INSERT ALL		
+		INTO Board(BoardSeq, BoardKindSeq, Email, Content, WriteDate, PublicLevelCode, IsActivated, GroupSeq)
+		VALUES(#{boardSeq}, #{boardKindSeq}, #{email}, #{content}, SYSDATE, #{publicLevelCode}, #{isActivated}, #{groupSeq})
+		INTO History(BoardSeq, StartDate, EndDate, Feelings, Weather, IsImportant, IsShare, Keyword, Place)
+		VALUES(#{boardSeq}, #{startDate}, #{endDate}, #{feelings}, #{weather}, #{isImportant}, #{isShare}, #{keyword}, #{place})
+		SELECT * FROM DUAL -->
+		
+		<!--  all 
+            into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+            values (#seq#, #name#, #id#, #email#, #subject#, #content:CLOB#, 0, sysdate, #bcode#)
+            into album (aseq, seq, orign_picture, save_picture, savefolder)
+            values (album_aseq.nextval, #seq#, #orign_picture#, #save_picture#, #savefolder#)  -->
 	
-	<!-- 3.1 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getHistoryMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(HistorySeq)+1,1) FROM History
-	</select>
+	</insert>
 	
 	<!-- 4. 미디어 파일 등록 -->
 	<insert id="mediaReg" parameterType="kr.co.skein.model.vo.Media">
 		<selectKey keyProperty="mediaSeq" resultType="Integer">
-			SELECT NVL(MAX(MediaSeq)+1,1) FROM Media
+			SELECT NVL(MAX(MediaSeq),0)+1 FROM Media
 		</selectKey>
 		INSERT INTO Media(MediaSeq, BoardSeq, FileName, FileSize, Extension)
 		VALUES(#{mediaSeq}, #{boardSeq}, #{fileName}, #{fileSize}, #{extension})
 	</insert>
 	
-	<!-- 4.1 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getMediaMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(MediaSeq)+1,1) FROM Media
-	</select>
+	<!--  insert all 
+            into board (seq, name, id, email, subject, content, hit, logtime, bcode)
+            values (#seq#, #name#, #id#, #email#, #subject#, #content:CLOB#, 0, sysdate, #bcode#)
+            into album (aseq, seq, orign_picture, save_picture, savefolder)
+            values (album_aseq.nextval, #seq#, #orign_picture#, #save_picture#, #savefolder#)
+        select * from dual -->
+        
 	
 </mapper>
