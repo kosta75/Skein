@@ -49,4 +49,9 @@
 	<select id="getPersonalURI" resultType="String">
 		SELECT PersonalURI FROM Members WHERE Email = #{email}
 	</select>
+	
+	<!-- 사용자 정보 조회 -->
+	<select id="getMemberInfo" resultType="kr.co.skein.model.vo.Member">
+		SELECT fullName,email,birthday FROM Members WHERE Email = #{email}
+	</select>
 </mapper>

@@ -3,13 +3,14 @@
 .wrapper{width:960px;margin:0px auto;}
 
 /* 헤더의 Bar  */
-.header-container{background:#00B4DB;height:57px;}
+.header-container{background:#00B4DB;height:57px;  color: #fff;}
 .heder-container:after {
    content:"."; /* Older browser do not support empty content */
    visibility: hidden;
    display: block;
    height: 0;
    clear: both;
+ 
 }
 
 /* 헤더에 있는 로고 */
@@ -26,7 +27,7 @@
 	 width: 400px;
 	 height: 100px;
 	 position:absolute;
-	  top:6%;
+	  top:10%;
 	  left:55%;
 	  
 	
@@ -63,10 +64,11 @@ width: 270px;
 	aria-label="ㅇㅇㅇㅇㅇㅇ";
 	
 }
-#header a:LINK {color: #fff;text-decoration: none;}
-#header a:visited {color: #fff;text-decoration: none;} 
-#header a:hover {color: #fff;text-decoration: none;}
-#header a:active { color: #fff;text-decoration: none;}  
+.header-container a:LINK {color: #fff;text-decoration: none;}
+.header-container a:visited {color: #fff;text-decoration: none;} 
+.header-container a:hover {color: #fff;text-decoration: none;}
+.header-container a:active { color: #fff;text-decoration: none;} 
+ 
 body{background: #e9eaed;}
 #container div{
 	float: left;
@@ -124,7 +126,7 @@ padding: 2px;
 
 #side{
 height:100%;
-list-style-image: url('../img/sidebar.png'); 
+list-style-image: url('../../resources/image/sidebar.png'); 
 font-size:20px;
 text-align:left;
 font-weight: bold;
@@ -198,7 +200,7 @@ font-weight:bold;
    width:40px;
    height: 800px;
    position: relative;
-   background: url('../img/writeicon.png');
+   background: url('../../resources/image/writeicon.png');
    float: left;
 }
 
@@ -249,37 +251,60 @@ textarea{
 
 
 
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-
-#menu {
-background-color:#bbb; 
-color:#fff; 
-clear: both; 
-width: 960px; 
-margin: auto; 
-height: 60px;
-z-index: 1; 
-/* background-color: #fff; */
-} 
-#menu2{
-display:none;
-clear: both; 
-width: 100%; 
-z-index: 1; 
-background-color:#bbb; 
-/* background-color: #fff; */	
-	color:#fff; 
-	
+#wrap_nav{
+   padding-left: 20%;
+   float: left
+}
+ul.arrowunderline{
+list-style-type:none;
+margin:0;
+font-size: 15px;
+font-family: 'Nanum Gothic', serif;
 }
 
-#menu2-1{
-background-color:#bbb; 
-width: 960px; 
-
-margin: auto; 
-height: 60px;
-z-index: 2; 
+ul.arrowunderline li{
+height: 50px;
+display:table-cell;
+border-right: 1px solid skyblue;
+/*margin-right:25px;  spacing between each menu item */
 }
+
+ul.arrowunderline .first {
+   border-left: 1px solid skyblue;
+}
+ul.arrowunderline li a{
+top:20px;
+position:relative;
+color:black;
+padding-bottom:9px; /*spacing between each menu item and arrow underline beneath it */
+padding-right: 22px;
+padding-left: 22px;
+text-decoration:none;
+
+}
+
+ul.arrowunderline li a:hover{
+border-bottom:3px solid skyblue; /* style of arrow underline */
+}
+
+ul.arrowunderline li a:hover:after{ /* use CSS generated content to add arrow to the menu */
+content:'';
+width:0;
+height:0;
+position:absolute;
+left:50%;
+margin-left:-5px; /* value should match border-width below */
+bottom: 0;
+border-width:5px; /* value should match margin-left above */
+border-style:solid;
+border-color: transparent transparent skyblue transparent; /* create up arrow */
+}
+
+
+.header-container div {text-align:center;} 
+#menu2 {background-color:#fff; height:50px;  width:100%; display: none; border-bottom: 1px solid skyblue; } 
 
 #menu_username {
 float: left; 
@@ -290,13 +315,31 @@ font-weight: bold;
 font-size: 30px; 
 padding-top: 20px;
 }
-/* #menu2 {
-   background-color: #fff;
-   height: 100px;
-   width: 100%;
-   display: none;
-   border-bottom: 1px solid skyblue;
-   z-index: 1;
-} */
+
+
+	​}
+
+
+#menu {
+background-color:#bbb; 
+color:#fff; 
+clear: both; 
+width: 100%; 
+margin: auto; 
+height: 60px;
+z-index: 1; 
+/* background-color: #fff; */
+} 
+
+#menu_username {
+float: left; 
+width: 200px; 
+height: 50px; 
+text-align: center; 
+font-weight: bold; 
+font-size: 30px; 
+padding-top: 20px;
+}
+
 
 	​}

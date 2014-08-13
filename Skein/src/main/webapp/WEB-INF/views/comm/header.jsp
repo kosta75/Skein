@@ -28,7 +28,7 @@
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 		<div style="width: 120px;float:left;">
 			<div style="width:50px;padding-top:5px;float:left;">
-				<img src="img/20100107221109605_2R2EJLGPV_raw.jpg" width="40px;" height="40px;" style="border-radius:100px;">
+				<img src="${pageContext.request.contextPath}/resources/image//20100107221109605_2R2EJLGPV_raw.jpg" width="40px;" height="40px;" style="border-radius:100px;">
 			</div>
 			<div style="padding-top:15px; float: left">
 				<a href="profile.jsp">${sessionScope.PersonalURI}</a>

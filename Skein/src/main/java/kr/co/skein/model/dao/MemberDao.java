@@ -23,4 +23,7 @@ public interface MemberDao {
 		
 		//사용자 고유 주소 조회
 		public String getPersonalURI(String email) throws ClassNotFoundException, SQLException;
+		
+		//사용자 정보 조회
+		public Member getMemberInfo(String email)throws ClassNotFoundException, SQLException;
 }

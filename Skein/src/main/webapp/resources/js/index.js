@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type : 'post',
-				url : 'post/getHistoryPost',
+				url : 'board/detailView',
 				cache : false,
 				data :
 
@@ -40,9 +40,9 @@ $(document).ready(function() {
 
 				success : function(data) {
 
-					$("#modalfullName").html(data.post.fullName);
-					$("#modalwriteDate").html(data.post.writeDate);
-					$("#modalcontent").html(data.post.content);
+					$("#modalfullName").html(data.fullName);
+					$("#modalwriteDate").html(data.writeDate);
+					$("#modalcontent").html(data.content);
 
 				},
 				error : function() {
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	});
 
-	/*//이미지 마우스 오버시
+	if($("#imghover").find("input").val() != null){
 	 $(imghover).hover(function(){
 	 var imghover = "#imghover"+ $(this).find("input").val();
 	
@@ -104,24 +104,21 @@ $(document).ready(function() {
 	 }
 	 }
 	
-	 });*/
-
+	 });
+	}
 	//상단 메뉴 고정
-	var menupos = $("#menu").offset().top;
-	$(window).scroll(function() {
-		if ($(window).scrollTop() >= menupos) {
-			$("#menu").css("display", "none");
-			$("#menu2").fadeIn('slow');
-			$("#menu2").css("position", "fixed");
-			$("#menu2").animate('')
-			$("#menu2").css("top", "0");
-
-		} else {
-			$("#menu").css("display", "block");
-			$("#menu2").css("display", "none");
-			$("#menu2").css("top", "");
-		}
-	});
+	 var menupos = $("#menu").offset().top; 
+	   $(window).scroll(function(){ 
+	      if($(window).scrollTop() >= menupos) { 
+	         
+	         $("#menu2").fadeIn('slow');
+	         $("#menu2").css("position","fixed"); 
+	         $("#menu2").css("top","0"); 
+	         } else { 
+	         $("#menu2").css("display","none"); 
+	         $("#menu2").css("top",""); 
+	      } 
+	   }); 
 	
 	
 	var filelist = document.getElementById("file-list");
