@@ -64,15 +64,15 @@
 	</bean>
 	
 	<!-- 로그인 처리 핸들러 빈 -->
-	<bean id="loginSuccessHandler" class="kr.co.skein.Handler.LoginSuccessHandler">
+	<bean id="loginSuccessHandler" class="kr.co.skein.handler.LoginSuccessHandler">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
-	<bean id="loginFailureHandler" class="kr.co.skein.Handler.LoginFailureHandler">
+	<bean id="loginFailureHandler" class="kr.co.skein.handler.LoginFailureHandler">
 		<property name="sqlSession" ref="sqlSession"></property>
 	</bean>
 	
 	<!-- 세션 삭제 리스너 -->
-	<bean id="sessionDestroyListener" class="kr.co.skein.Handler.SessionDestroyListener" />
+	<bean id="sessionDestroyListener" class="kr.co.skein.handler.SessionDestroyListener" />
 		
 	<!-- <security:http auto-config="true">
 		<security:form-login login-page="/joinus/login" authentication-failure-url="/joinus/notApprovedAccept" />
