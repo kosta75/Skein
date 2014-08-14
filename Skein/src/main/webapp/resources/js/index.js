@@ -120,7 +120,16 @@ $(document).ready(function() {
 	      } 
 	   }); 
 	
-	
+	//글쓰기 메뉴 
+	   $("#writememnu1").click(function(){
+		   $("#demo").toggle("display");
+		   
+		   
+	   });
+	   
+	   
+	   
+	   
 	var filelist = document.getElementById("file-list");
 	var multiFiles = new Array();
 	 
@@ -137,10 +146,10 @@ $(document).ready(function() {
 					+ "<span class='details'><a href='#' class='btn'>details</a></span> "
 					+ "<div class='modal hide'>"	+ file.name + "<br />"	+ file.type 	+ "<br /></div>"
 					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");*/
-				html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"+file.name+"</div></li>");
+				html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'></div></li>");
 			} 
 			
-		var start = "<li><div id='group_" + groupID + "' class='group'>Group: " + groupID + " ("	+ files.length + " files)</div>";
+		var start = "<li><div id='group_" + groupID + "' class='group' style='display:none;'>Group: " + groupID + " ("	+ files.length + " files)</div>";
 		console.log("function groupTemplate end");
 		return start + html.join('');
 	}
@@ -186,7 +195,7 @@ $(document).ready(function() {
 			},
 			groupend : function(group) {
 				console.log("groupEnd");
-				$("#group_" + group.groupID).append(	"<div>(Time to load: " + (group.ended - group.started)	+ "ms)</div>");
+				$("#group_" + group.groupID).append(	"<div style='display:none;'>(Time to load: " + (group.ended - group.started)	+ "ms)</div>");
 				console.log(multiFiles);
 			}
 		}
