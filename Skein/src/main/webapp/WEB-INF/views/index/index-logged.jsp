@@ -42,7 +42,7 @@
 
 <input type="hidden" value="${imgNumber}">
 <c:if test="${imgNumber == 1}">
-<img id="detailImg${imgNumber}" src="${pageContext.request.contextPath}/resources/media/upload/${list.fileName}.jpg" style="width: 100%; height: 100%; display: block;z-index: -1;border-radius:6px 0 0 0;">
+<%-- <img id="detailImg${imgNumber}" src="${pageContext.request.contextPath}/resources/media/upload/${list.fileName}.jpg" style="width: 100%; height: 100%; display: block;z-index: -1;border-radius:6px 0 0 0;"> --%>
 </c:if>
 <c:if test="${imgNumber != 1}">
 <img id="detailImg${imgNumber}" src="${pageContext.request.contextPath}/resources/media/image/${imgNumber}.jpg" style="width: 100%; height: 100%; display: none;z-index: -1;border-radius:6px 0 0 0;">
@@ -205,9 +205,11 @@ ${list.content}
 <div id="modal-launcher"  >
 <div id="imghover" >
 <input type="hidden" value="${list.boardSeq}" id="boardSeq${list.boardSeq}">
+
 <c:if test="${list.fileName != null}">
 <img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
 </c:if>
+
 </div>
 </div>
 </div>

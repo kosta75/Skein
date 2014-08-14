@@ -117,7 +117,7 @@ public class BoardController {
 			
 					
 			//파일 업로드 경로 설정
-			String fileUploadDir = "/resources/upload";
+			String fileUploadDir = "\\resources\\upload";
 			String rootPath = multiRequest.getSession().getServletContext().getRealPath("/");
 			String fileUploadPath = rootPath + File.separator + fileUploadDir;
 			System.out.println("INFO : Skein-P151 - 파일 업로드 경로, rootPath="+rootPath+",fileUploadDir="+fileUploadDir+",fileUploadPath="+fileUploadPath);
