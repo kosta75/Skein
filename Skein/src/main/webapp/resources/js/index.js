@@ -1,7 +1,5 @@
 $(document).ready(function() {
-	
-	
-	
+
 	
 	
 	
@@ -139,12 +137,12 @@ $(document).ready(function() {
 			var file = files[i];
 			multiFiles.push(file);
 			var id = "group_" + groupID + "_file_"	+ file.extra.fileID;
-			/* html.push("<li id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"
+			 html.push("<li id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"
 					+ "<span class='filename'>"+ file.name	+ "</span> "
 					+ "<div><span class='not-done'><em>Loading...</em></span><span class='on-done'><span class='time-to-load'></span> ms</span></div>"
 					+ "<span class='details'><a href='#' class='btn'>details</a></span> "
 					+ "<div class='modal hide'>"	+ file.name + "<br />"	+ file.type 	+ "<br /></div>"
-					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");*/
+					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");
 				html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"+file.name+"</div></li>");
 			} 
 			
@@ -182,15 +180,15 @@ $(document).ready(function() {
 				$(filelist).append(groupTemplate(group.groupID,group.files));
 				
 				console.log("function find");
-				/* $(filelist).find(	".details a:not(.initialized)")	.click(function() {
+				 $(filelist).find(	".details a:not(.initialized)")	.click(function() {
 					console.log("function find in");
 					$(this).closest("li").find(".modal").modal('show');
-				}) */
-				/* $(filelist).find(".modal:not(.initialized)").addClass("initialized").modal({
+				}) 
+				 $(filelist).find(".modal:not(.initialized)").addClass("initialized").modal({
 					show : false
 				}).on("show", function() {
 					console.log("여기에 뭘 쓰지?");
-				}); */
+				}); 
 			},
 			groupend : function(group) {
 				console.log("groupEnd");
@@ -246,5 +244,4 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-
 });

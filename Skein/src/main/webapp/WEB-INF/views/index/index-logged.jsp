@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
+	<div id="read">Read</div>
 	<div>
 		<div id="menu">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
@@ -185,48 +186,53 @@ ${member.fullName}
 		
 
 </div>
-<c:forEach var="list" items="${list}">
 
-
-<div id="boardlist"  >
-<div id="list" style="border-radius:6px 6px 6px 6px;">
-<div style="float: left;">
-
-<img src="${pageContext.request.contextPath}/resources/upload/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> 
-
-​
-</div>
-<div style="float: left;">
-${list.fullName}<br>
-${list.writeDate}
-</div>
-<div style="clear: both; ">
-${list.content} 
-<div id="modal-launcher"  >
-<div id="imghover" >
-<input type="hidden" value="${list.boardSeq}" id="boardSeq${list.boardSeq}">
-
-<c:if test="${list.fileName != null}">
-<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
-</c:if>
-
-</div>
-</div>
-</div>
-<div style="clear: both; ">수정 삭제</div>
-</div>
-<div id="reply" style="background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
-<div style="float: left;padding:5px;padding-left:10px;">
-<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; "> 
-</div>
-<div style="float: left;padding-top:10px;">
-<form action="" id="rWrite" >
-<input name="replyWrite" type="text" style="width:270%; height: 20px;">
-</form>
-</div>
-</div>
-</div>
-
+<!-- 게시물 출력 부분 Start -->
+<c:forEach var="boardList" items="${groupList}" varStatus="groupStep">
+	
+	<div id="boardlist"  >
+	${groupStep.count} 번째 그룹 <br />
+	<div id="list" style="border-radius:6px 6px 6px 6px;">
+	
+		<%-- <c:forEach var="list" items="${boardList}" varStatus="boardStep"> --%>
+		<c:set var="list" value="${boardList.get(0)}"></c:set>
+			
+		
+			${groupStep.count} 번째 그룹에 총 ${boardList.size()}개의 사진이 포함되어 있습니다. <br />
+			<div style="float: left;">
+				<img src="${pageContext.request.contextPath}/resources/upload/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
+			</div>
+			<div style="float: left;">
+				${list.fullName}<br>
+				${list.writeDate}
+			</div>
+			<div style="clear: both; ">
+				${list.content}
+				<div id="modal-launcher"  >
+					<div id="imghover" >
+						<input type="hidden" value="${list.boardSeq}" id="boardSeq${list.boardSeq}">
+						<c:if test="${list.fileName != null}">
+							<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
+						</c:if>
+					</div>
+				</div>
+			</div>
+			<div style="clear: both; ">수정 삭제</div>
+		</div>
+		<div id="reply" style="background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
+			<div style="float: left;padding:5px;padding-left:10px;">
+				<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
+			</div>
+			<div style="float: left;padding-top:10px;">
+				<form action="" id="rWrite" >
+					<input name="replyWrite" type="text" style="width:270%; height: 20px;">
+				</form>
+			</div>
+		
+	<%-- </c:forEach> --%>
+	
+	</div>
+	</div>
 </c:forEach>
 </div>
 

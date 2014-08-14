@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 @Controller
@@ -59,36 +60,39 @@ public class IndexController {
 								+ user);
 			}
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			List<MemberBoardCommand> list = boardDao.getBoards(personalURI);
+			List<MemberBoardCommand> listSource = boardDao.getBoards(personalURI);
 			
-			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			List<List<MemberBoardCommand>> groupList = new ArrayList<List<MemberBoardCommand>>();
 			
-			int groupStatus = -1;
+			int groupStatus = listSource.get(0).getGroupSeq();
+			int groupSeq = groupStatus;
 			boolean isGrouped = false;
-			List<MemberBoardCommand> l = null;
+			List<MemberBoardCommand> list = null;
 			
-			for(int i=0;i<list.size();i++){
-				if(!isGrouped){
-					l = new ArrayList<MemberBoardCommand>();
-					isGrouped = true;
-				}
-				
-				int groupSeq = list.get(i).getGroupSeq();
-				l.add(list.get(i));
+			for(int i=0;i<listSource.size();i++){
+				groupSeq = listSource.get(i).getGroupSeq();
+
 				if(groupStatus != groupSeq){
-				
-				
-				
-				
-					
+					groupList.add(list);
+					groupStatus = groupSeq;
+					isGrouped = false;
 				}
-				groupStatus = groupSeq;
+	
+				if(!isGrouped){
+					list = new ArrayList<MemberBoardCommand>();
+					isGrouped = true;
+					list.add(listSource.get(i));
+				}else{
+					list.add(listSource.get(i));
+				}		
 			}
 			
 			
 			
 			
-			model.addAttribute("list", list);
+			//model.addAttribute("list", list);allList
+			model.addAttribute("groupList", groupList);
+			
 			Member member = memberDao.getMemberInfo(user.getUsername());
 			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
 			model.addAttribute("member", member);
@@ -109,6 +113,14 @@ public class IndexController {
 		model.addAttribute("writeDate", "2222");
 		model.addAttribute("content", "아아아아앙");
 
+		return jsonView;
+	}
+	
+	@RequestMapping(value = { "/info/mapInfo" }, method = RequestMethod.GET)
+	public View mapInfo(@RequestParam("xPos") int xPos, @RequestParam("yPos") int yPos, Model model){
+		
+		System.out.println("INFO : Skein-I684 - xPos=" + xPos + ",yPos=" + yPos);
+		model.addAttribute("result", "test");
 		return jsonView;
 	}
 

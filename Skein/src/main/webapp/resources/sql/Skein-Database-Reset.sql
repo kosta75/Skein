@@ -53,29 +53,7 @@ COMMIT;
 -----------------------------------------------------------------------------------------------
 -- 2. Members(사용자)
 -----------------------------------------------------------------------------------------------
--- 2.1 Members(사용자) 테이블 삭제 및 생성
-ALTER TABLE Members
-	DROP
-		UNIQUE (
-			PersonalURI
-		)
-		CASCADE
-		KEEP INDEX;
-
-ALTER TABLE Members
-	DROP
-		PRIMARY KEY
-		CASCADE
-		KEEP INDEX;
-
-DROP INDEX UIX_Members;
-
-DROP INDEX PK_Members;
-
-/* 사용자 */
-DROP TABLE Members
-	CASCADE CONSTRAINTS;
-
+-- 2.1 Members(사용자) 테이블 생성
 /* 사용자 */
 CREATE TABLE Members (
 	Email VARCHAR2(127) NOT NULL, /* 이메일 */
@@ -93,7 +71,8 @@ CREATE TABLE Members (
 	LastLoginDate DATE, /* 마지막로그인날짜 */
 	LastPasswordChangedDate DATE, /* 마지막비밀번호변경날짜 */
 	FailedPasswordAttemptCount NUMBER DEFAULT 0 NOT NULL, /* 비밀번호오류횟수 */
-	CertificationText VARCHAR2(255) NOT NULL /* 계정인증문자 */
+	CertificationText VARCHAR2(255) NOT NULL, /* 계정인증문자 */
+  ColorTheme VARCHAR2(127) /* 사용자지정색상 */
 );
 
 COMMENT ON TABLE Members IS '사용자';
@@ -129,6 +108,8 @@ COMMENT ON COLUMN Members.LastPasswordChangedDate IS '마지막비밀번호변경날짜';
 COMMENT ON COLUMN Members.FailedPasswordAttemptCount IS '비밀번호오류횟수';
 
 COMMENT ON COLUMN Members.CertificationText IS '계정인증문자';
+
+COMMENT ON COLUMN Members.ColorTheme IS '사용자지정색상';
 
 CREATE UNIQUE INDEX PK_Members
 	ON Members (
@@ -226,6 +207,13 @@ ALTER TABLE Authorities
 		REFERENCES Members (
 			Email
 		);
+
+
+-- 임의 사용자 추가
+INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
+VALUES('test@test.com','Sil','Tester','SilTester','1004',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
+INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');
+COMMIT;
 
 
 -----------------------------------------------------------------------------------------------
