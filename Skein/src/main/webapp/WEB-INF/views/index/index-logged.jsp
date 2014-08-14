@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
-	<div id="read">Read</div>
 	<div>
 		<div id="menu">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>

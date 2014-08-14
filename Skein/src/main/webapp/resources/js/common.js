@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 	});
 
-	//이미지 마우스 오버시
+	/*//이미지 마우스 오버시
 	 $(imghover).hover(function(){
 	 var imghover = "#imghover"+ $(this).find("input").val();
 	
@@ -110,7 +110,7 @@ $(document).ready(function() {
 	 }
 	 }
 	
-	 });
+	 });*/
 
 	//상단 메뉴 고정
 	var menupos = $("#menu").offset().top;
