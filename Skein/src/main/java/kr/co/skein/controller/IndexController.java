@@ -2,6 +2,7 @@ package kr.co.skein.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +60,34 @@ public class IndexController {
 			}
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
 			List<MemberBoardCommand> list = boardDao.getBoards(personalURI);
+			
+			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			
+			int groupStatus = -1;
+			boolean isGrouped = false;
+			List<MemberBoardCommand> l = null;
+			
+			for(int i=0;i<list.size();i++){
+				if(!isGrouped){
+					l = new ArrayList<MemberBoardCommand>();
+					isGrouped = true;
+				}
+				
+				int groupSeq = list.get(i).getGroupSeq();
+				l.add(list.get(i));
+				if(groupStatus != groupSeq){
+				
+				
+				
+				
+					
+				}
+				groupStatus = groupSeq;
+			}
+			
+			
+			
+			
 			model.addAttribute("list", list);
 			Member member = memberDao.getMemberInfo(user.getUsername());
 			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");

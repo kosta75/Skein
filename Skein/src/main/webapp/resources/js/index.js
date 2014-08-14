@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	
+	
+	
+	
+	
+	
+	
+	
 
 	$('#sidemenu1').click(function() {
 
