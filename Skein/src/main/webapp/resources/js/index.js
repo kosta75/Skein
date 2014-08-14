@@ -3,6 +3,91 @@ $(document).ready(function() {
 	
 	
 	
+
+	
+	
+	$('#changebgc').click(function() {
+
+	      $('#sidecontent').after($('#selectpage').toggle("display"));
+
+	   });
+	   ///////////////색깔변경////////////////
+	   $('#selectpage div').click(function() {
+	      var colorTheme   =  $(this).find("input").val()
+	      
+	      
+	      $.ajax({
+				type : 'post',
+				url : 'member/colorTheme',
+				cache : false,
+				data :
+
+				'colorTheme=' + colorTheme,
+
+				success : function(data) {
+					 
+				      $('.header-container').css("background-color",$(this).css(colorTheme));
+				      $('.header-container').css("background-color",$(this).css(colorTheme));
+				      $('#leftinfo').css("background-color",$(this).css(colorTheme));
+				      $('#menu2').css("background-color",$(this).css(colorTheme));
+						 
+					
+
+				},
+				error : function() {
+					alert('Error while request..');
+				}
+			});
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	     
+	      $('#selectpage').css("display","none");
+	   });
+	   
+	   $('#selectpage div').hover(function() {
+	      $('.header-container').css("background-color",$(this).css("background-color"));
+	      $('.header-container').css("background-color",$(this).css("background-color"));
+	      $('#leftinfo').css("background-color",$(this).css("background-color"));
+	      $('#menu2').css("background-color",$(this).css("background-color"));
+			
+	   });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$("#alram").click(function(){
+		$("#alrampage").toggle("display");
+	});
+	
 	
 	
 	
@@ -122,6 +207,7 @@ $(document).ready(function() {
 	         $("#menu2").fadeIn('slow');
 	         $("#menu2").css("position","fixed"); 
 	         $("#menu2").css("top","0"); 
+	         
 	         } else { 
 	         $("#menu2").css("display","none"); 
 	         $("#menu2").css("top",""); 

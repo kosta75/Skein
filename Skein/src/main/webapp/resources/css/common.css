@@ -3,7 +3,6 @@
 .wrapper{width:960px;margin:0px auto;}
 
 /* 헤더의 Bar  */
-.header-container{background:#00B4DB;height:57px;  color: #fff;}
 .heder-container:after {
    content:"."; /* Older browser do not support empty content */
    visibility: hidden;
@@ -17,21 +16,7 @@
 .logo{width: 100px;float:left;  font-size:50px;}
 
 /* 헤더에 있는 알람페이지 */
-#alrampage{
-	
-	color:black;
-	border:1px solid;
-	border-bottom-color:gray;
-    display:none; 
-	background-color: #fff ;
-	 width: 400px;
-	 height: 100px;
-	 position:absolute;
-	  top:10%;
-	  left:55%;
-	  
-	
-}
+
 
 body{
 background-color:#e9eaed;
@@ -95,21 +80,6 @@ padding: 2px;
 	
 }
 
-#alrampage{
-	
-	color:black;
-	border:1px solid;
-	border-bottom-color:gray;
-    display:none; 
-	background-color: #fff ;
-	 width: 400px;
-	 height: 100px;
-	 position:absolute;
-	  top:6%;
-	  left:55%;
-	  
-	
-}
 #editToggle{
 	
 	display: none;
@@ -246,7 +216,10 @@ textarea{
     display: block;
 }
 
-
+#changebgc:HOVER{
+	cursor: pointer;
+	
+}
 
 
 
@@ -284,6 +257,35 @@ padding-left: 22px;
 text-decoration:none;
 
 }
+.green{
+	
+	background: #336666;
+}
+.skyblue{
+	
+	background: skyblue;
+	
+}
+.red{
+	
+	background: red;
+}
+
+.orange{
+	
+	background:#f96e5b;
+}
+.blue{
+	
+	background: #00B4DB;
+}
+
+
+.yellowgreen{
+	
+	background:  #a7bc7a;
+}
+
 
 ul.arrowunderline li a:hover{
 border-bottom:3px solid skyblue; /* style of arrow underline */
@@ -304,7 +306,9 @@ border-color: transparent transparent skyblue transparent; /* create up arrow */
 
 
 .header-container div {text-align:center;} 
-#menu2 {background-color:#fff; height:50px;  width:100%; display: none; border-bottom: 1px solid skyblue; } 
+#menu{background-color:#fff; height:60px;  width:960px; border-bottom: 1px solid skyblue;z-index: 2; } 
+
+#menu2 { height:60px;  width:100%;position:absolute; display: none; border-bottom: 1px solid skyblue;z-index: 2;left:0; } 
 
 #menu_username {
 float: left; 
@@ -313,33 +317,13 @@ height: 50px;
 text-align: center; 
 font-weight: bold; 
 font-size: 30px; 
-padding-top: 20px;
+
+padding-top: 15px;
 }
 
 
-	​}
 
 
-#menu {
-background-color:#bbb; 
-color:#fff; 
-clear: both; 
-width: 100%; 
-margin: auto; 
-height: 60px;
-z-index: 1; 
-/* background-color: #fff; */
-} 
-
-#menu_username {
-float: left; 
-width: 200px; 
-height: 50px; 
-text-align: center; 
-font-weight: bold; 
-font-size: 30px; 
-padding-top: 20px;
-}
 
 
-	​}
+

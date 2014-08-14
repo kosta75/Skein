@@ -24,7 +24,7 @@
 </se:authorize>
 
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-<div class="header-container">  <!-- Bar -->
+<div class="header-container ${colorTheme}">  <!-- Bar -->
 	<div class="wrapper">
 		<tiles:insertAttribute name="header" />
 	</div>

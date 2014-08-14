@@ -90,12 +90,22 @@ public class IndexController {
 			
 			model.addAttribute("list", list);
 			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+			  
+			
 			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+			if(colorTheme == null || colorTheme.equals("")){
+				model.addAttribute("colorTheme","blue");	
+			}else{
+				model.addAttribute("colorTheme",colorTheme);	
+			}
+			
 			model.addAttribute("member", member);
 			model.addAttribute("birthDay",
 					SimpleDateFormat.format(member.getBirthday()));
 			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
-
+			
+		
 		}
 
 		return "index";
@@ -109,6 +119,27 @@ public class IndexController {
 		model.addAttribute("writeDate", "2222");
 		model.addAttribute("content", "아아아아앙");
 
+		return jsonView;
+	}
+	
+	
+	@RequestMapping(value = { "/member/colorTheme" }, method = RequestMethod.POST)
+	public View the(String colorTheme , Model model,HttpSession session)
+			throws ClassNotFoundException, SQLException {
+		 MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		
+        System.out.println(colorTheme);
+		
+		SecurityContextImpl sci = (SecurityContextImpl) session
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		UserDetails user = (UserDetails) sci.getAuthentication()
+				.getPrincipal();
+		
+			String email =user.getUsername();
+	  memberDao.updateColorTheme(colorTheme,email);
+	/*String color=memberDao.selectColorTheme(user.getUsername());*/
+		model.addAttribute("colorTheme", colorTheme);
+	
 		return jsonView;
 	}
 

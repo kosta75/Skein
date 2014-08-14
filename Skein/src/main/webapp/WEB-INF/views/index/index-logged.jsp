@@ -9,7 +9,7 @@
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		</div>
 	
-		<div id="menu2">
+		<div id="menu2" class="${colorTheme}" style="color: #fff;">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		
 		</div>
@@ -97,9 +97,9 @@
 </div>
 <div id="containerLeft" style="width:25%; float: left;">
 
-<div style="width: 98%;height:200px; ">
+<div id="infomember"   style="width: 98%;height:200px; ">
 
-<div style="width:98%; height: 70px;background:#00B4DB; border-radius:6px 6px 0px 0px;  "></div>
+<div id="leftinfo"class="${colorTheme}"  style="width:98%; height: 70px; border-radius:6px 6px 0px 0px;  "></div>
 <div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 
 </div>
@@ -120,6 +120,7 @@ ${member.fullName}
 </div> 
 
 </div> 
+
 </div>
 
 
@@ -191,9 +192,9 @@ ${member.fullName}
 <div id="list" style="border-radius:6px 6px 6px 6px;">
 <div style="float: left;">
 
-<img src="${pageContext.request.contextPath}/resources/upload/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> 
+<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> 
 
-​
+
 </div>
 <div style="float: left;">
 ${list.fullName}<br>
