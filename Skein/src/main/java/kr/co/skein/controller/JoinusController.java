@@ -3,6 +3,7 @@ package kr.co.skein.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
@@ -77,7 +78,7 @@ public class JoinusController {
 			
 			//4. CertificationText(계정인증문자) 생성
 			// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
-			String certificationText = "a2b7a8c9d9e0b8e0a0f0e6a3";
+			String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
 			member.setCertificationText(certificationText);
 			System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 			
@@ -101,7 +102,7 @@ public class JoinusController {
 				
 				//4. CertificationText(계정인증문자) 생성
 				// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
-				String certificationText = "a2b7a8c9d9e0b8e0a0f0e6a3";
+				String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
 				member.setCertificationText(certificationText);
 				System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 				

@@ -117,7 +117,7 @@ public class BoardController {
 			
 					
 			//파일 업로드 경로 설정
-			String fileUploadDir = "\\resources\\upload";
+			String fileUploadDir = File.separator + "resources"+ File.separator +"upload";
 			String rootPath = multiRequest.getSession().getServletContext().getRealPath("/");
 			String fileUploadPath = rootPath + File.separator + fileUploadDir;
 			System.out.println("INFO : Skein-P151 - 파일 업로드 경로, rootPath="+rootPath+",fileUploadDir="+fileUploadDir+",fileUploadPath="+fileUploadPath);
@@ -131,7 +131,7 @@ public class BoardController {
 					System.out.println("INFO : Skein-U310 - 업로드 파일 정보, fileName=" + multipartFile.getOriginalFilename() + ",fileSize=" + multipartFile.getSize() + ",contentType=" + multipartFile.getContentType());
 										
 					String fname = multipartFile.getOriginalFilename();
-					String fullPath = fileUploadPath + "\\" + fname;
+					String fullPath = fileUploadPath + File.separator + fname;
 					System.out.println("INFO : Skein-U311 - 파일 업로드를 진행합니다. ");
 					System.out.println("INFO : Skein-U311 - 업로드 경로, fullPath=" + fullPath);
 									
