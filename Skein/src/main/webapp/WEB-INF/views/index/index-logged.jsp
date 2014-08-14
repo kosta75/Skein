@@ -144,15 +144,14 @@ ${member.fullName}
 		발생일자 : <input type="date" name="startDate"><br />
 		종료일자 : <input type="date" name="endDate"><br />
 		
-		<ul id="demo" class="offset2 arrow_box">
+		<ul id="demo" class="offset2 arrow_box" style="display: none;">
 			<li class="">
-				<h3>Drop Zone</h3>
-	
-				<p id="dropzone" class="">
-					Drag and drop files from your desktop here (or select them from the
-					input above).<br> They will be read in browser.<br>
-				</p>
+				<h3>이미지를 끌어다 놓으세요</h3>
 				<ul id="file-list"></ul>
+				<p id="dropzone" class="" style="height: 200px;">
+					
+				</p>
+				
 	
 			</li>
 		</ul>

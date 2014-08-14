@@ -5,6 +5,8 @@ $(document).ready(function() {
 	
 	
 	
+	
+	
 
 	$('#sidemenu1').click(function() {
 
@@ -126,7 +128,16 @@ $(document).ready(function() {
 	      } 
 	   }); 
 	
-	
+	//글쓰기 메뉴 
+	   $("#writememnu1").click(function(){
+		   $("#demo").toggle("display");
+		   
+		   
+	   });
+	   
+	   
+	   
+	   
 	var filelist = document.getElementById("file-list");
 	var multiFiles = new Array();
 	 
@@ -137,16 +148,16 @@ $(document).ready(function() {
 			var file = files[i];
 			multiFiles.push(file);
 			var id = "group_" + groupID + "_file_"	+ file.extra.fileID;
-			 html.push("<li id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"
+			/* html.push("<li id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"
 					+ "<span class='filename'>"+ file.name	+ "</span> "
 					+ "<div><span class='not-done'><em>Loading...</em></span><span class='on-done'><span class='time-to-load'></span> ms</span></div>"
 					+ "<span class='details'><a href='#' class='btn'>details</a></span> "
 					+ "<div class='modal hide'>"	+ file.name + "<br />"	+ file.type 	+ "<br /></div>"
-					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");
-				html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"+file.name+"</div></li>");
+					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");*/
+				html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'></div></li>");
 			} 
 			
-		var start = "<li><div id='group_" + groupID + "' class='group'>Group: " + groupID + " ("	+ files.length + " files)</div>";
+		var start = "<li><div id='group_" + groupID + "' class='group' style='display:none;'>Group: " + groupID + " ("	+ files.length + " files)</div>";
 		console.log("function groupTemplate end");
 		return start + html.join('');
 	}
@@ -180,19 +191,19 @@ $(document).ready(function() {
 				$(filelist).append(groupTemplate(group.groupID,group.files));
 				
 				console.log("function find");
-				 $(filelist).find(	".details a:not(.initialized)")	.click(function() {
+				/* $(filelist).find(	".details a:not(.initialized)")	.click(function() {
 					console.log("function find in");
 					$(this).closest("li").find(".modal").modal('show');
-				}) 
-				 $(filelist).find(".modal:not(.initialized)").addClass("initialized").modal({
+				}) */
+				/* $(filelist).find(".modal:not(.initialized)").addClass("initialized").modal({
 					show : false
 				}).on("show", function() {
 					console.log("여기에 뭘 쓰지?");
-				}); 
+				}); */
 			},
 			groupend : function(group) {
 				console.log("groupEnd");
-				$("#group_" + group.groupID).append(	"<div>(Time to load: " + (group.ended - group.started)	+ "ms)</div>");
+				$("#group_" + group.groupID).append(	"<div style='display:none;'>(Time to load: " + (group.ended - group.started)	+ "ms)</div>");
 				console.log(multiFiles);
 			}
 		}
@@ -244,4 +255,5 @@ $(document).ready(function() {
 		});
 		return false;
 	});
+
 });
