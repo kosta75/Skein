@@ -54,4 +54,15 @@
 	<select id="getMemberInfo" resultType="kr.co.skein.model.vo.Member">
 		SELECT fullName,email,birthday FROM Members WHERE Email = #{email}
 	</select>
+	
+	<!-- 사용자 테마 추가 -->
+	
+	<update id="updateColorTheme">
+		UPDATE Members SET COLORTHEME=#{param1} WHERE email = #{param2}
+	</update>
+	<select id="selectColorTheme" resultType="String">
+	select colorTheme from members where email = #{email}
+	</select>
+	
+	
 </mapper>

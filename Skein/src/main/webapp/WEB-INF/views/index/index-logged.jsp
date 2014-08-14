@@ -10,7 +10,7 @@
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		</div>
 	
-		<div id="menu2">
+		<div id="menu2" class="${colorTheme}" style="color: #fff;">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		
 		</div>
@@ -98,9 +98,9 @@
 </div>
 <div id="containerLeft" style="width:25%; float: left;">
 
-<div style="width: 98%;height:200px; ">
+<div id="infomember"   style="width: 98%;height:200px; ">
 
-<div style="width:98%; height: 70px;background:#00B4DB; border-radius:6px 6px 0px 0px;  "></div>
+<div id="leftinfo"class="${colorTheme}"  style="width:98%; height: 70px; border-radius:6px 6px 0px 0px;  "></div>
 <div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 
 </div>

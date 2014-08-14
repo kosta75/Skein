@@ -33,6 +33,7 @@
 	
 }
 
+
 body{
 background-color:#e9eaed;
 	margin:0;
@@ -95,21 +96,6 @@ padding: 2px;
 	
 }
 
-#alrampage{
-	
-	color:black;
-	border:1px solid;
-	border-bottom-color:gray;
-    display:none; 
-	background-color: #fff ;
-	 width: 400px;
-	 height: 100px;
-	 position:absolute;
-	  top:6%;
-	  left:55%;
-	  
-	
-}
 #editToggle{
 	
 	display: none;
@@ -246,7 +232,10 @@ textarea{
     display: block;
 }
 
-
+#changebgc:HOVER{
+	cursor: pointer;
+	
+}
 
 
 
@@ -284,6 +273,35 @@ padding-left: 22px;
 text-decoration:none;
 
 }
+.green{
+	
+	background: #336666;
+}
+.skyblue{
+	
+	background: skyblue;
+	
+}
+.red{
+	
+	background: red;
+}
+
+.orange{
+	
+	background:#f96e5b;
+}
+.blue{
+	
+	background: #00B4DB;
+}
+
+
+.yellowgreen{
+	
+	background:  #a7bc7a;
+}
+
 
 ul.arrowunderline li a:hover{
 border-bottom:3px solid skyblue; /* style of arrow underline */
@@ -317,7 +335,6 @@ padding-top: 20px;
 }
 
 
-	​}
 
 
 #menu {
@@ -342,4 +359,3 @@ padding-top: 20px;
 }
 
 
-	​}

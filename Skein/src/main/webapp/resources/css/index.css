@@ -33,7 +33,17 @@
 	
 }
 
-
+#selectpage {
+   border-bottom-color: gray;
+display: none;
+background-color: #fff;
+width: 100px;
+height: 300px;
+position: fixed;
+top: 10%;
+left: 2%;
+z-index: 3;
+}
 #demo img{
 width: 80px;
 height: 80px;
@@ -45,6 +55,7 @@ padding: 7px;
 	
 	border:1px solid;
 	border-color: #00B4DB;
+	
 	
 }
 

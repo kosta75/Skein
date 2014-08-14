@@ -94,7 +94,16 @@ public class IndexController {
 			model.addAttribute("groupList", groupList);
 			
 			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+			  
+			
 			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+			if(colorTheme == null || colorTheme.equals("")){
+				model.addAttribute("colorTheme","blue");	
+			}else{
+				model.addAttribute("colorTheme",colorTheme);	
+			}
+			
 			model.addAttribute("member", member);
 			model.addAttribute("birthDay",
 					SimpleDateFormat.format(member.getBirthday()));
@@ -115,6 +124,29 @@ public class IndexController {
 
 		return jsonView;
 	}
+	
+		
+	
+	@RequestMapping(value = { "/member/colorTheme" }, method = RequestMethod.POST)
+	public View the(String colorTheme , Model model,HttpSession session)
+			throws ClassNotFoundException, SQLException {
+		 MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
+		
+        System.out.println(colorTheme);
+		
+		SecurityContextImpl sci = (SecurityContextImpl) session
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		UserDetails user = (UserDetails) sci.getAuthentication()
+				.getPrincipal();
+		
+			String email =user.getUsername();
+	  memberDao.updateColorTheme(colorTheme,email);
+	/*String color=memberDao.selectColorTheme(user.getUsername());*/
+		model.addAttribute("colorTheme", colorTheme);
+	
+		return jsonView;
+	}
+	
 	
 	@RequestMapping(value = { "/info/mapInfo" }, method = RequestMethod.GET)
 	public View mapInfo(@RequestParam("xPos") int xPos, @RequestParam("yPos") int yPos, Model model){

@@ -26,4 +26,10 @@ public interface MemberDao {
 		
 		//사용자 정보 조회
 		public Member getMemberInfo(String email)throws ClassNotFoundException, SQLException;
+		
+		//사용자 테마 컬러 등록
+		public int updateColorTheme(String colorTheme,String email)throws ClassNotFoundException, SQLException;
+
+		//사용자 테마 컬러 조회
+		public String selectColorTheme(String email)throws ClassNotFoundException, SQLException;
 }
