@@ -9,6 +9,7 @@ import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberProfileCommand;
 import kr.co.skein.model.vo.ProfileCommand;
+import kr.co.skein.model.vo.SearchMemberCommand;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,11 @@ public class MemberController {
 		System.out.println("INFO : Skein-M006 - 사용자 검색 요청, fullName=" + fullName);
 		
 		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("searchKey", "fullName");
 		parameters.put("searchValue", fullName);
+		parameters.put("ignoreNameValue", "");
 		
-		List<String> list = memberDao.searchMembers(parameters);
+		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);
 		System.out.println("INFO : Skein-M006 - 검색 결과, " + list.size());
 		
 		model.addAttribute("list", list);

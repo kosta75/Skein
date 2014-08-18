@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.co.skein.model.vo.Authority;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.ProfileCommand;
+import kr.co.skein.model.vo.SearchMemberCommand;
 
 public interface MemberDao {
 
@@ -37,7 +38,7 @@ public interface MemberDao {
 		//사용자 상세 프로필 조회
 		public List<ProfileCommand> getMemberProfiles(String personalURI) throws ClassNotFoundException, SQLException;
 		
-		//친구 검색 searchFriendship
-		public List<String> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
+		//사용자 검색 searchMembers
+		public List<SearchMemberCommand> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
 		
 }

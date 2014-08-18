@@ -73,8 +73,23 @@
 	</select>
 	
 	<!-- 친구 검색 -->
-	<select id="searchMembers" resultType="String">
-		SELECT fullName FROM Members WHERE fullName LIKE '${searchValue}%'
+	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
+		SELECT fullName, personalURI FROM Members
+		<!--  WHERE fullName LIKE '${searchValue}%' -->
+		
+		<where>
+			<if test="searchKey != null">
+				<choose>
+					<when test="searchKey.equals('customURI')">
+						personalURI LIKE '${searchValue}%' 
+					</when>
+					<otherwise>
+						${searchKey} = #{searchValue}
+					</otherwise>
+				</choose>
+			</if>
+			
+		</where>
 	</select>
 	
 	

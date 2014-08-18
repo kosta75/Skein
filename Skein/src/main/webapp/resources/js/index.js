@@ -1,4 +1,12 @@
+
+
 $(document).ready(function() {
+	
+	$(document).on('click', '.members', function(){
+		alert($(this).data("uri"));
+	});
+	
+
 	
 	$('#search .textbox').on('keyup', function(){
 		if($("#search .textbox").val().length > 0){
@@ -9,13 +17,14 @@ $(document).ready(function() {
 				success:function(data){
 					//alert('sd');
 					console.log(data);
+					console.log(data.list);
 					var obj = data.list;
 					//console.log(obj);
 					//var list = obj.length;
 					//console.log(list);
 					var msg = "";
 					for(var i=0;i<obj.length;i++){
-						msg += obj[i].fullName + "<br />";
+						msg += "<div class='members' data-uri='"+obj[i].personalURI+"'>" + obj[i].fullName + "/" + obj[i].personalURI + "</div>";
 						//console.log(obj[i].fullName);
 					}
 					$("#searchMembers").html(msg);
@@ -28,6 +37,8 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	
 
 	$('#changebgc').click(function() {
 
