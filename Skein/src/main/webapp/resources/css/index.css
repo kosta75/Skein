@@ -3,7 +3,7 @@
 .wrapper{width:960px;margin:0px auto;}
 
 /* 헤더의 Bar  */
-.header-container{background:#00B4DB;height:57px;  color: #fff;}
+.header-container{height:57px;  color: #fff;}
 .heder-container:after {
    content:"."; /* Older browser do not support empty content */
    visibility: hidden;

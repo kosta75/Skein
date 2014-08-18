@@ -42,10 +42,8 @@ public class IndexController {
 		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
 		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-			SecurityContextImpl sci = (SecurityContextImpl) session
-					.getAttribute("SPRING_SECURITY_CONTEXT");
-			UserDetails user = (UserDetails) sci.getAuthentication()
-					.getPrincipal();
+			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
 			String personalURI = "";
 			if (session.getAttribute("PersonalURI") == null) {
 				System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
@@ -65,6 +63,7 @@ public class IndexController {
 			List<List<MemberBoardCommand>> groupList = new ArrayList<List<MemberBoardCommand>>();
 
 			if(listSource.size() > 0){
+				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, size=" + listSource.size());
 				int groupStatus = listSource.get(0).getGroupSeq();
 				int groupSeq = groupStatus;
 				boolean isGrouped = false;
@@ -86,8 +85,13 @@ public class IndexController {
 					} else {
 						list.add(listSource.get(i));
 					}
+					
+					if(i == listSource.size()-1){
+						groupList.add(list);
+					}
 				}
 			}
+			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + groupList.size());
 			
 
 			// model.addAttribute("list", list);allList
