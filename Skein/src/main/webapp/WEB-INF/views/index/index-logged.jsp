@@ -6,13 +6,28 @@
 <section class="content-container">
 	<div>
 		<div id="menu">
-			<div id="menu_username">${sessionScope.PersonalURI}</div>
+			<ul class="arrowunderline">
+				<li><a href="#">${sessionScope.PersonalURI}</a></li>
+				<li><a href="#">타임라인</a></li>
+				<li><a href="#">정보</a></li>
+				<li><a href="#">사진</a></li>
+				<li><a href="#">친구</a></li>
+			</ul>
 		</div>
 	
 		<div id="menu2" class="${colorTheme}" style="color: #fff;">
-			<div id="menu_username">${sessionScope.PersonalURI}</div>
-		
-		</div>
+				<ul class="arrowunderline">
+					<li><a href="#">${sessionScope.PersonalURI}</a></li>
+					<li class="first"><a href="#">타임라인</a></li>
+					<li><a href="#">정보</a></li>
+					<li><a href="#">사진</a></li>
+					<li><a href="#">친구</a></li>
+					<li><a href="#">고객센터</a></li>
+					<li><a href="#">Log Out</a></li>
+				</ul>
+<%-- 			<div id="menu_username">${sessionScope.PersonalURI}</div>  --%>
+			</div>
+	
 	</div>
 
 	
@@ -216,10 +231,11 @@ ${member.fullName}
 			</div>
 		
 	<%-- </c:forEach> --%>
-	
 	</div>
 	</div>
 </c:forEach>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 </div>
 
 
