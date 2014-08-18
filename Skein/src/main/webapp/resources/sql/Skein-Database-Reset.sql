@@ -917,9 +917,95 @@ ALTER TABLE NotificationCodes
 			NotificationCode
 		);
 
+-- 13.1 NotificationCodes(알림) 데이터 입력
+INSERT INTO NotificationCodes VALUES(1, '공지사항');
+INSERT INTO NotificationCodes VALUES(2, '친구신청');
+INSERT INTO NotificationCodes VALUES(3, '친구신청수락');
+INSERT INTO NotificationCodes VALUES(4, '공유신청');
+INSERT INTO NotificationCodes VALUES(5, '공유신청수락');
+INSERT INTO NotificationCodes VALUES(6, '댓글');
+INSERT INTO NotificationCodes VALUES(7, '공지사항');
 
 
 
+-----------------------------------------------------------------------------------------------
+-- 13. Notifications(사용자 알림)
+-----------------------------------------------------------------------------------------------
+-- 13.1 Notifications(사용자 알림) 테이블 삭제 및 생성
+ALTER TABLE Notifications
+	DROP
+		CONSTRAINT FK_Members_TO_Notifications
+		CASCADE;
+
+ALTER TABLE Notifications
+	DROP
+		CONSTRAINT FK_NotificationCodes_TO_Notifications
+		CASCADE;
+
+ALTER TABLE Notifications
+	DROP
+		PRIMARY KEY
+		CASCADE
+		KEEP INDEX;
+
+DROP INDEX PK_Notifications;
+
+/* 사용자알림 */
+DROP TABLE Notifications
+	CASCADE CONSTRAINTS;
+
+/* 사용자알림 */
+CREATE TABLE Notifications (
+	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
+	Email VARCHAR2(127) NOT NULL, /* 이메일 */
+	IsRead INT NOT NULL, /* 읽은알림 */
+	CreateDate DATE NOT NULL, /* 발생일자 */
+	NotificationCode NUMBER NOT NULL /* 알림코드 */
+);
+
+COMMENT ON TABLE Notifications IS '사용자알림';
+
+COMMENT ON COLUMN Notifications.NotificationSeq IS '사용자알림번호';
+
+COMMENT ON COLUMN Notifications.Email IS '이메일';
+
+COMMENT ON COLUMN Notifications.IsRead IS '읽은알림';
+
+COMMENT ON COLUMN Notifications.CreateDate IS '발생일자';
+
+COMMENT ON COLUMN Notifications.NotificationCode IS '알림코드';
+
+CREATE UNIQUE INDEX PK_Notifications
+	ON Notifications (
+		NotificationSeq ASC
+	);
+
+ALTER TABLE Notifications
+	ADD
+		CONSTRAINT PK_Notifications
+		PRIMARY KEY (
+			NotificationSeq
+		);
+
+ALTER TABLE Notifications
+	ADD
+		CONSTRAINT FK_Members_TO_Notifications
+		FOREIGN KEY (
+			Email
+		)
+		REFERENCES Members (
+			Email
+		);
+
+ALTER TABLE Notifications
+	ADD
+		CONSTRAINT FK_NotifCodes_TO_Notifications
+		FOREIGN KEY (
+			NotificationCode
+		)
+		REFERENCES NotificationCodes (
+			NotificationCode
+		);
 
 
 

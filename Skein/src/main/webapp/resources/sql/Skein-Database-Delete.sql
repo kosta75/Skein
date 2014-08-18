@@ -95,7 +95,13 @@ DROP TABLE Media
 	CASCADE CONSTRAINTS;
 
 
-
+-----------------------------------------------------------------------------------------------
+-- 13. NotificationCodes(알림)
+-----------------------------------------------------------------------------------------------
+-- 13.1 NotificationCodes(알림) 테이블 삭제 및 생성
+/* 알림 */
+DROP TABLE NotificationCodes
+	CASCADE CONSTRAINTS;
 
 
 
