@@ -10,7 +10,7 @@
 				<li><a href="#">${sessionScope.PersonalURI}</a></li>
 				<li><a href="#">타임라인</a></li>
 				<li><a href="#">정보</a></li>
-				<li><a href="#">사진</a></li>
+				<li><a href="time">사진</a></li>
 				<li><a href="#">친구</a></li>
 			</ul>
 		</div>
@@ -112,7 +112,7 @@
 
 <div id="infomember"   style="width: 98%;height:200px; ">
 
-<div id="leftinfo"class="${colorTheme}"  style="width:98%; height: 70px; border-radius:6px 6px 0px 0px;  "></div>
+<div id="leftinfo" class="${colorTheme}"  style="width:98%; height: 70px; border-radius:6px 6px 0px 0px;  "></div>
 
 <div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 </div>
