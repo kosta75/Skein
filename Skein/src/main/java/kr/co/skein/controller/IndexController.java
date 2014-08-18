@@ -114,17 +114,10 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = { "/board/detailView" }, method = RequestMethod.POST)
-	public View detailView(int groupSeq, Model model)
-			throws ClassNotFoundException, SQLException {
-		
+	public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
 		BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-		
 		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
-		
 		model.addAttribute("detailView",boardDetailView);
-	     
-		
-		
 		return jsonView;
 	}
 

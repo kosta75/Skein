@@ -24,47 +24,7 @@ $(document).ready(function() {
 
 	});
 
-	//modal- 기능 구현
-	$("#modal-launcher,#modal-close, #modal-background").click(function() {
-
-		var boardSeq = $(this).find("input").val();
-
-		if ($(this).attr("id") == "modal-launcher") {
-
-			$("html").css("overflow-y", "hidden");
-			$('body').on('wheel.modal mousewheel.modal', function() {
-				return false;
-			});
-
-			$.ajax({
-				type : 'post',
-				url : 'post/getHistoryPost',
-				cache : false,
-				data :
-
-				'boardSeq=' + boardSeq,
-
-				success : function(data) {
-
-					$("#modalfullName").html(data.post.fullName);
-					$("#modalwriteDate").html(data.post.writeDate);
-					$("#modalcontent").html(data.post.content);
-
-				},
-				error : function() {
-					alert('Error while request..');
-				}
-			});
-
-		} else {
-			$('body').off('wheel.modal mousewheel.modal');
-			$("html").css("overflow-y", "auto");
-
-		}
-
-		$("#modal-content, #modal-background").toggleClass("active");
-
-	});
+	
 
 	/*//이미지 마우스 오버시
 	 $(imghover).hover(function(){
