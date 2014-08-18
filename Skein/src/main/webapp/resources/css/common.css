@@ -1,9 +1,6 @@
 @CHARSET "UTF-8";
 /* 헤더/본문/푸터 의 가로 크기 */
-.wrapper {
-	width: 960px;
-	margin: 0px auto;
-}
+.wrapper{width:960px;margin:0px auto;}
 
 /* 헤더의 Bar  */
 .header-container {
@@ -21,11 +18,7 @@
 }
 
 /* 헤더에 있는 로고 */
-.logo {
-	width: 100px;
-	float: left;
-	font-size: 50px;
-}
+.logo{width: 100px;float:left;  font-size:50px;}
 
 /* 헤더에 있는 알람페이지 */
 #alrampage {
@@ -74,31 +67,13 @@ body {
 	
 }
 
-.header-container a:LINK {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:visited {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:hover {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:active {
-	color: #fff;
-	text-decoration: none;
-}
-
-body {
-	background: #e9eaed;
-}
-
-#container div {
+.header-container a:LINK {color: #fff;text-decoration: none;}
+.header-container a:visited {color: #fff;text-decoration: none;} 
+.header-container a:hover {color: #fff;text-decoration: none;}
+.header-container a:active { color: #fff;text-decoration: none;} 
+ 
+body{background: #e9eaed;}
+#container div{
 	float: left;
 }
 
@@ -159,19 +134,18 @@ body {
 	outline: none;
 }
 
-.serch-form .search-button {
-	position: absolute;
-	margin-top: 2px;
-	top: 3px;
-	right: 1px;
-	border: background;
-	height: 15px;
-	width: 22px;
-	font-weight: bold;
-	background:
-		url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
-	background-position: -223px -141px;
-}
+.serch-form .search-button { 
+position: absolute; 
+margin-top: 2px;
+top: 3px; 
+right: 1px; 
+border: background; 
+height: 15px; 
+width: 22px; 
+font-weight: bold; 
+background: url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png); 
+background-position: -223px -141px;
+} 
 
 #writeicon {
 	overflow: hidden;
@@ -197,37 +171,14 @@ textarea {
 	resize: none;
 }
 
-#writemenu1 {
-	
-}
-
-#writememnu1:HOVER {
-	top: -40px;
-}
-
-#writememnu2 {
-	top: -160px;
-}
-
-#writememnu2:HOVER {
-	top: -200px;
-}
-
-#writememnu3 {
-	top: -240px;
-}
-
-#writememnu3:HOVER {
-	top: -280px;
-}
-
-#writememnu4 {
-	top: -320px;
-}
-
-#writememnu4:HOVER {
-	top: -360px;
-}
+#writemenu1{}
+#writememnu1:HOVER{top:-40px;}
+#writememnu2{top: -160px;}
+#writememnu2:HOVER{top:-200px;}
+#writememnu3{top: -240px;}
+#writememnu3:HOVER{top:-280px;}
+#writememnu4{top: -320px;}
+#writememnu4:HOVER{top:-360px;}
 
 #modal-background {
 	display: none;
@@ -263,6 +214,38 @@ textarea {
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+#wrap_nav{
+   padding-left: 20%;
+   float: left
+}
+ul.arrowunderline{
+list-style-type:none;
+margin:0;
+font-size: 15px;
+font-family: 'Nanum Gothic', serif;
+}
+
+ul.arrowunderline li{
+height: 50px;
+display:table-cell;
+border-right: 1px solid skyblue;
+/*margin-right:25px;  spacing between each menu item */
+}
+
+ul.arrowunderline .first {
+   border-left: 1px solid skyblue;
+}
+ul.arrowunderline li a{
+top:20px;
+position:relative;
+color:black;
+padding-bottom:9px; /*spacing between each menu item and arrow underline beneath it */
+padding-right: 22px;
+padding-left: 22px;
+text-decoration:none;
+
+}
+
 .green {
 	background: #336666;
 }
@@ -287,19 +270,6 @@ textarea {
 	background: #a7bc7a;
 }
 
-.header-container div {
-	text-align: center;
-}
-
-#menu_username {
-	float: left;
-	width: 200px;
-	height: 50px;
-	text-align: center;
-	font-weight: bold;
-	font-size: 30px;
-	padding-top: 20px;
-}
 
 /* 기본메뉴 */
 #menu ul.arrowunderline li a:hover {
@@ -321,40 +291,10 @@ textarea {
 	/* create up arrow */
 }
 
-/* 
-#menu ul.arrowunderline li {
-	border-right: 1px solid skyblue;
-}
- */
-ul.arrowunderline {
-	list-style-type: none;
-	margin: 0;
-	font-size: 15px;
-	font-family: 'Nanum Gothic', serif;
-}
 
-ul.arrowunderline li {
-	height: 50px;
-	display: inline-block;
-	margin-left: -5px;
-	/*margin-right:25px;  spacing between each menu item */
+.header-container div {
+	text-align: center;
 }
-
-ul.arrowunderline li a {
-	top: 20px;
-	position: relative;
-	color: black;
-	padding-bottom: 11px;
-	/*spacing between each menu item and arrow underline beneath it */
-	padding-right: 22px;
-	padding-left: 22px;
-	text-decoration: none;
-}
-
-#menu2 ul.arrowunderline :hover {
-	background-color: white;
-}
-
 #menu {
 	background-color: #fff;
 	height: 50px;
@@ -364,14 +304,15 @@ ul.arrowunderline li a {
 	z-index: -1;
 }
 
-#menu2 {
-	background-color: skyblue;
-	height: 50px;
-	width: 100%;
-	display: none;
-	z-index: 1;
-}
+#menu2 { height:60px;  width:100%;position:absolute; display: none; border-bottom: 1px solid skyblue;z-index: 2;left:0; } 
 
-#menu, #menu2 {
-	text-align: center;
+#menu_username {
+float: left; 
+width: 200px; 
+height: 50px; 
+text-align: center; 
+font-weight: bold; 
+font-size: 30px; 
+margin-left:50px;
+padding-top: 15px;
 }
