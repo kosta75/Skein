@@ -130,8 +130,8 @@ $(document).ready(function(){
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
-					$(".modalcontent").append("<div style='height:50px;'>"+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div><div style='clear:both;'>" + data.detailView[0].content + "</div>");
+					$(".modalcontent").append("<div style='height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
+							+ data.detailView[0].writeDate + "</div><div style='clear:both;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
 
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
@@ -151,6 +151,7 @@ $(document).ready(function(){
 			$('body').off('wheel.modal mousewheel.modal');
 			$("html").css("overflow-y", "auto");
 			$(".imgBtn").remove();
+			$(".modalViewcontent").remove();
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");

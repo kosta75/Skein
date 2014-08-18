@@ -51,7 +51,14 @@
 		<!-- content -->
 		<put-attribute name="content" value="/WEB-INF/views/joinus/login.jsp" />
 	</definition>
-
+	<!-- time 라인  -->
+   <definition name="time" template="/WEB-INF/views/index/comm/layout.jsp" extends="index">
+      <!-- 각 페이지에 추가하려는 요소 Load -->
+      <put-attribute name="title" value="timeline" />
+      <!-- content -->
+      <put-attribute name="index-logged" value="/WEB-INF/views/index/time-line.jsp" />
+      
+   </definition>
 	
 
 </tiles-definitions>

@@ -72,7 +72,9 @@ body {
 .header-container a:hover {color: #fff;text-decoration: none;}
 .header-container a:active { color: #fff;text-decoration: none;} 
  
+ 
 body{background: #e9eaed;}
+
 #container div{
 	float: left;
 }
@@ -90,6 +92,18 @@ body{background: #e9eaed;}
 	padding: 10px;
 }
 
+.list{
+width: 98%;
+height:100%;
+background: #fff;
+
+border: 1px solid;
+border-color: #C5C8CF;
+padding: 2px;
+}
+.list div{
+   padding: 10px;   
+}
 #boardlist {
 	margin-bottom: 20px;
 }
