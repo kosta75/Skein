@@ -3,7 +3,24 @@
 $(document).ready(function() {
 	
 	$(document).on('click', '.members', function(){
-		alert($(this).data("uri"));
+		
+		var result = confirm($(this).data("name") +"(" + $(this).data("uri")+") 님께 친구를 신청하시겠습니까?");
+		if(result){
+			$.ajax({
+				type:'POST',
+				url:'friendship/add/' + $(this).data("uri"),
+				success:function(data){
+					alert(data.result);
+					
+				},
+				error: function(){						
+					alert('Error while request..'	);
+				}
+			});
+		}else{
+			console.log("친구 추가취소");
+		}
+		
 	});
 	
 
@@ -24,7 +41,7 @@ $(document).ready(function() {
 					//console.log(list);
 					var msg = "";
 					for(var i=0;i<obj.length;i++){
-						msg += "<div class='members' data-uri='"+obj[i].personalURI+"'>" + obj[i].fullName + "/" + obj[i].personalURI + "</div>";
+						msg += "<div class='members' data-name='"+obj[i].fullName+"' data-uri='"+obj[i].personalURI+"'>" + obj[i].fullName + "/" + obj[i].personalURI + "</div>";
 						//console.log(obj[i].fullName);
 					}
 					$("#searchMembers").html(msg);

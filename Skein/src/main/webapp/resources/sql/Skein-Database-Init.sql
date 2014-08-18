@@ -179,7 +179,7 @@ ALTER TABLE Authorities
 
 -- 임의 사용자 추가
 INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
-VALUES('test@test.com','Sil','Tester','SilTester','1004',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
+VALUES('test@test.com','Sil','Tester','SilTester','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');
 COMMIT;
 
@@ -664,6 +664,43 @@ ALTER TABLE Media
 		);
 
 
+
+-----------------------------------------------------------------------------------------------
+-- 13. NotificationCodes(알림)
+-----------------------------------------------------------------------------------------------
+-- 13.1 NotificationCodes(알림) 테이블 생성
+/* 알림 */
+CREATE TABLE NotificationCodes (
+	NotificationCode NUMBER NOT NULL, /* 알림코드 */
+	NotificationName VARCHAR2(127) NOT NULL /* 알림이름 */
+);
+
+COMMENT ON TABLE NotificationCodes IS '알림';
+
+COMMENT ON COLUMN NotificationCodes.NotificationCode IS '알림코드';
+
+COMMENT ON COLUMN NotificationCodes.NotificationName IS '알림이름';
+
+CREATE UNIQUE INDEX PK_NotificationCodes
+	ON NotificationCodes (
+		NotificationCode ASC
+	);
+
+ALTER TABLE NotificationCodes
+	ADD
+		CONSTRAINT PK_NotificationCodes
+		PRIMARY KEY (
+			NotificationCode
+		);
+
+-- 13.1 NotificationCodes(알림) 데이터 입력
+INSERT INTO NotificationCodes VALUES(1, '공지사항');
+INSERT INTO NotificationCodes VALUES(2, '친구신청');
+INSERT INTO NotificationCodes VALUES(3, '친구신청수락');
+INSERT INTO NotificationCodes VALUES(4, '공유신청');
+INSERT INTO NotificationCodes VALUES(5, '공유신청수락');
+INSERT INTO NotificationCodes VALUES(6, '댓글');
+INSERT INTO NotificationCodes VALUES(7, '공지사항');
 
 
 

@@ -11,6 +11,9 @@ COMMIT;
 INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
 VALUES('test@test.com','Sil','Tester','SilTester','1004',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');
+
+UPDATE MEMBERS SET isapproved = 1 WHERE email = 'admin@skein.com';
+INSERT INTO AUTHORITIES VALUES('ROLE_USER','admin@skein.com');
 COMMIT;
 
 
@@ -106,9 +109,13 @@ SELECT * FROM AUTHORITIES;
 
 DELETE FROM AUTHORITIES WHERE email = 'univcss@naver.com';
 DELETE FROM MEMBERS WHERE email = 'univcss@naver.com';
+
+DELETE FROM MEMBERS WHERE email = 'admin@skein.com';
 COMMIT;
 
 SELECT * FROM MEMBERS WHERE personalURI LIKE 'univcss%';
+
+SELECT * FROM MEMBERS WHERE fullName LIKE 'â%' AND email != 'univcss@naver.com';
 
 
 

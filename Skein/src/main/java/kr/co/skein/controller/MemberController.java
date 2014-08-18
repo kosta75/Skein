@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberProfileCommand;
@@ -13,6 +15,8 @@ import kr.co.skein.model.vo.SearchMemberCommand;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,14 +73,23 @@ public class MemberController {
 	
 	
 	@RequestMapping("/search/members")
-	public View searchMembers(@RequestParam("fullName") String fullName, Model model) throws ClassNotFoundException, SQLException{
+	public View searchMembers(@RequestParam("fullName") String fullName, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("INFO : Skein-M006 - 사용자 검색 요청, fullName=" + fullName);
 		
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("searchKey", "fullName");
-		parameters.put("searchValue", fullName);
-		parameters.put("ignoreNameValue", "");
+		parameters.put("searchNameValue", fullName);
+		
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+			String userName = user.getUsername();
+			
+			parameters.put("ignoreEmailValue", userName);
+		}
+			
+		
 		
 		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);
 		System.out.println("INFO : Skein-M006 - 검색 결과, " + list.size());
