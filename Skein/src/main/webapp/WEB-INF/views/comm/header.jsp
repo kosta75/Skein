@@ -10,9 +10,11 @@
 	</div>
 	<div id="search" >
 		<form class="serch-form" id="searchBar" method="get" action="" role="search" onsubmit="">
-			<input type="text" class="textbox "  placeholder="당신의 친구를 찾아보세요" autocomplete="off">
+			<input type="text" class="textbox"  placeholder="당신의 친구를 찾아보세요" autocomplete="off">
 			<button type="submit" class="search-button" onclick="" title="당신의 친구를 찾아보세요" ></button>
 		</form>
+	</div>
+	<div id="searchMembers">
 	</div>
 	
 	<se:authorize ifNotGranted="ROLE_USER">

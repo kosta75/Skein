@@ -161,28 +161,16 @@ ${member.fullName}
       <div class="icon_button" id="writememnu2"></div>
       <div class="icon_button" id="writememnu3"></div>
       <div class="icon_button" id="writememnu4"></div>
-      	<select name="publicLevelCode" style="margin-left:150px;">
-			<option value="1">비공개</option>
-			<option value="2">비공개</option>
-			<option value="3">비공개</option>
-			<option value="4">비공개</option>
-			<option value="5">비공개</option>
+      	<select name="publicLevelCode" style="margin-left:120px;">
+			<c:forEach var="publicLevelList" items="${publicLevelList}">
+				<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+			</c:forEach>
 		</select>
       
       <input type="submit" value="게시" style="margin-top: 10px;"></div>
       
       </div>
       </form> 
-      <!-- 수정할 부분  -->
-	<%-- 	<select name="publicLevelCode" style="margin-top: 10px;">
-	<c:forEach var="publicLevelList" items="${publicLevelList}">
-		<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
-	</c:forEach>
-			</select> --%>
-		
-	  <!-- 수정할 부분  -->
-		
-
 </div>
 
 <!-- 게시물 출력 부분 Start -->

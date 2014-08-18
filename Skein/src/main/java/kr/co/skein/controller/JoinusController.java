@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.util.PasswordEncryptor;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +65,14 @@ public class JoinusController {
 			//3. PersonalURI(사용자 고유 주소) 생성
 			String email = member.getEmail();
 			String personalURI = email.substring(0, email.indexOf("@"));
+			System.out.println("INFO : Skein-P006 - 초기 사용자 고유 주소 값, personalURI=" + personalURI);
 
 			Map<String, String> param2 = new HashMap<String, String>();
-			parameters.put("searchKey", "customURI");
-			parameters.put("searchValue", personalURI);
+			param2.put("searchKey", "customURI");
+			param2.put("searchValue", personalURI);
 
-			int size = memberDao.getMembers(param2).size(); 
+			int size = memberDao.getMembers(param2).size();
+			System.out.println("INFO : Skein-P006 - 비슷한 사용자 고유주소를 갖고 있는 사용자 리스트, size=" + size);
 			if(size > 0){
 				personalURI = personalURI + "" + size;
 			}	
@@ -84,6 +87,8 @@ public class JoinusController {
 			
 			//사용자 입력 값 확인
 			member.toString();
+			member.setPassword(new PasswordEncryptor().getEncryptSource(member.getPassword()));
+			System.out.println("INFO : Skein-P107 - 암호화된 사용자 비밀번호, password=" + member.getPassword());
 			
 			//5. 사용자 정보 입력
 			int result = memberDao.registerMember(member);

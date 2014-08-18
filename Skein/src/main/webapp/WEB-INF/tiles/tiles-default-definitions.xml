@@ -8,7 +8,8 @@
 	* 대부분의 UI가 보여지는 페이지
 	* 공통사항을 포함한다.
 	-->
-	<definition name="index" template="/WEB-INF/views/index/comm/layout.jsp">
+	<definition name="index" template="/WEB-INF/views/index/comm/layout.jsp"
+	preparer="publicLevelPreparer">
 		<!-- preparer="publicLevelPreparer" -->
 		<!-- 공통으로 적용되는 요소 Load -->
 		<put-attribute name="common-resources" value="/WEB-INF/views/comm/resources/resources.jsp" />

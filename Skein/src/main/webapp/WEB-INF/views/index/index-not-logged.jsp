@@ -15,6 +15,7 @@
 					<form action="${pageContext.request.contextPath}/security"	 method="post">
 						이메일:<input type="text" name="email" />
 						비밀번호:<input	type="password" name="password" />
+						
 						<input type="submit" value="Login" />
 					</form>
 				</td>

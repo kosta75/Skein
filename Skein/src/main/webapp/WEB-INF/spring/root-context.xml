@@ -36,9 +36,9 @@
 	
 	<!-- Preparer 등록 -->
 	<!-- 1. PublicLevelPreparer 등록 -->
-	<!-- <bean id="publicLevelPreparer" class="kr.co.skein.preparer.PublicLevelPreparer">
+	<bean id="publicLevelPreparer" class="kr.co.skein.model.preparer.PublicLevelPreparer">
 		<property name="sqlSession" ref="sqlSession" />
-	</bean> -->
+	</bean>
 	<!-- Tiles2 설정 End -->
 	
 	<!-- MyBATIS 설정 Start -->

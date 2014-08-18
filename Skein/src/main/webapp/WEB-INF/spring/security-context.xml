@@ -89,7 +89,9 @@
 			FROM Members WHERE Email = ?"
 				authorities-by-username-query="SELECT Email as USER_ID, Authority AS ROLE_NAME
 			 FROM Authorities WHERE Email = ?" />
+			 <security:password-encoder hash="md5" base64="false"/><!--여기 추가-->
 		</security:authentication-provider>
+		
 	</security:authentication-manager> 
 
 

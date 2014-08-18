@@ -8,8 +8,8 @@
 		<where>
 			<if test="searchKey != null">
 				<choose>
-					<when test="searchKey == customURI">
-						personalURI LIKE '%${searchValue}%' 
+					<when test="searchKey.equals('customURI')">
+						personalURI LIKE '${searchValue}%' 
 					</when>
 					<otherwise>
 						${searchKey} = #{searchValue}
@@ -52,16 +52,29 @@
 	
 	<!-- 사용자 정보 조회 -->
 	<select id="getMemberInfo" resultType="kr.co.skein.model.vo.Member">
-		SELECT fullName,email,birthday FROM Members WHERE Email = #{email}
+		SELECT fullName, email, birthday FROM Members WHERE Email = #{email}
 	</select>
 	
 	<!-- 사용자 테마 추가 -->
-	
 	<update id="updateColorTheme">
 		UPDATE Members SET COLORTHEME=#{param1} WHERE email = #{param2}
 	</update>
+	
+	<!-- 사용자 테마 조회 -->
 	<select id="selectColorTheme" resultType="String">
-	select colorTheme from members where email = #{email}
+		SELECT colorTheme FROM members WHERE email = #{email}
+	</select>
+	
+	<!-- 사용자 상세 프로필 조회 -->
+	<select id="getMemberProfiles" resultType="kr.co.skein.model.vo.ProfileCommand">
+		SELECT pc.PROFILECODE, pc.PROFILENAME, p.PROFILEINFO, p.PUBLICLEVELCODE
+		FROM MEMBERS m JOIN PROFILES p ON m.EMAIL = p.EMAIL JOIN PROFILECODES pc ON p.PROFILECODE = pc.PROFILECODE
+		WHERE m.personalURI = #{personalURI}
+	</select>
+	
+	<!-- 친구 검색 -->
+	<select id="searchMembers" resultType="String">
+		SELECT fullName FROM Members WHERE fullName LIKE '${searchValue}%'
 	</select>
 	
 	

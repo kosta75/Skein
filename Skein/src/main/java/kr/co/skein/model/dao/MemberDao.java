@@ -6,6 +6,7 @@ import java.util.Map;
 
 import kr.co.skein.model.vo.Authority;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.model.vo.ProfileCommand;
 
 public interface MemberDao {
 
@@ -25,11 +26,18 @@ public interface MemberDao {
 		public String getPersonalURI(String email) throws ClassNotFoundException, SQLException;
 		
 		//사용자 정보 조회
-		public Member getMemberInfo(String email)throws ClassNotFoundException, SQLException;
+		public Member getMemberInfo(String email) throws ClassNotFoundException, SQLException;
 		
 		//사용자 테마 컬러 등록
-		public int updateColorTheme(String colorTheme,String email)throws ClassNotFoundException, SQLException;
+		public int updateColorTheme(String colorTheme,String email) throws ClassNotFoundException, SQLException;
 
 		//사용자 테마 컬러 조회
-		public String selectColorTheme(String email)throws ClassNotFoundException, SQLException;
+		public String selectColorTheme(String email) throws ClassNotFoundException, SQLException;
+		
+		//사용자 상세 프로필 조회
+		public List<ProfileCommand> getMemberProfiles(String personalURI) throws ClassNotFoundException, SQLException;
+		
+		//친구 검색 searchFriendship
+		public List<String> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
+		
 }

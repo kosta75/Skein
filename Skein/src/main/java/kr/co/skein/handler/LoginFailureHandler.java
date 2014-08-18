@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.util.PasswordEncryptor;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.web.servlet.DispatcherServlet;
 
 
 public class LoginFailureHandler implements AuthenticationFailureHandler {
@@ -38,13 +38,16 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		param.put("searchKey", "email");
 		param.put("searchValue", request.getParameter("email"));
 		MemberDao memberdao = (MemberDao) sqlSession.getMapper(MemberDao.class);
+		
 		//request.getSession().setAttribute("SPRING_SECURITY_LAST_EXCEPTION", auth.getMessage());
 		
 		try {
 			List<Member> list = memberdao.getMembers(param);
 			if(list.size() > 0){
-				Member member = list.get(0);
-				if(!member.getPassword().equals(request.getParameter("password"))){
+				Member member = list.get(0); 
+				String password = new PasswordEncryptor().getEncryptSource(request.getParameter("password"));
+				
+				if(!member.getPassword().equals(password)){
 					System.out.println("INFO: Skein-U423 - 비밀번호가 틀렸습니다.");
 					request.setAttribute("LOGIN_ERROR_CODE", 52);
 				}else{
@@ -66,6 +69,9 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -256,6 +256,14 @@
 			<version>0.0.7</version>
 		</dependency>
 		<!-- 자동가입방지 설정 End -->
+		
+		<!-- 비밀번호 암호화 위한 설정 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.8</version>
+		</dependency>
+		
         
 		
 		        

@@ -1,11 +1,34 @@
 $(document).ready(function() {
+	
+	$('#search .textbox').on('keyup', function(){
+		if($("#search .textbox").val().length > 0){
+			$.ajax({
+				type:'POST',
+				url:'search/members',
+				data:"fullName=" + $("#search .textbox").val(),
+				success:function(data){
+					//alert('sd');
+					console.log(data);
+					var obj = data.list;
+					//console.log(obj);
+					//var list = obj.length;
+					//console.log(list);
+					var msg = "";
+					for(var i=0;i<obj.length;i++){
+						msg += obj[i].fullName + "<br />";
+						//console.log(obj[i].fullName);
+					}
+					$("#searchMembers").html(msg);
+					//alert(msg);
+					
+				},
+				error: function(){						
+					alert('Error while request..'	);
+				}
+			});
+		}
+	});
 
-	
-	
-	
-
-	
-	
 	$('#changebgc').click(function() {
 
 	      $('#sidecontent').after($('#selectpage').toggle("display"));
