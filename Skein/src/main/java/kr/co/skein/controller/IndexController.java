@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
 
@@ -112,13 +113,17 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = { "/board/detailView" }, method = RequestMethod.POST)
-	public View detailView(int boardSeq, Model model)
+	public View detailView(int groupSeq, Model model)
 			throws ClassNotFoundException, SQLException {
-
-		model.addAttribute("fullName", "서현덕");
-		model.addAttribute("writeDate", "2222");
-		model.addAttribute("content", "아아아아앙");
-
+		
+		BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
+		
+		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+		
+		model.addAttribute("detailView",boardDetailView);
+	     
+		
+		
 		return jsonView;
 	}
 	

@@ -8,7 +8,7 @@
 		<div id="menu">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		</div>
-	
+			
 		<div id="menu2" class="${colorTheme}" style="color: #fff;">
 			<div id="menu_username">${sessionScope.PersonalURI}</div>
 		
@@ -38,16 +38,15 @@
 <div style="float: left; width: 59%;height: 100%;"> 
 <div style="height: 87%;" >
 <div id="detailImg" style="height:100%; z-index: -2;"  >
-<c:forEach var="imgNumber" begin="1" end="10" step="1">
 
+<c:forEach var="imgNumber" begin="0" end="9" step="1">
 <input type="hidden" value="${imgNumber}">
-<c:if test="${imgNumber == 1}">
-<%-- <img id="detailImg${imgNumber}" src="${pageContext.request.contextPath}/resources/media/upload/${list.fileName}.jpg" style="width: 100%; height: 100%; display: block;z-index: -1;border-radius:6px 0 0 0;"> --%>
+<c:if test="${imgNumber == 0}">
+ <img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;"> 
 </c:if>
-<c:if test="${imgNumber != 1}">
-<img id="detailImg${imgNumber}" src="${pageContext.request.contextPath}/resources/media/image/${imgNumber}.jpg" style="width: 100%; height: 100%; display: none;z-index: -1;border-radius:6px 0 0 0;">
+<c:if test="${imgNumber > 0}">
+<img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: none;z-index: -1;border-radius:6px 0 0 0;">
 </c:if>
-
 </c:forEach>
 
 </div>
@@ -56,13 +55,8 @@
 
 
 </div>
-<div style=" clear: both; ">
-<c:forEach var="imgBtnNumber" begin="1" end="10" step="1">
-<div id="imgBtn">
-<input type="hidden" value="${imgBtnNumber}">
-<img id="imgBtn${imgBtnNumber}" src="${pageContext.request.contextPath}/resources/media/image/${imgBtnNumber}.jpg" style="width: 40px; height: 40px; padding-left:15px;padding-top:10px;opacity:0.4;">
-</div>
-</c:forEach>
+<div style=" clear: both; " id="imgBtnList">
+
 
 </div>
 </div>
@@ -71,20 +65,23 @@
 	
 <div >
 <div style="float: left;  padding-top: 15px;width: 200px;">
+<div class="modalcontent">
 <div style="float: left;">
 <img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
 </div>
-<div id="modalfullName" style=" padding-left:5px; float: left;width:70%;padding-top:10px;">${post.fullName}
+<!--작성자 이름 날짜 내용 출력  -->
+
+
 </div>
-<div id="modalwriteDate" style=" float:left;padding-left:5px;">${post.writeDate}</div>
 </div>
-<div id="modalcontent" style="clear: both; padding-top: 15px; padding-bottom: 15px;">${post.content}</div>
 </div>
 <div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
 <div style="float: left;padding:5px;padding-left:10px;">
 <img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; "> 
+
 </div>
 <div style="float: left;padding-top:10px;">
+
 <div >
 <form action="" id="rWrite" >
 <input name="replyWrite" type="text" style="width:210%; height: 20px;">
@@ -95,13 +92,14 @@
 
 </div>
 </div>
-<div id="containerLeft" style="width:25%; float: left;">
+<div id="containerLeft" style="width:25%; height: 100%;float: left;">
+
 
 <div id="infomember"   style="width: 98%;height:200px; ">
 
 <div id="leftinfo"class="${colorTheme}"  style="width:98%; height: 70px; border-radius:6px 6px 0px 0px;  "></div>
-<div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 
+<div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 </div>
  <div style="position: absolute;z-index: 0; width: 230px; margin-top: 40px;">
 <img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" width="80px" height="80px" style="border:3px solid ; border-color:#fff; border-radius:6px; vertical-align:middle; margin-left: 10px;" >
@@ -120,6 +118,9 @@ ${member.fullName}
 </div> 
 
 </div> 
+<div style="clear: both; margin-top: 20px; ">하이아아아이</div>
+
+
 
 </div>
 
@@ -204,7 +205,7 @@ ${list.writeDate}
 ${list.content} 
 <div id="modal-launcher"  >
 <div id="imghover" >
-<input type="hidden" value="${list.boardSeq}" id="boardSeq${list.boardSeq}">
+<input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
 
 <c:if test="${list.fileName != null}">
 <img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">

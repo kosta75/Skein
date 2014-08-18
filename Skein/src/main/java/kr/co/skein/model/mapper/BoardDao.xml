@@ -69,5 +69,15 @@
 				LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
 				WHERE m.PERSONALURI = #{personalURI} ORDER BY b.BOARDSEQ DESC, b.GROUPSEQ DESC 
 	</select>
+	<!--6. 사용자 게시물 상세 조회  -->
 	
+	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">
+	
+
+select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
+ from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq}
+
+
+	
+	</select>
 </mapper>
