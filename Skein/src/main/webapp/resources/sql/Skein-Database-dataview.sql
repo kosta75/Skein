@@ -118,7 +118,7 @@ SELECT * FROM MEMBERS WHERE personalURI LIKE 'univcss%';
 SELECT * FROM MEMBERS WHERE fullName LIKE 'â%' AND email != 'univcss@naver.com';
 
 
-
+SELECT * FROM
 
 
 
