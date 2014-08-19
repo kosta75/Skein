@@ -206,19 +206,11 @@ ${member.fullName}
 <div id="historyWrite">
 <%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
 <form id="hitstoryForm" method="post" enctype="multipart/form-data">
- 	
-
-      <input type='hidden' name='content' id='content' style="width: 100%;"/>
-      
-	<div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 3px; " contenteditable="true" >
-
-	
-	
-	</div>
-	<!--  -->
-	
+	<div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 10px; " contenteditable="true" ></div>
+	   <input type='hidden' name='content' id='content' style="width: 100%;"/>
 	<input type="hidden" name="email" value="${LoginUser}">
 		<div id="emoticon">
+		<hr>
 		<img class="emoticon" id="emoticon1" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon1.png">
 		<img class="emoticon" id="emoticon2" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon2.png">
 		<img class="emoticon" id="emoticon3" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon3.png">
@@ -230,6 +222,11 @@ ${member.fullName}
 		<img class="emoticon" id="emoticon9" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon9.png">
 		<img class="emoticon" id="emoticon10" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon10.png">
 		<img class="emoticon" id="emoticon11" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon11.png">
+		<img class="emoticon" id="emoticon12" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon12.png">
+		<img class="emoticon" id="emoticon13" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon13.png">
+		<img class="emoticon" id="emoticon14" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon14.png">
+		<img class="emoticon" id="emoticon15" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon15.png">
+		<img class="emoticon" id="emoticon16" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon16.png">
 		</div>
 		<div id="historyDate">
 		발생일자 : <input type="date" name="startDate"><br />
@@ -240,10 +237,7 @@ ${member.fullName}
 				<h3>이미지를 끌어다 놓으세요</h3>
 				<ul id="file-list"></ul>
 				<p id="dropzone" class="" style="height: 200px;">
-					
 				</p>
-				
-	
 			</li>
 		</ul>
 	<!--  -->
@@ -258,9 +252,7 @@ ${member.fullName}
 				<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 			</c:forEach>
 		</select>
-      
       <input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;"></div>
-      
       </div>
       </form> 
 </div>
@@ -288,14 +280,18 @@ ${member.fullName}
 		
 		<div style="clear: both; ">
 			${list.content}
+			<c:if test="${list.fileName != null}">
 			<div id="modal-launcher">
 				<div id="imghover" >
 					<input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
-					<c:if test="${list.fileName != null}">
+					
+					
 						<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
-					</c:if>
+			
+					
 				</div>
 			</div>
+			</c:if>
 		</div>
 		<div style="clear: both; ">수정 삭제</div>
 		</div>

@@ -7,7 +7,7 @@
 
 <!-- custom -->
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
-
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
 <!-- <script type="text/javascript" src="js/fisheye-iutil.min.js"></script> 
 <script type="text/javascript" src="js/dock-example1.js"></script> 
 <script type="text/javascript" src="js/jquery.jqDock.min.js"></script> -->
