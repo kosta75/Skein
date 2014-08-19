@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import kr.co.skein.model.dao.AccountDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Authority;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.util.PasswordEncryptor;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AccountController {
@@ -22,6 +26,9 @@ public class AccountController {
 	@Autowired
 	private SqlSession sqlSession;
 
+	@Autowired
+	private EmailSender emailSender;
+	
 	@RequestMapping("/{personalURI}/account/certification/mailsend")
 	public String sendCertificationText(@PathVariable String personalURI) throws ClassNotFoundException, SQLException{
 		System.out.println("INFO: Skein-U142 - 계정 인증 메일을 보냅니다. personalURI=" + personalURI);
@@ -157,4 +164,67 @@ public class AccountController {
 			return "error.incorrectCertification";
 		}
 	}
+	@RequestMapping("/joinus/refind")
+	public String help(){
+		
+		return "account.help_id";
+	}
+	@RequestMapping("/joinus/id")
+	public String helpId(Member member, Model model) throws ClassNotFoundException, SQLException{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		List<String> emails = accountDao.getAccountEmails(member);
+		if(emails.size()==0){
+			model.addAttribute("noResult", "y");
+		}
+		
+		//***처리
+		for(String email : emails){
+			String result = email.substring(0,3).;
+			email.indexOf("@");
+		}
+		
+		model.addAttribute("emails", emails);
+		return "account.help_id";
+	}
+	@RequestMapping("/joinus/pwd")
+	public String helpPwd(Member member, Model model) throws ClassNotFoundException, SQLException{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		String email = accountDao.getAccountEmail(member);
+		
+		if(email==null){
+			System.out.println(email);
+			model.addAttribute("noResultPwd", "y");
+		}
+		model.addAttribute("email", email);
+		return "account.help_id";
+	}
+	
+	
+	@RequestMapping("/joinus/pwdUpdate")
+	public String helpPwdUpdate(Member member, Model model) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		
+		//임의문자열
+		StringBuffer buffer = new StringBuffer();
+		Random random = new Random();
+
+		String chars[] = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"
+				.split(",");
+
+		for (int i = 0; i < 8; i++) {
+			buffer.append(chars[random.nextInt(chars.length)]);
+		}
+		String password = buffer.toString();
+		
+		emailSender.SendEmail("univcss@gmail.com", member.getEmail(),
+				"[Sil] 임시 비밀번호!", password + "<br>비밀번호를 바로 변경하시기 바랍니다.");
+		member.setPassword(new PasswordEncryptor().getEncryptSource(password));
+
+		int result = accountDao.updateAccountPassword(member);
+		if (result > 0) {
+			model.addAttribute("result", "success");
+		}
+		return "account.help_id";
+	}
+	
 }
