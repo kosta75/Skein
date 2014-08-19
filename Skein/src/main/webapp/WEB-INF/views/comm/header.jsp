@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="globalTop">
 
 <div id="changebgc"style="margin-top: 25px; position: fixed; margin-left: -150px; z-index: 3;">색상변경</div>
@@ -68,9 +69,41 @@
 
          </div>
 		<div id="alrampage">
+		<!-- 1	공지사항
+		2	친구신청
+		3	친구신청수락
+		4	공유신청
+		5	공유신청수락
+		6	댓글
+		7	공지사항 -->
             <hr>
             알림페이지
             <hr>
+            <c:forEach var="list" items="${notificationList}"> 
+            	<c:set var="code" value="${list.notificationCode}"></c:set>
+            	<c:choose>
+            		<c:when test="${code == 1}">
+            			읽지 않은 공지사항 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            		<c:when test="${code == 2}">
+            			읽지 않은 친구신청 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            		<c:when test="${code == 3}">
+            			읽지 않은 친구신청수락 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            		<c:when test="${code == 4}">
+            			읽지 않은 공유신청 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            		<c:when test="${code == 5}">
+            			읽지 않은 공유신청수락 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            		<c:when test="${code == 6}">
+            			읽지 않은 댓글 알림 - ${list.groupCount} 개 <br />
+            		</c:when>
+            	</c:choose>
+            	
+            	
+            </c:forEach>
          </div>
 		
 		

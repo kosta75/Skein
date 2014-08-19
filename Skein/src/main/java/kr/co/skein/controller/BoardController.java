@@ -6,17 +6,20 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.skein.model.dao.BoardDao;
+import kr.co.skein.model.vo.BoardGroupCommand;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
-import kr.co.skein.model.vo.MemberBoardCommand;
 import kr.co.skein.util.CustomFileRenamePolicy;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -44,6 +47,29 @@ public class BoardController {
 	public String registry(){
 		return "redirect:/";
 	}
+	
+	
+	@RequestMapping("/board/getBoards")
+	public View getBoards(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+			
+			
+			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+
+			List<BoardGroupCommand> listSource = boardDao.getBoardGroup(user.getUsername());
+			
+
+			model.addAttribute("listSource", listSource);
+			System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + listSource.size());
+			
+		}
+		
+		return JsonView;
+	}
+	
 	
 	@RequestMapping(value="/historyReg", method=RequestMethod.POST)
 	@Transactional
@@ -248,13 +274,5 @@ public class BoardController {
 		return JsonView;
 	}
 	
-	@RequestMapping("/board/all")
-	public View getAll(Model model) throws ClassNotFoundException, SQLException{
-		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-		List<MemberBoardCommand> list = boardDao.getBoardsAll();
-		model.addAttribute("list", list);
-		System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + list.size());
-		
-		return JsonView;
-	}
+	
 }

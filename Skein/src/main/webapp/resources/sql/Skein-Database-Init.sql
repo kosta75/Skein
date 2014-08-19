@@ -700,7 +700,6 @@ INSERT INTO NotificationCodes VALUES(3, '친구신청수락');
 INSERT INTO NotificationCodes VALUES(4, '공유신청');
 INSERT INTO NotificationCodes VALUES(5, '공유신청수락');
 INSERT INTO NotificationCodes VALUES(6, '댓글');
-INSERT INTO NotificationCodes VALUES(7, '공지사항');
 
 
 

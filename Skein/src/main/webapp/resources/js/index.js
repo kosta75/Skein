@@ -1,4 +1,76 @@
 $(document).ready(function(){
+	
+	
+	Highcharts.setOptions({
+		lang: {
+			months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			shortMonths : ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			weekdays: ['일', '월', '화', '수', '목', '금', '토'],
+			rangeSelectorFrom : '시작',
+			rangeSelectorTo : '종료'
+		}
+	});
+	
+	$.getJSON("board/getBoards" , function(data){
+				
+		console.log(data.listSource);
+		var obj = data.listSource;
+		var source = new Array();
+		var flagSource = new Array();
+		
+		$.each(obj, function(key, value){
+			var board = value;
+			source.push([
+					 value.groupStartDate, value.groupCount
+			]
+			)		
+			flagSource.push(
+				{
+					x:value.groupStartDate,
+					title:value.groupName,
+					text:value.content
+				}
+			);
+		});
+		
+		
+		$('#boardListTimelinContainer').highcharts('StockChart', {
+
+            rangeSelector: {
+                inputEnabled: $('#container').width() > 480,
+                selected: 1
+            },
+
+            title: {
+                text: '전체 게시물'
+            },
+
+            series: [{
+                type:'column',
+                name: '게시물 수',
+                data: source,
+                tooltip: {
+                    valueDecimals: 0
+                },
+                id : 'dataseries'
+                }, {
+				type : 'flags',
+				data : flagSource,
+				onSeries : 'dataseries',
+				shape : 'squarepin',
+				width : 160,
+				events: {
+	                click: function(event) {
+	                	console.log(event);
+	                	console.log(event.point.text);
+	                }
+	            }
+            }]
+        });
+	});
+	
+	
+	
 	$(document).on('mouseout', ".imgBtn", function(){
 		$(this).css("opacity", "0.4");
 		$(this).css("cursor", "pointer");

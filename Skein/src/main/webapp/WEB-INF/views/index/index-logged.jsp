@@ -147,6 +147,9 @@
 <!--center  -->
 <div id="containerCenter" style="width:50%; float: left;">
 
+<div id="boardListTimelinContainer">
+</div>
+
 
 <div id="write" style="width: 99%; background: #fff; margin-bottom: 20px;border-radius:6px 6px 6px 6px;">
 <div style="padding:10px;">

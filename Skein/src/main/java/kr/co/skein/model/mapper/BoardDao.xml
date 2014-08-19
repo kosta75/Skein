@@ -73,16 +73,22 @@
 
 				WHERE m.PERSONALURI = #{personalURI} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
 	</select>
+	
 	<!--6. 사용자 게시물 상세 조회  -->
-	
 	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">
-	
-
 select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
  from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq}
-
-
+	</select>
 	
+	
+	
+	<!-- 7. 사용자 그룹 게시물 조회 -->
+	<select id="getBoardGroup" resultType="kr.co.skein.model.vo.BoardGroupCommand">
+		SELECT b.groupSeq, b.groupName, b.ISIMPORTANTGROUP, b.GROUPSTARTDATE, b.GROUPENDDATE,
+		g.groupCount FROM BOARDGROUP b JOIN
+		(SELECT groupSeq, COUNT(groupSeq) AS groupCount FROM BOARD WHERE email = #{email} GROUP BY groupSeq) g
+		ON b.GROUPSEQ = g.GROUPSEQ
+		ORDER BY groupSeq
 	</select>
 	
 	

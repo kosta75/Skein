@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
+import kr.co.skein.model.vo.NotificationCommand;
+import kr.co.skein.model.vo.NotificationCountCommand;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,11 +110,15 @@ public class IndexController {
 			} else {
 				model.addAttribute("colorTheme", colorTheme);
 			}
+			
+			NotificationDao notificationDao = sqlsession.getMapper(NotificationDao.class);
+			List<NotificationCountCommand> notificationList = notificationDao.getNotifications(user.getUsername());
 
 			model.addAttribute("member", member);
 			model.addAttribute("birthDay",
 					SimpleDateFormat.format(member.getBirthday()));
 			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
+			model.addAttribute("notificationList", notificationList);
 
 		}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
+import kr.co.skein.model.vo.BoardGroupCommand;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
 import kr.co.skein.model.vo.MemberBoardCommand;
@@ -45,7 +46,8 @@ public interface BoardDao {
 	//6. 사용자 게시물 상세조회
 	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
 	
-	
+	//7. 사용자 그룹 게시물 조회
+	public List<BoardGroupCommand> getBoardGroup(String email) throws ClassNotFoundException, SQLException;
 	
 	
 	

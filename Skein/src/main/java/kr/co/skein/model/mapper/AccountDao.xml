@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.skein.model.dao.AccountDao">
+	
+	<!-- 사용자 목록(기본정보) 조회 -->
+	<select id="getAccountEmails"  parameterType="kr.co.skein.model.vo.Member" resultType="String">
+		SELECT email FROM Members WHERE FullName = #{fullName} AND Birthday = #{birthday}
+	</select>
+	
+
+	<select id="getAccountEmail"  parameterType="kr.co.skein.model.vo.Member" resultType="String">
+		SELECT email FROM Members WHERE Email = #{email} AND FullName = #{fullName} AND Birthday = #{birthday}
+	</select>
+	
+	
+	<update id="updateAccountPassword" parameterType="kr.co.skein.model.vo.Member">
+		UPDATE Members
+		SET password = #{password}
+		WHERE email = #{email}
+	</update>
+	
+
+	
+</mapper>

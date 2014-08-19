@@ -155,7 +155,7 @@ SELECT * FROM FRIENDSHIP
 
 
 
-
+SELECT NotificationCode, COUNT(*) FROM Notifications WHERE email = 'univcss@naver.com' GROUP BY notificationcode;;
 
 
 
