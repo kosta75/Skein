@@ -179,7 +179,7 @@ public class AccountController {
 		
 		//***처리
 		for(String email : emails){
-			String result = email.substring(0,3).;
+			String result = email.substring(0,3);
 			email.indexOf("@");
 		}
 		
