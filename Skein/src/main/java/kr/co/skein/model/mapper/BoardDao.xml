@@ -84,4 +84,29 @@ select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.gro
 
 	
 	</select>
+	
+	
+	
+	
+	
+	<!-- 1515. 전체 게시물 조회 -->
+	<select id="getBoardsAll" resultType="kr.co.skein.model.vo.MemberBoardCommand">
+		SELECT m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
+			h.HISTORYSEQ, h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
+			me.MEDIASEQ, me.FILENAME, me.FILESIZE, me.EXTENSION
+			FROM MEMBERS m JOIN BOARD b ON m.EMAIL = b.email
+				JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
+				JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
+				LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
+
+
+
+
+			ORDER BY b.GROUPSEQ ASC, b.BOARDSEQ ASC 
+	</select>
+	
+	
+	
+	
+	
 </mapper>

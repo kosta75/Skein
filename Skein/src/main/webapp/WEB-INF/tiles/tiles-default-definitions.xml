@@ -51,6 +51,7 @@
 		<!-- content -->
 		<put-attribute name="content" value="/WEB-INF/views/joinus/login.jsp" />
 	</definition>
+	
 	<!-- time 라인  -->
    <definition name="time" template="/WEB-INF/views/index/comm/layout.jsp" extends="index">
       <!-- 각 페이지에 추가하려는 요소 Load -->
@@ -59,6 +60,21 @@
       <put-attribute name="index-logged" value="/WEB-INF/views/index/time-line.jsp" />
       
    </definition>
+   
+   
+   <!-- 사용자 검색 페이지 -->
+	<definition name="friendship.searchMembers" template="/WEB-INF/views/comm/layout.jsp" extends="joinus.login">
+		<!-- 각 페이지에 추가하려는 요소 Load -->
+		<put-attribute name="custom-page-resources" value="/WEB-INF/views/friendship/resources/resources.jsp" />
+	
+		<put-attribute name="title" value="Search" />
+		
+		<!-- 헤더를 overwrite 함/헤더의 로그인 폼이 제거되야 해서 따로 적용 -->
+		<put-attribute name="header" value="/WEB-INF/views/friendship/comm/header.jsp" />
+		
+		<!-- content -->
+		<put-attribute name="content" value="/WEB-INF/views/friendship/searchMembers.jsp" />
+	</definition>
 	
 
 </tiles-definitions>

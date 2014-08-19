@@ -1,19 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <header id="globalTop">
-
-<div id="changebgc"style="margin-top: 25px; position: fixed; margin-left: -150px; z-index: 3;">색상변경</div>
+	<div id="changebgc"style="margin-top: 25px; position: fixed; margin-left: -150px; z-index: 3;">색상변경</div>
 
 
 	<div class="logo">
 		<a href="${pageContext.request.contextPath}">Sil</a>
 	</div>
-	<div id="search" >
-		<form class="serch-form" id="searchBar" method="post" action="${pageContext.request.contextPath}/friendship/search/members" role="search" onsubmit="">
-			<input type="text" class="textbox" name="fullName"  placeholder="당신의 친구를 찾아보세요" autocomplete="off">
-			<button type="submit" class="search-button" onclick="" title="당신의 친구를 찾아보세요" ></button>
-		</form>
-	</div>
+	
 	
 	<se:authorize ifNotGranted="ROLE_USER">
 	<div>
@@ -35,7 +29,7 @@
 				<img src="${pageContext.request.contextPath}/resources/media/image//20100107221109605_2R2EJLGPV_raw.jpg" width="40px;" height="40px;" style="border-radius:100px;">
 			</div>
 			<div style="padding-top:15px; float: left">
-				<a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
+				<a href="profile.jsp">${sessionScope.PersonalURI}</a>
 			</div>
 		</div >
 		<div id="myinfo">
@@ -75,6 +69,4 @@
 		
 		
 	</se:authorize>
-	
-	
 </header>

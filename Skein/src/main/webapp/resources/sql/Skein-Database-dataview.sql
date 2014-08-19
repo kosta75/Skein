@@ -9,7 +9,7 @@ COMMIT;
 
 -- 임의 사용자 추가
 INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
-VALUES('test@test.com','Sil','Tester','SilTester','1004',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
+VALUES('test@test.com','test','test','test','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');
 
 UPDATE MEMBERS SET isapproved = 1 WHERE email = 'admin@skein.com';
@@ -111,6 +111,10 @@ DELETE FROM AUTHORITIES WHERE email = 'univcss@naver.com';
 DELETE FROM MEMBERS WHERE email = 'univcss@naver.com';
 
 DELETE FROM MEMBERS WHERE email = 'admin@skein.com';
+
+
+DELETE FROM AUTHORITIES WHERE email = 'seungji222@naver.com';
+DELETE FROM MEMBERS WHERE email = 'seungji222@naver.com';
 COMMIT;
 
 SELECT * FROM MEMBERS WHERE personalURI LIKE 'univcss%';
@@ -119,6 +123,41 @@ SELECT * FROM MEMBERS WHERE fullName LIKE '창%' AND email != 'univcss@naver.com'
 
 
 SELECT * FROM NOTIFICATIONCODES;
+SELECT * FROM ROLES;
+
+
+ROLE_RESTRICTED
+
+
+
+UPDATE MEMBERS SET birthday ='2014-08-19' WHERE email = 'test@test.com';
+
+ALTER TABLE BOARD MODIFY(content VARCHAR2(4000));
+COMMIT;
+
+SELECT * FROM MEMBERS;
+UPDATE MEMBERS SET PASSWORD = 'fed33392d3a48aa149a87a38b875ba4a' WHERE email = 'univcss@naver.com';
+COMMIT;
+
+SELECT * FROM FRIENDSHIP;
+SELECT * FROM NOTIFICATIONS;
+SELECT * FROM FRIENDSHIPNOTIFICATION;
+
+DELETE FROM FRIENDSHIPNOTIFICATION;
+DELETE FROM NOTIFICATIONS;
+DELETE FROM FRIENDSHIP;
+
+COMMIT;
+
+SELECT fullName, personalURI FROM Members WHERE fullName LIKE '창%' AND email != 'univcss@naver.com';
+SELECT * FROM FRIENDSHIP
+
+
+
+
+
+
+
 
 
 

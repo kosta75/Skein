@@ -72,7 +72,7 @@ $(document).ready(function() {
 	
 	 });*/
 
-	//상단 메뉴 고정
+	/*//상단 메뉴 고정
 	var menupos = $("#menu").offset().top;
 	$(window).scroll(function() {
 		if ($(window).scrollTop() >= menupos) {
@@ -87,6 +87,6 @@ $(document).ready(function() {
 			$("#menu2").css("display", "none");
 			$("#menu2").css("top", "");
 		}
-	});
+	});*/
 
 });

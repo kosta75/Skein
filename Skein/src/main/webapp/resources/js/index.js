@@ -22,7 +22,7 @@ $(document).ready(function(){
 		}
 	});
 		
-	$(document).on(	'click', '.members', function() {
+	/*$(document).on(	'click', '.members', function() {
 		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
 		if (result) {
 			$.ajax({
@@ -63,7 +63,7 @@ $(document).ready(function(){
 				}
 			});
 		}
-	});
+	});*/
 
 	$('#changebgc').click(function() {
 		$('#sidecontent').after($('#selectpage').toggle("display"));

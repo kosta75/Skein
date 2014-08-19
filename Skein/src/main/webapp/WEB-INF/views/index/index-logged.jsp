@@ -7,7 +7,7 @@
 	<div>
 		<div id="menu">
 			<ul class="arrowunderline">
-				<li><a href="#">${sessionScope.PersonalURI}</a></li>
+				<li><a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a></li>
 				<li><a href="#">타임라인</a></li>
 				<li><a href="#">정보</a></li>
 				<li><a href="time">사진</a></li>
@@ -119,7 +119,7 @@
  <div style="position: absolute;z-index: 0; width: 230px; margin-top: 40px;">
 <img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" width="80px" height="80px" style="border:3px solid ; border-color:#fff; border-radius:6px; vertical-align:middle; margin-left: 10px;" >
 
-${member.fullName}
+<a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${member.fullName}</a>
 <div style="margin-left: 20px;margin-top: 10px;">
 이메일:${member.email}<br>
 <c:if test="${birthDay == toDay}">

@@ -12,6 +12,7 @@ import java.util.List;
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
+import kr.co.skein.model.vo.MemberBoardCommand;
 import kr.co.skein.util.CustomFileRenamePolicy;
 
 import org.apache.ibatis.session.SqlSession;
@@ -244,6 +245,16 @@ public class BoardController {
 		System.out.println("INFO : Skein-P151 - 파일 업로드 처리 결과, result=" + result);
 		System.out.println("INFO : Skein-P151 - 파일 업로드 처리 종료");
 		model.addAttribute("result", result);
+		return JsonView;
+	}
+	
+	@RequestMapping("/board/all")
+	public View getAll(Model model) throws ClassNotFoundException, SQLException{
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		List<MemberBoardCommand> list = boardDao.getBoardsAll();
+		model.addAttribute("list", list);
+		System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + list.size());
+		
 		return JsonView;
 	}
 }

@@ -75,7 +75,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     	}*/
     	
     	
-    	
+    	System.out.println("INFO : Skein-T0102 - 로그인 요청이 들어온 URL requestURI=" + request.getRequestURI());
+    	System.out.println("INFO : Skein-T0102 - 이동 경로 정보 contextPath=" + request.getContextPath() + ", =" + request.getServletPath());
+    	//url = request.getRequestURI();
     	//url = request.getContextPath() + "/joinus/login";
     	response.sendRedirect(request.getContextPath());
     }

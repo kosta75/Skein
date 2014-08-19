@@ -82,6 +82,7 @@ public class JoinusController {
 			//4. CertificationText(계정인증문자) 생성
 			// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
 			String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
+			certificationText = certificationText.replace("-", "");
 			member.setCertificationText(certificationText);
 			System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 			
@@ -94,7 +95,7 @@ public class JoinusController {
 			int result = memberDao.registerMember(member);
 			if(result > 0){
 				System.out.println("INFO : Skein-U003 - 신규계정등록에 성공하였습니다.");
-				emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "신규 계정 인증 메일!", "http://localhost:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+				emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "신규 계정 인증 메일!", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
 			}else{
 				System.out.println("INFO : Skein-U004 - 신규계정등록에 실패하였습니다.");
 			}
@@ -108,6 +109,7 @@ public class JoinusController {
 				//4. CertificationText(계정인증문자) 생성
 				// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
 				String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
+				certificationText = certificationText.replace("-", "");
 				member.setCertificationText(certificationText);
 				System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 				
@@ -117,7 +119,7 @@ public class JoinusController {
 				int result = memberDao.updateMemberAccount(member);
 				if(result > 0){
 					System.out.println("INFO : Skein-U005 - 계정 재등록에 성공하였습니다.");
-					emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://localhost:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
+					emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 				}else{
 					System.out.println("INFO : Skein-U006 - 계정 재등록에 실패하였습니다.");
 				}

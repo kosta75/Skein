@@ -4,6 +4,7 @@ public class SearchMemberCommand {
 
 	private String fullName;
 	private String personalURI;
+	private int isFriend;
 	
 	public String getFullName() {
 		return fullName;
@@ -17,6 +18,13 @@ public class SearchMemberCommand {
 	public void setPersonalURI(String personalURI) {
 		this.personalURI = personalURI;
 	}
+	public int getIsFriend() {
+		return isFriend;
+	}
+	public void setIsFriend(int isFriend) {
+		this.isFriend = isFriend;
+	}
+
 	
 	
 }

@@ -353,7 +353,7 @@ CREATE TABLE Board (
 	BoardSeq NUMBER NOT NULL, /* 글번호 */
 	BoardKindSeq NUMBER NOT NULL, /* 게시판번호 */
 	Email VARCHAR2(127) NOT NULL, /* 이메일 */
-	Content VARCHAR2(127) NOT NULL, /* 내용 */
+	Content VARCHAR2(3095) NOT NULL, /* 내용 */
 	WriteDate DATE NOT NULL, /* 작성일 */
 	PublicLevelCode NUMBER DEFAULT 0 NOT NULL, /* 공개범위코드 */
 	IsActivated INT DEFAULT 1 NOT NULL, /* 활성화 */
@@ -762,4 +762,133 @@ ALTER TABLE Notifications
 		REFERENCES NotificationCodes (
 			NotificationCode
 		);
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+-- 14. Friendship(친구)
+-----------------------------------------------------------------------------------------------
+-- 14.1 Friendship(친구) 테이블 생성
+/* 친구 */
+CREATE TABLE Friendship (
+	Email VARCHAR2(127) NOT NULL, /* 내이메일 */
+	FriendEmail VARCHAR2(127) NOT NULL /* 친구이메일 */
+);
+
+COMMENT ON TABLE Friendship IS '친구';
+
+COMMENT ON COLUMN Friendship.Email IS '내이메일';
+
+COMMENT ON COLUMN Friendship.FriendEmail IS '친구이메일';
+
+CREATE UNIQUE INDEX PK_Friendship
+	ON Friendship (
+		Email ASC,
+		FriendEmail ASC
+	);
+
+ALTER TABLE Friendship
+	ADD
+		CONSTRAINT PK_Friendship
+		PRIMARY KEY (
+			Email,
+			FriendEmail
+		);
+
+ALTER TABLE Friendship
+	ADD
+		CONSTRAINT FK_Members_TO_Friendship
+		FOREIGN KEY (
+			FriendEmail
+		)
+		REFERENCES Members (
+			Email
+		);
+
+ALTER TABLE Friendship
+	ADD
+		CONSTRAINT FK_Members_TO_Friendship2
+		FOREIGN KEY (
+			Email
+		)
+		REFERENCES Members (
+			Email
+		);
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+-- 15. FriendshipNotification(친구알림)
+-----------------------------------------------------------------------------------------------
+-- 15.1 FriendshipNotification(친구알림) 테이블 생성
+/* 친구알림 */
+CREATE TABLE FriendshipNotification (
+	FriendshipNotificationSeq NUMBER NOT NULL, /* 친구알림식별번호 */
+	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
+	Email VARCHAR2(127) NOT NULL, /* 이메일 */
+	FriendEmail VARCHAR2(127) NOT NULL, /* 친구이메일 */
+	FriendshipConfirm INT /* 친구신청확인 */
+);
+
+COMMENT ON TABLE FriendshipNotification IS '친구알림';
+
+COMMENT ON COLUMN FriendshipNotification.FriendshipNotificationSeq IS '친구알림식별번호';
+
+COMMENT ON COLUMN FriendshipNotification.NotificationSeq IS '사용자알림번호';
+
+COMMENT ON COLUMN FriendshipNotification.Email IS '이메일';
+
+COMMENT ON COLUMN FriendshipNotification.FriendEmail IS '친구이메일';
+
+COMMENT ON COLUMN FriendshipNotification.FriendshipConfirm IS '친구신청확인';
+
+CREATE UNIQUE INDEX PK_FriendshipNotification
+	ON FriendshipNotification (
+		FriendshipNotificationSeq ASC
+	);
+
+ALTER TABLE FriendshipNotification
+	ADD
+		CONSTRAINT PK_FriendshipNotification
+		PRIMARY KEY (
+			FriendshipNotificationSeq
+		);
+
+ALTER TABLE FriendshipNotification
+	ADD
+		CONSTRAINT FK_Notif_TO_FriendshipNotif
+		FOREIGN KEY (
+			NotificationSeq
+		)
+		REFERENCES Notifications (
+			NotificationSeq
+		);
+
+ALTER TABLE FriendshipNotification
+	ADD
+		CONSTRAINT FK_Members_TO_FriendshipNotif
+		FOREIGN KEY (
+			Email
+		)
+		REFERENCES Members (
+			Email
+		);
+
+ALTER TABLE FriendshipNotification
+	ADD
+		CONSTRAINT FK_Members_TO_FriendshipNotif2
+		FOREIGN KEY (
+			FriendEmail
+		)
+		REFERENCES Members (
+			Email
+		);
+
+
+
+
 

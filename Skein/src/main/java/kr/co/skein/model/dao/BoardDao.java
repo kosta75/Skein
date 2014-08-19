@@ -41,7 +41,21 @@ public interface BoardDao {
 	
 	//5. 사용자 게시물 조회
 	public List<MemberBoardCommand> getBoards(String personalURI) throws ClassNotFoundException, SQLException;
+	
 	//6. 사용자 게시물 상세조회
 	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//1515. 전체 게시물 조회
+	public List<MemberBoardCommand> getBoardsAll() throws ClassNotFoundException, SQLException;
+	
 
 }

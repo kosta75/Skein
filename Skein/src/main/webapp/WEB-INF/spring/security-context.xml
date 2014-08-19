@@ -27,7 +27,7 @@
 			
 		
 		<!-- 로그인 페이지 / 폼에서 전송할 URL값 / 로그인 파라메터 변경 / 로그인 성공 핸들러 / 로그인 실패 핸들러 -->
-		<security:form-login login-page="/login"
+		<security:form-login login-page="/joinus/login"
 			login-processing-url="/security"
 			username-parameter="email"
 			password-parameter="password"
@@ -42,6 +42,7 @@
 		invalidate-session="true"/>
 
 		<!-- 권한별 URL Pattern  -->
+		<security:intercept-url pattern="/friendship/add/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
 		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
 		<!-- <security:intercept-url pattern="/post/*" access="permitAll" />
@@ -50,13 +51,13 @@
 	
 	<!-- 권한명 prefix 커스텀 빈 -->
 	<!-- accessDecisionManager 사용으로 권한명 접두사 생략 -->
-	<bean id="accessDecisionManager"
+ 	<bean id="accessDecisionManager"
 		class="org.springframework.security.access.vote.AffirmativeBased">
 		<property name="decisionVoters">
 			<list>
-				<bean 	class="org.springframework.security.web.access.expression.WebExpressionVoter" />
+				<bean class="org.springframework.security.web.access.expression.WebExpressionVoter" />
 				<!-- <bean class="org.springframework.security.access.vote.RoleVoter">
-					<property name="rolePrefix" value="" />
+					<property name="rolePrefix" value="ROLE" />
 				</bean> -->
 				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
 			</list>
