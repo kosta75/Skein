@@ -12,7 +12,13 @@
    clear: both;
  
 }
-
+#historyWrite{
+	display: none;
+}
+#historyDate{
+	
+	display: none;
+}
 /* 헤더에 있는 로고 */
 .logo{width: 100px;float:left;  font-size:50px;}
 
@@ -27,9 +33,9 @@
 	 width: 400px;
 	 height: 100px;
 	 position:absolute;
-	  top:10%;
+	  top:8%;
 	  left:55%;
-	  
+	  z-index: 2;
 	
 }
 
@@ -44,7 +50,7 @@ top: 10%;
 left: 2%;
 z-index: 3;
 }
-#demo img{
+#historyImg img{
 width: 80px;
 height: 80px;
 padding: 7px;	
@@ -76,6 +82,29 @@ padding: 7px;
 	height: auto;
 	z-index: -1000;
 	overflow: hidden;
+}
+.list{
+width: 98%;
+height:100%;
+background: #fff;
+
+border: 1px solid;
+border-color: #C5C8CF;
+padding: 2px;
+}
+.list div{
+   padding: 10px;   
+}
+
+/* 이모티콘 */
+#emoticon{
+	display: none;
+	
+}
+.emoticon{
+	
+	width: 50px;
+	height: 50px;
 }
 /* ================ DOCK 1 ================ */
 #dock { position: relative; top: 150px; }

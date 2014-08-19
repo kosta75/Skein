@@ -131,7 +131,7 @@ $(document).ready(function(){
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
 					$(".modalcontent").append("<div style='height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div><div style='clear:both;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
+							+ data.detailView[0].writeDate + "</div><div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
 
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
@@ -173,11 +173,12 @@ $(document).ready(function(){
 		}
 	});
 
-	//글쓰기 메뉴 
-	$("#writememnu1").click(function() {
-		$("#demo").toggle("display");
-	});
-
+	
+	
+	//다른페이지 이동시 js 오류로 인해 if문 처리
+	if(document.getElementById("file-list") != null){
+		
+	
 	var filelist = document.getElementById("file-list");
 	var multiFiles = new Array();
 
@@ -309,5 +310,130 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+	}
+	
+	//글쓰기 다이어리,개인기록 
+	$("#tab1").click(function(){
+		  $("#historyWrite").css("display","none");
+		$("#diaryWrite").css("display","block");
+	   
+			
+		});
+	$("#tab2").click(function(){
+		 $("#diaryWrite").css("display","none");
+	     $("#historyWrite").css("display","block");
+	    $("#writeTextarea").focus();
+
+		
+	});
+	
+	
+	//개인기록 메뉴 
+	$("#historyWriteMenu1").click(function() {
+		if($("#historyImg").css("display") == "block"){
+			$("#historyImg").css("display","none");
+		}else{
+	$("#historyImg").css("display","block");
+	$("#historyDate").css("display","none");
+	$("#emoticon").css("display","none");
+		}
+		});
+
+	
+	$("#historyWriteMenu2").click(function() {
+		
+		if($("#historyDate").css("display") == "block"){
+			$("#historyDate").css("display","none");
+		}else{
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","block");
+		$("#emoticon").css("display","none");
+		}
+		});
+
+	
+	$("#historyWriteMenu4").click(function() {
+		if($("#emoticon").css("display") == "block"){
+			$("#emoticon").css("display","none");
+		}else{
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none")
+		$("#emoticon").css("display","block");
+		}
+		
+	});
+	
+	//다이어리 메뉴
+	$("#diaryWriteMenu1").click(function() {
+		
+		$("#diaryImg").css("display","block");
+			});
+
+	
+	//이모티콘 추가
+	$("#emoticon1").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon1.png'>");	
+	});
+	$("#emoticon2").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon2.png'>");	
+	});
+	$("#emoticon3").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon3.png'>");	
+	});
+	$("#emoticon4").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon4.png'>");	
+	});
+	$("#emoticon5").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon5.png'>");	
+	});
+	$("#emoticon6").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon6.png'>");	
+	});
+	$("#emoticon7").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon7.png'>");	
+	});
+	$("#emoticon8").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon8.png'>");	
+	});
+	$("#emoticon9").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon9.png'>");	
+	});
+	$("#emoticon10").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon10.png'>");	
+	});
+	$("#emoticon11").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon11.png'>");	
+	});
+
+
+
+
+	$("#hitstoryWriteBtn").click(function(){
+		
+		$("#content").val($("#writeTextarea").html());
+		
+		$("#hitstoryForm").submit();
+		
+	});
+	
+	
+	
+	
+
+  
+
+//엔터키 처리
+$("#writeTextarea").keydown(function(evt){ 
+
+    if( (evt.keyCode) && (evt.keyCode==13) ) { 
+    	
+    	$("#content").val($("#writeTextarea").html()+"<br/>");
+
+
+ 
+    
+
+    }
+});
 
 });
