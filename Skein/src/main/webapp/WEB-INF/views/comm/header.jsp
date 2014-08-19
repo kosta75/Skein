@@ -30,7 +30,7 @@
 		
 	<%-- <se:authentication property="name" var="LoginUser"/> --%>
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-		<div style="width: 120px;float:left;">
+		<div style="float:left;">
 			<div style="width:50px;padding-top:5px;float:left;">
 				<img src="${pageContext.request.contextPath}/resources/media/image//20100107221109605_2R2EJLGPV_raw.jpg" width="40px;" height="40px;" style="border-radius:100px;">
 			</div>

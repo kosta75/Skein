@@ -59,9 +59,10 @@ public class IndexController {
 			
 			
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
+			
 			List<MemberBoardCommand> listSource = boardDao.getBoards(personalURI);
 			List<List<MemberBoardCommand>> groupList = new ArrayList<List<MemberBoardCommand>>();
-
+			
 			if(listSource.size() > 0){
 				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, size=" + listSource.size());
 				int groupStatus = listSource.get(0).getGroupSeq();

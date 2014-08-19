@@ -5,10 +5,10 @@
    uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!--  날씨 js 파일 import -->
-<link href="css/webfont/climacons-font.css" rel="stylesheet" type="text/css" />
+<!-- <link href="css/webfont/climacons-font.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.min.2.0.0.js"></script>
 <script type="text/javascript" src="js/mustache.js"></script>
-<script type="text/javascript" src="js/whatweather.0.6.js"></script>
+<script type="text/javascript" src="js/whatweather.0.6.js"></script> -->
 <!--///////////////////////////////////  -->
 
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
           $(this).css("background-color","white"); 
       });   
       
-   $("div #whatweather").whatWeather({city:"Brussels"});
+  /*  $("div #whatweather").whatWeather({city:"Brussels"}); */
    
    
 });
@@ -169,12 +169,17 @@ $(document).ready(function(){
       <div id="containerCenter" style="width: 75%; float: left; ">
       <%--     --%>
             <div id="boardlist-picture">
-            <c:forEach var="list" items="${list}">    
+            <c:forEach var="list" items="${list}">  
+            <c:if test="${list.fileName !=null}">  
                <div class="list" style="border-radius: 6px 6px 6px 6px; width: 174px;height: 174px;">
+                 
                   <div class="img-list">
+                  
                      <img   src="${pageContext.request.contextPath}/resources/upload/${list.fileName}" style="width: 155px; height: 155px;">
                   </div>
+               
                </div>
+                  </c:if>
             </c:forEach>
             <%--
             <c:forEach var="list" items="${list}">    
@@ -255,7 +260,7 @@ $(document).ready(function(){
  -->
 </div>
    </div>
-
+</div>
 
    <div style="clear: both;"></div>
 

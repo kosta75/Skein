@@ -9,3 +9,4 @@
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 
+
