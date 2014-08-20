@@ -1,8 +1,25 @@
 @CHARSET "UTF-8";
+/*폰트 적용 */
+
+@import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb);
+@font-face {
+    font-family:'NanumGothic';
+    src: url('images/NanumGothic.eot');
+    src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
+         url('images/NanumGothic.woff') format('woff'),
+         url('images/NanumGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 /* 헤더/본문/푸터 의 가로 크기 */
 .wrapper {
+<<<<<<< HEAD
    width: 960px;
    margin: 0px auto;
+=======
+	width: 960px;
+	margin: 0px auto;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 /* 헤더의 Bar  */
@@ -22,9 +39,29 @@
 
 /* 헤더에 있는 로고 */
 .logo {
+<<<<<<< HEAD
    width: 100px;
    float: left;
    font-size: 50px;
+=======
+	width: 100px;
+	float: left;
+	font-size: 50px;
+}
+
+/* 헤더에 있는 알람페이지 */
+#alrampage {
+	color: black;
+	border: 1px solid;
+	border-bottom-color: gray;
+	display: none;
+	background-color: #fff;
+	width: 400px;
+	height: 100px;
+	position: absolute;
+	top: 10%;
+	left: 55%;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 
@@ -63,11 +100,17 @@ body {
 }
 
 .header-container a:LINK {
+<<<<<<< HEAD
    color: #fff;
    text-decoration: none;
+=======
+	color: #fff;
+	text-decoration: none;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 .header-container a:visited {
+<<<<<<< HEAD
    color: #fff;
    text-decoration: none;
 }
@@ -88,6 +131,28 @@ body {
 
 #container div {
    float: left;
+=======
+	color: #fff;
+	text-decoration: none;
+}
+
+.header-container a:hover {
+	color: #fff;
+	text-decoration: none;
+}
+
+.header-container a:active {
+	color: #fff;
+	text-decoration: none;
+}
+
+body {
+	background: #e9eaed;
+}
+
+#container div {
+	float: left;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #list {
@@ -103,6 +168,22 @@ body {
    padding: 10px;
 }
 
+<<<<<<< HEAD
+=======
+.list {
+	width: 98%;
+	height: 100%;
+	background: #fff;
+	border: 1px solid;
+	border-color: #C5C8CF;
+	padding: 2px;
+}
+
+.list div {
+	padding: 10px;
+}
+
+>>>>>>> refs/remotes/original/release-1.0.5
 #boardlist {
    margin-bottom: 20px;
 }
@@ -148,6 +229,7 @@ body {
 }
 
 .serch-form .search-button {
+<<<<<<< HEAD
    position: absolute;
    margin-top: 2px;
    top: 3px;
@@ -159,6 +241,19 @@ body {
    background:
       url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
    background-position: -223px -141px;
+=======
+	position: absolute;
+	margin-top: 2px;
+	top: 3px;
+	right: 1px;
+	border: background;
+	height: 15px;
+	width: 22px;
+	font-weight: bold;
+	background:
+		url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
+	background-position: -223px -141px;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #writeicon {
@@ -186,6 +281,7 @@ textarea {
    resize: none;
 }
 
+<<<<<<< HEAD
 #diaryWriteMenu1 , #historyWriteMenu1{
 	
 }
@@ -216,6 +312,38 @@ textarea {
 
 #diaryWriteMenu4:HOVER , #historyWriteMenu4:HOVER  {
    top: -360px;
+=======
+#writemenu1 {
+	
+}
+
+#writememnu1:HOVER {
+	top: -40px;
+}
+
+#writememnu2 {
+	top: -160px;
+}
+
+#writememnu2:HOVER {
+	top: -200px;
+}
+
+#writememnu3 {
+	top: -240px;
+}
+
+#writememnu3:HOVER {
+	top: -280px;
+}
+
+#writememnu4 {
+	top: -320px;
+}
+
+#writememnu4:HOVER {
+	top: -360px;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #modal-background {
@@ -252,6 +380,44 @@ textarea {
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+<<<<<<< HEAD
+=======
+#wrap_nav {
+	padding-left: 20%;
+	float: left
+}
+
+ul.arrowunderline {
+	list-style-type: none;
+	margin: 0;
+	font-size: 15px;
+	font-family: 'Nanum Gothic', serif;
+	margin-left: 25%;
+}
+
+ul.arrowunderline li {
+	height: 50px;
+	display: table-cell;
+	border-right: 1px solid skyblue;
+	/*margin-right:25px;  spacing between each menu item */
+}
+
+ul.arrowunderline .first {
+	border-left: 1px solid skyblue;
+}
+
+ul.arrowunderline li a {
+	top: 20px;
+	position: relative;
+	color: black;
+	padding-bottom: 9px;
+	/*spacing between each menu item and arrow underline beneath it */
+	padding-right: 22px;
+	padding-left: 22px;
+	text-decoration: none;
+}
+
+>>>>>>> refs/remotes/original/release-1.0.5
 .green {
    background: #336666;
 }
@@ -300,7 +466,6 @@ textarea {
 
 }
 
-
 /* 기본메뉴 */
 #menu ul.arrowunderline li a:hover {
    border-bottom: 3px solid skyblue; /* style of arrow underline */
@@ -321,10 +486,16 @@ textarea {
    /* create up arrow */
 }
 
+<<<<<<< HEAD
 /* 
 #menu ul.arrowunderline li {
    border-right: 1px solid skyblue;
+=======
+.header-container div {
+	text-align: center;
+>>>>>>> refs/remotes/original/release-1.0.5
 }
+<<<<<<< HEAD
  */
 
 #menu ul.arrowunderline {
@@ -363,6 +534,8 @@ ul.arrowunderline li {
 #menu2 ul.arrowunderline :hover {
    background-color:#fff;
 }
+=======
+>>>>>>> refs/remotes/original/release-1.0.5
 
 #menu {
    background-color: #fff;
@@ -382,13 +555,40 @@ ul.arrowunderline li {
 	color: #fff;
 }
 
+<<<<<<< HEAD
 #menu2 a:HOVER{
 	
 	color: black;
 }
 #menu2 { height:50px;  width:100%;position:absolute; display: none;z-index: 2;left:0; 
 		} 
+=======
+#menu2 {
+	height: 60px;
+	width: 100%;
+	position: absolute;
+	display: none;
+	border-bottom: 1px solid skyblue;
+	z-index: 2;
+	left: 0;
+}
+>>>>>>> refs/remotes/original/release-1.0.5
 
+<<<<<<< HEAD
 #menu, #menu2 {
    text-align: center;
 }
+=======
+#menu_username {
+	float: left;
+	width: 200px;
+	height: 50px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 50px;
+	padding-top: 15px;
+}
+
+
+>>>>>>> refs/remotes/original/release-1.0.5
