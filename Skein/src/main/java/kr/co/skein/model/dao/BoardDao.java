@@ -3,10 +3,10 @@ package kr.co.skein.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import kr.co.skein.model.vo.Board;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
+import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.MemberBoardCommand;
 
 public interface BoardDao {
@@ -22,7 +22,7 @@ public interface BoardDao {
 	public String getGroupMaxSequence() throws ClassNotFoundException, SQLException;
 	
 	//2. 공통 게시물 등록
-	public int historyReg(Board board)  throws ClassNotFoundException, SQLException;
+	public int historyReg(HistoryCommand command)  throws ClassNotFoundException, SQLException;
 
 	//5. 사용자 게시물 조회
 	public List<MemberBoardCommand> getBoards(String personalURI) throws ClassNotFoundException, SQLException;
@@ -32,16 +32,5 @@ public interface BoardDao {
 	
 	//7. 사용자 그룹 게시물 조회
 	public List<BoardGroup> getBoardGroup(String email) throws ClassNotFoundException, SQLException;
-	
-	
-	
-	
-	
-	
-	
-	
-	//1515. 전체 게시물 조회
-	public List<MemberBoardCommand> getBoardsAll() throws ClassNotFoundException, SQLException;
-	
 
 }

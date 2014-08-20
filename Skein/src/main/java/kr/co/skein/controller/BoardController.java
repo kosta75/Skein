@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.vo.BoardCommand;
+import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
@@ -35,12 +36,13 @@ import org.springframework.web.servlet.View;
 public class BoardController {
 	
 	@Autowired
-	private View JsonView;
+	private View jsonView;
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping("/board/getBoards")
+	//사용자 게시물 조회
+	@RequestMapping("/getBoardGroup")
 	public View getBoards(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
@@ -53,9 +55,19 @@ public class BoardController {
 			model.addAttribute("listSource", listSource);
 			System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + listSource.size());
 		}
-		return JsonView;
+		return jsonView;
 	}
 	
+	//게시물 상세보기
+	@RequestMapping(value ="/detailView", method = RequestMethod.POST)
+	public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+		model.addAttribute("detailView",boardDetailView);
+		return jsonView;
+	}
+	
+	//개인기록 게시물 등록
 	@RequestMapping(value="/historyReg", method=RequestMethod.POST)
 	@Transactional
 	public View upload(HistoryCommand command, MultipartHttpServletRequest multiRequest, Model model) throws ClassNotFoundException, SQLException{
@@ -118,9 +130,10 @@ public class BoardController {
 		System.out.println("INFO : Skein-P151 - 파일 업로드 처리 결과, result=" + result);
 		System.out.println("INFO : Skein-P151 - 파일 업로드 처리 종료");
 		model.addAttribute("result", result);
-		return JsonView;
+		return jsonView;
 	}
 	
+	//댓글 등록
 	@RequestMapping(value="/reply", method=RequestMethod.POST)
 	public String reply(String replyWrite,HttpSession session,int boardSeq){
 	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
@@ -131,9 +144,9 @@ public class BoardController {
 		return "";
 	}
 	
-	
+	//공통 게시물 초기설정
 	protected BoardCommand initBoard(BoardCommand command){
-		//3. 그룹 이름 정책
+		//그룹 이름 정책
 		if(command.getGroupName() == null){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			System.out.println("INFO : Skein-U152 - 그룹명이 지정되어 있지 않습니다.");
@@ -143,28 +156,24 @@ public class BoardController {
 		return command;
 	}
 	
-	
+	//개인기록 게시물 초기설정
 	protected HistoryCommand initHistory(HistoryCommand command) {
 		command = (HistoryCommand) initBoard(command);
 		
-		//4. 발생일/종료일 정책		
+		//발생일/종료일 정책		
 		if(command.getGroupStartDate() == null){
-			if(command.getStartDate() == null){
-				command.setStartDate(Calendar.getInstance().getTime());
-			}
+			if(command.getStartDate() == null)	command.setStartDate(Calendar.getInstance().getTime());
 			command.setGroupStartDate(command.getStartDate());
 		}
 		
 		if(command.getGroupEndDate() == null){
-			if(command.getEndDate() == null){
-				command.setEndDate(Calendar.getInstance().getTime());
-			}
+			if(command.getEndDate() == null) command.setEndDate(Calendar.getInstance().getTime());
 			command.setGroupEndDate(command.getEndDate());
 		}
-		
 		return command;
 	}
 	
+	//파일 업로드, 업로드된 파일명을 리스트로 반환한다.
 	protected List<String> fileUpload(String fileUploadPath, List<MultipartFile> files){
 		List<String> fileNames = new ArrayList<String>();
 		
@@ -190,8 +199,7 @@ public class BoardController {
 					e.printStackTrace();
 				}
 			}
-		}
-		
+		}	
 		return fileNames;
 	}
 	

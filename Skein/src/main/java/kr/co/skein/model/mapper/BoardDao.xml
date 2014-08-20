@@ -17,7 +17,7 @@
 	</select>
 	
 	<!-- 2. 개인기록 게시물 등록 -->
-	<insert id="historyReg" parameterType="kr.co.skein.model.vo.Board">
+	<insert id="historyReg" parameterType="kr.co.skein.model.vo.HistoryCommand">
 		<selectKey order="BEFORE" keyProperty="boardSeq" resultType="String">
 			SELECT NVL(MAX(TO_NUMBER(BoardSeq)),0)+1 FROM Board
 		</selectKey>

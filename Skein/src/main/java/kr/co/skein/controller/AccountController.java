@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import kr.co.skein.model.dao.AccountDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.AuthorityCommand;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.util.CertificationTextGenerator;
 import kr.co.skein.util.PasswordEncryptor;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,9 +49,7 @@ public class AccountController {
 		}
 		
 		//2. CertificationText(계정인증문자) 생성
-		//--------------------------------------------------------------------------------->>>>>>> 수정해야 할 부분
-		String certificationText = "a2b7a8c9d3c9a0f2b7d";
-		member.setCertificationText(certificationText);
+		member.setCertificationText(CertificationTextGenerator.certificationTextGenerate());
 		System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 		
 		//3. 수정 내용 반영

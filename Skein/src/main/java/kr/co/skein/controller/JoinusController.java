@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.util.CertificationTextGenerator;
 import kr.co.skein.util.PasswordEncryptor;
 
 import org.apache.ibatis.session.SqlSession;
@@ -80,10 +81,7 @@ public class JoinusController {
 			System.out.println("INFO : Skein-P006 - 사용자 고유 주소 생성 및 주입, personalURI=" + member.getPersonalURI());
 			
 			//4. CertificationText(계정인증문자) 생성
-			// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
-			String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
-			certificationText = certificationText.replace("-", "");
-			member.setCertificationText(certificationText);
+			member.setCertificationText(CertificationTextGenerator.certificationTextGenerate());
 			System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 			
 			//사용자 입력 값 확인
@@ -107,10 +105,7 @@ public class JoinusController {
 				System.out.println("INFO : Skein-P008 - 계정 재등록 처리 진행");
 				
 				//4. CertificationText(계정인증문자) 생성
-				// ----------------------------------------------------------------- >>>>>>>>>>>>> 수정해야할 부분
-				String certificationText = UUID.randomUUID().toString();//"a2b7a8c9d9e0b8e0a0f0e6a3";
-				certificationText = certificationText.replace("-", "");
-				member.setCertificationText(certificationText);
+				member.setCertificationText(CertificationTextGenerator.certificationTextGenerate());
 				System.out.println("INFO : Skein-P007 - 계정인증코드 생성 및 주입, certificationText=" + member.getCertificationText());
 				
 				//사용자 입력 값 확인

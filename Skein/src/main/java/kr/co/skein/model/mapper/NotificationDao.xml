@@ -4,6 +4,7 @@
 
 	<!-- 사용자 알림 등록 -->
 	<insert id="notificationReg" parameterType="kr.co.skein.model.vo.NotificationCommand">
+		
 		INSERT INTO Notifications VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
 	</insert>
 
@@ -13,8 +14,33 @@
 	</select>
 	
 	<!--  친구알림 등록  -->
-	<insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.FriendshipNotificationCommand">
-		INSERT INTO FriendshipNotification VALUES(#{friendshipNotificationSeq}, #{notificationSeq}, #{email}, #{friendEmail}, #{friendshipConfirm}) 
+	
+	<!-- 1	공지사항
+	2	친구신청
+	3	친구신청수락
+	4	공유신청
+	5	공유신청수락
+	6	댓글 -->
+	<insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.Notification">
+		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
+		</selectKey>
+		INSERT ALL
+			INTO Notifications(NotificationSeq, Email, IsRead, CreateDate, NotificationCode)
+			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
+			<if test="notificationCode == 1">
+			
+			</if>
+			<if test="notificationCode == 2">
+			INTO FriendshipNotification VALUES(#{notificationSeq}, #{email}, #{friendEmail}, #{friendshipConfirm})
+			</if>
+			<if test="notificationCode == 4">
+			INTO FriendshipNotification VALUES(#{notificationSeq}, #{email}, #{friendEmail}, #{friendshipConfirm})
+			</if>
+			<if test="notificationCode == 6">
+			INTO FriendshipNotification VALUES(#{notificationSeq}, #{email}, #{friendEmail}, #{friendshipConfirm})
+			</if>
+		SELECT * FROM DUAL 
 	</insert>
 	
 	<!-- 가장 큰 친구알림 식별번호 얻기 -->
