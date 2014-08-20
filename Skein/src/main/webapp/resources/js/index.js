@@ -33,6 +33,8 @@ $(document).ready(function(){
 			);
 		});
 		
+		console.log(flagSource);
+		
 		$('#boardListTimelinContainer').highcharts('StockChart', {
 
             rangeSelector: {

@@ -75,7 +75,7 @@
 		JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
 		JOIN MEMBERS m ON m.Email = b.Email
 		LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
-		ORDER BY GROUPSEQ DESC
+		ORDER BY h.STARTDATE ASC
 	</select>
 	
 	<!--******* 사진 게시물 페이징 처리*********  -->

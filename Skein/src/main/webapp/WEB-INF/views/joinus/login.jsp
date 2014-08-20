@@ -1,48 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-.full_wrap {
-	margin: 50px auto;
-	width: 640px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #ccc;
-	font-size: 13px;
-}
-
-.help_subject_container{
-	border-bottom: 1px solid #aaa;
-	margin: 0 20px;
-	padding-top: 20px;
-	padding-bottom: 5px;
-	font-size: 23px;
-	vertical-align: bottom;
-}
-
-.help_container{
-	margin: 15px 20px;
-}
-.help_container #buttons{
-	text-align: center;
-}
-
-.fail_login{
-	background-color: #F0F6FC;
-	border: 1px solid #dd3c10;
-	padding: 10px;
-	margin-bottom:20px;
-}
-
-.help_fail{
-	padding-bottom: 10px;
-	font-size: 15px;
-	font-weight: bold;
-}
-
-.reg_link, .reset_link{
-	padding: 5px 10px;
-}
-
-</style>
 
 <section class="content-container">
 <div class="login-error-message">
