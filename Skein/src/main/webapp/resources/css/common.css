@@ -13,37 +13,26 @@
 }
 /* 헤더/본문/푸터 의 가로 크기 */
 .wrapper {
-<<<<<<< HEAD
-   width: 960px;
-   margin: 0px auto;
-=======
 	width: 960px;
 	margin: 0px auto;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
 /* 헤더의 Bar  */
 .header-container {
-   background: #00B4DB;
-   height: 57px;
-   color: #fff;
+	height: 57px;
+	color: #fff;
 }
 
 .heder-container:after {
-   content: "."; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+	content: "."; /* Older browser do not support empty content */
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
 }
 
 /* 헤더에 있는 로고 */
 .logo {
-<<<<<<< HEAD
-   width: 100px;
-   float: left;
-   font-size: 50px;
-=======
 	width: 100px;
 	float: left;
 	font-size: 50px;
@@ -61,77 +50,47 @@
 	position: absolute;
 	top: 10%;
 	left: 55%;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
-
-
 body {
-   background-color: #e9eaed;
-   margin: 0;
+	background-color: #e9eaed;
+	margin: 0;
 }
 
 #myinfo div {
-   padding-top: 15px;
-   float: left;
+	padding-top: 15px;
+	float: left;
 }
 
 #search {
-   width: 500px;
-   float: left;
-   padding-top: 15px;
+	width: 500px;
+	float: left;
+	padding-top: 15px;
 }
 
 #search input {
-   float: left;
-   width: 270px;
+	float: left;
+	width: 270px;
 }
 
 #alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 #modal-close {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 #modal-close :HOVER {aria-label ="ㅇㅇㅇㅇㅇㅇ";
-   
+	
 }
 
 .header-container a:LINK {
-<<<<<<< HEAD
-   color: #fff;
-   text-decoration: none;
-=======
 	color: #fff;
 	text-decoration: none;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
 .header-container a:visited {
-<<<<<<< HEAD
-   color: #fff;
-   text-decoration: none;
-}
-
-.header-container a:hover {
-   color: #fff;
-   text-decoration: none;
-}
-
-.header-container a:active {
-   color: #fff;
-   text-decoration: none;
-}
-
-body {
-   background: #e9eaed;
-}
-
-#container div {
-   float: left;
-=======
 	color: #fff;
 	text-decoration: none;
 }
@@ -152,24 +111,21 @@ body {
 
 #container div {
 	float: left;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #list {
-   width: 98%;
-   height: 100%;
-   background: #fff;
-   border: 1px solid;
-   border-color: #C5C8CF;
-   padding: 2px;
+	width: 98%;
+	height: 100%;
+	background: #fff;
+	border: 1px solid;
+	border-color: #C5C8CF;
+	padding: 2px;
 }
 
 #list div {
-   padding: 10px;
+	padding: 10px;
 }
 
-<<<<<<< HEAD
-=======
 .list {
 	width: 98%;
 	height: 100%;
@@ -183,65 +139,51 @@ body {
 	padding: 10px;
 }
 
->>>>>>> refs/remotes/original/release-1.0.5
 #boardlist {
-   margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 #editToggle {
-   display: none;
-   width: 80px;
-   height: 50px;
-   border: 1px solid;
-   border-color: #C5C8CF;
-   position: absolute;
-   background: #fff;
-   margin-right: 20px;
+	display: none;
+	width: 80px;
+	height: 50px;
+	border: 1px solid;
+	border-color: #C5C8CF;
+	position: absolute;
+	background: #fff;
+	margin-right: 20px;
 }
 
 #side {
-   height: 100%;
-   list-style-image: url('../../resources/media/image/sidebar.png');
-   font-size: 20px;
-   text-align: left;
-   font-weight: bold;
-   vertical-align: top;
+	height: 100%;
+	list-style-image: url('../../resources/media/image/sidebar.png');
+	font-size: 20px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
 }
 
 .serch-form {
-   width: 350px;
-   height: 25px;
-   padding-bottom: 3px;
-   border-radius: 5px;
-   position: relative;
-   background: #FFF;
+	width: 350px;
+	height: 25px;
+	padding-bottom: 3px;
+	border-radius: 5px;
+	position: relative;
+	background: #FFF;
 }
 
 .serch-form .textbox {
-   position: absolute;
-   top: 3px;
-   left: 8px;
-   border: 0px;
-   height: 20px;
-   width: 305px;
-   font-weight: bold;
-   outline: none;
+	position: absolute;
+	top: 3px;
+	left: 8px;
+	border: 0px;
+	height: 20px;
+	width: 305px;
+	font-weight: bold;
+	outline: none;
 }
 
 .serch-form .search-button {
-<<<<<<< HEAD
-   position: absolute;
-   margin-top: 2px;
-   top: 3px;
-   right: 1px;
-   border: background;
-   height: 15px;
-   width: 22px;
-   font-weight: bold;
-   background:
-      url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
-   background-position: -223px -141px;
-=======
 	position: absolute;
 	margin-top: 2px;
 	top: 3px;
@@ -253,66 +195,32 @@ body {
 	background:
 		url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
 	background-position: -223px -141px;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #writeicon {
-   overflow: hidden;
-   margin: auto;
-   margin-left:20px;
-   clear: both;
-   height: 40px;
-   background-color: #dcdcdc;
-   border-color: #dcdcdc;
-   background-color: #dcdcdc;
-   color: #fff;
-   font-weight: bold;
+	overflow: hidden;
+	margin: auto;
+	clear: both;
+	height: 40px;
+	background-color: #dcdcdc;
+	border-color: #dcdcdc;
+	background-color: #dcdcdc;
+	color: #fff;
+	font-weight: bold;
 }
 
 .icon_button {
-   width: 40px;
-   height: 800px;
-   position: relative;
-   background: url('../../resources/media/image/writeicon.png');
-   float: left;
+	width: 40px;
+	height: 800px;
+	position: relative;
+	background: url('../../resources/media/image/writeicon.png');
+	float: left;
 }
 
 textarea {
-   resize: none;
+	resize: none;
 }
 
-<<<<<<< HEAD
-#diaryWriteMenu1 , #historyWriteMenu1{
-	
-}
-
-#diaryWriteMenu1:HOVER , #historyWriteMenu1:HOVER {
-   top: -40px;
-}
-
-#diaryWriteMenu2 , #historyWriteMenu2 {
-   top: -160px;
-}
-
-#diaryWriteMenu2:HOVER , #historyWriteMenu2:HOVER  {
-   top: -200px;
-}
-
-#diaryWriteMenu3 , #historyWriteMenu3 {
-   top: -240px;
-}
-
-#diaryWriteMenu3:HOVER,#historyWriteMenu3:HOVER  {
-   top: -280px;
-}
-
-#diaryWriteMenu4 , #historyWriteMenu4 {
-   top: -320px;
-}
-
-#diaryWriteMenu4:HOVER , #historyWriteMenu4:HOVER  {
-   top: -360px;
-=======
 #writemenu1 {
 	
 }
@@ -343,45 +251,42 @@ textarea {
 
 #writememnu4:HOVER {
 	top: -360px;
->>>>>>> refs/remotes/original/release-1.0.5
 }
 
 #modal-background {
-   display: none;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: black;
-   opacity: .7;
-   /*  -webkit-opacity: .1; */
-   /*   -moz-opacity: .9; 
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: .7;
+	/*  -webkit-opacity: .1; */
+	/*   -moz-opacity: .9; 
     filter: alpha(opacity=100); */
-   z-index: 5;
+	z-index: 1;
 }
 
 #modal-content {
-   background: #fff;
-   display: none;
-   height: 520px;
-   position: fixed;
-   width: 960px;
-   z-index: 6;
+	background: #fff;
+	display: none;
+	height: 520px;
+	position: fixed;
+	width: 960px;
+	z-index: 1;
 }
 
 #modal-background.active, #modal-content.active {
-   display: block;
+	display: block;
 }
 
 #changebgc:HOVER {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-<<<<<<< HEAD
-=======
 #wrap_nav {
 	padding-left: 20%;
 	float: left
@@ -417,152 +322,63 @@ ul.arrowunderline li a {
 	text-decoration: none;
 }
 
->>>>>>> refs/remotes/original/release-1.0.5
 .green {
-   background: #336666;
+	background: #336666;
 }
 
 .skyblue {
-   background: skyblue;
+	background: skyblue;
 }
 
 .red {
-   background: red;
+	background: red;
 }
 
 .orange {
-   background: #f96e5b;
+	background: #f96e5b;
 }
 
 .blue {
-   background: #00B4DB;
+	background: #00B4DB;
 }
 
 .yellowgreen {
-   background: #a7bc7a;
-}
-
-.header-container div {
-   text-align: center;
-}
-
-#menu-username {
-   float: left;
-   width: 200px;
-   height: 50px;
-   text-align: center;
-   font-weight: bold;
-   font-size: 30px;
-   padding-top: 10px;
-   text-decoration: none;
-}
-#menu-username a{
-	   text-decoration: none;
-	color: black;
-}
-#menu-username a:HOVER{
-	   text-decoration: none;
-	color: gray;
-
+	background: #a7bc7a;
 }
 
 /* 기본메뉴 */
 #menu ul.arrowunderline li a:hover {
-   border-bottom: 3px solid skyblue; /* style of arrow underline */
+	border-bottom: 3px solid skyblue; /* style of arrow underline */
 }
 
 #menu ul.arrowunderline li a:hover:after {
-   /* use CSS generated content to add arrow to the menu */
-   content: '';
-   width: 0;
-   height: 0;
-   position: absolute;
-   left: 50%;
-   margin-left: -5px; /*value should match border-width below */
-   bottom: 0;
-   border-width: 5px; /* value should match margin-left above */
-   border-style: solid;
-   border-color: transparent transparent skyblue transparent;
-   /* create up arrow */
+	/* use CSS generated content to add arrow to the menu */
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+	left: 50%;
+	margin-left: -5px; /*value should match border-width below */
+	bottom: 0;
+	border-width: 5px; /* value should match margin-left above */
+	border-style: solid;
+	border-color: transparent transparent skyblue transparent;
+	/* create up arrow */
 }
 
-<<<<<<< HEAD
-/* 
-#menu ul.arrowunderline li {
-   border-right: 1px solid skyblue;
-=======
 .header-container div {
 	text-align: center;
->>>>>>> refs/remotes/original/release-1.0.5
 }
-<<<<<<< HEAD
- */
-
-#menu ul.arrowunderline {
-   list-style-type: none;
-   margin: 0;
-   font-size: 15px;
-      float: left;
-padding-left: 90px;
-}
-#menu2 ul.arrowunderline {
-   list-style-type: none;
-   margin: 0;
-   font-size: 15px;
-    
-}
-ul.arrowunderline li {
-   height: 50px;
-   display: inline-block;
-   margin-left: -5px;
-   z-index: 2;
-   /*margin-right:25px;  spacing between each menu item */
-
-}
-
- ul.arrowunderline li a {
-   top: 20px;
-   position: relative;
-  
-   padding-bottom: 11px;
-   /*spacing between each menu item and arrow underline beneath it */
-   padding-right: 22px;
-   padding-left: 22px;
-   text-decoration: none;
-}
-
-#menu2 ul.arrowunderline :hover {
-   background-color:#fff;
-}
-=======
->>>>>>> refs/remotes/original/release-1.0.5
 
 #menu {
-   background-color: #fff;
-   height: 50px;
-   width: 100%;
-  
-   clear: both;
-   z-index: -1;
-   
-}
-#menu a{
-	color: black;
-	
-}
-#menu2 a{
-	
-	color: #fff;
+	background-color: #fff;
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px solid skyblue;
+	clear: both;
+	z-index: -1;
 }
 
-<<<<<<< HEAD
-#menu2 a:HOVER{
-	
-	color: black;
-}
-#menu2 { height:50px;  width:100%;position:absolute; display: none;z-index: 2;left:0; 
-		} 
-=======
 #menu2 {
 	height: 60px;
 	width: 100%;
@@ -572,13 +388,7 @@ ul.arrowunderline li {
 	z-index: 2;
 	left: 0;
 }
->>>>>>> refs/remotes/original/release-1.0.5
 
-<<<<<<< HEAD
-#menu, #menu2 {
-   text-align: center;
-}
-=======
 #menu_username {
 	float: left;
 	width: 200px;
@@ -589,6 +399,3 @@ ul.arrowunderline li {
 	margin-left: 50px;
 	padding-top: 15px;
 }
-
-
->>>>>>> refs/remotes/original/release-1.0.5
