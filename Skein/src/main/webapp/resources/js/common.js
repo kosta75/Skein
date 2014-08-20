@@ -1,30 +1,16 @@
 $(document).ready(function() {
-
 	$('#alram').click(function() {
-
 		$('#sidecontent').after($('#alrampage').toggle("display"));
-
 	});
-
 	$('#sidemenu1').click(function() {
-
 		$('#sidemenu1').append($('#mon').toggle("display"));
-
 	});
-
 	$('#sidemenu2').click(function() {
-
 		$('#sidemenu2').after($('#mon').toggle("display"));
-
 	});
-
 	$('#sidemenu3').click(function() {
-
 		$('#sidemenu3').after($('#mon').toggle("display"));
-
 	});
-
-	
 
 	/*//이미지 마우스 오버시
 	 $(imghover).hover(function(){
@@ -81,7 +67,6 @@ $(document).ready(function() {
 			$("#menu2").css("position", "fixed");
 			$("#menu2").animate('')
 			$("#menu2").css("top", "0");
-
 		} else {
 			$("#menu").css("display", "block");
 			$("#menu2").css("display", "none");

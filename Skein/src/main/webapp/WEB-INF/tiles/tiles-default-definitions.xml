@@ -13,13 +13,10 @@
 		<!-- preparer="publicLevelPreparer" -->
 		<!-- 공통으로 적용되는 요소 Load -->
 		<put-attribute name="common-resources" value="/WEB-INF/views/comm/resources/resources.jsp" />
-		
 		<!-- 인덱스 페이지에 추가하려는 요소 Load -->
 		<put-attribute name="custom-index-resources" value="/WEB-INF/views/index/resources/resources.jsp" />
-		
 		<!-- 페이지 타이틀 적용 -->
 		<put-attribute name="title" value="Skein" />
-		
 		<!-- 로그인시 헤더/푸터/인덱스 적용 -->
 		<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
@@ -51,14 +48,18 @@
 		<!-- content -->
 		<put-attribute name="content" value="/WEB-INF/views/joinus/login.jsp" />
 	</definition>
+	
 	<!-- time 라인  -->
    <definition name="time" template="/WEB-INF/views/index/comm/layout.jsp" extends="index">
       <!-- 각 페이지에 추가하려는 요소 Load -->
       <put-attribute name="title" value="timeline" />
       <!-- content -->
       <put-attribute name="index-logged" value="/WEB-INF/views/index/time-line.jsp" />
-      
    </definition>
 	
-
+	<!-- ***********************time 라인 게시물 더보기**********************  -->
+	   <definition name="morepicture" template="/WEB-INF/views/index/more/layout.jsp">
+	      <put-attribute name="index-logged" value="/WEB-INF/views/index/more-picture.jsp" />
+	   </definition>
+	<!-- *******************************************************************  -->
 </tiles-definitions>

@@ -9,6 +9,7 @@ import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
 import kr.co.skein.model.vo.MemberBoardCommand;
 
+
 public interface BoardDao {
 
 	//게시물 입력 순서
@@ -44,4 +45,9 @@ public interface BoardDao {
 	//6. 사용자 게시물 상세조회
 	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
 
+	////////////////////////////
+	public List<MemberBoardCommand> getBoardsPage(String personalURI, int startNum, int endNum) throws ClassNotFoundException, SQLException;
+	
+	
+	
 }
