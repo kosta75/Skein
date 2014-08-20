@@ -1,13 +1,13 @@
 package kr.co.skein.model.vo;
 
-public class Authority {
+public class AuthorityCommand {
 
 	private String authority;
 	private String email;
 	
-	public Authority(){}
+	public AuthorityCommand(){}
 	
-	public Authority(String authority, String email){
+	public AuthorityCommand(String authority, String email){
 		this.authority = authority;
 		this.email = email;
 	}

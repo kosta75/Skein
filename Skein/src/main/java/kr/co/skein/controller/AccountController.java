@@ -8,7 +8,7 @@ import java.util.Random;
 
 import kr.co.skein.model.dao.AccountDao;
 import kr.co.skein.model.dao.MemberDao;
-import kr.co.skein.model.vo.Authority;
+import kr.co.skein.model.vo.AuthorityCommand;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.util.PasswordEncryptor;
 
@@ -98,7 +98,7 @@ public class AccountController {
 								System.out.println("INFO : Skein-P017 - 신규 계정 인증 확인");
 								member.setIsApproved(1);
 								memberDao.updateMemberAccount(member);
-								memberDao.createMemberAuthority(new Authority("ROLE_USER", member.getEmail()));
+								memberDao.createMemberAuthority(new AuthorityCommand("ROLE_USER", member.getEmail()));
 								
 								System.out.println("INFO : Skein-U019 - 계정 인증이 정상적으로 처리 되었습니다.");
 								model.addAttribute("certificationResult", 1); //certificationResult : 1, 계정 등록 승인
