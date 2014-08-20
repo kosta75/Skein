@@ -13,7 +13,7 @@ import org.apache.tiles.preparer.ViewPreparer;
 
 public class PublicLevelPreparer implements ViewPreparer {
 
-private SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;

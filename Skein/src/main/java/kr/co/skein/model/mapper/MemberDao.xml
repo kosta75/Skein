@@ -34,7 +34,10 @@
 			<if test="isDropedOut != null">IsDropedOut = #{isDropedOut},</if>
 			<if test="isDomranted != null">IsDomranted = #{isDomranted},</if>
 			<if test="isApproved != null">IsApproved = #{isApproved},</if>			
-			<if test="certificationText != null">CertificationText = #{certificationText}</if>
+			<if test="certificationText != null">CertificationText = #{certificationText},</if>
+			<if test="lastLoginDate != null">LastLoginDate = SYSDATE,</if>
+			<if test="lastPasswordChangedDate != null">LastPasswordChangedDate = #{lastPasswordChangedDate},</if>
+			<if test="failedPasswordAttemptCount != null">FailedPasswordAttemptCount = #{failedPasswordAttemptCount}</if>
 		</set>
 		WHERE email = #{email}
 	</update>

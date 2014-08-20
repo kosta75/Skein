@@ -49,6 +49,14 @@
       
    </definition>
    
+   <!-- ***********************time 라인 게시물 더보기**********************  -->
+      <definition name="morepicture" template="/WEB-INF/views/index/more/layout.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/index/more/more-picture.jsp" />
+      </definition>
+   <!-- *******************************************************************  -->
+   
+   
+   
    
    <!-- ***********************time 라인 게시물 더보기**********************  -->
 	   <definition name="morepicture" template="/WEB-INF/views/index/more/layout.jsp">

@@ -18,7 +18,7 @@
 	
 	<se:authorize ifNotGranted="ROLE_USER">
 	<div>
-		<form action="${pageContext.request.contextPath}/security" method="post">
+		<form id="loginForm" action="${pageContext.request.contextPath}/security" method="post">
 			<fieldset>
 				<legend>로그인 정보</legend>
 				이메일(name="email")<input type="email" name="email" /><br />

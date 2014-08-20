@@ -38,5 +38,4 @@ public interface BoardDao {
 	public List<MemberBoardCommand> getBoardsPage(String personalURI, int startNum, int endNum) throws ClassNotFoundException, SQLException;
 	
 	
-	
 }

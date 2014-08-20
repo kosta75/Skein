@@ -11,7 +11,6 @@ public class MemberBoardCommand {
 	h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
 	bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE
 	me.MEDIASEQ, me.FILENAME, me.FILESIZE, me.EXTENSION*/
-	
 	private int rownum;
 	
 	public int getRownum() {
@@ -20,7 +19,6 @@ public class MemberBoardCommand {
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
-	
 	private String email;
 	private String fullName;
 	private Date birthday;

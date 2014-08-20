@@ -2,6 +2,10 @@ package kr.co.skein.handler;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.vo.Member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -26,6 +31,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void setSqlSession(SqlSession sqlSession) {this.sqlSession = sqlSession;}
 
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
+		
+		
+		
     	System.out.println("INFO : Skein-U202 - 로그인에 성공하였습니다.");
     	request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 
@@ -79,6 +87,27 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     	System.out.println("INFO : Skein-T0102 - 이동 경로 정보 contextPath=" + request.getContextPath() + ", =" + request.getServletPath());
     	//url = request.getRequestURI();
     	//url = request.getContextPath() + "/joinus/login";
+    	
+    	Map<String, String> param = new HashMap<String, String>();
+		param.put("searchKey", "email");
+		param.put("searchValue", request.getParameter("email"));
+    	
+    	
+		try {
+			List<Member> list = memberDao.getMembers(param);
+			if(list.size() > 0){
+				Member member = list.get(0);
+				member.setLastLoginDate(Calendar.getInstance().getTime());
+				member.setFailedPasswordAttemptCount(0);
+				memberDao.updateMemberAccount(member);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	
+    	
     	response.sendRedirect(request.getContextPath());
     }
 }
