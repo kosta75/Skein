@@ -159,6 +159,8 @@ SELECT NotificationCode, COUNT(*) FROM Notifications WHERE email = 'univcss@nave
 
 
 
+SELECT b.groupSeq, b.groupName, b.ISIMPORTANTGROUP, b.GROUPSTARTDATE, b.GROUPENDDATE, g.groupcount FROM BOARDGROUP b JOIN (SELECT groupSeq, COUNT(groupSeq) AS groupcount FROM BOARD WHERE email = 'univcss@naver.com' GROUP BY groupSeq) g ON b.GROUPSEQ = g.GROUPSEQ;
+
 
 
 

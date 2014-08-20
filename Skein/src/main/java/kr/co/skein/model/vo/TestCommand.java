@@ -1,21 +1,15 @@
 package kr.co.skein.model.vo;
 
-import java.io.Serializable;
-import java.util.List;
+public class TestCommand {
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.springframework.web.multipart.MultipartFile;
-
-public class TestCommand implements Serializable {
-
-	@JsonIgnore
-	private List<MultipartFile> files;
+	private String seq;
 	private String content;
-	public List<MultipartFile> getFiles() {
-		return files;
+	
+	public String getSeq() {
+		return seq;
 	}
-	public void setFiles(List<MultipartFile> files) {
-		this.files = files;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 	public String getContent() {
 		return content;
@@ -23,5 +17,4 @@ public class TestCommand implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 }
