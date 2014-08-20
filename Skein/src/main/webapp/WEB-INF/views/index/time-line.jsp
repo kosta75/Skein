@@ -27,7 +27,45 @@ $(document).ready(function(){
       });   
       
   /*  $("div #whatweather").whatWeather({city:"Brussels"}); */
+   /*스크롤 감지  */
+   function lastPostFunc(){ 
+      //alert('lastPostFunc 실행');
+      /* 
+      $('div#lastPostsLoader').html('<img src="bigLoader.gif">'); 
+      $.post("scroll.asp?action=getLastPosts&lastID=" + $(".wrdLatest:last").attr("id"), 
+                  
+                  
+      function(data){ 
+            if (data != "") { 
+               $(".wrdLatest:last").after(data); 
+            } 
+         $('div#lastPostsLoader').empty(); 
+      });  
+      */
+      $.ajax({
+            type:'get',
+         url:"moreviewpicture",
+         dataType : "html",
+         success : function(data) {
+            alert('aaa');
+            alert(data);
+            $('#');
+
+         },
+         error: function(){
+            alert('스크롤 에러 :error while request..'   );
+         }
+      });
+   }; 
    
+   $(window).scroll(function(){ 
+      if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
+         //alert('스크롤 감지');
+         lastPostFunc(); 
+      }
+      //
+      //}       
+   });
    
 });
 
