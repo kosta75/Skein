@@ -1,69 +1,22 @@
 @CHARSET "UTF-8";
-/* 헤더/본문/푸터 의 가로 크기 */
-.wrapper{width:960px;margin:0px auto;}
+#boardListTimelinContainer{width:475px;}
 
-/* 헤더의 Bar  */
-.header-container{height:57px;  color: #fff;}
-.heder-container:after {
-   content:"."; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
- 
-}
-#historyWrite{
-	display: none;
-}
-#historyDate{
-	
-	display: none;
-}
-/* 헤더에 있는 로고 */
-.logo{width: 100px;float:left;  font-size:50px;}
-
-/* 헤더에 있는 알람페이지 */
-#alrampage{
-	
-	color:black;
-	border:1px solid;
-	border-bottom-color:gray;
-    display:none; 
-	background-color: #fff ;
-	 width: 400px;
-	 height: 100px;
-	 position:absolute;
-	  top:8%;
-	  left:55%;
-	  z-index: 2;
-	
-}
-
+#historyWrite{display: none;}
+#historyDate{	display: none;}
 #selectpage {
-   border-bottom-color: gray;
-display: none;
-background-color: #fff;
-width: 100px;
-height: 300px;
-position: fixed;
-top: 10%;
-left: 2%;
-z-index: 3;
+	border-bottom-color: gray;
+	display: none;
+	background-color: #fff;
+	width: 100px;
+	height: 300px;
+	position: fixed;
+	top: 10%;
+	left: 2%;
+	z-index: 3;
 }
-#historyImg img{
-width: 80px;
-height: 80px;
-padding: 7px;	
-	
-	
-}
-#dropzone{
-	
-	border:1px solid;
-	border-color: #00B4DB;
-	
-	
-}
+
+#historyImg img{width: 80px;height: 80px;padding: 7px;}
+#dropzone{border:1px solid;border-color: #00B4DB;}
 
 #header {background-color:#7F6C62;height: 100px;width: 100%;margin: auto;opacity:0.55}
 #Sil{float:left;padding-top:10px;padding-left:100px;color: #fff;font-size: 80px;margin: auto;}

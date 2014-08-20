@@ -13,8 +13,11 @@
 		<!-- 공통으로 적용되는 요소 Load -->
 		<put-attribute name="common-resources" value="/WEB-INF/views/comm/resources/resources.jsp" />
 		
-		<!-- 인덱스 페이지에 추가하려는 요소 Load -->
-		<put-attribute name="custom-index-resources" value="/WEB-INF/views/index/resources/resources.jsp" />
+		<!-- 로그인 안된 인덱스 페이지에 추가하려는 요소 Load -->
+		<put-attribute name="custom-index-not-logged-resources" value="/WEB-INF/views/index/resources/index-not-logged-resources.jsp" />
+		
+		<!-- 로그인 된 인덱스 페이지에 추가하려는 요소 Load -->
+		<put-attribute name="custom-index-logged-resources" value="/WEB-INF/views/index/resources/index-logged-resources.jsp" />
 		
 		<!-- 페이지 타이틀 적용 -->
 		<put-attribute name="title" value="Skein" />
@@ -36,20 +39,6 @@
 		<put-attribute name="title" value="Notice" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	
-	<!-- 외부 로그인 페이지/공통 레이아웃 사용 -->
-<!-- 	<definition name="joinus.login" template="/WEB-INF/views/comm/layout.jsp" extends="index">
-		
-		<put-attribute name="custom-page-resources" value="/WEB-INF/views/joinus/resources/resources.jsp" />
-	
-		<put-attribute name="title" value="Login" />
-		
-		
-		<put-attribute name="header" value="/WEB-INF/views/joinus/comm/header.jsp" />
-		
-		
-		<put-attribute name="content" value="/WEB-INF/views/joinus/login.jsp" />
-	</definition> -->
 	
 	<!-- time 라인  -->
    <definition name="time" template="/WEB-INF/views/index/comm/layout.jsp" extends="index">

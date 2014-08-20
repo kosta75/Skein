@@ -1,29 +1,24 @@
 @CHARSET "UTF-8";
 /*폰트 적용 */
-
 @import url(http://api.mobilis.co.kr/webfonts/css/?fontface=NanumGothicWeb);
-@font-face {
-    font-family:'NanumGothic';
-    src: url('images/NanumGothic.eot');
-    src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
-         url('images/NanumGothic.woff') format('woff'),
-         url('images/NanumGothic.ttf') format('truetype');
+@font-face {font-family:'NanumGothic';
+src:url('images/NanumGothic.eot');
+src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
+	url('images/NanumGothic.woff') format('woff'),
+	url('images/NanumGothic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
+/* 공통 CSS */
+body {background-color: #e9eaed;	margin: 0;}
+
 /* 헤더/본문/푸터 의 가로 크기 */
-.wrapper {
-	width: 960px;
-	margin: 0px auto;
-}
+.wrapper {width: 960px;margin: 0px auto;}
 
 /* 헤더의 Bar  */
-.header-container {
-	height: 57px;
-	color: #fff;
-}
-
-.heder-container:after {
+.header-container {	height: 57px;	color: #fff;}
+.heder-container:after {	
 	content: "."; /* Older browser do not support empty content */
 	visibility: hidden;
 	display: block;
@@ -31,12 +26,16 @@
 	clear: both;
 }
 
+/* 헤더 Bar 및 사용자 지정 색상 */
+.green {background: #336666;}
+.skyblue {background: skyblue;}
+.red {background: red;}
+.orange {background: #f96e5b;}
+.blue {background: #00B4DB;}
+.yellowgreen {background: #a7bc7a;}
+
 /* 헤더에 있는 로고 */
-.logo {
-	width: 100px;
-	float: left;
-	font-size: 50px;
-}
+.logo {	width: 100px;	float: left;	font-size: 50px;}
 
 /* 헤더에 있는 알람페이지 */
 #alrampage {
@@ -52,62 +51,21 @@
 	left: 55%;
 }
 
-body {
-	background-color: #e9eaed;
-	margin: 0;
-}
+/* 헤더 Bar에 있는 a태그 메뉴 */
+.header-container a:LINK {	color: #fff; text-decoration: none;}
+.header-container a:visited {color: #fff;text-decoration: none;}
+.header-container a:hover {color: #fff;text-decoration: none;}
+.header-container a:active {color: #fff;text-decoration: none;}
 
-#myinfo div {
-	padding-top: 15px;
-	float: left;
-}
 
-#search {
-	width: 500px;
-	float: left;
-	padding-top: 15px;
-}
+#myinfo div {padding-top: 15px;	float: left;}
+#search {	width: 500px;	float: left;	padding-top: 15px;}
+#search input {float: left;	width: 270px;}
+#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {cursor: pointer;}
+#modal-close {cursor: pointer;}
+#modal-close :HOVER {aria-label ="ㅇㅇㅇㅇㅇㅇ";}
 
-#search input {
-	float: left;
-	width: 270px;
-}
 
-#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {
-	cursor: pointer;
-}
-
-#modal-close {
-	cursor: pointer;
-}
-
-#modal-close :HOVER {aria-label ="ㅇㅇㅇㅇㅇㅇ";
-	
-}
-
-.header-container a:LINK {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:visited {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:hover {
-	color: #fff;
-	text-decoration: none;
-}
-
-.header-container a:active {
-	color: #fff;
-	text-decoration: none;
-}
-
-body {
-	background: #e9eaed;
-}
 
 #container div {
 	float: left;
@@ -297,11 +255,10 @@ ul.arrowunderline {
 	margin: 0;
 	font-size: 15px;
 	font-family: 'Nanum Gothic', serif;
-	margin-left: 25%;
 }
 
 ul.arrowunderline li {
-	height: 50px;
+	height: 57px;
 	display: table-cell;
 	border-right: 1px solid skyblue;
 	/*margin-right:25px;  spacing between each menu item */
@@ -322,29 +279,7 @@ ul.arrowunderline li a {
 	text-decoration: none;
 }
 
-.green {
-	background: #336666;
-}
 
-.skyblue {
-	background: skyblue;
-}
-
-.red {
-	background: red;
-}
-
-.orange {
-	background: #f96e5b;
-}
-
-.blue {
-	background: #00B4DB;
-}
-
-.yellowgreen {
-	background: #a7bc7a;
-}
 
 /* 기본메뉴 */
 #menu ul.arrowunderline li a:hover {
@@ -372,7 +307,7 @@ ul.arrowunderline li a {
 
 #menu {
 	background-color: #fff;
-	height: 50px;
+	height: 57px;
 	width: 100%;
 	border-bottom: 1px solid skyblue;
 	clear: both;
@@ -380,7 +315,7 @@ ul.arrowunderline li a {
 }
 
 #menu2 {
-	height: 60px;
+	height: 56px;
 	width: 100%;
 	position: absolute;
 	display: none;
@@ -389,7 +324,7 @@ ul.arrowunderline li a {
 	left: 0;
 }
 
-#menu_username {
+#menu-username {
 	float: left;
 	width: 200px;
 	height: 50px;

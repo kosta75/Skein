@@ -48,7 +48,7 @@
 			<div ><a href="${pageContext.request.contextPath}/logout">로그아웃</a></div>
 		</div>
 		<div id="selectpage">
-            <div style="background-color: #336666; clear: both; width: 100px; height: 60px">
+            <div class="green">
             <input type="hidden" value="green">
             a</div>
             <div style="background-color: red; clear: both; width: 100px; height: 60px">
@@ -68,6 +68,7 @@
             f</div>
 
          </div>
+         
 		<div id="alrampage">
 		<!-- 1	공지사항
 		2	친구신청

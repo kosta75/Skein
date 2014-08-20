@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,6 +8,11 @@
 <title><tiles:getAsString name="title"/></title>
 <!-- 공통으로 적용되는 요소 Load -->
 <tiles:insertAttribute name="common-resources" />
+
+<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+<tiles:insertAttribute name="custom-index-logged-resources" />
+</se:authorize>
+
 
 <!-- 각 페이지에 추가하려는 요소 Load -->
 <tiles:insertAttribute name="custom-page-resources" />
