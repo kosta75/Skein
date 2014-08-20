@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="wrap_wrap">
-
 	<div class="form_wrap">
 		<form id="helpId" action="id" method="post">
 			<div class="help_subject_container">
