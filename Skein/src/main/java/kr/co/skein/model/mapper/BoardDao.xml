@@ -4,115 +4,78 @@
 
 	<!-- 1. 그룹 등록 -->
 	<insert id="groupReg" parameterType="kr.co.skein.model.vo.BoardCommand">
-		<selectKey keyProperty="groupSeq" resultType="Integer">
-			SELECT NVL(MAX(GroupSeq)+1,1) FROM BoardGroup
+		<selectKey order="BEFORE" keyProperty="groupSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(GroupSeq)),0)+1 FROM BoardGroup
 		</selectKey>
 		INSERT INTO BoardGroup(GroupSeq, GroupName, IsImportantGroup, GroupStartDate, GroupEndDate)
 		VALUES(#{groupSeq}, #{groupName}, #{isImportantGroup}, #{groupStartDate}, #{groupEndDate})
 	</insert>
 	
-	<!-- 1.1. 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getGroupMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(GroupSeq)+1,1) FROM BoardGroup
+	 <!-- 1.1. 그룹 식별번호 최대값 얻기 -->
+	<select id="getGroupMaxSequence" resultType="String">
+		SELECT MAX(GroupSeq) FROM BoardGroup
 	</select>
 	
-	<!-- 2. 공통 게시물 등록 -->
-	<insert id="boardReg" parameterType="kr.co.skein.model.vo.BoardCommand">
-		<selectKey keyProperty="boardSeq" resultType="Integer">
-			SELECT NVL(MAX(BoardSeq)+1,1) FROM Board 
+	<!-- 2. 개인기록 게시물 등록 -->
+	<insert id="historyReg" parameterType="kr.co.skein.model.vo.Board">
+		<selectKey order="BEFORE" keyProperty="boardSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(BoardSeq)),0)+1 FROM Board
 		</selectKey>
-		INSERT INTO Board(BoardSeq, BoardKindSeq, Email, Content, WriteDate, PublicLevelCode, IsActivated, GroupSeq)
-		VALUES(#{boardSeq}, #{boardKindSeq}, #{email}, #{content}, SYSDATE, #{publicLevelCode}, #{isActivated}, #{groupSeq})
+		INSERT ALL
+			INTO Board(BoardSeq, BoardKindSeq, Email, Content, WriteDate, PublicLevelCode, IsActivated, GroupSeq)
+			VALUES(#{boardSeq}, #{boardKindSeq}, #{email}, #{content}, SYSDATE, #{publicLevelCode}, #{isActivated}, #{groupSeq})
+			<if test="boardKindSeq ==2">
+			INTO History(BoardSeq, StartDate, EndDate, Feelings, Weather, IsImportant, IsShare, Keyword, Place)
+			VALUES(#{boardSeq}, #{startDate}, #{endDate}, #{feelings}, #{weather}, #{isImportant}, #{isShare}, #{keyword}, #{place})
+			</if>
+			<if test="media != null">
+			INTO Media(BoardSeq, FileName, FileSize, Extension)
+			VALUES(#{boardSeq}, #{media.fileName}, #{media.fileSize}, #{media.extension})
+			</if>
+		SELECT * FROM DUAL
 	</insert>
-	
-	<!-- 2. 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getBoardMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(BoardSeq)+1,1) FROM Board
-	</select>
-	
-	<!-- 3. History 게시물 등록 -->
-	<insert id="historyReg" parameterType="kr.co.skein.model.vo.HistoryCommand">
-		<selectKey keyProperty="historySeq" resultType="Integer">
-			SELECT NVL(MAX(HistorySeq)+1,1) FROM History
-		</selectKey>
-		INSERT INTO History(HistorySeq, BoardSeq, StartDate, EndDate, Feelings, Weather, IsImportant, IsShare, Keyword, Place)
-		VALUES(#{historySeq}, #{boardSeq}, #{startDate}, #{endDate}, #{feelings}, #{weather}, #{isImportant}, #{isShare}, #{keyword}, #{place})
-	</insert>
-	
-	<!-- 3.1 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getHistoryMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(HistorySeq)+1,1) FROM History
-	</select>
-	
-	<!-- 4. 미디어 파일 등록 -->
-	<insert id="mediaReg" parameterType="kr.co.skein.model.vo.Media">
-		<selectKey keyProperty="mediaSeq" resultType="Integer">
-			SELECT NVL(MAX(MediaSeq)+1,1) FROM Media
-		</selectKey>
-		INSERT INTO Media(MediaSeq, BoardSeq, FileName, FileSize, Extension)
-		VALUES(#{mediaSeq}, #{boardSeq}, #{fileName}, #{fileSize}, #{extension})
-	</insert>
-	
-	<!-- 4.1 공통 게시물 시퀀스 뽑아내기 -->
-	<select id="getMediaMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(MediaSeq)+1,1) FROM Media
-	</select>
 	
 	<!-- 5. 사용자 게시물 조회 -->
 	<select id="getBoards" resultType="kr.co.skein.model.vo.MemberBoardCommand">
 		SELECT m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
-			h.HISTORYSEQ, h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
-			me.MEDIASEQ, me.FILENAME, me.FILESIZE, me.EXTENSION
+			h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
+			me.FILENAME, me.FILESIZE, me.EXTENSION
 			FROM MEMBERS m JOIN BOARD b ON m.EMAIL = b.email
-				JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
-				JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
-				LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
-
-
-
-
-				WHERE m.PERSONALURI = #{personalURI} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
+			JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
+			JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
+			LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
+		WHERE m.PERSONALURI = #{personalURI} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
 	</select>
 	
 	<!--6. 사용자 게시물 상세 조회  -->
 	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">
-select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
- from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq}
+		select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
+		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq}
 	</select>
 	
 	
 	
 	<!-- 7. 사용자 그룹 게시물 조회 -->
-	<select id="getBoardGroup" resultType="kr.co.skein.model.vo.BoardGroupCommand">
-		SELECT b.groupSeq, b.groupName, b.ISIMPORTANTGROUP, b.GROUPSTARTDATE, b.GROUPENDDATE,
-		g.groupCount FROM BOARDGROUP b JOIN
-		(SELECT groupSeq, COUNT(groupSeq) AS groupCount FROM BOARD WHERE email = #{email} GROUP BY groupSeq) g
-		ON b.GROUPSEQ = g.GROUPSEQ
-		ORDER BY groupSeq
+	<select id="getBoardGroup" resultType="kr.co.skein.model.vo.BoardGroup">
+		SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
+				b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
+				h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
+				me.FILENAME, me.FILESIZE, me.EXTENSION,
+				m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
+				FROM BOARDGROUP bg JOIN
+				(
+				SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
+					(
+					SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
+					FROM Board
+					WHERE email = #{email}
+					)
+				WHERE rnum = 1
+				) b ON bg.groupSeq = b.groupSeq
+		JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
+		JOIN MEMBERS m ON m.Email = b.Email
+		LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
+		ORDER BY GROUPSEQ DESC
 	</select>
-	
-	
-	
-	
-	
-	<!-- 1515. 전체 게시물 조회 -->
-	<select id="getBoardsAll" resultType="kr.co.skein.model.vo.MemberBoardCommand">
-		SELECT m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
-			h.HISTORYSEQ, h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
-			me.MEDIASEQ, me.FILENAME, me.FILESIZE, me.EXTENSION
-			FROM MEMBERS m JOIN BOARD b ON m.EMAIL = b.email
-				JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
-				JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
-				LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
 
-
-
-
-			ORDER BY b.GROUPSEQ ASC, b.BOARDSEQ ASC 
-	</select>
-	
-	
-	
-	
-	
 </mapper>

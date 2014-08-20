@@ -272,14 +272,14 @@
 
 <!-- 게시물 출력 부분 Start -->
 
-<c:forEach var="boardList" items="${groupList}" varStatus="groupStep">
+<c:forEach var="list" items="${groupList}" varStatus="groupStep">
 	
 	<%-- <c:forEach var="list" items="${boardList}"> --%>
 	<div id="boardlist">
 		<%-- ${groupStep.count} 번째 그룹 <br /> --%>
 		<div id="list" style="border-radius:6px 6px 6px 6px;">
 	
-		<c:set var="list" value="${boardList.get(0)}"></c:set>
+		
 		<div style="float: left;">
 			<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
 		</div>

@@ -1,13 +1,10 @@
 package kr.co.skein.model.vo;
 
 import java.util.Date;
-import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
-public class HistoryCommand extends BoardCommand{
+public class HistoryCommand extends BoardCommand implements Board{
 
 	/*PK	BOARDSEQ	NUMBER		N	글번호
 	BOARDKINDSEQ	NUMBER		N	게시판번호
@@ -35,23 +32,21 @@ public class HistoryCommand extends BoardCommand{
 	GroupStartDate	그룹발생시작일	일시	DATE	NULL
 	GroupEndDate	그룹발생종료일	일시	DATE	NULL*/
 	
-	
-	
-	private int historySeq;
+	public HistoryCommand(){
+		this.setBoardKindSeq(2);
+		this.setFeelings(""); 
+		this.setWeather("");
+		this.setKeyword("");
+		this.setPlace("");
+	}
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
-
-	public int getHistorySeq() {
-		return historySeq;
-	}
-
-	public void setHistorySeq(int historySeq) {
-		this.historySeq = historySeq;
-	}
+	
+	private Media media;
 
 	public Date getStartDate() {
 		return startDate;
@@ -68,6 +63,13 @@ public class HistoryCommand extends BoardCommand{
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
+
+	public Media getMedia() {
+		return media;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
+	}
+
 }

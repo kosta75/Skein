@@ -7,12 +7,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-public class BoardCommand {
+public class BoardCommand implements Board {
 	
 	@JsonIgnore
 	private List<MultipartFile> files;
 	
-	private int boardSeq;
+	private String boardSeq;
 	private int boardKindSeq;
 	private String email;
 	private String content;
@@ -27,7 +27,7 @@ public class BoardCommand {
 	private String keyword;
 	private String place;
 	
-	private int groupSeq;
+	private String groupSeq;
 	private String groupName;
 	private int isImportantGroup;
 	
@@ -37,16 +37,24 @@ public class BoardCommand {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date groupEndDate;
 	
+	private Media media;
+	
+	public Media getMedia() {
+		return media;
+	}
+	public void setMedia(Media media) {
+		this.media = media;
+	}
 	public List<MultipartFile> getFiles() {
 		return files;
 	}
 	public void setFiles(List<MultipartFile> files) {
 		this.files = files;
 	}
-	public int getBoardSeq() {
+	public String getBoardSeq() {
 		return boardSeq;
 	}
-	public void setBoardSeq(int boardSeq) {
+	public void setBoardSeq(String boardSeq) {
 		this.boardSeq = boardSeq;
 	}
 	public int getBoardKindSeq() {
@@ -121,10 +129,10 @@ public class BoardCommand {
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	public int getGroupSeq() {
+	public String getGroupSeq() {
 		return groupSeq;
 	}
-	public void setGroupSeq(int groupSeq) {
+	public void setGroupSeq(String groupSeq) {
 		this.groupSeq = groupSeq;
 	}
 	public String getGroupName() {
@@ -151,7 +159,5 @@ public class BoardCommand {
 	public void setGroupEndDate(Date groupEndDate) {
 		this.groupEndDate = groupEndDate;
 	}
-	
-	
 	
 }

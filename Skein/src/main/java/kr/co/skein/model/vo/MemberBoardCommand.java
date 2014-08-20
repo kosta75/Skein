@@ -17,15 +17,14 @@ public class MemberBoardCommand {
 	private Date birthday;
 	private String personaURI;
 	
-	private int boardSeq;
+	private String boardSeq;
 	private int boardKindSeq;
 	private String content;
 	private Date writeDate;
 	private int publicLevelCode;
 	private int isActivated;
 	private int groupSeq;
-	
-	private int historySeq;
+
 	private Date startDate;
 	private Date endDate;
 	private String feelings;
@@ -42,7 +41,6 @@ public class MemberBoardCommand {
 	private Date groupStartDate;
 	private Date groupEndDate;
 	
-	private int mediaSeq;
 	private String fileName;
 	private int fileSize;
 	private String extension;
@@ -71,12 +69,7 @@ public class MemberBoardCommand {
 	public void setPersonaURI(String personaURI) {
 		this.personaURI = personaURI;
 	}
-	public int getBoardSeq() {
-		return boardSeq;
-	}
-	public void setBoardSeq(int boardSeq) {
-		this.boardSeq = boardSeq;
-	}
+
 	public int getBoardKindSeq() {
 		return boardKindSeq;
 	}
@@ -113,12 +106,7 @@ public class MemberBoardCommand {
 	public void setGroupSeq(int groupSeq) {
 		this.groupSeq = groupSeq;
 	}
-	public int getHistorySeq() {
-		return historySeq;
-	}
-	public void setHistorySeq(int historySeq) {
-		this.historySeq = historySeq;
-	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -191,12 +179,7 @@ public class MemberBoardCommand {
 	public void setGroupEndDate(Date groupEndDate) {
 		this.groupEndDate = groupEndDate;
 	}
-	public int getMediaSeq() {
-		return mediaSeq;
-	}
-	public void setMediaSeq(int mediaSeq) {
-		this.mediaSeq = mediaSeq;
-	}
+
 	public String getFileName() {
 		return fileName;
 	}

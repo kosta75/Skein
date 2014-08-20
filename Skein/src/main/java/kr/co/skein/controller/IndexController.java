@@ -12,9 +12,9 @@ import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.vo.BoardDetailView;
+import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
-import kr.co.skein.model.vo.NotificationCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
 
 import org.apache.ibatis.session.SqlSession;
@@ -38,8 +38,7 @@ public class IndexController {
 	private View jsonView;
 
 	@RequestMapping(value = { "/", "/index.skein" }, method = RequestMethod.GET)
-	public String home(HttpSession session, Model model)
-			throws ClassNotFoundException, SQLException {
+	public String home(HttpSession session, Model model) throws ClassNotFoundException, SQLException {
 		MemberDao memberDao = sqlsession.getMapper(MemberDao.class);
 
 		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
@@ -52,9 +51,7 @@ public class IndexController {
 				System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
 				personalURI = memberDao.getPersonalURI(user.getUsername());
 				session.setAttribute("PersonalURI", personalURI);
-				System.out
-						.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI="
-								+ personalURI);
+				System.out.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI="	+ personalURI);
 			} else {
 				personalURI = (String) session.getAttribute("PersonalURI");
 				System.out.println("INFO : Skein-I101 - 현재 유효한 접속이 존재합니다. user=" + user);
@@ -62,44 +59,12 @@ public class IndexController {
 			
 			
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
+			List<BoardGroup> listSource = boardDao.getBoardGroup(user.getUsername());
+			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
 			
-			List<MemberBoardCommand> listSource = boardDao.getBoards(personalURI);
-			List<List<MemberBoardCommand>> groupList = new ArrayList<List<MemberBoardCommand>>();
+			model.addAttribute("groupList", listSource);
 			
-			if(listSource.size() > 0){
-				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, size=" + listSource.size());
-				int groupStatus = listSource.get(0).getGroupSeq();
-				int groupSeq = groupStatus;
-				boolean isGrouped = false;
-				List<MemberBoardCommand> list = null;
-
-				for (int i = 0; i < listSource.size(); i++) {
-					groupSeq = listSource.get(i).getGroupSeq();
-
-					if (groupStatus != groupSeq) {
-						groupList.add(list);
-						groupStatus = groupSeq;
-						isGrouped = false;
-					}
-
-					if (!isGrouped) {
-						list = new ArrayList<MemberBoardCommand>();
-						isGrouped = true;
-						list.add(listSource.get(i));
-					} else {
-						list.add(listSource.get(i));
-					}
-					
-					if(i == listSource.size()-1){
-						groupList.add(list);
-					}
-				}
-			}
-			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + groupList.size());
 			
-
-			// model.addAttribute("list", list);allList
-			model.addAttribute("groupList", groupList);
 
 			Member member = memberDao.getMemberInfo(user.getUsername());
 			String colorTheme = memberDao.selectColorTheme(user.getUsername());
@@ -115,13 +80,10 @@ public class IndexController {
 			List<NotificationCountCommand> notificationList = notificationDao.getNotifications(user.getUsername());
 
 			model.addAttribute("member", member);
-			model.addAttribute("birthDay",
-					SimpleDateFormat.format(member.getBirthday()));
+			model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
 			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
 			model.addAttribute("notificationList", notificationList);
-
 		}
-
 		return "index";
 	}
 

@@ -61,7 +61,7 @@
 		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.0.9:1521:ORCL"></property> -->
 		<property name="url" value="jdbc:oracle:thin:@192.168.7.127:1521:ORCL"></property>
 		<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL"></property> -->
-		<property name="username" value="skeintest"></property>
+		<property name="username" value="skein_test01"></property>
 		<property name="password" value="1004"></property>
 	</bean>
 	<!-- JDBC 연동 설정 End -->

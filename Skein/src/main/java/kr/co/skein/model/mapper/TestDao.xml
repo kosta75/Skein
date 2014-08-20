@@ -3,8 +3,8 @@
 <mapper namespace="kr.co.skein.model.dao.TestDao">
 	
 	<insert id="writeReg" parameterType="kr.co.skein.model.vo.TestCommand">
-		<selectKey keyProperty="seq" resultType="Integer">
-			SELECT NVL(MAX(seq), 0))+1 FROM Test
+		<selectKey order="BEFORE" keyProperty="seq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(SEQ)),0)+1 FROM Test
 		</selectKey>
 		INSERT INTO Test VALUES(#{seq}, #{content})
 	</insert>
