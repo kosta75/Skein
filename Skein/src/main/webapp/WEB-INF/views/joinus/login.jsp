@@ -27,14 +27,4 @@ ERROR_CODE
 	</c:otherwise>
 </c:choose>
 </div>
-<div class="login-form">
-	<form action="${pageContext.request.contextPath}/security" method="post">
-		<fieldset>
-			<legend>로그인 정보</legend>
-			이메일(name="email")<input type="email" name="email" /><br />
-			비밀번호(name="password")<input type="password" name="password" /><br />
-		</fieldset>
-		<input type="submit" value="Login" />
-	</form>
-</div>
 </section>

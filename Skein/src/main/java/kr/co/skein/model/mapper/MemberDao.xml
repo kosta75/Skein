@@ -75,8 +75,9 @@
 	<!-- 친구 검색 -->
 	<!--  WHERE fullName LIKE '${searchValue}%' -->
 	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
-		SELECT fullName, personalURI, email,
+		SELECT fullName, personalURI, email
 			<if test="ignoreEmailValue != null">
+			,
 				CASE
 					WHEN email IN (SELECT FriendEmail FROM FRIENDSHIP WHERE email = #{ignoreEmailValue}) THEN 1
 					ELSE 0
