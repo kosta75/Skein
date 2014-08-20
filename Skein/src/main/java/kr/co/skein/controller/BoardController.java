@@ -121,6 +121,16 @@ public class BoardController {
 		return JsonView;
 	}
 	
+	@RequestMapping(value="/reply", method=RequestMethod.POST)
+	public String reply(String replyWrite,HttpSession session,int boardSeq){
+	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+	UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+	
+		System.out.println(boardSeq+replyWrite+user.getUsername());
+		
+		return "";
+	}
+	
 	
 	protected BoardCommand initBoard(BoardCommand command){
 		//3. 그룹 이름 정책

@@ -407,7 +407,8 @@ $(document).ready(function(){
 		}else{
 	$("#historyImg").css("display","block");
 	$("#historyDate").css("display","none");
-	$("#emoticon").css("display","none");
+	$("#historyemoticon").css("display","none");
+	$("#historymap").css("display","none");
 		}
 		});
 
@@ -419,18 +420,20 @@ $(document).ready(function(){
 		}else{
 		$("#historyImg").css("display","none");
 		$("#historyDate").css("display","block");
-		$("#emoticon").css("display","none");
+		$("#historyemoticon").css("display","none");
+		$("#historymap").css("display","none");
 		}
 		});
 
 	
 	$("#historyWriteMenu4").click(function() {
-		if($("#emoticon").css("display") == "block"){
-			$("#emoticon").css("display","none");
+		if($("#historyemoticon").css("display") == "block"){
+			$("#historyemoticon").css("display","none");
 		}else{
 		$("#historyImg").css("display","none");
 		$("#historyDate").css("display","none")
-		$("#emoticon").css("display","block");
+		$("#historyemoticon").css("display","block");
+		$("#historymap").css("display","none");
 		}
 		
 	});
@@ -444,42 +447,76 @@ $(document).ready(function(){
 	
 	//이모티콘 추가
 	$("#emoticon1").click(function(){
+		
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon1.png'>");	
+	
+		$("#writeTextarea").focus();
+	
 	});
 	$("#emoticon2").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon2.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon3").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon3.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon4").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon4.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon5").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon5.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon6").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon6.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon7").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon7.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon8").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon8.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon9").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon9.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon10").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon10.png'>");	
+		$("#writeTextarea").focus();
 	});
 	$("#emoticon11").click(function(){
 		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon11.png'>");	
+		$("#writeTextarea").focus();
 	});
+	$("#emoticon12").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon12.png'>");	
+		$("#writeTextarea").focus();
+	});
+	$("#emoticon13").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon13.png'>");	
+		$("#writeTextarea").focus();
+	});
+	$("#emoticon14").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon14.png'>");	
+		$("#writeTextarea").focus();
+	});
+	$("#emoticon15").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon15.png'>");	
+		$("#writeTextarea").focus();
+	});
+	$("#emoticon16").click(function(){
+		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon16.png'>");	
+		$("#writeTextarea").focus();
+	});
+	
 
 
-
-
+	//submit
 	$("#hitstoryWriteBtn").click(function(){
 		
 		$("#content").val($("#writeTextarea").html());
@@ -495,17 +532,20 @@ $(document).ready(function(){
   
 
 //엔터키 처리
-$("#writeTextarea").keydown(function(evt){ 
-
-    if( (evt.keyCode) && (evt.keyCode==13) ) { 
-    	
-    	$("#content").val($("#writeTextarea").html()+"<br/>");
-
-
- 
-    
-
+$("#writeTextarea").keydown(function(e) {
+    // trap the return key being pressed
+    if (e.keyCode === 13) {
+    			 // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+    		      document.execCommand('insertHTML', false, '<br><br>');
+    		      // prevent the default behaviour of return key pressed
+    		      return false;	
     }
+  });
+//지역 정보 수정 시 
+
+$("#historyplace").click(function(){
+	$("#historyplace").val('');
+	
 });
 
 });
