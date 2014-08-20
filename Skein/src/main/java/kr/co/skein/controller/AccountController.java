@@ -1,6 +1,7 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -172,15 +173,27 @@ public class AccountController {
 	@RequestMapping("/joinus/id")
 	public String helpId(Member member, Model model) throws ClassNotFoundException, SQLException{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
-		List<String> emails = accountDao.getAccountEmails(member);
-		if(emails.size()==0){
+		List<String> emailsbasic = accountDao.getAccountEmails(member);
+		if(emailsbasic.size()==0){
 			model.addAttribute("noResult", "y");
 		}
+		List<String> emails = new ArrayList<String>();
 		
 		//***처리
-		for(String email : emails){
-			String result = email.substring(0,3);
-			email.indexOf("@");
+		for(String email : emailsbasic){
+			int atindex = email.indexOf("@");
+			int index = 0;
+			if(atindex >= 3){
+				index = 3;
+			}else{
+				index=1;
+			}
+			String replace = "";
+			for(int i = 0 ; i < email.substring(index, atindex).length() ; i++){
+				replace += "*";
+			}
+			email =  email.replace(email.substring(index, atindex), replace);
+			emails.add(email);
 		}
 		
 		model.addAttribute("emails", emails);

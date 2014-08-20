@@ -182,7 +182,7 @@ border-top: 1px solid #ccc;
 		<c:if test="${!empty emails  }">
 			email 목록<br>
 			<c:forEach items="${emails}" var="email">
-				${email.substring(3, email.indexOf("@")) }<br>
+				${email }<br>
 			</c:forEach>
 			<a href="javascript:history.back()">돌아가기</a>
 		</c:if>
