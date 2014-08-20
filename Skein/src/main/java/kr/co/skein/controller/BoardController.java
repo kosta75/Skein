@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
@@ -16,6 +18,8 @@ import kr.co.skein.util.CustomFileRenamePolicy;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -246,4 +250,24 @@ public class BoardController {
 		model.addAttribute("result", result);
 		return JsonView;
 	}
+	
+	
+	
+	
+	
+	@RequestMapping(value="/reply", method=RequestMethod.POST)
+	public String reply(String replyWrite,HttpSession session,int boardSeq){
+	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+	UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+	
+		System.out.println(boardSeq+replyWrite+user.getUsername());
+		
+		return "";
+	}
+	
+	
+	
+	
+	
+	
 }
