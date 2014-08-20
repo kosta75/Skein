@@ -613,66 +613,6 @@ ALTER TABLE History
 		);
 
 
-
---/* 개인기록 */
---CREATE TABLE History (
---	HistorySeq NUMBER NOT NULL, /* 기록식별번호 */
---	BoardSeq NUMBER NOT NULL, /* 글번호 */
---	StartDate DATE, /* 발생시작일 */
---	EndDate DATE, /* 발생종료일 */
---	Feelings VARCHAR2(127), /* 기분 */
---	Weather VARCHAR2(127), /* 날씨 */
---	IsImportant INT, /* 중요 */
---	IsShare INT, /* 공유 */
---	Keyword VARCHAR2(127), /* 핵심키워드 */
---	Place VARCHAR2(255) /* 장소 */
---);
---
---COMMENT ON TABLE History IS '개인기록';
---
---COMMENT ON COLUMN History.HistorySeq IS '기록식별번호';
---
---COMMENT ON COLUMN History.BoardSeq IS '글번호';
---
---COMMENT ON COLUMN History.StartDate IS '발생시작일';
---
---COMMENT ON COLUMN History.EndDate IS '발생종료일';
---
---COMMENT ON COLUMN History.Feelings IS '기분';
---
---COMMENT ON COLUMN History.Weather IS '날씨';
---
---COMMENT ON COLUMN History.IsImportant IS '중요';
---
---COMMENT ON COLUMN History.IsShare IS '공유';
---
---COMMENT ON COLUMN History.Keyword IS '핵심키워드';
---
---COMMENT ON COLUMN History.Place IS '장소';
---
---CREATE UNIQUE INDEX PK_History
---	ON History (
---		HistorySeq ASC
---	);
---
---ALTER TABLE History
---	ADD
---		CONSTRAINT PK_History
---		PRIMARY KEY (
---			HistorySeq
---		);
---
---ALTER TABLE History
---	ADD
---		CONSTRAINT FK_Board_TO_History
---		FOREIGN KEY (
---			BoardSeq
---		)
---		REFERENCES Board (
---			BoardSeq
---		);
-
-
 -----------------------------------------------------------------------------------------------
 -- 12. Media(미디어)
 -----------------------------------------------------------------------------------------------
@@ -716,50 +656,6 @@ ALTER TABLE Media
 		REFERENCES Board (
 			BoardSeq
 		);
-
-
---/* 미디어 */
---CREATE TABLE Media (
---	MediaSeq NUMBER NOT NULL, /* 미디어식별번호 */
---	BoardSeq NUMBER NOT NULL, /* 글번호 */
---	Filename VARCHAR2(127) NOT NULL, /* 파일명 */
---	Filesize NUMBER NOT NULL, /* 파일크기 */
---	Extension VARCHAR2(127) NOT NULL /* 파일확장자 */
---);
---
---COMMENT ON TABLE Media IS '미디어';
---
---COMMENT ON COLUMN Media.MediaSeq IS '미디어식별번호';
---
---COMMENT ON COLUMN Media.BoardSeq IS '글번호';
---
---COMMENT ON COLUMN Media.Filename IS '파일명';
---
---COMMENT ON COLUMN Media.Filesize IS '파일크기';
---
---COMMENT ON COLUMN Media.Extension IS '파일확장자';
---
---CREATE UNIQUE INDEX PK_Media
---	ON Media (
---		MediaSeq ASC
---	);
---
---ALTER TABLE Media
---	ADD
---		CONSTRAINT PK_Media
---		PRIMARY KEY (
---			MediaSeq
---		);
---
---ALTER TABLE Media
---	ADD
---		CONSTRAINT FK_Board_TO_Media
---		FOREIGN KEY (
---			BoardSeq
---		)
---		REFERENCES Board (
---			BoardSeq
---		);
 
 
 
@@ -924,7 +820,6 @@ ALTER TABLE Friendship
 -- 15.1 FriendshipNotification(친구알림) 테이블 생성
 /* 친구알림 */
 CREATE TABLE FriendshipNotification (
-	FriendshipNotificationSeq NUMBER NOT NULL, /* 친구알림식별번호 */
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
 	Email VARCHAR2(127) NOT NULL, /* 이메일 */
 	FriendEmail VARCHAR2(127) NOT NULL, /* 친구이메일 */
@@ -932,8 +827,6 @@ CREATE TABLE FriendshipNotification (
 );
 
 COMMENT ON TABLE FriendshipNotification IS '친구알림';
-
-COMMENT ON COLUMN FriendshipNotification.FriendshipNotificationSeq IS '친구알림식별번호';
 
 COMMENT ON COLUMN FriendshipNotification.NotificationSeq IS '사용자알림번호';
 
@@ -945,14 +838,14 @@ COMMENT ON COLUMN FriendshipNotification.FriendshipConfirm IS '친구신청확인';
 
 CREATE UNIQUE INDEX PK_FriendshipNotification
 	ON FriendshipNotification (
-		FriendshipNotificationSeq ASC
+		NotificationSeq ASC
 	);
 
 ALTER TABLE FriendshipNotification
 	ADD
 		CONSTRAINT PK_FriendshipNotification
 		PRIMARY KEY (
-			FriendshipNotificationSeq
+			NotificationSeq
 		);
 
 ALTER TABLE FriendshipNotification
