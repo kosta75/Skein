@@ -18,14 +18,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	
-	<!-- ***********************사진 페이지 게시물 더보기**********************  -->
-	<definition name="photo.morepicture" template="/WEB-INF/views//more/layout.jsp">
-		<put-attribute name="morecontent" value="/WEB-INF/views/index/morepicture.jsp" />
-	</definition>
-	<!-- *******************************************************************  -->
-	
-	
+
 	
 	
 	
@@ -39,22 +32,22 @@
 	
 	
 	<!-- time 라인  -->
-   <definition name="time" template="/WEB-INF/views/index/comm/layout.jsp" extends="index">
+   <definition name="photo.viewlist" template="/WEB-INF/views/photo/comm/layout.jsp" extends="index">
       <!-- 각 페이지에 추가하려는 요소 Load -->
-      <put-attribute name="title" value="timeline" />
+      <put-attribute name="title" value="viewlist" />
       <!-- content -->
-      <put-attribute name="index-logged" value="/WEB-INF/views/index/time-line.jsp" />
+      <put-attribute name="viewlist" value="/WEB-INF/views/photo/viewlist.jsp" />
       
    </definition>
    
-   <!-- ***********************time 라인 게시물 더보기**********************  -->
-      <definition name="morepicture" template="/WEB-INF/views/index/more/layout.jsp">
-         <put-attribute name="morecontent" value="/WEB-INF/views/index/more/more-picture.jsp" />
+   <!-- ***********************moretime 라인 게시물 더보기**********************  -->
+      <definition name="photo.morepicture" template="/WEB-INF/views/photo/comm/layout2.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/photo/morepicture.jsp" />
       </definition>
    <!-- *******************************************************************  -->
    
     <!-- ***********************main 게시물 더보기**********************  -->
-      <definition name="more-board" template="/WEB-INF/views/index/more/layout.jsp">
+      <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp">
          <put-attribute name="morecontent" value="/WEB-INF/views/index/more/more-mainBoard.jsp" />
       </definition>
    <!-- *******************************************************************  -->

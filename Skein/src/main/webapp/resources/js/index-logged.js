@@ -410,89 +410,14 @@ $(document).ready(function(){
 
 	
 	//이모티콘 추가
-	$("#emoticon1").click(function(){
+	$(".emoticon").click(function(){
 		
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon1.png'>");	
+		$("#writeTextarea").append($(this).clone());	
 	
 		$("#writeTextarea").focus();
 	
 	});
-	$("#emoticon2").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon2.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon3").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon3.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon4").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon4.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon5").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon5.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon6").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon6.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon7").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon7.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon8").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon8.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon9").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon9.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon10").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon10.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon11").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon11.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon12").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon12.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon13").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon13.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon14").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon14.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon15").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon15.png'>");	
-		$("#writeTextarea").focus();
-	});
-	$("#emoticon16").click(function(){
-		$("#writeTextarea").html($("#writeTextarea").html()+"<img class='emoticon' id='emoticon1' src='./resources/media/emoticon/emoticon16.png'>");	
-		$("#writeTextarea").focus();
-	});
 	
-
-
-	//submit
-	$("#hitstoryWriteBtn").click(function(){
-		
-		$("#content").val($("#writeTextarea").html());
-		
-		$("#hitstoryForm").submit();
-		
-	});
-	
-	
-	
-	
-
   
 
 //엔터키 처리
@@ -511,5 +436,46 @@ $("#historyplace").click(function(){
 	$("#historyplace").val('');
 	
 });
+
+
+//메인 더보기 
+function lastPostFunc(pictureCount){ 
+ 
+    $.ajax({
+          type:'get',
+       url:"mainMoreBoard",
+       data:"pictureCount="+ pictureCount,
+       dataType : "html",
+       success : function(data) {
+        if(data.trim()==""){
+        }else{
+           $('#containerCenter').append(data);  
+        }  
+       },
+       error: function(){
+          alert('스크롤 에러 :error while request..'   );
+       }
+    });
+ }; 
+ 
+ $(window).scroll(function(){ 
+    if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
+      
+      var pictureCount = $('.boardlist').size();
+    
+       lastPostFunc(pictureCount); 
+    }
+    //
+    //}       
+ });
+//submit
+	$("#hitstoryWriteBtn").click(function(){
+		
+		$("#content").val($("#writeTextarea").html());
+		
+		$("#hitstoryForm").submit();
+		
+	});
+	
 
 });

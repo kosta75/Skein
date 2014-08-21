@@ -26,85 +26,93 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/photo/*")
 public class PhotoController {
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping(value="viewlist", method = RequestMethod.GET)
-    public String picturetab(HttpSession session, Model model,@RequestParam("pictureCount") int pictureCount)
-          throws ClassNotFoundException, SQLException {
-       MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-       int startNum ;
-       int endNum;
-       if(pictureCount>0){
-    	   	startNum = pictureCount+1;
-            endNum = startNum+20;
-       }else{
-    	   //////////////////////////////////   
-            startNum = 1;
-            endNum = 20;
-           
-           //////////////////////////////
-    	   
-       }
-       System.out.println("사진보기 클릭 들어옴!!");
-       
-       System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
-       if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-          System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-          SecurityContextImpl sci = (SecurityContextImpl) session
-                .getAttribute("SPRING_SECURITY_CONTEXT");
-          UserDetails user = (UserDetails) sci.getAuthentication()
-                .getPrincipal();
-          String personalURI = "";
-          if (session.getAttribute("PersonalURI") == null) {
-             System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
-             personalURI = memberDao.getPersonalURI(user.getUsername());
-             session.setAttribute("PersonalURI", personalURI);
-             System.out.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI="+ personalURI);
-          } else {
-             personalURI = (String) session.getAttribute("PersonalURI");
-             System.out.println("INFO : Skein-I101 - 현재 유효한 접속이 존재합니다. user="+ user);
-          }
-          BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-       
-          List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI, startNum, endNum);
-          List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+	@RequestMapping(value = "viewList", method = RequestMethod.GET)
+	public String picturetab(HttpSession session, Model model, @RequestParam("pictureCount") int pictureCount) throws ClassNotFoundException, SQLException {
+		System.out.println("INFO : Skein-G120 - PhotoController");
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		int startNum;
+		int endNum;
+		if (pictureCount > 0) {
+			startNum = pictureCount + 1;
+			endNum = startNum + 19;
+		} else {
+			// ////////////////////////////////
+			startNum = 1;
+			endNum = 20;
 
-          int groupStatus = -1;
-          boolean isGrouped = false;
-          List<MemberBoardCommand> l = null;
-          for (int i = 0; i < list.size(); i++) {
-             if (!isGrouped) {
-                l = new ArrayList<MemberBoardCommand>();
-                isGrouped = true;
-             }
-             int groupSeq = list.get(i).getGroupSeq();
-             l.add(list.get(i));
-             if (groupStatus != groupSeq) {
-                //
-             }
-             groupStatus = groupSeq;
-          }
-          model.addAttribute("list", list);
-          Member member = memberDao.getMemberInfo(user.getUsername());
-          String colorTheme = memberDao.selectColorTheme(user.getUsername());
-          SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
-          if (colorTheme == null || colorTheme.equals("")) {
-             model.addAttribute("colorTheme", "blue");
-          } else {
-             model.addAttribute("colorTheme", colorTheme);
-          }
-          model.addAttribute("member",member);
-          model.addAttribute("birthDay",
-                SimpleDateFormat.format(member.getBirthday()));
-          model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
-       }
-       if(startNum>1){
-    	   return "photo.morepicture"; 
-       }else{
-    	   return "photo.viewlist";
-       }
-     
-    }
+			// ////////////////////////////
+
+		}
+		System.out.println("사진보기 클릭 들어옴!!");
+		System.out.println(startNum + "/" + endNum + "/" + pictureCount);
+		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+			SecurityContextImpl sci = (SecurityContextImpl) session
+					.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication()
+					.getPrincipal();
+			String personalURI = "";
+			if (session.getAttribute("PersonalURI") == null) {
+				System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
+				personalURI = memberDao.getPersonalURI(user.getUsername());
+				session.setAttribute("PersonalURI", personalURI);
+				System.out
+						.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI="
+								+ personalURI);
+			} else {
+				personalURI = (String) session.getAttribute("PersonalURI");
+				System.out
+						.println("INFO : Skein-I101 - 현재 유효한 접속이 존재합니다. user="
+								+ user);
+			}
+			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+
+			List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI,
+					startNum, endNum);
+			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+
+			int groupStatus = -1;
+			boolean isGrouped = false;
+			List<MemberBoardCommand> l = null;
+			for (int i = 0; i < list.size(); i++) {
+				if (!isGrouped) {
+					l = new ArrayList<MemberBoardCommand>();
+					isGrouped = true;
+				}
+				int groupSeq = list.get(i).getGroupSeq();
+				l.add(list.get(i));
+				if (groupStatus != groupSeq) {
+					//
+				}
+				groupStatus = groupSeq;
+			}
+			model.addAttribute("list", list);
+			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+			if (colorTheme == null || colorTheme.equals("")) {
+				model.addAttribute("colorTheme", "blue");
+			} else {
+				model.addAttribute("colorTheme", colorTheme);
+			}
+			model.addAttribute("member", member);
+			model.addAttribute("birthDay",
+					SimpleDateFormat.format(member.getBirthday()));
+			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
+		}
+
+		if (startNum > 1) {
+			System.out.println("photo.morepicture");
+			return "photo.morepicture";
+		} else {
+			System.out.println("photo.viewlist");
+			return "photo.viewlist";
+		}
+
+	}
 }

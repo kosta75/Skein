@@ -90,4 +90,3 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 
 /* 헤더에 있는 알림페이지 */
 #notificationList {display:none;border:1px solid #ccc;border-bottom-color:#999; background-color:#fff;width:220px;height:100px;position:absolute;top:55px;right:0px;}
-
