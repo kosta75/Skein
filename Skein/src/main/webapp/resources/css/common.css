@@ -24,10 +24,10 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 
 #globalTop{position:relative;}
 #changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:15px;height:55px;
--webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
+-webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
 
-#changeBackgroundColor ul li{width:15px;height:9px; -webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
-#changeBackgroundColor ul li:first-child{height:10px;-webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
+#changeBackgroundColor ul li{width:15px;height:9px; -webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
+#changeBackgroundColor ul li:first-child{height:10px;-webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
 
 #changeBackgroundColor:hover{width:50px;height:180px;}
 #changeBackgroundColor:hover ul li{width:50px;height:27px;}
