@@ -156,7 +156,7 @@
 		<!--center  -->
 		<div class="content-center-wrapper">
 			<div id="boardListTimelineContainer"></div>
-			<div id="tabs">
+			<!-- <div id="tabs">
 			  <ul>
 			    <li><a href="#tabs-1">Nunc tincidunt</a></li>
 			    <li><a href="#tabs-2">Proin dolor</a></li>
@@ -174,13 +174,13 @@
 			    <p><strong>Click this tab again to close the content pane.</strong></p>
 			    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
 			  </div>
-			</div>
+			</div> -->
 			
 			
 			<div id="write" style="width: 99%; background: #fff; margin-bottom: 20px;border-radius:6px 6px 6px 6px;">
 			
 			
-				<div style="padding:10px;">
+				<div style="padding:10px;height:30px;">
 					<ul>
 						<li id="tab1" style="float: left">다이어리</li>
 						<li style="float: left"><p>|</p></li>
@@ -231,114 +231,117 @@
 					</form>
 			</div> --%>
 
-			<!--개인기록  -->
-			<div id="historyWrite">
-			<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
-				<form id="hitstoryForm" method="post" enctype="multipart/form-data">
-					<div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 10px; " contenteditable="true" ></div>
-					<input type='hidden' name='content' id='content' style="width: 100%;"/>
-					<input type="hidden" name="email" value="${LoginUser}" />
-					<!--이미지  -->
-					<ul id="historyImg" class="offset2 arrow_box" style="display: none;">
-						<li class="">
-							<h3>이미지를 끌어다 놓으세요</h3>
-							<ul id="file-list"></ul>
-							<p id="dropzone" class="" style="height: 200px;"></p>
-						</li>
-					</ul>
-					<!--날짜  -->
-					<div id="historyDate">
-						발생일자 : <input type="date" name="startDate"><br />
-						종료일자 : <input type="date" name="endDate"><br />
-					</div>
-					<!--위치정보  -->
-					<div id="historymap" style="display: none;">
-						<input type="text" id="historyplace" name="historyplace">
-					</div>
-					<!--이모티콘  -->
-					<div id="historyemoticon">
-					<c:forEach var="i" begin="1" end="16" step="1">
-						<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
-					</c:forEach>
-					</div>
-					<!--  -->
-					<div style="clear: both; background:#dcdcdc;width:100%; height: 40px ;padding-left:5px;border-radius:0 0 6px 6px; " align="right">
-						<div id="writeicon"  >
-							<div  class="icon_button" id="historyWriteMenu1" ></div>
-							<div class="icon_button" id="historyWriteMenu2"></div>
-							<div class="icon_button" id="historyWriteMenu3"></div>
-							<div class="icon_button" id="historyWriteMenu4"></div>
-							<select name="publicLevelCode" style="margin-left:120px;">
-								<c:forEach var="publicLevelList" items="${publicLevelList}">
-									<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
-								</c:forEach>
-							</select>
-							<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
-						</div>
-					</div>
-				</form> 
-			</div>
-		</div>
-
-
+		<!--개인기록  -->
+<div id="historyWrite">
+<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
+<form id="hitstoryForm" method="post" enctype="multipart/form-data">
+   <div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 10px; " contenteditable="true" ></div>
+      <input type='hidden' name='content' id='content' style="width: 100%;"/>
+   <input type="hidden" name="email" value="${LoginUser}">
+      <!--이미지  -->
+      <ul id="historyImg" class="offset2 arrow_box" style="display: none;width:98%;height: 250px;">
+         <li class="">
+            
+            <h3>이미지를 끌어다 놓으세요</h3>
+            <p id="dropzone" class="" ></p>
+            <ul id="file-list"></ul>
+         
+            
+            
+         </li>
+      </ul>
+         <!--날짜  -->
+      <div id="historyDate">
+      발생일자 : <input type="date" name="startDate"><br />
+      종료일자 : <input type="date" name="endDate"><br />
+      </div>
+         <!--위치정보  -->
+         <div id="historymap" style="display: none;">
+               <input type="text" id="historyplace" name="historyplace">
+         </div>
+         <!--이모티콘  -->
+      <div id="historyemoticon">
+      <c:forEach var="i" begin="1" end="16" step="1">
+      <img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
+      </c:forEach>
+      </div>
+   <!--  -->
+   <div style="clear: both; background:#dcdcdc;width:100%; height: 40px ;padding-left:5px;border-radius:0 0 6px 6px; " align="right">
+     <div id="writeicon"  >
+     <div  class="icon_button" id="historyWriteMenu1" > </div>
+      <div class="icon_button" id="historyWriteMenu2"></div>
+      <div class="icon_button" id="historyWriteMenu3"></div>
+      <div class="icon_button" id="historyWriteMenu4"></div>
+         <select name="publicLevelCode" style="margin-left:120px;">
+         <c:forEach var="publicLevelList" items="${publicLevelList}">
+            <option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+         </c:forEach>
+      </select>
+      <input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;"></div>
+      </div>
+      </form> 
+</div>
+</div>
 		<!-- 게시물 출력 부분 Start -->
-		
-		<c:forEach var="list" items="${groupList}" varStatus="groupStep">
-		<div id="boardlist" class="group-list-container">
-			<%-- ${groupStep.count} 번째 그룹 <br /> --%>
-			<div id="list" style="border-radius:6px 6px 6px 6px;">
-		
-			
-			<div style="float: left;">
-				<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
-			</div>
-			
-			<div style="float: left;">
-				${list.fullName}<br>
-				${list.writeDate}
-			</div>
-			
-			<div style="clear: both; ">
-				${list.content}
-				<c:if test="${list.fileName != null}">
-				<div id="modal-launcher">
-					<div id="imghover" >
-						<input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
-						
-						
-							<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
-				
-						
-					</div>
-				</div>
-				</c:if>
-			</div>
-			<div style="clear: both;float: right;"><input type="button" value="공유하기"> </div>
-			<div style="clear: both;float: right;">수정 삭제</div>
-			</div>
-		
-	
-			<div id="reply" style="background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
-				<div style="float: left;padding:5px;padding-left:10px;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
-				</div>
-				<div style="float: left;padding-top:10px;">
-					<form action="board/reply" id="replyMain" method="post" >
-						<input type="hidden"  value="${list.boardSeq}" id="boardSeq" name="boardSeq">
-						<input name="replyWrite" type="text" style="width:270%; height: 20px;">
-					</form>
-				</div>
-			</div>
-		</div>
-		</c:forEach>
-		</div>
-	</div>
-	
-	
-		
-		
-	<div style="clear: both;"></div>
-	
+
+<c:forEach var="list" items="${groupList}" varStatus="groupStep">
+   
+   <%-- <c:forEach var="list" items="${boardList}"> --%>
+   <div id="boardlist" >
+      <%-- ${groupStep.count} 번째 그룹 <br /> --%>
+      <div id="list" style="border-radius:6px 6px 6px 6px;">
+   
+      
+      <div style="float: left;">
+         <img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
+      </div>
+      
+      <div style="float: left;">
+         ${list.fullName}<br>
+         ${list.writeDate}
+      </div>
+      
+      <div style="clear: both; ">
+         ${list.content}
+         <c:if test="${list.fileName != null}">
+         <div id="modal-launcher">
+            <div id="imghover" >
+               <input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
+               
+               
+                  <img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
+         
+               
+            </div>
+         </div>
+         </c:if>
+      </div>
+      <div style="clear: both;float: right; ">수정 삭제</div>
+      </div>
+
+
+      <div id="reply" style="background:#e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
+        <div>
+         <div style="float: left;padding:5px;padding-left:10px;">
+            <img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
+         </div>
+         <div style="float: left;padding-top:10px;">
+            <form action="board/reply" id="replyMain" method="post" >
+               <input type="hidden"  value="${list.boardSeq}" id="boardSeq" name="boardSeq">
+               <input name="replyWrite" type="text" style="width:270%; height: 20px;">
+            </form>
+         </div>
+         </div>
+      </div>
+</div>
+   
+   <%-- </c:forEach> --%>
+
+</c:forEach>
+</div>
+</div>
+
+
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 <script src="//code.highcharts.com/stock/highstock.js"></script>

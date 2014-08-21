@@ -41,16 +41,7 @@ $(document).ready(function() {
 		$('#notificationList').toggle("display");
 		return false;
 	});
-	
-	$('#sidemenu1').click(function() { 	//알림
-		$('#sidemenu1').append($('#mon').toggle("display"));
-	});
-	$('#sidemenu2').click(function() { 	//알림
-		$('#sidemenu2').after($('#mon').toggle("display"));
-	});
-	$('#sidemenu3').click(function() { 	//알림
-		$('#sidemenu3').after($('#mon').toggle("display"));
-	});
+
 
 	
 	
