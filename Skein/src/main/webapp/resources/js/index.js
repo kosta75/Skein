@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	
 	//게시물 타임라인 설정 Start //////////////////////////////////////////////////////////////////////////
+	if($("#boardListTimelinContainer").html() != null){
 	Highcharts.setOptions({
 		lang: {
 			months: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -67,10 +68,13 @@ $(document).ready(function(){
             }]
         });
 	});
+	};
 	//게시물 타임라인 설정 End //////////////////////////////////////////////////////////////////////////
 	
 	
 	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
+	
+	if($("#file-input").html() != null){
 	var filelist = document.getElementById("file-list");
 	var multiFiles = new Array();
 
@@ -226,7 +230,7 @@ $(document).ready(function(){
 				$("#detailImg" + i).css("display", "none");
 			}
 		}
-	});
+	});};
 		
 	/*$(document).on(	'click', '.members', function() {
 		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
@@ -544,5 +548,43 @@ $("#historyplace").click(function(){
 	$("#historyplace").val('');
 	
 });
+
+
+//메인 더보기 
+
+/*function lastPostFunc(pictureCount){ 
+  
+    $.ajax({
+          type:'get',
+       url:"mainMoreBoard",
+       data:"pictureCount="+ pictureCount,
+       dataType : "html",
+       success : function(data) {
+         // alert('aaa');
+         alert(data);
+        if(data.trim()==""){
+           alert("끝");
+        }else{
+           $('#containerCenter').append(data);  
+        }  
+       },
+       error: function(){
+          alert('스크롤 에러 :error while request..'   );
+       }
+    });
+ }; 
+ 
+ $(window).scroll(function(){ 
+    if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
+       //alert('스크롤 감지');
+       
+      //alert("현재 사진 불러온 수 : "+ $('.list').size());
+      var pictureCount = $('#boardlist').size();
+      alert("dd"+pictureCount);
+       lastPostFunc(pictureCount); 
+    }
+    //
+    //}       
+ });*/
 
 });
