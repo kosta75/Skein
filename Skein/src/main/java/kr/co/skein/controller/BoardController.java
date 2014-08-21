@@ -50,7 +50,7 @@ public class BoardController {
 			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
 
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-			List<BoardGroup> listSource = boardDao.getBoardGroup(user.getUsername(),1,5);
+			List<BoardGroup> listSource = boardDao.getBoardGroup(user.getUsername());
 
 			model.addAttribute("listSource", listSource);
 			System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + listSource.size());

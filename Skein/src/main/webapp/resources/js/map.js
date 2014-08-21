@@ -169,7 +169,7 @@ cloudy
 			$('#observinfo').css("background-repeat","no-repeat");
 			$('#observinfo').css("border-radius","10px 10px 10px 10px");
 			$('#observinfo').css("background-image","url('./resources/media/gif/"+observ.icon+".gif')");
-			alert(observ.weather+"1");
+			//alert(observ.weather+"1");
 
 			/*
 			$('.footer-container').css("background-image","url('./resources/media/gif/rain.gif')");

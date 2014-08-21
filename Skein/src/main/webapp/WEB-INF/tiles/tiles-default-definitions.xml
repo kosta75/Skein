@@ -19,7 +19,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	
+	<!-- ***********************사진 페이지 게시물 더보기**********************  -->
+	<definition name="photo.morepicture" template="/WEB-INF/views//more/layout.jsp">
+		<put-attribute name="morecontent" value="/WEB-INF/views/index/morepicture.jsp" />
+	</definition>
+	<!-- *******************************************************************  -->
 	
 	
 	
@@ -56,11 +60,7 @@
    <!-- *******************************************************************  -->
    
    
-   <!-- ***********************time 라인 게시물 더보기**********************  -->
-	   <definition name="morepicture" template="/WEB-INF/views/index/more/layout.jsp">
-	      <put-attribute name="index-logged" value="/WEB-INF/views/index/more-picture.jsp" />
-	   </definition>
-	<!-- *******************************************************************  -->
+   
    
    <!-- 사용자 검색 페이지 -->
 <!-- 	<definition name="friendship.searchMembers" template="/WEB-INF/views/comm/layout.jsp" extends="joinus.login">

@@ -14,12 +14,12 @@ $(document).ready(function(){
          function lastPostFunc(pictureCount){ 
                        $.ajax({
                   type:'get',
-               url:"time",
+               url:"viewlist",
                data:"pictureCount="+ pictureCount,
                dataType : "html",
                success : function(data) {
                  // alert('aaa');
-                 // alert(data);
+                 alert(data);
                 if(data.trim()==""){
                    
                 }else{

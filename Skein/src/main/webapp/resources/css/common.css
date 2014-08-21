@@ -15,16 +15,24 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 
 /* 헤더/본문/푸터 의 가로 크기 */
 .wrapper {width: 960px;margin: 0px auto;}
+.header-container, #globalTop, .logo, #search, #infoContainer{height:55px;}
 
 /* 헤더의 Bar  */
-.header-container {	height: 57px;	color: #fff;}
-.heder-container:after {	
-	content: "."; /* Older browser do not support empty content */
-	visibility: hidden;
-	display: block;
-	height: 0;
-	clear: both;
-}
+.header-container{color:#fff; background:#f00;}
+.heder-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
+
+
+#globalTop{position:relative;}
+#changebgc{position:absolute; top:20px; left:10px;}
+
+/* 상단 로그인 Form */
+#loginFormContainer{position:absolute;top:5px;right:0px;}
+#loginForm fieldset{border:none;margin:0px;padding:0px;}
+#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
+#loginForm table th{text-align:left;padding-left:2px;font-size:11px;font-family:'맑은 고딕';font-weight:normal;}
+#loginForm input{border:1px solid #eee;padding:2px;}
+#loginForm input.input-filed{width:120px;}
+#loginForm input.login-button{padding:2px 10px; width}
 
 /* 헤더 Bar 및 사용자 지정 색상 */
 .green {background: #336666;}
@@ -35,7 +43,14 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .yellowgreen {background: #a7bc7a;}
 
 /* 헤더에 있는 로고 */
-.logo {	width: 100px;	float: left;	font-size: 50px;}
+.logo{width:70px;float:left;}
+.logo a{display:block;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
+
+/* 헤더 Bar에 있는 a태그 메뉴 */
+.header-container a:LINK {	color: #fff; text-decoration: none;}
+.header-container a:visited {color: #fff;text-decoration: none;}
+.header-container a:hover {color: #fff;text-decoration: none;}
+.header-container a:active {color: #fff;text-decoration: none;}
 
 /* 헤더에 있는 알람페이지 */
 #alrampage {
@@ -51,15 +66,17 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 	left: 55%;
 }
 
-/* 헤더 Bar에 있는 a태그 메뉴 */
-.header-container a:LINK {	color: #fff; text-decoration: none;}
-.header-container a:visited {color: #fff;text-decoration: none;}
-.header-container a:hover {color: #fff;text-decoration: none;}
-.header-container a:active {color: #fff;text-decoration: none;}
+/* searchBar */
+#search{float:left;padding:0px 20px;}
+#searchBar{margin-top:12px;}
 
+#infoContainer{position:absolute;right:0px;}
+.info-wrapper{}
+
+.user-profile-info-container{float:left;}
 
 #myinfo div {padding-top: 15px;	float: left;}
-#search {	width: 500px;	float: left;	padding-top: 15px;}
+
 #search input {float: left;	width: 270px;}
 #alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {cursor: pointer;}
 #modal-close {cursor: pointer;}

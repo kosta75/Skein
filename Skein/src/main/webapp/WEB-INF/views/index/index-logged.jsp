@@ -12,13 +12,13 @@
 		
 				<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 				<li><a href="#">정보</a></li>
-<<<<<<< HEAD
-				<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
+
+				<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>
+				
+
+				<!-- <li><a href="time?pictureCount=0">사진</a></li> -->
 				<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
-=======
-				<li><a href="time?pictureCount=0">사진</a></li>
-				<li><a href="#">친구</a></li>
->>>>>>> refs/remotes/original/release1.1.0.test
+
 			</ul>
 		</div>
 			
@@ -28,13 +28,13 @@
 				<ul class="arrowunderline" style="float: left;padding-left: 20%;">
 					<li class="first"><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
-<<<<<<< HEAD
-					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
-=======
+
+					<%-- <li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li> --%>
+					
+
 					<li><a href="time?pictureCount=0">사진</a></li>
-					<li><a href="#">친구</a></li>
->>>>>>> refs/remotes/original/release1.1.0.test
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+
 					<li><a href="#">고객센터</a></li>
 					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
 				</ul>
