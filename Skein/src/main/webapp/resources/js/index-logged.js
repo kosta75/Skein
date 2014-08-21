@@ -427,6 +427,20 @@ $(document).ready(function(){
 		});
 
 	
+	$("#historyWriteMenu3").click(function() {
+		
+		if($("#historymap").css("display") == "block"){
+			$("#historymap").css("display","none");
+		}else{
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none");
+		$("#historyemoticon").css("display","none");
+		$("#historyplace").val($("#city").text());
+		$("#historymap").css("display","block");
+		}
+		});
+
+	
 	$("#historyWriteMenu4").click(function() {
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
