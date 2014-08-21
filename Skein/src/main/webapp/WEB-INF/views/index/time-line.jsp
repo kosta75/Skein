@@ -4,72 +4,8 @@
 <%@ taglib prefix="se"
    uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!--  날씨 js 파일 import -->
-<!-- <link href="css/webfont/climacons-font.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.min.2.0.0.js"></script>
-<script type="text/javascript" src="js/mustache.js"></script>
-<script type="text/javascript" src="js/whatweather.0.6.js"></script> -->
-<!--///////////////////////////////////  -->
-
-
+<script src="${pageContext.request.contextPath}/resources/js/time-line.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script> 
-$(document).ready(function(){
-   $(".img-list").hover(
-      function(){
-         //alert('호버~!!!!!!!!!!!!!들옴');
-          $(this).css("background-color",$('#leftinfo').css("background-color")); 
-      },
-      function(){
-         //alert('호버~2!나감');
-          $(this).css("background-color","white"); 
-      });   
-      
-  /*  $("div #whatweather").whatWeather({city:"Brussels"}); */
-   /*스크롤 감지  */
-   function lastPostFunc(){ 
-      //alert('lastPostFunc 실행');
-      /* 
-      $('div#lastPostsLoader').html('<img src="bigLoader.gif">'); 
-      $.post("scroll.asp?action=getLastPosts&lastID=" + $(".wrdLatest:last").attr("id"), 
-                  
-                  
-      function(data){ 
-            if (data != "") { 
-               $(".wrdLatest:last").after(data); 
-            } 
-         $('div#lastPostsLoader').empty(); 
-      });  
-      */
-      $.ajax({
-            type:'get',
-         url:"moreviewpicture",
-         dataType : "html",
-         success : function(data) {
-            alert('aaa');
-            alert(data);
-            $('#');
-
-         },
-         error: function(){
-            alert('스크롤 에러 :error while request..'   );
-         }
-      });
-   }; 
-   
-   $(window).scroll(function(){ 
-      if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
-         //alert('스크롤 감지');
-         lastPostFunc(); 
-      }
-      //
-      //}       
-   });
-   
-});
-
-</script>
 <se:authentication property="name" var="LoginUser" />
 <section class="content-container">
    <div>

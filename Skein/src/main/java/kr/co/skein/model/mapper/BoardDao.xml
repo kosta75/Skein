@@ -57,25 +57,32 @@
 	
 	<!-- 7. 사용자 그룹 게시물 조회 -->
 	<select id="getBoardGroup" resultType="kr.co.skein.model.vo.BoardGroup">
-		SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
-				b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
-				h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
-				me.FILENAME, me.FILESIZE, me.EXTENSION,
-				m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
-				FROM BOARDGROUP bg JOIN
-				(
-				SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
-					(
-					SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
-					FROM Board
-					WHERE email = #{email}
-					)
-				WHERE rnum = 1
-				) b ON bg.groupSeq = b.groupSeq
-		JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
-		JOIN MEMBERS m ON m.Email = b.Email
-		LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
-		ORDER BY h.STARTDATE ASC
+		SELECT * FROM
+(
+SELECT ROWNUM r, s.* from
+(
+SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
+            b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
+            h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
+            me.FILENAME, me.FILESIZE, me.EXTENSION,
+            m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
+            FROM BOARDGROUP bg JOIN
+            (
+            SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
+               (
+               SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
+               FROM Board
+               WHERE email = #{param1}
+               )
+            WHERE rnum = 1
+            ) b ON bg.groupSeq = b.groupSeq
+      JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
+      JOIN MEMBERS m ON m.Email = b.Email
+      LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
+      ORDER BY GROUPSEQ DESC
+    ) s
+    )
+    WHERE r BETWEEN #{param2} AND #{param3} 
 	</select>
 	
 	

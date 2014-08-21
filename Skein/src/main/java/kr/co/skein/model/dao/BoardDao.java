@@ -32,7 +32,7 @@ public interface BoardDao {
 	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
 	
 	//7. 사용자 그룹 게시물 조회
-	public List<BoardGroup> getBoardGroup(String email) throws ClassNotFoundException, SQLException;
+	public List<BoardGroup> getBoardGroup(String email,int startNum, int endNum) throws ClassNotFoundException, SQLException;
 
 	////////////////////////////
 	public List<MemberBoardCommand> getBoardsPage(String personalURI, int startNum, int endNum) throws ClassNotFoundException, SQLException;

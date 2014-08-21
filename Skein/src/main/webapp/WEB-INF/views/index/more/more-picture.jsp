@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- 
+ 
+
 <c:forEach var="list" items="${list}">
    <c:if test="${list.fileName!= null}">
       <div class="list"
@@ -10,6 +11,5 @@
          </div>
       </div>
    </c:if>
-</c:forEach> --%>
-
-${list}
+</c:forEach> 
+ 

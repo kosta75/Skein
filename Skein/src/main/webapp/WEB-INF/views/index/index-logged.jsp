@@ -12,8 +12,13 @@
 		
 				<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 				<li><a href="#">정보</a></li>
+<<<<<<< HEAD
 				<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
 				<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+=======
+				<li><a href="time?pictureCount=0">사진</a></li>
+				<li><a href="#">친구</a></li>
+>>>>>>> refs/remotes/original/release1.1.0.test
 			</ul>
 		</div>
 			
@@ -23,8 +28,13 @@
 				<ul class="arrowunderline" style="float: left;padding-left: 20%;">
 					<li class="first"><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
+<<<<<<< HEAD
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
 					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+=======
+					<li><a href="time?pictureCount=0">사진</a></li>
+					<li><a href="#">친구</a></li>
+>>>>>>> refs/remotes/original/release1.1.0.test
 					<li><a href="#">고객센터</a></li>
 					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
 				</ul>
@@ -146,7 +156,7 @@
                <div id="locationinfo" style="width: 100%; clear: both;"></div>
             </div>
          </div>
-         <!--********************************************************************** -->
+<!--********************************************************************** -->
 
 </div>
 
@@ -270,7 +280,7 @@
 <c:forEach var="list" items="${groupList}" varStatus="groupStep">
 	
 	<%-- <c:forEach var="list" items="${boardList}"> --%>
-	<div id="boardlist">
+	<div id="boardlist" class="boardlist">
 		<%-- ${groupStep.count} 번째 그룹 <br /> --%>
 		<div id="list" style="border-radius:6px 6px 6px 6px;">
 	
@@ -299,7 +309,8 @@
 			</div>
 			</c:if>
 		</div>
-		<div style="clear: both; ">수정 삭제</div>
+		<div style="clear: both;float: right;"><input type="button" value="공유하기"> </div>
+		<div style="clear: both;float: right;">수정 삭제</div>
 		</div>
 	
 
