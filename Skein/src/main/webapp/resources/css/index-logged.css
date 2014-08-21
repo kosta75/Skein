@@ -1,6 +1,55 @@
 @CHARSET "UTF-8";
-#boardListTimelinContainer{width:475px;}
+/* 기본메뉴 */
+#subNavigationContainer{height:55px;padding-bottom:20px;}
+#subNavigationContainer a, #subNavigationContainer a:hover, #subNavigationContainer a:active, #subNavigationContainer a:visited, #subNavigationContainer a:link, #subNavigationContainer a:focus{text-decoration:none;color:black;}
+ul.arrowunderline {list-style-type:none;margin:0;}
+ul.arrowunderline li {height:55px;float:left;border-right:1px solid skyblue;padding:0px 25px;}
+ul.arrowunderline li:first-child {border-left:1px solid skyblue;}
+ul.arrowunderline li a, ul.arrowunderline li a:hover, ul.arrowunderline li a:active, ul.arrowunderline li a:visited{color:black;}
+ul.arrowunderline li a{display:block;height:51px;line-height:55px;font-family:'맑은 고딕';font-weight:bold;font-size:15px;}
+ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
+.sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff;}
+#menu2.sub-menu {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;background-color:#f00}
+.menu-username {float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
+
+#menu1 .sub-navigation{float:left;}
+#menu2 .sub-navigation{position:absolute;right:0px;}
+
+#menu2 .menu-username a{color:#fff;}
+#menu2 ul.arrowunderline li a{color:#fff;}
+
+
+
+/* 그래프 */
+#boardListTimelinContainer{height:320px;}
+
+
+
+/* Modal */
+#modal-content{display:none;}
+
+
+.content-container{position:relative;}
+
+/* 왼쪽 사용자 정보 */
+#subUserProfileContainer{width:180px;position:absolute;left:0px;}
+.sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
+.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;}
+.sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
+.sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;}
+.sub-user-profile-name{margin-left:100px;padding:12px 0px;}
+.sub-user-proifle-info{font-family:'맑은 고딕';font-size:12px;font-weight:bold;padding:5px;}
+
+/* 가운데 내용 */
+.content-wrapper{width:660px;margin-left:200px;}
+
+/* 오른쪽 날짜 선택기 */
+#dateSelector{position:absolute;right:0px;width:80px;}
+#side {height: 100%;list-style-image: url('../../resources/media/image/sidebar.png');font-size:12px;text-align: left;font-weight: bold;vertical-align: top;}
+
+
+/* 게시물 리스트 */
 #historyWrite{display: none;}
 #historyDate{	display: none;}
 #selectpage {

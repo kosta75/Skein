@@ -290,41 +290,6 @@ $(document).ready(function(){
 		}
 	});*/
 
-	// /////////////색깔변경////////////////
-	$('#changeBackgroundColor li').on('mouseover', function() {
-		$('.header-container').css("background-color",	$(this).css("background-color"));
-		$('.header-container').css("background-color",	$(this).css("background-color"));
-		$('#leftinfo').css("background-color",	$(this).css("background-color"));
-		$('#menu2').css("background-color",	$(this).css("background-color"));
-	});
-	
-	$('#changeBackgroundColor li').on('click', function() {
-		var colorTheme = $(this).context.className;
-		
-		$.ajax({
-			type : 'post',
-			url : 'member/colorTheme',
-			cache : false,
-			data :'colorTheme='+ colorTheme,
-			success : function(data) {
-				$('.header-container').css("background-color", $(this).css(colorTheme));
-				$('.header-container').css("background-color",$(this).css(colorTheme));
-				$('#leftinfo').css("background-color",$(this).css(colorTheme));
-				$('#menu2').css("background-color",$(this).css(colorTheme));
-			},
-			error : function() {
-				alert('Error while request..');
-			}
-		});
-	});
-	// Bar 색상 변경 End /////////////////////////////////////////
-	
-
-	
-
-	$("#alram").click(function() {
-		$("#alrampage").toggle("display");
-	});
 
 	$('#sidemenu1').click(function() {
 		$('#sidemenu1').append($('#mon').toggle("display"));

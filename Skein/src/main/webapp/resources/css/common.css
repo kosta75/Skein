@@ -21,36 +21,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .header-container{color:#fff; background:#f00;}
 .heder-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
-
 #globalTop{position:relative;}
-#changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:15px;height:55px;
--webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
-
-#changeBackgroundColor ul li{width:15px;height:9px; -webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
-#changeBackgroundColor ul li:first-child{height:10px;-webkit-transition:width 800ms, height 800ms; transition:width 800ms, height 800ms;}
-
-#changeBackgroundColor:hover{width:50px;height:180px;}
-#changeBackgroundColor:hover ul li{width:50px;height:27px;}
-#changeBackgroundColor:hover ul li:first-child{width:50px;height:28px;}
-
-#changebgc 
-
-/* 상단 로그인 Form */
-#loginFormContainer{position:absolute;top:5px;right:0px;}
-#loginForm fieldset{border:none;margin:0px;padding:0px;}
-#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
-#loginForm table th{text-align:left;padding-left:2px;font-size:11px;font-family:'맑은 고딕';font-weight:normal;}
-#loginForm input{border:1px solid #eee;padding:2px;}
-#loginForm input.input-filed{width:120px;}
-#loginForm input.login-button{padding:2px 10px; width}
-
-/* 헤더 Bar 및 사용자 지정 색상 */
-.green {background: #336666;}
-.skyblue {background: skyblue;}
-.red {background: red;}
-.orange {background: #f96e5b;}
-.blue {background: #00B4DB;}
-.yellowgreen {background: #a7bc7a;}
 
 /* 헤더에 있는 로고 */
 .logo{width:70px;float:left;}
@@ -62,23 +33,47 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .header-container a:hover {color: #fff;text-decoration: none;}
 .header-container a:active {color: #fff;text-decoration: none;}
 
-/* 헤더에 있는 알람페이지 */
-#alrampage {
-	color: black;
-	border: 1px solid;
-	border-bottom-color: gray;
-	display: none;
-	background-color: #fff;
-	width: 400px;
-	height: 100px;
-	position: absolute;
-	top: 10%;
-	left: 55%;
-}
+
+
+
+
+
+/* --------------------------- 로그인 됐을 때 헤더에 적용되는 CSS --------------------------- */
+/* 색상변경 */
+#changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:10px;height:55px;}
+#changeBackgroundColor ul li{width:10px;height:9px;}
+#changeBackgroundColor ul li:first-child{height:10px;}
+#changeBackgroundColor, #changeBackgroundColor ul li, #changeBackgroundColor ul li:first-child{-webkit-transition:width 200ms, height 200ms; transition:width 200ms, height 200ms;}
+
+#changeBackgroundColor:hover{width:20px;height:180px;}
+#changeBackgroundColor:hover ul li{width:20px;height:27px;}
+#changeBackgroundColor:hover ul li:first-child{width:20px;height:28px;}
+
+/* 헤더 Bar 및 사용자 지정 색상 */
+.green {background: #336666;}
+.skyblue {background: skyblue;}
+.red {background: red;}
+.orange {background: #f96e5b;}
+.blue {background: #00B4DB;}
+.yellowgreen {background: #a7bc7a;}
+
+
+/* 상단 로그인 Form */
+#loginFormContainer{position:absolute;top:5px;right:0px;}
+#loginForm fieldset{border:none;margin:0px;padding:0px;}
+#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
+#loginForm table th{text-align:left;padding-left:2px;font-size:11px;font-family:'맑은 고딕';font-weight:normal;}
+#loginForm input{border:1px solid #eee;padding:2px;}
+#loginForm input.input-filed{width:120px;}
+#loginForm input.login-button{padding:2px 10px; width}
 
 /* searchBar */
 #search{float:left;padding:0px 20px;}
 #searchBar{margin-top:12px;}
+#search input {float:left;width:270px;}
+.serch-form {width:350px;height:25px;padding-bottom:3px;border-radius: 5px;position: relative;background: #FFF;}
+.serch-form .textbox {position: absolute;	top: 3px;	left: 8px;	border: 0px;	height: 20px;	width: 305px;	font-weight: bold;outline: none;}
+.serch-form .search-button {position:absolute;margin-top:2px;top:3px;right:1px;border:background;height:15px;width:22px;font-weight:bold;background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);	background-position: -223px -141px;}
 
 /* 사용자 정보 네비게이션 */
 .info-nav-wrapper{height:inherit;}
@@ -93,378 +88,6 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .user-profile-uri{height:inherit;line-height:55px;}
 .user-profile-uri a{font-family:arial;font-size:15px;font-weight:bold;}
 
+/* 헤더에 있는 알림페이지 */
+#notificationList {display:none;border:1px solid #ccc;border-bottom-color:#999; background-color:#fff;width:220px;height:100px;position:absolute;top:55px;right:0px;}
 
-
-
-
-
-
-#myinfo div {padding-top: 15px;	float: left;}
-
-#search input {float: left;	width: 270px;}
-#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {cursor: pointer;}
-#modal-close {cursor: pointer;}
-#modal-close :HOVER {aria-label ="ㅇㅇㅇㅇㅇㅇ";}
-
-
-
-#container div {
-	float: left;
-}
-
-#list {
-	width: 98%;
-	height: 100%;
-	background: #fff;
-	border: 1px solid;
-	border-color: #C5C8CF;
-	padding: 2px;
-}
-
-#list div {
-	padding: 10px;
-}
-
-.list {
-	width: 98%;
-	height: 100%;
-	background: #fff;
-	border: 1px solid;
-	border-color: #C5C8CF;
-	padding: 2px;
-}
-
-.list div {
-	padding: 10px;
-}
-
-#boardlist {
-	margin-bottom: 20px;
-}
-
-#editToggle {
-	display: none;
-	width: 80px;
-	height: 50px;
-	border: 1px solid;
-	border-color: #C5C8CF;
-	position: absolute;
-	background: #fff;
-	margin-right: 20px;
-}
-
-#side {
-	height: 100%;
-	list-style-image: url('../../resources/media/image/sidebar.png');
-	font-size: 20px;
-	text-align: left;
-	font-weight: bold;
-	vertical-align: top;
-}
-
-.serch-form {
-	width: 350px;
-	height: 25px;
-	padding-bottom: 3px;
-	border-radius: 5px;
-	position: relative;
-	background: #FFF;
-}
-
-.serch-form .textbox {
-	position: absolute;
-	top: 3px;
-	left: 8px;
-	border: 0px;
-	height: 20px;
-	width: 305px;
-	font-weight: bold;
-	outline: none;
-}
-
-.serch-form .search-button {
-	position: absolute;
-	margin-top: 2px;
-	top: 3px;
-	right: 1px;
-	border: background;
-	height: 15px;
-	width: 22px;
-	font-weight: bold;
-	background:
-		url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
-	background-position: -223px -141px;
-}
-
-#writeicon {
-	overflow: hidden;
-	margin: auto;
-	clear: both;
-	height: 40px;
-	background-color: #dcdcdc;
-	border-color: #dcdcdc;
-	background-color: #dcdcdc;
-	color: #fff;
-	font-weight: bold;
-}
-
-.icon_button {
-	width: 40px;
-	height: 800px;
-	position: relative;
-	background: url('../../resources/media/image/writeicon.png');
-	float: left;
-}
-
-textarea {
-	resize: none;
-}
-
-#writemenu1 {
-	
-}
-
-#writememnu1:HOVER {
-	top: -40px;
-}
-
-#writememnu2 {
-	top: -160px;
-}
-
-#writememnu2:HOVER {
-	top: -200px;
-}
-
-#writememnu3 {
-	top: -240px;
-}
-
-#writememnu3:HOVER {
-	top: -280px;
-}
-
-#writememnu4 {
-	top: -320px;
-}
-
-#writememnu4:HOVER {
-	top: -360px;
-}
-
-#modal-background {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: black;
-	opacity: .7;
-	/*  -webkit-opacity: .1; */
-	/*   -moz-opacity: .9; 
-    filter: alpha(opacity=100); */
-	z-index: 1;
-}
-
-#modal-content {
-	background: #fff;
-	display: none;
-	height: 520px;
-	position: fixed;
-	width: 960px;
-	z-index: 1;
-}
-
-#modal-background.active, #modal-content.active {
-	display: block;
-}
-
-#changebgc:HOVER {
-	cursor: pointer;
-}
-
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-#wrap_nav {
-	padding-left: 20%;
-	float: left
-}
-
-ul.arrowunderline {
-	list-style-type: none;
-	margin: 0;
-	font-size: 15px;
-	font-family: 'Nanum Gothic', serif;
-}
-
-ul.arrowunderline li {
-	height: 57px;
-	display: table-cell;
-	border-right: 1px solid skyblue;
-	/*margin-right:25px;  spacing between each menu item */
-}
-
-ul.arrowunderline .first {
-	border-left: 1px solid skyblue;
-}
-
-ul.arrowunderline li a {
-	top: 20px;
-	position: relative;
-	color: black;
-	padding-bottom: 9px;
-	/*spacing between each menu item and arrow underline beneath it */
-	padding-right: 22px;
-	padding-left: 22px;
-	text-decoration: none;
-}
-
-
-
-/* 기본메뉴 */
-#menu ul.arrowunderline li a:hover {
-	border-bottom: 3px solid skyblue; /* style of arrow underline */
-}
-
-#menu ul.arrowunderline li a:hover:after {
-	/* use CSS generated content to add arrow to the menu */
-	content: '';
-	width: 0;
-	height: 0;
-	position: absolute;
-	left: 50%;
-	margin-left: -5px; /*value should match border-width below */
-	bottom: 0;
-	border-width: 5px; /* value should match margin-left above */
-	border-style: solid;
-	border-color: transparent transparent skyblue transparent;
-	/* create up arrow */
-}
-
-.header-container div {
-	text-align: center;
-}
-
-#menu {
-	background-color: #fff;
-	height: 57px;
-	width: 100%;
-	border-bottom: 1px solid skyblue;
-	clear: both;
-	z-index: -1;
-}
-
-#menu2 {
-	height: 56px;
-	width: 100%;
-	position: absolute;
-	display: none;
-	border-bottom: 1px solid skyblue;
-	z-index: 2;
-	left: 0;
-}
-
-#menu-username {
-	float: left;
-	width: 200px;
-	height: 50px;
-	text-align: center;
-	font-weight: bold;
-	font-size: 30px;
-	margin-left: 50px;
-	padding-top: 15px;
-}
-
-
-.wrap_wrap{
-	margin: 0 auto;
-	width: 700px;
-	min-height: 250px;
-	text-align: center;
-}
-.form_wrap {
-	float: left;
-	margin: 50px 20px;
-	width:300px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #ccc;
-	font-size: 13px;
-}
-.full_wrap {
-	margin: 50px auto;
-	width: 640px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #ccc;
-	font-size: 13px;
-}
-
-.help_subject_container{
-	border-bottom: 1px solid #aaa;
-	margin: 0 20px;
-	padding-top: 20px;
-	padding-bottom: 5px;
-	font-size: 23px;
-	vertical-align: bottom;
-}
-
-.help_subject_container .subject_sub{
-	font-size: 13px;
-}
-
-.help_container{
-	margin: 15px 20px;
-	height: 78px;
-	text-algin:center;
-}
-
-
-#help_search{
-	padding-top:15px;
-}
-
-
-.help_container #buttons{
-	text-align: center;
-}
-
-.fail_login{
-	background-color: #F0F6FC;
-	border: 1px solid #dd3c10;
-	padding: 10px;
-	margin-bottom:20px;
-}
-
-.help_fail{
-	padding-bottom: 10px;
-	font-size: 15px;
-	font-weight: bold;
-}
-
-.reg_link, .reset_link{
-	padding: 5px 10px;
-}
-
-.button_container{
-text-align: center;
-background-color: #f2f2f2;
-border-top: 1px solid #ccc;
-}
-
-#search_result{
-	display: none;
-	clear:both;
-	width:640px;
-	text-align:center;
-	background-color: blanchedalmond;
-	border: 2px solid #dd3c10;
-	padding: 10px;
-	margin: 70px 10px;
-}
-
-#search_result .button_container{
-	background-color: inherit;
-	border-top: 1px solid #ccc;
-	margin-bottom: -10px;
-	margin-top: 10px;
-}
