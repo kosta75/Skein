@@ -30,7 +30,7 @@ public class PhotoController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping(value="viewlist", method = RequestMethod.GET)
+	@RequestMapping(value="viewList", method = RequestMethod.GET)
     public String picturetab(HttpSession session, Model model,@RequestParam("pictureCount") int pictureCount)
           throws ClassNotFoundException, SQLException {
        MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -38,7 +38,7 @@ public class PhotoController {
        int endNum;
        if(pictureCount>0){
     	   	startNum = pictureCount+1;
-            endNum = startNum+20;
+            endNum = startNum+19;
        }else{
     	   //////////////////////////////////   
             startNum = 1;
@@ -48,7 +48,7 @@ public class PhotoController {
     	   
        }
        System.out.println("사진보기 클릭 들어옴!!");
-       
+       System.out.println(startNum+"/"+endNum+"/"+pictureCount);
        System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
        if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
           System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
@@ -100,9 +100,12 @@ public class PhotoController {
                 SimpleDateFormat.format(member.getBirthday()));
           model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
        }
+       
        if(startNum>1){
+    	   System.out.println("photo.morepicture");
     	   return "photo.morepicture"; 
        }else{
+    	   System.out.println("photo.viewlist");
     	   return "photo.viewlist";
        }
      

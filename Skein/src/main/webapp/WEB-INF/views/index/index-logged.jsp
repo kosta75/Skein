@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
 	<div>
@@ -13,7 +14,7 @@
 				<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 				<li><a href="#">정보</a></li>
 
-				<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>
+				<li><a href="${pageContext.request.contextPath}/photo/viewList?pictureCount=0">사진</a></li>
 				
 
 				<!-- <li><a href="time?pictureCount=0">사진</a></li> -->
@@ -129,8 +130,8 @@
 
 <div style="clear:both;  width:98%; height: 180px;background:#fff; border-radius:0px 0px 6px 6px; " > </div>
 </div>
- <div style="position: absolute;z-index: 0; width: 230px; margin-top: 40px;">
-<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" width="80px" height="80px" style="border:3px solid ; border-color:#fff; border-radius:6px; vertical-align:middle; margin-left: 10px;" >
+ <div id="sideProfileHeader" >
+<img id="sideProfileImg"src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"  >
 
 <a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${member.fullName}</a>
 <div style="margin-left: 20px;margin-top: 10px;">
@@ -171,7 +172,7 @@
 
 
 
-<div id="write" style="width: 99%; background: #fff; margin-bottom: 20px;border-radius:6px 6px 6px 6px;">
+<div id="write" >
 <div style="padding:10px;">
 <ul>
 <li id="tab1" style="float: left">다이어리</li>
@@ -229,7 +230,7 @@
 <div id="historyWrite">
 <%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
 <form id="hitstoryForm" method="post" enctype="multipart/form-data">
-	<div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 10px; " contenteditable="true" ></div>
+	<div id="writeTextarea"  contenteditable="true" ></div>
 	   <input type='hidden' name='content' id='content' style="width: 100%;"/>
 	<input type="hidden" name="email" value="${LoginUser}">
 		<!--이미지  -->

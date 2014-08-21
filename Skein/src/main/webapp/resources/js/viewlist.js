@@ -12,14 +12,15 @@ $(document).ready(function(){
         /*  $("div #whatweather").whatWeather({city:"Brussels"}); */
          /*스크롤 감지  */
          function lastPostFunc(pictureCount){ 
-                       $.ajax({
-                  type:'get',
-               url:"viewlist",
+        	
+         $.ajax({
+        	
+               type:'get',
+               url:"viewList",
                data:"pictureCount="+ pictureCount,
                dataType : "html",
                success : function(data) {
-                 // alert('aaa');
-                 alert(data);
+              
                 if(data.trim()==""){
                    
                 }else{
@@ -39,7 +40,10 @@ $(document).ready(function(){
               //alert("현재 사진 불러온 수 : "+ $('.list').size());
               var pictureCount = $('.list').size();
                lastPostFunc(pictureCount); 
+             
             }
+            
+           
             //
             //}       
          });

@@ -1,11 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
-${groupList}
-<%-- <c:forEach var="list" items="${groupList}" varStatus="groupStep">
+<c:forEach var="list" items="${groupList}" varStatus="groupStep">
 	
-	<c:forEach var="list" items="${boardList}">
-	<div id="boardlist">
-		${groupStep.count} 번째 그룹 <br />
+	<%-- <c:forEach var="list" items="${boardList}"> --%>
+	<div id="boardlist" class="boardlist">
+		<%-- ${groupStep.count} 번째 그룹 <br /> --%>
 		<div id="list" style="border-radius:6px 6px 6px 6px;">
 	
 		
@@ -51,6 +51,6 @@ ${groupList}
 		</div>
 	</div>
 	
-	</c:forEach>
+	<%-- </c:forEach> --%>
 
-</c:forEach>  --%>
+</c:forEach>

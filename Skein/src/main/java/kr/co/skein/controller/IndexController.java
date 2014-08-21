@@ -108,7 +108,7 @@ public class IndexController {
 			
 			System.out.println("현재 게시물갯수"+pictureCount);
             int startNum = pictureCount+1;
-            int endNum = startNum+5;
+            int endNum = startNum+1;
             System.out.println("시작 넘 :"+startNum+ "종료값"+endNum);
             
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
@@ -117,7 +117,7 @@ public class IndexController {
 			
 			model.addAttribute("groupList", listSource);
 		}
-		return "more-board";
+		return "moreboard";
 	}
 	@RequestMapping(value ="/member/colorTheme", method = RequestMethod.POST)
 	public View the(String colorTheme, Model model, HttpSession session) throws ClassNotFoundException, SQLException {
@@ -134,66 +134,5 @@ public class IndexController {
 
 		return jsonView;
 	}
-	
-	/*@RequestMapping(value = { "/time" }, method = RequestMethod.GET)
-	public String picturetab(HttpSession session, Model model)
-			throws ClassNotFoundException, SQLException {
-		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		
-		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
-		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-			SecurityContextImpl sci = (SecurityContextImpl) session
-					.getAttribute("SPRING_SECURITY_CONTEXT");
-			UserDetails user = (UserDetails) sci.getAuthentication()
-					.getPrincipal();
-			String personalURI = "";
-			if (session.getAttribute("PersonalURI") == null) {
-				System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
-				personalURI = memberDao.getPersonalURI(user.getUsername());
-				session.setAttribute("PersonalURI", personalURI);
-				System.out.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI="+ personalURI);
-			} else {
-				personalURI = (String) session.getAttribute("PersonalURI");
-				System.out.println("INFO : Skein-I101 - 현재 유효한 접속이 존재합니다. user="+ user);
-			}
-			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-			//////////////////////////////////	
-			int startNum = 1;
-			int endNum = 20;
-			//////////////////////////////
-			List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI, startNum, endNum);
-			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
 
-			int groupStatus = -1;
-			boolean isGrouped = false;
-			List<MemberBoardCommand> l = null;
-			for (int i = 0; i < list.size(); i++) {
-				if (!isGrouped) {
-					l = new ArrayList<MemberBoardCommand>();
-					isGrouped = true;
-				}
-				int groupSeq = list.get(i).getGroupSeq();
-				l.add(list.get(i));
-				if (groupStatus != groupSeq) {
-					//
-				}
-				groupStatus = groupSeq;
-			}
-			model.addAttribute("list", list);
-			Member member = memberDao.getMemberInfo(user.getUsername());
-			String colorTheme = memberDao.selectColorTheme(user.getUsername());
-			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
-			if (colorTheme == null || colorTheme.equals("")) {
-				model.addAttribute("colorTheme", "blue");
-			} else {
-				model.addAttribute("colorTheme", colorTheme);
-			}
-			model.addAttribute("member",member);
-			model.addAttribute("birthDay",
-					SimpleDateFormat.format(member.getBirthday()));
-			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
-		}
-		return "time";
-	}	*/
 }
