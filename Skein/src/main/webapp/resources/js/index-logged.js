@@ -455,7 +455,7 @@ function lastPostFunc(pictureCount){
     	
         if(data.trim()==""){
         }else{
-           $('.content-center-wrapper').append(data);  
+           $('.content-wrapper').append(data);  
         }  
        },
        error: function(){

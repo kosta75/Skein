@@ -4,7 +4,7 @@
 <c:forEach var="list" items="${groupList}" varStatus="groupStep">
    
    <%-- <c:forEach var="list" items="${boardList}"> --%>
-   <div id="boardlist" >
+   <div id="boardlist" class="boardlist" >
       <%-- ${groupStep.count} 번째 그룹 <br /> --%>
       <div id="list" style="border-radius:6px 6px 6px 6px;">
    
