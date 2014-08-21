@@ -57,32 +57,43 @@
 	
 	<!-- 7. 사용자 그룹 게시물 조회 -->
 	<select id="getBoardGroup" resultType="kr.co.skein.model.vo.BoardGroup">
-		SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
-				b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
-				h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
-				me.FILENAME, me.FILESIZE, me.EXTENSION,
-				m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
-				FROM BOARDGROUP bg JOIN
-				(
-				SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
-					(
-					SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
-					FROM Board
-					WHERE email = #{email}
-					)
-				WHERE rnum = 1
-				) b ON bg.groupSeq = b.groupSeq
-		JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
-		JOIN MEMBERS m ON m.Email = b.Email
-		LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
-		ORDER BY GROUPSEQ DESC
+		SELECT * FROM
+(
+SELECT ROWNUM r, s.* from
+(
+SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
+            b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
+            h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
+            me.FILENAME, me.FILESIZE, me.EXTENSION,
+            m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
+            FROM BOARDGROUP bg JOIN
+            (
+            SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
+               (
+               SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
+               FROM Board
+               WHERE email = #{param1}
+               )
+            WHERE rnum = 1
+            ) b ON bg.groupSeq = b.groupSeq
+      JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
+      JOIN MEMBERS m ON m.Email = b.Email
+      LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
+      ORDER BY GROUPSEQ DESC
+    ) s
+    )
+    WHERE r BETWEEN #{param2} AND #{param3} 
+    
+    
+    
+    
 	</select>
 
 
-
-   <!--******* 사진 게시물 페이징 처리*********  -->
+<!--******* 사진 게시물 페이징 처리*********  -->
    <select id="getBoardsPage" resultType="kr.co.skein.model.vo.MemberBoardCommand">
-      SELECT ROWNUM , s.* FROM 
+      SELECT * from
+(SELECT ROWNUM r,  s.* FROM 
       (
       SELECT  m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
                h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
@@ -96,8 +107,8 @@
                ON b.BOARDSEQ = h.BOARDSEQ
                LEFT OUTER JOIN MEDIA me
                ON b.BOARDSEQ = me.BOARDSEQ
-               WHERE m.PERSONALURI =#{param1} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC
-        ) s
-      WHERE ROWNUM BETWEEN ${param2} AND ${param3}
+               WHERE m.PERSONALURI =#{param1} ORDER BY  b.GROUPSEQ DESC, b.BOARDSEQ DESC
+        ) s)
+     WHERE r BETWEEN #{param2} AND #{param3}
    </select>
 </mapper>

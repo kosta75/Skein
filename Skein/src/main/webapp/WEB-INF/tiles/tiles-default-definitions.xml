@@ -66,7 +66,11 @@
       </definition>
    <!-- *******************************************************************  -->
    
-   
+    <!-- ***********************main 게시물 더보기**********************  -->
+      <definition name="more-board" template="/WEB-INF/views/index/more/layout.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/index/more/more-mainBoard.jsp" />
+      </definition>
+   <!-- *******************************************************************  -->
    
    
    <!-- 사용자 검색 페이지 -->

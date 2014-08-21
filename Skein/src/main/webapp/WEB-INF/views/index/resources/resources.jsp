@@ -10,3 +10,5 @@
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 <script src="//code.highcharts.com/stock/highstock.js"></script>
 <script src="//code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/time-line.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
