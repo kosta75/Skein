@@ -513,5 +513,6 @@ function lastPostFunc(pictureCount){
 		$("#hitstoryForm").submit();
 		
 	});
+	
 
 });
