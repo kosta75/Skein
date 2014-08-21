@@ -52,7 +52,7 @@ $(document).ready(function(){
 		
 		console.log(flagSource);
 		
-		$('#boardListTimelinContainer').highcharts('StockChart', {
+		$('#boardListTimelineContainer').highcharts('StockChart', {
 
             rangeSelector: {
                 inputEnabled: $('#container').width() > 480,
@@ -88,6 +88,11 @@ $(document).ready(function(){
 	});
 	//게시물 타임라인 설정 End //////////////////////////////////////////////////////////////////////////
 	
+	
+	//글쓰기 탭
+	$( "#tabs" ).tabs({
+		collapsible: true
+	});
 	
 	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
 	var filelist = document.getElementById("file-list");

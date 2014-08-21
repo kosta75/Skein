@@ -34,10 +34,6 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .header-container a:active {color: #fff;text-decoration: none;}
 
 
-
-
-
-
 /* --------------------------- 로그인 됐을 때 헤더에 적용되는 CSS --------------------------- */
 /* 색상변경 */
 #changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:10px;height:55px;}
@@ -53,7 +49,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 .green {background: #336666;}
 .skyblue {background: skyblue;}
 .red {background: red;}
-.orange {background: #f96e5b;}
+.orange {background:#f96e5b;}
 .blue {background: #00B4DB;}
 .yellowgreen {background: #a7bc7a;}
 

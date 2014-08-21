@@ -4,8 +4,7 @@
 <%@ taglib prefix="se"
    uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/viewlist.js"></script>
+
 <se:authentication property="name" var="LoginUser" />
 <section class="content-container">
    <div>
@@ -87,5 +86,5 @@
    <div style="clear: both;"></div>
 
 
-
+<script src="${pageContext.request.contextPath}/resources/js/viewlist.js"></script>
 </section>

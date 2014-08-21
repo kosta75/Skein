@@ -9,6 +9,7 @@ $(document).ready(function() {
 	});
 	
 	$('#changeBackgroundColor li').on('click', function() {
+		var obj = $(this);
 		var colorTheme = $(this).context.className;
 		
 		$.ajax({
@@ -17,10 +18,16 @@ $(document).ready(function() {
 			cache : false,
 			data :'colorTheme='+ colorTheme,
 			success : function(data) {
-				$('.header-container').css("background-color", $(this).css(colorTheme));
+				alert("사용자 지정색상이 변경되었습니다!");
+				$('.header-container').css("background-color",	$(obj).css("background-color"));
+				$('.header-container').css("background-color",	$(obj).css("background-color"));
+				$('#leftinfo').css("background-color",	$(obj).css("background-color"));
+				$('#menu2').css("background-color",	$(obj).css("background-color"));
+				
+				/*$('.header-container').css("background-color", $(this).css(colorTheme));
 				$('.header-container').css("background-color",$(this).css(colorTheme));
 				$('#leftinfo').css("background-color",$(this).css(colorTheme));
-				$('#menu2').css("background-color",$(this).css(colorTheme));
+				$('#menu2').css("background-color",$(this).css(colorTheme));*/
 			},
 			error : function() {
 				alert('Error while request..');

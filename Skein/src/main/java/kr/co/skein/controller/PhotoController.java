@@ -30,7 +30,7 @@ public class PhotoController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping(value = "viewList", method = RequestMethod.GET)
+	@RequestMapping(value = "viewlist", method = RequestMethod.GET)
 	public String picturetab(HttpSession session, Model model, @RequestParam("pictureCount") int pictureCount) throws ClassNotFoundException, SQLException {
 		System.out.println("INFO : Skein-G120 - PhotoController");
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);

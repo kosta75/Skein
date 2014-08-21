@@ -16,7 +16,7 @@ $(document).ready(function(){
          $.ajax({
         	
                type:'get',
-               url:"viewList",
+               url:"viewlist",
                data:"pictureCount="+ pictureCount,
                dataType : "html",
                success : function(data) {

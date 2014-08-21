@@ -1,7 +1,10 @@
 @CHARSET "UTF-8";
+/* a태그 초기화 */
+a, a:hover, a:visited, a:link, a:active, a:focus{text-decoration:none;color:black;}
+*{font-family:'맑은 고딕';}
+
 /* 기본메뉴 */
 #subNavigationContainer{height:55px;padding-bottom:20px;}
-#subNavigationContainer a, #subNavigationContainer a:hover, #subNavigationContainer a:active, #subNavigationContainer a:visited, #subNavigationContainer a:link, #subNavigationContainer a:focus{text-decoration:none;color:black;}
 ul.arrowunderline {list-style-type:none;margin:0;}
 ul.arrowunderline li {height:55px;float:left;border-right:1px solid skyblue;padding:0px 25px;}
 ul.arrowunderline li:first-child {border-left:1px solid skyblue;}
@@ -10,7 +13,7 @@ ul.arrowunderline li a{display:block;height:51px;line-height:55px;font-family:'�
 ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 .sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff;}
-#menu2.sub-menu {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;background-color:#f00}
+.sub-menu2 {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;}
 .menu-username {float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
 
 #menu1 .sub-navigation{float:left;}
@@ -19,8 +22,6 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 #menu2 .menu-username a{color:#fff;}
 #menu2 ul.arrowunderline li a{color:#fff;}
 
-/* 그래프 */
-#boardListTimelinContainer{height:320px;}
 
 
 
@@ -33,21 +34,36 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 /* 왼쪽 사용자 정보 */
 #subUserProfileContainer{width:180px;position:absolute;left:0px;}
 .sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
-.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;}
+.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
 .sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
 .sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;}
-.sub-user-profile-name{margin-left:100px;padding:12px 0px;}
-.sub-user-proifle-info{font-family:'맑은 고딕';font-size:12px;font-weight:bold;padding:5px;}
+.sub-user-profile-name{margin-left:100px;padding:12px 0px;font-size:14px;}
+.sub-user-proifle-info{font-family:'맑은 고딕';font-size:14px;padding:8px;}
+.sub-user-profile-birthday{}
 
-/* 가운데 내용 */
-.content-wrapper{width:660px;margin-left:200px;}
+/* */
+#locationinfo{font-family:'맑은 고딕';font-size:12px;}
+#observinfo{height:160px;}
+.weather-info-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
 /* 오른쪽 날짜 선택기 */
 #dateSelector{position:absolute;right:0px;width:80px;}
 #side {height: 100%;list-style-image: url('../../resources/media/image/sidebar.png');font-size:12px;text-align: left;font-weight: bold;vertical-align: top;}
 
+/* 가운데 내용 */
+.content-wrapper{width:650px;margin-left:200px;position:relative;}
+
+/* 그래프 */
+#boardListTimelineContainer{width:650px;height:320px;}
+
+
+
+
 
 /* 게시물 리스트 */
+.group-list-container{margin-bottom: 20px;}
+
+
 #historyWrite{display: none;}
 #historyDate{	display: none;}
 
@@ -114,10 +130,6 @@ padding: 2px;
 }
 
 
-#container div {
-   float: left;
-}
-
 #list {
    width: 98%;
    height: 100%;
@@ -131,9 +143,7 @@ padding: 2px;
    padding: 10px;
 }
 
-#boardlist {
-   margin-bottom: 20px;
-}
+
 
 #editToggle {
    display: none;
@@ -146,48 +156,7 @@ padding: 2px;
    margin-right: 20px;
 }
 
-#side {
-   height: 100%;
-   list-style-image: url('../../resources/media/image/sidebar.png');
-   font-size: 20px;
-   text-align: left;
-   font-weight: bold;
-   vertical-align: top;
-}
 
-.serch-form {
-   width: 350px;
-   height: 25px;
-   padding-bottom: 3px;
-   border-radius: 5px;
-   position: relative;
-   background: #FFF;
-}
-
-.serch-form .textbox {
-   position: absolute;
-   top: 3px;
-   left: 8px;
-   border: 0px;
-   height: 20px;
-   width: 305px;
-   font-weight: bold;
-   outline: none;
-}
-
-.serch-form .search-button {
-   position: absolute;
-   margin-top: 2px;
-   top: 3px;
-   right: 1px;
-   border: background;
-   height: 15px;
-   width: 22px;
-   font-weight: bold;
-   background:
-      url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);
-   background-position: -223px -141px;
-}
 
 #writeicon {
    overflow: hidden;
