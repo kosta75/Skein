@@ -23,7 +23,17 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 
 
 #globalTop{position:relative;}
-#changebgc{position:absolute; top:20px; left:10px;}
+#changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:15px;height:55px;
+-webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
+
+#changeBackgroundColor ul li{width:15px;height:9px; -webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
+#changeBackgroundColor ul li:first-child{height:10px;-webkit-transition:width 1s, height 1s; transition:width 1s, height 1s;}
+
+#changeBackgroundColor:hover{width:50px;height:180px;}
+#changeBackgroundColor:hover ul li{width:50px;height:27px;}
+#changeBackgroundColor:hover ul li:first-child{width:50px;height:28px;}
+
+#changebgc 
 
 /* 상단 로그인 Form */
 #loginFormContainer{position:absolute;top:5px;right:0px;}
@@ -70,10 +80,24 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 #search{float:left;padding:0px 20px;}
 #searchBar{margin-top:12px;}
 
-#infoContainer{position:absolute;right:0px;}
-.info-wrapper{}
+/* 사용자 정보 네비게이션 */
+.info-nav-wrapper{height:inherit;}
+#infoContainer{position:absolute;right:0px;width:360px;height:inherit;}
+#global-navigation ul{padding-top:17px;}
+#global-navigation ul li{float:left;font-family:'맑은 고딕';font-size:14px;padding:0px 10px;border-left:1px solid #fff;}
+#global-navigation ul li:first-child{border-left:none;}
 
-.user-profile-info-container{float:left;}
+.user-profile-info-container{float:left;width:150px;height:inherit;}
+.user-profile-info-container div{float:left;}
+.user-profile-image{margin-top:7px;margin-right:10px;}
+.user-profile-uri{height:inherit;line-height:55px;}
+.user-profile-uri a{font-family:arial;font-size:15px;font-weight:bold;}
+
+
+
+
+
+
 
 #myinfo div {padding-top: 15px;	float: left;}
 

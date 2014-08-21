@@ -2,7 +2,16 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-<div id="changebgc">색상변경</div>
+<div id="changeBackgroundColor">
+	<ul>
+		<li class="green"></li>
+		<li class="skyblue"></li>
+		<li class="red"></li>
+		<li class="orange"></li>
+		<li class="blue"></li>
+		<li class="yellowgreen"></li>
+	</ul>
+</div>
 </se:authorize>
 
 <header id="globalTop">
@@ -43,10 +52,9 @@
 	</div>
 	
 	<div id="infoContainer">
-		<div class="info-wrapper">
+		<div class="info-nav-wrapper">
 			<div class="user-profile-info-container">
 				<div class="user-profile-image">
-					
 					<img src="${pageContext.request.contextPath}/resources/media/image//20100107221109605_2R2EJLGPV_raw.jpg" width="40px;" height="40px;" style="border-radius:100px;">
 				</div>
 				<div class="user-profile-uri">
@@ -54,14 +62,15 @@
 				</div>
 			</div >
 			
-			<div id="myinfo">
-				<div >|</div>
-				<div id="alram" >알림</div>
-				<div >|</div>
-				<div >고객센터</div>
-				<div >|</div>
-				<div ><a href="${pageContext.request.contextPath}/security/logout">로그아웃</a></div>
-			</div>
+			<nav id="global-navigation">
+				<ul>
+					<li><a href="" id="notification">알림</a></li>
+					<li><a href="">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath}/security/logout">로그아웃</a></li>
+				</ul>
+			</nav>
+			
+			
 			<div id="selectpage">
 	            <div class="green">
 	            <input type="hidden" value="green">

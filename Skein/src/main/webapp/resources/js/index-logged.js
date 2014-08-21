@@ -290,9 +290,9 @@ $(document).ready(function(){
 		}
 	});*/
 
-	$('#changebgc').click(function() {
+	/*$('#changebgc').click(function(){
 		$('#sidecontent').after($('#selectpage').toggle("display"));
-	});
+	});*/
 	
 	// /////////////색깔변경////////////////
 	$('#selectpage div').click(function() {
