@@ -100,16 +100,6 @@ public class IndexController {
 
 		return jsonView;
 	}
-
-	@RequestMapping(value ="/info/mapInfo", method = RequestMethod.GET)
-	public View mapInfo(@RequestParam("xPos") int xPos,
-			@RequestParam("yPos") int yPos, Model model) {
-
-		System.out
-				.println("INFO : Skein-I684 - xPos=" + xPos + ",yPos=" + yPos);
-		model.addAttribute("result", "test");
-		return jsonView;
-	}
 	
 	@RequestMapping(value = { "/time" }, method = RequestMethod.GET)
 	public String picturetab(HttpSession session, Model model)

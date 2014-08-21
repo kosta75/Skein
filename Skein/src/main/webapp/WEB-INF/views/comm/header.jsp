@@ -10,7 +10,7 @@
 		<a href="${pageContext.request.contextPath}">Sil</a>
 	</div>
 	<div id="search" >
-		<form class="serch-form" id="searchBar" method="post" action="${pageContext.request.contextPath}/friendship/search/members" role="search" onsubmit="">
+		<form class="serch-form" id="searchBar" method="post" action="${pageContext.request.contextPath}/search/members" role="search" onsubmit="">
 			<input type="text" class="textbox" name="fullName"  placeholder="당신의 친구를 찾아보세요" autocomplete="off">
 			<button type="submit" class="search-button" onclick="" title="당신의 친구를 찾아보세요" ></button>
 		</form>
@@ -18,7 +18,7 @@
 	
 	<se:authorize ifNotGranted="ROLE_USER">
 	<div>
-		<form id="loginForm" action="${pageContext.request.contextPath}/security" method="post">
+		<form id="loginForm" action="${pageContext.request.contextPath}/security/login" method="post">
 			<fieldset>
 				<legend>로그인 정보</legend>
 				이메일(name="email")<input type="email" name="email" /><br />
@@ -45,7 +45,7 @@
 			<div >|</div>
 			<div >고객센터</div>
 			<div >|</div>
-			<div ><a href="${pageContext.request.contextPath}/logout">로그아웃</a></div>
+			<div ><a href="${pageContext.request.contextPath}/security/logout">로그아웃</a></div>
 		</div>
 		<div id="selectpage">
             <div class="green">

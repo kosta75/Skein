@@ -209,13 +209,6 @@ ALTER TABLE Authorities
 		);
 
 
--- 임의 사용자 추가
-INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
-VALUES('test@test.com','Sil','Tester','SilTester','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
-INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');
-COMMIT;
-
-
 -----------------------------------------------------------------------------------------------
 -- 4. BoardForm(게시판형식코드)
 -----------------------------------------------------------------------------------------------
@@ -1171,3 +1164,87 @@ ALTER TABLE FriendshipNotification
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+-- Test용 테이블
+-----------------------------------------------------------------------------------------------
+ALTER TABLE TEST
+	DROP
+		CONSTRAINT PK_Test
+		CASCADE;
+
+DROP INDEX PK_Test;
+
+DROP TABLE TEST
+	CASCADE CONSTRAINTS;
+
+CREATE TABLE TEST(
+seq NUMBER NOT NULL,
+content VARCHAR2(127)
+);
+
+ALTER TABLE TEST
+	ADD
+		CONSTRAINT PK_Test
+		PRIMARY KEY (
+			seq
+		);

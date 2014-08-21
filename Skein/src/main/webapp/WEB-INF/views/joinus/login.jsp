@@ -29,7 +29,7 @@ ERROR_CODE
 				</div>
 				<div id="buttons">
 					<strong class="reg_link"><a href="${pageContext.request.contextPath}/">Sil에 가입하기</a></strong>
-					<a href="${pageContext.request.contextPath}/joinus/refind"  class="reset_link">로그인	정보를 잊으셨나요?</a>
+					<a href="${pageContext.request.contextPath}/account/refind"  class="reset_link">로그인	정보를 잊으셨나요?</a>
 				</div>
 			</div>
 		</div>
@@ -111,7 +111,7 @@ ERROR_CODE
 				
 				<div id="buttons">
 					<strong class="reg_link"><a href="${pageContext.request.contextPath}/">Sil에 가입하기</a></strong>
-					<a href="${pageContext.request.contextPath}/joinus/refind"  class="reset_link">로그인	정보를 잊으셨나요?</a>
+					<a href="${pageContext.request.contextPath}/account/refind"  class="reset_link">로그인	정보를 잊으셨나요?</a>
 				</div>
 			</div>
 		</div>

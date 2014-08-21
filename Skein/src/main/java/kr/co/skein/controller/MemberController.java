@@ -67,7 +67,7 @@ public class MemberController {
 			}			
 		}else{
 			System.out.println("INFO : Skein-M014 - 잘못된 URI 요청");
-			return "error.incorrect";
+			return "error.incorrectRequest";
 		}
 	}
 	

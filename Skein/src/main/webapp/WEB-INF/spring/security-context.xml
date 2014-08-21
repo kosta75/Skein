@@ -28,7 +28,7 @@
 		
 		<!-- 로그인 페이지 / 폼에서 전송할 URL값 / 로그인 파라메터 변경 / 로그인 성공 핸들러 / 로그인 실패 핸들러 -->
 		<security:form-login login-page="/joinus/login"
-			login-processing-url="/security"
+			login-processing-url="/security/login"
 			username-parameter="email"
 			password-parameter="password"
 			authentication-success-handler-ref="loginSuccessHandler"
@@ -36,7 +36,7 @@
 			
 		<!-- 로그아웃 페이지 / 로그아웃 성공시 경로 / 쿠키 삭제 / 세션 삭제 -->
 		<security:logout
-		logout-url="/logout"
+		logout-url="/security/logout"
 		logout-success-url="/" 
 		delete-cookies="true" 
 		invalidate-session="true"/>

@@ -11,7 +11,7 @@ src: url('images/NanumGothic.eot?#iefix') format('embedded-opentype'),
 }
 
 /* 공통 CSS */
-body {background-color: #e9eaed;	margin: 0;}
+body {background-color: #e9eaed;	margin: 0px; padding:0px;}
 
 /* 헤더/본문/푸터 의 가로 크기 */
 .wrapper {width: 960px;margin: 0px auto;}

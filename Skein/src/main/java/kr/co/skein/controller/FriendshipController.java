@@ -78,8 +78,7 @@ public class FriendshipController {
 				
 				int notificationSeq = notificationDao.getNotificationMaxSequence();
 				int friendshipNotificationSeq = notificationDao.getFriendshipNotificationMaxSequence();
-				
-				
+
 				int res1 = friendshipDao.addFriends(user.getUsername(), member.getEmail());
 				System.out.println("INFO : Skein-F001 - 친구 등록 결과, res1=" + res1);
 				
@@ -89,16 +88,11 @@ public class FriendshipController {
 				command.setNotificationSeq(notificationSeq);
 				command.setFriendshipNotificationSeq(friendshipNotificationSeq);
 				
-				
 				int res3 = notificationDao.friendshipNotificationReg(command);
 				System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, res3=" + res3);
 				
-				
-				
 			}
-			
-			
-			
+						
 			//친구 추가
 			//알림 생성
 		}
@@ -107,39 +101,5 @@ public class FriendshipController {
 		
 		/*return "friendship.searchMembers";*/
 		return jsonView;
-	}
-	
-	//사용자 검색은 search/members , search/friends 두가지로
-	@RequestMapping(value="/search/members", method=RequestMethod.GET)
-	public String searchMembers() throws ClassNotFoundException, SQLException{
-		return "friendship.searchMembers";
-	}
-	
-	
-	@RequestMapping(value="/search/members", method=RequestMethod.POST)
-	public String searchMembers(@RequestParam("fullName") String fullName, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		System.out.println("INFO : Skein-M006 - 사용자 검색 요청, fullName=" + fullName);
-		
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("searchNameValue", fullName);
-		
-		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
-			String userName = user.getUsername();
-			
-			parameters.put("ignoreEmailValue", userName);
-		}
-			
-		
-		
-		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);
-		System.out.println("INFO : Skein-M006 - 검색 결과, " + list.size());
-		
-		model.addAttribute("list", list);
-		
-		return "friendship.searchMembers";
 	}
 }

@@ -5,14 +5,14 @@
 
 <section class="content-container">
 	<div id="Sil">
-		<a href="index.jsp">Sil</a>
+		<a href="${pageContext.request.contextPath}">Sil</a>
 	</div>
 	
 	<div id="login">
 		<table>
 			<tr>
 				<td>
-					<form action="${pageContext.request.contextPath}/security"	 method="post">
+					<form action="${pageContext.request.contextPath}/security/login"	method="post">
 						이메일:<input type="text" name="email" />
 						비밀번호:<input	type="password" name="password" />
 						
@@ -23,7 +23,7 @@
 			<tr>
 				<td style="float: right; margin-right: 140px;">
 					<div>
-						<a href="${pageContext.request.contextPath}/joinus/refind">계정찾기</a>
+						<a href="${pageContext.request.contextPath}/account/refind">계정찾기</a>
 					</div>
 				</td>
 			</tr>

@@ -140,7 +140,7 @@ public class AccountController {
 						
 						model.addAttribute("certificationResult", 3); //certificationResult : 3, 계정 재등록 승인
 						model.addAttribute("member", member);
-						return "post.restoreProcess";
+						return "board.restoreProcess";
 						/*member.setIsDropedOut(0);
 						member.setIsDomranted(0);
 						member.setIsApproved(1);*/
@@ -165,12 +165,13 @@ public class AccountController {
 			return "error.incorrectCertification";
 		}
 	}
-	@RequestMapping("/joinus/refind")
+	
+	@RequestMapping("/account/refind")
 	public String help(){
-		
 		return "account.help_id";
 	}
-	@RequestMapping("/joinus/id")
+	
+	@RequestMapping("/account/id")
 	public String helpId(Member member, Model model) throws ClassNotFoundException, SQLException{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
 		List<String> emailsbasic = accountDao.getAccountEmails(member);
@@ -199,7 +200,7 @@ public class AccountController {
 		model.addAttribute("emails", emails);
 		return "account.help_id";
 	}
-	@RequestMapping("/joinus/pwd")
+	@RequestMapping("/account/pwd")
 	public String helpPwd(Member member, Model model) throws ClassNotFoundException, SQLException{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
 		String email = accountDao.getAccountEmail(member);
@@ -213,7 +214,7 @@ public class AccountController {
 	}
 	
 	
-	@RequestMapping("/joinus/pwdUpdate")
+	@RequestMapping("/account/pwdUpdate")
 	public String helpPwdUpdate(Member member, Model model) throws Exception{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
 		

@@ -142,8 +142,9 @@ DROP TABLE FriendshipNotification
 
 
 
-
-
+-- Test용 테이블 삭제
+DROP TABLE TEST
+	CASCADE CONSTRAINTS;
 
 -----------------------------------------------------------------------------------------------
 -- 모든 테이블 삭제시 가장 마지막에 실행

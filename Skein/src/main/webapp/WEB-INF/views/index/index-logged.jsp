@@ -10,10 +10,10 @@
 		<div id="menu-username"><a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a></div>
 			<ul class="arrowunderline">
 		
-				<li><a href="#">타임라인</a></li>
+				<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 				<li><a href="#">정보</a></li>
-				<li><a href="time">사진</a></li>
-				<li><a href="#">친구</a></li>
+				<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
+				<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 			</ul>
 		</div>
 			
@@ -21,12 +21,12 @@
 				<div id="menu-username" style="padding-left: 100px;"><a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a></div>
 	
 				<ul class="arrowunderline" style="float: left;padding-left: 20%;">
-					<li class="first"><a href="#">타임라인</a></li>
+					<li class="first"><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
-					<li><a href="time">사진</a></li>
-					<li><a href="#">친구</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 					<li><a href="#">고객센터</a></li>
-					<li><a href="#">Log Out</a></li>
+					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
 				</ul>
 <%-- 			<div id="menu_username">${sessionScope.PersonalURI}</div>  --%>
 			</div>
@@ -354,6 +354,10 @@
 
 <div style="clear: both;"></div>
 	
-	
-	
+<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
+<script src="//code.highcharts.com/stock/highstock.js"></script>
+<script src="//code.highcharts.com/stock/modules/exporting.js"></script>
+
+
 </section>
