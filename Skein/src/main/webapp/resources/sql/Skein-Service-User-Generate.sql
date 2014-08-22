@@ -1,6 +1,12 @@
 -- 주의 : 테이블 모두 완성 후에 실행 할 것!
+INSERT INTO PROFILES VALUES((SELECT NVL(MAX(profileSeq),0)+1 FROM PROFILES), 10, TO_CHAR(SYSDATE,'YYYY-MM-DD'), 1, 'admin@skein.com');
 
 -- 임의 사용자 추가(25명)
+INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
+VALUES('admin@skein.com','관리자','관리자','관리자','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'admin',1,0,0,0,SYSDATE, 0,'admin');
+INSERT INTO AUTHORITIES VALUES('ROLE_USER','admin@skein.com');
+
+
 INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
 VALUES('test@test.com','창','성실','창성실','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'test',1,0,0,0,SYSDATE, 0,'test');
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test@test.com');

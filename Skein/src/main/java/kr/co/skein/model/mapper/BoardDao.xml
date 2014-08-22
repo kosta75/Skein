@@ -7,8 +7,8 @@
 		<selectKey order="BEFORE" keyProperty="groupSeq" resultType="String">
 			SELECT NVL(MAX(TO_NUMBER(GroupSeq)),0)+1 FROM BoardGroup
 		</selectKey>
-		INSERT INTO BoardGroup(GroupSeq, GroupName, IsImportantGroup, GroupStartDate, GroupEndDate)
-		VALUES(#{groupSeq}, #{groupName}, #{isImportantGroup}, #{groupStartDate}, #{groupEndDate})
+		INSERT INTO BoardGroup(GroupSeq, Email, GroupName, IsImportantGroup, GroupStartDate, GroupEndDate)
+		VALUES(#{groupSeq}, #{email}, #{groupName}, #{isImportantGroup}, #{groupStartDate}, #{groupEndDate})
 	</insert>
 	
 	 <!-- 1.1. 그룹 식별번호 최대값 얻기 -->

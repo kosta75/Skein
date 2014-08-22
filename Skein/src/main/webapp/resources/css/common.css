@@ -33,6 +33,18 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 .header-container a:hover {color: #fff;text-decoration: none;}
 .header-container a:active {color: #fff;text-decoration: none;}
 
+/* 상단 로그인 Form */
+#loginFormContainer{position:absolute;top:5px;right:0px;}
+#loginForm fieldset{border:none;margin:0px;padding:0px;}
+#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
+#loginForm table th{text-align:left;padding-left:2px;font-size:11px;font-family:'맑은 고딕';font-weight:normal;}
+#loginForm input{border:1px solid #eee;padding:2px;}
+#loginForm input.input-filed{width:120px;margin-right:5px;}
+#loginForm input.login-button{padding:2px 10px; width}
+
+
+.main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
+
 
 /* --------------------------- 로그인 됐을 때 헤더에 적용되는 CSS --------------------------- */
 /* 색상변경 */
@@ -53,15 +65,6 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 .blue {background: #00B4DB;}
 .yellowgreen {background: #a7bc7a;}
 
-
-/* 상단 로그인 Form */
-#loginFormContainer{position:absolute;top:5px;right:0px;}
-#loginForm fieldset{border:none;margin:0px;padding:0px;}
-#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
-#loginForm table th{text-align:left;padding-left:2px;font-size:11px;font-family:'맑은 고딕';font-weight:normal;}
-#loginForm input{border:1px solid #eee;padding:2px;}
-#loginForm input.input-filed{width:120px;}
-#loginForm input.login-button{padding:2px 10px; width}
 
 /* searchBar */
 #search{float:left;padding:0px 20px;}

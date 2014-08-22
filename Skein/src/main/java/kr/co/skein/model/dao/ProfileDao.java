@@ -11,11 +11,11 @@ public interface ProfileDao {
 	public List<ProfileCommand> getMemberProfiles(String email) throws ClassNotFoundException, SQLException;
 	
 	//사용자 프로필 존재여부 확인
-	public int countProfiles(ProfileCommand command) throws ClassNotFoundException, SQLException;
+	public int countProfiles(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
 	
 	//사용자 프로필 추가
-	public int insertProfile(ProfileCommand command) throws ClassNotFoundException, SQLException;
+	public int insertProfile(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
 	
 	//사용자 프로필 업데이트
-	public int updateProfile(ProfileCommand command) throws ClassNotFoundException, SQLException;
+	public int updateProfile(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
 }

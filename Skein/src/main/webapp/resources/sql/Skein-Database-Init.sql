@@ -473,6 +473,7 @@ INSERT INTO ProfileCodes VALUES(6, '종교');
 INSERT INTO ProfileCodes VALUES(7, '정치성향');
 INSERT INTO ProfileCodes VALUES(8, '언어');
 INSERT INTO ProfileCodes VALUES(9, '블로그');
+INSERT INTO ProfileCodes VALUES(10, '생일');
 COMMIT;
 
 

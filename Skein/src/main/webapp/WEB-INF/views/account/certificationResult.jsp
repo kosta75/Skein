@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <!--
 certificationResult
 1 : 계정 등록 승인
@@ -102,7 +96,7 @@ certificationResult
 					<strong class="reg_link"><a href="${pageContext.request.contextPath}/">로그인하기</a></strong>
 					</div>
 				</div>
-				>
+				
 			</div>
 		</div>
 	</c:when>
@@ -119,7 +113,7 @@ certificationResult
 				<strong class="reg_link"><a href="${pageContext.request.contextPath}/">로그인하기</a></strong>
 						</div>
 				</div>
-				>
+				
 			</div>
 		</div>
 	</c:when>
@@ -136,7 +130,7 @@ certificationResult
 					<strong class="reg_link"><a href="${pageContext.request.contextPath}/">로그인하기</a></strong>
 					</div>
 				</div>
-				>
+				
 			</div>
 		</div>
 	</c:when>
@@ -146,7 +140,3 @@ certificationResult
 </div>
 
 </section>
- 
- 
-</body>
-</html>

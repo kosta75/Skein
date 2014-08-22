@@ -1,18 +1,23 @@
 package kr.co.skein.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.model.vo.ProfileCommand;
 import kr.co.skein.util.CertificationTextGenerator;
 import kr.co.skein.util.PasswordEncryptor;
+import oracle.jdbc.driver.DMSFactory;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,6 +42,7 @@ public class JoinusController {
 	}
 	
 	@RequestMapping(value="/registerMember", method=RequestMethod.POST)
+	@Transactional
 	public String registerMember(Member member) throws Exception{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("INFO : Skein-P001 - 회원등록처리 시작");
@@ -93,6 +99,17 @@ public class JoinusController {
 			int result = memberDao.registerMember(member);
 			if(result > 0){
 				System.out.println("INFO : Skein-U003 - 신규계정등록에 성공하였습니다.");
+				//사용자 생일 프로필 추가.
+				ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				
+				ProfileCommand profileCommand = new ProfileCommand();
+				profileCommand.setEmail(member.getEmail());
+				profileCommand.setProfileCode(10);
+				profileCommand.setPublicLevelCode(1);
+				profileCommand.setProfileInfo(sdf.format(member.getBirthday()));
+				
+				profileDao.insertProfile(profileCommand);
 				emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "신규 계정 인증 메일!", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
 			}else{
 				System.out.println("INFO : Skein-U004 - 신규계정등록에 실패하였습니다.");
