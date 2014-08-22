@@ -174,7 +174,7 @@ ALTER TABLE Authorities
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;;
 
 
 -----------------------------------------------------------------------------------------------
@@ -306,6 +306,7 @@ COMMIT;
 /* 과거기록그룹 */
 CREATE TABLE BoardGroup (
 	GroupSeq NUMBER NOT NULL, /* 과거기록그룹식별번호 */
+  Email VARCHAR2(127) NOT NULL, /* 이메일 */
 	GroupName VARCHAR2(127) NOT NULL, /* 과거기록그룹명 */
 	IsImportantGroup INT, /* 중요그룹 */
 	GroupStartDate DATE, /* 그룹발생시작일 */
@@ -315,6 +316,8 @@ CREATE TABLE BoardGroup (
 COMMENT ON TABLE BoardGroup IS '과거기록그룹';
 
 COMMENT ON COLUMN BoardGroup.GroupSeq IS '과거기록그룹식별번호';
+
+COMMENT ON COLUMN BoardGroup.Email IS '이메일';
 
 COMMENT ON COLUMN BoardGroup.GroupName IS '과거기록그룹명';
 
@@ -335,6 +338,16 @@ ALTER TABLE BoardGroup
 		PRIMARY KEY (
 			GroupSeq
 		);
+
+ALTER TABLE BoardGroup
+	ADD
+		CONSTRAINT FK_Members_TO_BoardGroup
+		FOREIGN KEY (
+			Email
+		)
+		REFERENCES Members (
+			Email
+		) ON DELETE CASCADE;
 
 
 -----------------------------------------------------------------------------------------------
@@ -401,7 +414,7 @@ ALTER TABLE Board
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Board
 	ADD
@@ -421,7 +434,7 @@ ALTER TABLE Board
 		)
 		REFERENCES BoardGroup (
 			GroupSeq
-		);
+		) ON DELETE CASCADE;
 
 -----------------------------------------------------------------------------------------------
 -- 8. ProfileCodes(프로필항목)
@@ -542,7 +555,7 @@ ALTER TABLE Profiles
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 
 
@@ -604,7 +617,7 @@ ALTER TABLE History
 		)
 		REFERENCES Board (
 			BoardSeq
-		);
+		) ON DELETE CASCADE;
 
 
 -----------------------------------------------------------------------------------------------
@@ -649,7 +662,7 @@ ALTER TABLE Media
 		)
 		REFERENCES Board (
 			BoardSeq
-		);
+		) ON DELETE CASCADE;
 
 
 
@@ -738,7 +751,7 @@ ALTER TABLE Notifications
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Notifications
 	ADD
@@ -792,7 +805,7 @@ ALTER TABLE Friendship
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Friendship
 	ADD
@@ -860,7 +873,7 @@ ALTER TABLE FriendshipNotification
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE FriendshipNotification
 	ADD

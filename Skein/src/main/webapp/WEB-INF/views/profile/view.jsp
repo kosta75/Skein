@@ -1,115 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 
-<style>
-
-.informbox {
-	position: relative;
-	width: 850px;
-	background: #fff;
-	border: 1px solid #d3d6db;
-	-webkit-border-radius: 3px;
-	margin: 10px auto;
-	margin-bottom: 40px;	
-}
-
-.clearfix:after {
-	clear:both;
-}
-
-.informbox_header {
-	padding: 12px;
-	border-bottom: 1px solid #d3d6db;
-	background: #f6f7f8;
-	font-size: 20px;
-	vertical-align: bottom;
-}
-
-.informbox_header img {
-	margin-right: 10px;
-}
-
-.informbox_content {
-	padding: 10px 0;
-	height: auto;
-}
-
-.content_inner {
-	padding: 0 10px;
-	float: left;
-	min-width: 400px;
-	height: auto;
-	margin-bottom: 10px;
-}
-
-.content_inner:FIRST-CHILD {
-	border-right: 1px solid #d3d6db;
-}
-
-.inform_elem {
-	padding: 10px 0;
-}
-
-.inform_elem b {
-	color: #9197a3;
-	font-size: 13px;
-}
-
-.content_inner .status {
-	vertical-align: bottom;
-}
-
-.inform_status {
-	text-align: right;
-}
-
-.inform_status div {
-	padding: 6px 0;
-}
-
-.inform_status a {
-	text-decoration: none;
-}
-
-.inform_databox {
-	overflow: hidden;
-	margin-top: 8px;
-	min-height: 26px;
-}
-.informdata.profileImage{
-	height:100px;width:100px;
-	border: 1px dashed black;
-}
-.informdata {
-	float: left;
-}
-
-.inform_button {
-	min-height: 26px;
-	float: right;
-	vertical-align: top;
-	display:none;
-}
-
-.inform_edit {
-	clear: both;
-	display: none;
-}
-.has-sub{
-	display:none;
-	position: absolute;
-	min-width: 100%;
-	min-height: 100%;
-}
-
-.has-sub ul {
-	list-style: none;
-	min-width: 100%;
-}
-</style>
-${memberProfile.fullName} ${memberProfile.birthday }
-<br />
 <c:forEach var="profiles" items="${memberProfile.profiles}">
 	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
@@ -152,67 +44,115 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 	</c:if>
 </c:forEach>
 
-<div class="informbox information">
-	<div class="informbox_header">
-		<!-- 정보헤더 -->
-		<img
-			src="${pageContext.request.contextPath}/resources/media/image/info_img.png">정보
+<section class="content-container">
+	<se:authorize ifAnyGranted="ROLE-USER,ROLE-ADMIN">
+	<div id="subNavigationContainer">
+		<div id="menu" class="sub-menu">
+			<div class="menu-username">
+				<a  href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
+			</div>
+			<nav class="sub-navigation">
+				<ul class="arrowunderline">
+					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
+					<li><a href="#">정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>	
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
+	
+				</ul>
+			</nav>
+		</div>
+			
+		<div id="menu2" class="sub-menu2 ${(colorTheme != null) ? colorTheme:'orange' }">
+			<div class="menu-username">
+				<a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
+			</div>
+
+			<nav class="sub-navigation">
+				<ul class="arrowunderline">
+					<li><a href="/skein">타임라인</a></li>
+					<li><a href="#">정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
+					<li><a href="#">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
+					<li><a href="#changeBackgroundColor" class="scroll">▲TOP</a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
-	<div class="informbox_content">
-		<form action="#" method="post">
+	</se:authorize>
+
+	 ${memberProfile.birthday }
+	<br />
+	<div class="informbox information">
+		<div class="informbox-header">
+		<!-- 정보헤더 -->
+			<img	src="${pageContext.request.contextPath}/resources/media/image/info-img.png">${memberProfile.fullName}
+		</div>
+		<div class="informbox-content">
+			<form action="#" method="post">
 			<!-- 정보컨텐츠 -->
 			<div class="clearfix">
-				<div class="content_inner">
+
+				<div class="content-inner">
 					<!-- 왼쪽 -->
-					<div class="inform_elem">
-						<b>프로필사진</b>2
-						<div class="inform_databox profileImage">
-							<div class="clearfix">
-								<div class="informdata profileImage">${profileImage }</div>
-								<div class="inform_button profileImage">
+					<div class="inform-elem">
+						<div class="profile-title">프로필사진/2</div>
+						<div class="inform-databox">
+							<div class="informdata profileImage">${profileImage}</div>
+							<div class="inform-controller">
+								
+								
+								
+								<div class="inform-button">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
-								<div class="inform_edit profileImage">
+								<div class="inform-edit profileImage">
 									<input type="hidden" value="2">
 									<div class="dropzon profileImage"></div>
-									<input type="button" value="저장" class="profile_editBtn ${profileImage }">
+									<input type="button" value="저장" class="profile-editBtn ${profileImage }">
 								</div>
 							</div>
 						</div>
+
 					</div>
-					<div class="inform_elem">
-						<b>생일</b>
-						<div class="inform_databox birthday">
+					
+					<div class="inform-elem">
+						<div class="profile-title">생일/10</div>
+						<div class="inform-databox birthday">
 							<div class="clearfix">
 								<div class="informdata birthday">${memberProfile.birthday }</div>
-								<div class="inform_button birthday">
+								<div class="inform-button birthday">
 									<input type="button" value="공개범위">
 								</div>
 							</div>
-							<div class="inform_edit birthday">
+							<div class="inform-edit birthday">
 								<input type="hidden" value="2"> 수정form
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>상태글</b>5
-						<div class="inform_databox statusComment">
+					
+					<div class="inform-elem">
+						<div class="profile-title">상태글/5</div>
+						<div class="inform-databox statusComment">
 							<div class="clearfix">
 								<div class="informdata statusComment">${statusComment }</div>
-								<div class="inform_button statusComment">
+								<div class="inform-button statusComment">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit statusComment">
+							<div class="inform-edit statusComment">
 								<input type="hidden" value="5">
 								수정form
-								<input type="button" value="저장" class="profile_editBtn ${statusComment }">
+								<input type="button" value="저장" class="profile-editBtn ${statusComment }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem status">
-						<b>계정 설정</b>
-						<div class="inform_status">
+					
+					<div class="inform-elem status">
+						<div class="profile-title">계정 설정</div>
+						
+						<div class="inform-status">
 							<div>
 								<a href="#"> 비빌번호변경 </a><br>
 							</div>
@@ -223,104 +163,111 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 						</div>
 					</div>
 				</div>
-				<div class="content_inner">
+				
+				<div class="content-inner">
 					<!-- 오른쪽 -->
-					<div class="inform_elem">
-						<b>공개이메일</b>3
-						<div class="inform_databox openEmail">
+					<div class="inform-elem">
+						<div class="profile-title">공개이메일/3</div>
+						<div class="inform-databox openEmail">
 							<div class="clearfix">
 								<div class="informdata openEmail">${openEmail }</div>
-								<div class="inform_button openEmail">
+								<div class="inform-button openEmail">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit openEmail">
+							<div class="inform-edit openEmail">
 								<input type="hidden" value="3"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${openEmail }">
+								<input type="button" value="저장" class="profile-editBtn ${openEmail }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>휴대폰번호</b>4
-						<div class="inform_databox phoneNumber">
+					
+					<div class="inform-elem">
+						<div class="profile-title">휴대전화번호 /4</div>
+						<div class="inform-databox phoneNumber">
 							<div class="clearfix">
 								<div class="informdata phoneNumber">${phoneNumber }</div>
-								<div class="inform_button phoneNumber">
+								<div class="inform-button phoneNumber">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit phoneNumber">
+							<div class="inform-edit phoneNumber">
 								<input type="hidden" value="4"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${phoneNumber }">
+								<input type="button" value="저장" class="profile-editBtn ${phoneNumber }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>블로그</b>9
-						<div class="inform_databox blog">
+					
+					<div class="inform-elem">
+						<div class="profile-title">블로그 /9</div>
+						<div class="inform-databox blog">
 							<div class="clearfix">
 								<div class="informdata blog">${blog }</div>
-								<div class="inform_button blog">
+								<div class="inform-button blog">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit blog">
+							<div class="inform-edit blog">
 								<input type="hidden" value="9"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${blog }">
+								<input type="button" value="저장" class="profile-editBtn ${blog }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>사는곳</b>1
-						<div class="inform_databox address">
+					
+					<div class="inform-elem">
+						<div class="profile-title">사는곳 /1</div>
+						<div class="inform-databox address">
 							<div class="clearfix">
 								<div class="informdata address">${address }</div>
-								<div class="inform_button address">
+								<div class="inform-button address">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit address">
+							<div class="inform-edit address">
 								<input type="hidden" value="1"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${address }">
+								<input type="button" value="저장" class="profile-editBtn ${address }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>언어</b>8
-						<div class="inform_databox language">
+					
+					<div class="inform-elem">
+						<div class="profile-title">언어/8</div>
+						<div class="inform-databox language">
 							<div class="clearfix">
 								<div class="informdata language">${language }</div>
-								<div class="inform_button language">
+								<div class="inform-button language">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit language">
+							<div class="inform-edit language">
 								<input type="hidden" value="8"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${language }">
+								<input type="button" value="저장" class="profile-editBtn ${language }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>정치성향</b>7
-						<div class="inform_databox politics">
+					
+					<div class="inform-elem">
+						<div class="profile-title">정치성향/7</div>
+						<div class="inform-databox politics">
 							<div class="clearfix">
 								<div class="informdata politics">${politics }</div>
-								<div class="inform_button politics">
+								<div class="inform-button politics">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 								</div>
 							</div>
-							<div class="inform_edit politics">
+							<div class="inform-edit politics">
 								<input type="hidden" value="7"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${politics }">
+								<input type="button" value="저장" class="profile-editBtn ${politics }">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem">
-						<b>종교</b>6
-						<div class="inform_databox religion">
+					
+					<div class="inform-elem">
+						<div class="profile-title">종교 /6</div>
+						<div class="inform-databox religion">
 							<div class="clearfix">
 								<div class="informdata religion">${religion }</div>
-								<div class="inform_button religion">
+								<div class="inform-button religion">
 									<input type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
@@ -331,9 +278,9 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 								   </div>
 								</div>
 							</div>
-							<div class="inform_edit religion">
+							<div class="inform-edit religion">
 								<input type="hidden" value="6"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${religion }">
+								<input type="button" value="저장" class="profile-editBtn ${religion }">
 							</div>
 						</div>
 					</div>
@@ -343,4 +290,6 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 		</form>
 	</div>
 </div>
+</section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>

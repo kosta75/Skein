@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberProfileCommand;
 import kr.co.skein.model.vo.ProfileCommand;
@@ -36,6 +37,7 @@ public class MemberController {
 	@RequestMapping("/{personalURI}")
 	public String userProfile(@PathVariable String personalURI, Model model) throws ClassNotFoundException, SQLException{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		System.out.println("INFO : Skein-M006 - 사용자 프로필 조회 요청");
 		
 		if(!personalURI.endsWith("/")){
@@ -45,7 +47,7 @@ public class MemberController {
 			parameters.put("searchValue", personalURI);
 			
 			List<Member> members = memberDao.getMembers(parameters);
-			List<ProfileCommand> profiles = memberDao.getMemberProfiles(personalURI);
+			List<ProfileCommand> profiles = profileDao.getMemberProfiles(personalURI);
 			
 			if(members.size() > 0){
 				System.out.println("INFO : Skein-M526 - 사용자 기본 정보 및 상세 프로필 조회");
@@ -70,7 +72,5 @@ public class MemberController {
 			return "error.incorrectRequest";
 		}
 	}
-	
-	
-	
+
 }

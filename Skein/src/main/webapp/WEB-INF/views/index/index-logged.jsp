@@ -271,16 +271,12 @@
 			</div>
 		</div>
 	</div>
-	
-	
-		
-		
-	<div style="clear: both;"></div>
 
+
+
+</section>
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 <script src="//code.highcharts.com/stock/highstock.js"></script>
 <script src="//code.highcharts.com/stock/modules/exporting.js"></script>
 
-
-</section>

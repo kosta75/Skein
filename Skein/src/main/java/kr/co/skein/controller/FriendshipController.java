@@ -106,11 +106,11 @@ public class FriendshipController {
 	
 	//친구 목록 조회
 	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
-		@RequestMapping("viewlist")
+		@RequestMapping("/viewlist")
 		public String getFriendList(
 				HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
 				SQLException {
-			System.out.println("ㅍINFO : Skein-F002 - 친구 목록 불러오기," );
+			System.out.println("INFO : Skein-F002 - 친구 목록 불러오기," );
 			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 			
 			int startNum;

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
 <script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
 </se:authorize>
 </head>

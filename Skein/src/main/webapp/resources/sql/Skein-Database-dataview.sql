@@ -107,8 +107,13 @@ SELECT * FROM MEMBERS;
 
 SELECT * FROM AUTHORITIES;
 
-DELETE FROM AUTHORITIES WHERE email = 'univcss@naver.com';
-DELETE FROM MEMBERS WHERE email = 'univcss@naver.com';
+DELETE FROM AUTHORITIES WHERE email = 'univcss@gmail.com';
+DELETE FROM MEMBERS WHERE email = 'univcss@gmail.com';
+COMMIT;
+
+UPDATE AUTHORITIES SET email = 'univcss123@gmail.com' WHERE email = 'univcss@gmail.com';
+UPDATE MEMBERS SET email = 'univcss123@gmail.com' WHERE email = 'univcss@gmail.com';
+COMMIT;
 
 DELETE FROM MEMBERS WHERE email = 'admin@skein.com';
 

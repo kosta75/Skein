@@ -28,7 +28,7 @@ $(document).ready(function(){
           data:"friendCount="+ friendCount,
           dataType : "html",
           success : function(data) {
-        	 // alert(data);
+        	console.log(data);
            if(data.trim()==""){
               
            }else{
@@ -47,6 +47,7 @@ $(document).ready(function(){
          //alert("현재 사진 불러온 수 : "+ $('.list').size());
     	  
          var pictureCount = $('.list').size();
+         console.log(pictureCount);
           lastPostFunc(pictureCount); 
        }
 

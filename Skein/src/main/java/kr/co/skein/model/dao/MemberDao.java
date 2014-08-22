@@ -34,10 +34,7 @@ public interface MemberDao {
 
 	//사용자 테마 컬러 조회
 	public String selectColorTheme(String email) throws ClassNotFoundException, SQLException;
-	
-	//사용자 상세 프로필 조회
-	public List<ProfileCommand> getMemberProfiles(String personalURI) throws ClassNotFoundException, SQLException;
-	
+
 	//사용자 검색 searchMembers
 	public List<SearchMemberCommand> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
 		

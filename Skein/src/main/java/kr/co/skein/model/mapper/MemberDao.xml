@@ -67,14 +67,7 @@
 	<select id="selectColorTheme" resultType="String">
 		SELECT colorTheme FROM members WHERE email = #{email}
 	</select>
-	
-	<!-- 사용자 상세 프로필 조회 -->
-	<select id="getMemberProfiles" resultType="kr.co.skein.model.vo.ProfileCommand">
-		SELECT pc.PROFILECODE, pc.PROFILENAME, p.PROFILEINFO, p.PUBLICLEVELCODE
-		FROM MEMBERS m JOIN PROFILES p ON m.EMAIL = p.EMAIL JOIN PROFILECODES pc ON p.PROFILECODE = pc.PROFILECODE
-		WHERE m.personalURI = #{personalURI}
-	</select>
-	
+
 	<!-- 친구 검색 -->
 	<!--  WHERE fullName LIKE '${searchValue}%' -->
 	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
