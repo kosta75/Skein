@@ -14,7 +14,7 @@
 					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>	
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
 	
 				</ul>
 			</nav>
@@ -27,12 +27,13 @@
 
 			<nav class="sub-navigation">
 				<ul class="arrowunderline">
-					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
+					<li><a href="/skein">타임라인</a></li>
 					<li><a href="#">정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
+					<li><a href="#changeBackgroundColor" class="scroll">▲TOP</a></li>
 				</ul>
 			</nav>
 		</div>

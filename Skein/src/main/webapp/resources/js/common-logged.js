@@ -71,5 +71,11 @@ $(document).ready(function() {
 		$("#search_result").css("display", "block");
 	}
 	//아이디,비번찾기 끝
+	
+	
+	 $(".scroll").click(function(event){            
+	        event.preventDefault();
+	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+	});
 
 });

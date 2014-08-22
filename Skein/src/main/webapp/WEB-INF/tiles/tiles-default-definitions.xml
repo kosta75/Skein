@@ -40,11 +40,7 @@
       
    </definition>
    
-   <!-- ***********************moretime 라인 게시물 더보기**********************  -->
-      <definition name="photo.morepicture" template="/WEB-INF/views/photo/comm/layout2.jsp">
-         <put-attribute name="morecontent" value="/WEB-INF/views/photo/morepicture.jsp" />
-      </definition>
-   <!-- *******************************************************************  -->
+ 
    
     <!-- ***********************main 게시물 더보기**********************  -->
       <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp">
@@ -52,7 +48,17 @@
       </definition>
    <!-- *******************************************************************  -->
    
+     <!-- ***********************moretime 라인 게시물 더보기**********************  -->
+      <definition name="photo.morepicture" template="/WEB-INF/views/photo/comm/layout2.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/photo/morepicture.jsp" />
+      </definition>
+   <!-- *******************************************************************  -->
    
+    <!-- ***********************친구 목록  더보기**********************  -->
+      <definition name="friendship.morefriendlist" template="/WEB-INF/views/friendship/comm/layout2.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/friendship/morefriendlist.jsp" />
+      </definition>
+   <!-- *******************************************************************  -->
    
    
    <!-- 사용자 검색 페이지 -->
