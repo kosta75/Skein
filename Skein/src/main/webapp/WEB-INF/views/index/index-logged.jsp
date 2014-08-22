@@ -7,7 +7,7 @@
 	<div id="subNavigationContainer">
 		<div id="menu" class="sub-menu">
 			<div class="menu-username">
-				<a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
+				<a  href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
 			</div>
 			<nav class="sub-navigation">
 				<ul class="arrowunderline">
@@ -156,181 +156,118 @@
 		<!--center  -->
 		<div class="content-center-wrapper">
 			<div id="boardListTimelineContainer"></div>
-			<div id="tabs">
-			  <ul>
-			    <li><a href="#tabs-1">Nunc tincidunt</a></li>
-			    <li><a href="#tabs-2">Proin dolor</a></li>
-			    <li><a href="#tabs-3">Aenean lacinia</a></li>
-			  </ul>
-			  <div id="tabs-1">
-			    <p><strong>Click this tab again to close the content pane.</strong></p>
-			    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-			  </div>
-			  <div id="tabs-2">
-			    <p><strong>Click this tab again to close the content pane.</strong></p>
-			    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-			  </div>
-			  <div id="tabs-3">
-			    <p><strong>Click this tab again to close the content pane.</strong></p>
-			    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-			  </div>
-			</div>
-			
-			
-			<div id="write" style="width: 99%; background: #fff; margin-bottom: 20px;border-radius:6px 6px 6px 6px;">
-			
-			
-				<div style="padding:10px;">
-					<ul>
-						<li id="tab1" style="float: left">다이어리</li>
-						<li style="float: left"><p>|</p></li>
-						<li id="tab2" style="float: left">개인기록</li>
-					</ul>
+			<div id="writeTabs">
+				<ul>
+					<li><a href="#diaryWriteTabs">다이어리</a></li>
+					<li><a href="#historyWriteTabs">개인기록</a></li>
+				</ul>
+				<div id="diaryWriteTabs">
+					<div>
+					Content
+					</div>
 				</div>
-			<!--다이어리  -->
-			<%-- <div id="diaryWrite">
-				<form id="postReg"
-					action="${pageContext.request.contextPath}/post/postReg"
-					method="post">
-					<form id="diaryForm" method="post" enctype="multipart/form-data">
-
-
-						<!--     
-			<textarea name="content" id="content" cols="64" rows="2" ></textarea>
-		 -->
+				<div id="historyWriteTabs">
+					<div id="historyWriteForm">
+					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
+					<form id="hitstoryForm" method="post" enctype="multipart/form-data">
+						<div id="dropzone">
+							<span class="placeholder">내용을 입력해 주세요...</span>
+							<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+							<div id="writeTextarea" contenteditable="true"></div>
+						</div>
+						<input type='hidden' name="content" id="content" />
+						<input type="hidden" name="email" value="${LoginUser}" />
+						<!--이미지  -->
+						<div id="historyImg" class="offset2 arrow_box">
+							<ul id="file-list"></ul>
+						</div>
+						<!--날짜  -->
+						<div id="historyDate">
+							발생일자 : <input type="date" name="startDate"><br />
+							종료일자 : <input type="date" name="endDate"><br />
+						</div>
+						<!--위치정보  -->
+						<div id="historymap" style="display: none;">
+							<input type="text" id="historyplace" name="historyplace">
+						</div>
+						<!--이모티콘  -->
+						<div id="historyemoticon">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
+						</c:forEach>
+						</div>
 						<!--  -->
-
-						<input type="hidden" name="email" value="${LoginUser}">
-
-						<ul id="diaryImg" class="offset2 arrow_box"
-							style="display: none;">
-							<li class="">
-								<h3>이미지를 끌어다 놓으세요</h3>
-								<ul id="file-list"></ul>
-								<p id="dropzone" class="" style="height: 200px;"></p>
-
-
-							</li>
-						</ul>
-						<!--  -->
-						<div
-							style="clear: both; background: #dcdcdc; width: 99%; height: 40px; padding-right: 5px; border-radius: 0 0 6px 6px;"
-							align="right">
-							<div id="writeicon" style="margin-left: 10px;">
-								<div class="icon_button" id="diaryWriteMenu1"></div>
-								<div class="icon_button" id="diaryWriteMenu3"></div>
-								<div class="icon_button" id="diaryWriteMenu4"></div>
-								<select name="publicLevelCode" style="margin-left: 120px;">
+						<div class="write-menu-bar">
+							<div id="writeicon"  >
+								<div  class="icon_button" id="historyWriteMenu1" ></div>
+								<div class="icon_button" id="historyWriteMenu2"></div>
+								<div class="icon_button" id="historyWriteMenu3"></div>
+								<div class="icon_button" id="historyWriteMenu4"></div>
+								<select name="publicLevelCode" style="margin-left:120px;">
 									<c:forEach var="publicLevelList" items="${publicLevelList}">
 										<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 									</c:forEach>
-								</select> <input type="submit" value="게시" style="margin-top: 10px;">
+								</select>
+								<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
 							</div>
-
 						</div>
-					</form>
-			</div> --%>
-
-			<!--개인기록  -->
-			<div id="historyWrite">
-			<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
-				<form id="hitstoryForm" method="post" enctype="multipart/form-data">
-					<div id="writeTextarea" style="width: 100%;height: 100%;margin-bottom: 10px; " contenteditable="true" ></div>
-					<input type='hidden' name='content' id='content' style="width: 100%;"/>
-					<input type="hidden" name="email" value="${LoginUser}" />
-					<!--이미지  -->
-					<ul id="historyImg" class="offset2 arrow_box" style="display: none;">
-						<li class="">
-							<h3>이미지를 끌어다 놓으세요</h3>
-							<ul id="file-list"></ul>
-							<p id="dropzone" class="" style="height: 200px;"></p>
-						</li>
-					</ul>
-					<!--날짜  -->
-					<div id="historyDate">
-						발생일자 : <input type="date" name="startDate"><br />
-						종료일자 : <input type="date" name="endDate"><br />
-					</div>
-					<!--위치정보  -->
-					<div id="historymap" style="display: none;">
-						<input type="text" id="historyplace" name="historyplace">
-					</div>
-					<!--이모티콘  -->
-					<div id="historyemoticon">
-					<c:forEach var="i" begin="1" end="16" step="1">
-						<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
-					</c:forEach>
-					</div>
-					<!--  -->
-					<div style="clear: both; background:#dcdcdc;width:100%; height: 40px ;padding-left:5px;border-radius:0 0 6px 6px; " align="right">
-						<div id="writeicon"  >
-							<div  class="icon_button" id="historyWriteMenu1" ></div>
-							<div class="icon_button" id="historyWriteMenu2"></div>
-							<div class="icon_button" id="historyWriteMenu3"></div>
-							<div class="icon_button" id="historyWriteMenu4"></div>
-							<select name="publicLevelCode" style="margin-left:120px;">
-								<c:forEach var="publicLevelList" items="${publicLevelList}">
-									<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
-								</c:forEach>
-							</select>
-							<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
-						</div>
-					</div>
-				</form> 
+					</form> 
+				</div>
+			  </div>
 			</div>
-		</div>
 
 
-		<!-- 게시물 출력 부분 Start -->
-		
-		<c:forEach var="list" items="${groupList}" varStatus="groupStep">
-		<div id="boardlist" class="group-list-container">
-			<%-- ${groupStep.count} 번째 그룹 <br /> --%>
-			<div id="list" style="border-radius:6px 6px 6px 6px;">
-		
-			
-			<div style="float: left;">
-				<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
-			</div>
-			
-			<div style="float: left;">
-				${list.fullName}<br>
-				${list.writeDate}
-			</div>
-			
-			<div style="clear: both; ">
-				${list.content}
-				<c:if test="${list.fileName != null}">
-				<div id="modal-launcher">
-					<div id="imghover" >
-						<input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
-						
-						
-							<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
+			<!-- 게시물 출력 부분 Start -->
+			<div id="boardListContainer">
+				<c:forEach var="list" items="${groupList}" varStatus="groupStep">
+				<div class="group-item-container">
+					<%-- ${groupStep.count} 번째 그룹 <br /> --%>
+					<div id="list" style="border-radius:6px 6px 6px 6px;">
 				
+					
+					<div style="float: left;">
+						<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
+					</div>
+					
+					<div style="float: left;">
+						${list.fullName}<br>
+						${list.writeDate}
+					</div>
+					
+					<div style="clear: both; ">
+						${list.content}
+						<c:if test="${list.fileName != null}">
+						<div id="modal-launcher">
+							<div id="imghover" >
+								<input type="hidden" value="${list.groupSeq}" id="boardSeq${list.boardSeq}">
+								
+								
+									<img id="imghover${list.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"  style="width: 100%; height: 250px;">
 						
+								
+							</div>
+						</div>
+						</c:if>
+					</div>
+					<div style="clear: both;float: right;"><input type="button" value="공유하기"> </div>
+					<div style="clear: both;float: right;">수정 삭제</div>
+					</div>
+				
+			
+					<div id="reply" style="background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
+						<div style="float: left;padding:5px;padding-left:10px;">
+							<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
+						</div>
+						<div style="float: left;padding-top:10px;">
+							<form action="board/reply" id="replyMain" method="post" >
+								<input type="hidden"  value="${list.boardSeq}" id="boardSeq" name="boardSeq">
+								<input name="replyWrite" type="text" style="width:270%; height: 20px;">
+							</form>
+						</div>
 					</div>
 				</div>
-				</c:if>
+				</c:forEach>
 			</div>
-			<div style="clear: both;float: right;"><input type="button" value="공유하기"> </div>
-			<div style="clear: both;float: right;">수정 삭제</div>
-			</div>
-		
-	
-			<div id="reply" style="background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
-				<div style="float: left;padding:5px;padding-left:10px;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
-				</div>
-				<div style="float: left;padding-top:10px;">
-					<form action="board/reply" id="replyMain" method="post" >
-						<input type="hidden"  value="${list.boardSeq}" id="boardSeq" name="boardSeq">
-						<input name="replyWrite" type="text" style="width:270%; height: 20px;">
-					</form>
-				</div>
-			</div>
-		</div>
-		</c:forEach>
 		</div>
 	</div>
 	

@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 	
 	<script src="//code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>

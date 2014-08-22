@@ -90,13 +90,40 @@ $(document).ready(function(){
 	
 	
 	//글쓰기 탭
-	$( "#tabs" ).tabs({
+	$( "#writeTabs" ).tabs({
 		collapsible: true
 	});
+	
+	
+	//이미지 삭제 버튼
+	$(document).on('mouseover','.image-item',function(){
+		//console.log($(this).find('div.delete-button'));
+		//$(this).find('.delete-button').css('display', 'block');
+		$(this).find('.delete-button').show();
+	}).on('mouseleave', '.image-item', function(){
+		//$(this).find('.delete-button').remove();
+		$(this).find('.delete-button').hide();
+	});
+	
+	$(document).on('click', '.delete-button', function(){
+		var li = $(this).parents('li');
+		var index = $(this).parents('#file-list').find('li').index(li);
+		
+		var startIndex = index;
+		var endIndex = index;
+		if(index == 0){
+			endIndex = 1;
+		}
+		multiFiles.splice(startIndex, endIndex);
+		li.remove();
+	});
+	
+	
 	
 	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
 	var filelist = document.getElementById("file-list");
 	var multiFiles = new Array();
+	
 
 	function groupTemplate(groupID, files) {
 		console.log("function groupTemplate start");
@@ -104,27 +131,26 @@ $(document).ready(function(){
 		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
 			multiFiles.push(file);
-			var id = "group_" + groupID + "_file_"
-					+ file.extra.fileID;
+			var id = "group_" + groupID + "_file_" + file.extra.fileID;
 			/* html.push("<li id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"+ groupID +"'>"
 					+ "<span class='filename'>"+ file.name	+ "</span> "
 					+ "<div><span class='not-done'><em>Loading...</em></span><span class='on-done'><span class='time-to-load'></span> ms</span></div>"
 					+ "<span class='details'><a href='#' class='btn'>details</a></span> "
 					+ "<div class='modal hide'>"	+ file.name + "<br />"	+ file.type 	+ "<br /></div>"
 					+ "<pre>" + JSON.stringify(file, null,	'\t')+ "</pre>" + "</li>");*/
-			html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"	+ groupID + "'></div></li>");
+			html.push("<li><div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"	+ groupID + "' class='image-item'><div class='delete-button'></div></div></li>");
 		}
 
-		var start = "<li><div id='group_" + groupID + "' class='group' style='display:none;'>Group: " + groupID + " (" + files.length + " files)</div>";
+		/*var start = "<li><div id='group_" + groupID + "' class='group' style='display:none;'>Group: " + groupID + " (" + files.length + " files)</div>";*/
+		var start = "<li>";
 		console.log("function groupTemplate end");
-		return start + html.join('');
+		return html.join('</li>');
 	}
 
 	var opts = {
 		on : {
 			load : function(e, file) {
-				var fileDiv = $("#group_" + file.extra.groupID
-						+ "_file_" + file.extra.fileID)
+				var fileDiv = $("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)
 				fileDiv.addClass("done");
 
 				var ms = file.extra.ended - file.extra.started;
@@ -143,16 +169,11 @@ $(document).ready(function(){
 				}
 			},
 			error : function(e, file) {
-				$(
-						"#group_" + file.extra.groupID
-								+ "_file_" + file.extra.fileID)
-						.addClass("error");
+				$("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)	.addClass("error");
 			},
 			groupstart : function(group) {
 				console.log("function groupstart");
-				$(filelist).append(
-						groupTemplate(group.groupID,
-								group.files));
+				$(filelist).append(groupTemplate(group.groupID,group.files));
 
 				console.log("function find");
 				/* $(filelist).find(	".details a:not(.initialized)")	.click(function() {
@@ -167,10 +188,7 @@ $(document).ready(function(){
 			},
 			groupend : function(group) {
 				console.log("groupEnd");
-				$("#group_" + group.groupID).append(
-						"<div style='display:none;'>(Time to load: "
-								+ (group.ended - group.started)
-								+ "ms)</div>");
+				/*$("#group_" + group.groupID).append(	"<div style='display:none;'>(Time to load: "	+ (group.ended - group.started)	+ "ms)</div>");*/
 				console.log(multiFiles);
 			}
 		}
@@ -350,24 +368,7 @@ $(document).ready(function(){
 		$("#modal-content, #modal-background").toggleClass("active");
 	});
 
-
-
-	
-	//글쓰기 다이어리,개인기록 
-	$("#tab1").click(function(){
-		  $("#historyWrite").css("display","none");
-		$("#diaryWrite").css("display","block");
-	   
-			
-		});
-	$("#tab2").click(function(){
-		 $("#diaryWrite").css("display","none");
-	     $("#historyWrite").css("display","block");
-	    $("#writeTextarea").focus();
-
-		
-	});
-	
+	/*$("#writeTextarea").focus();*/
 	
 	//개인기록 메뉴 
 	$("#historyWriteMenu1").click(function() {
@@ -426,15 +427,22 @@ $(document).ready(function(){
   
 
 //엔터키 처리
-$("#writeTextarea").keydown(function(e) {
-    // trap the return key being pressed
-    if (e.keyCode === 13) {
-    			 // insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
-    		      document.execCommand('insertHTML', false, '<br><br>');
-    		      // prevent the default behaviour of return key pressed
-    		      return false;	
-    }
-  });
+$("#writeTextarea").on('keydown', function(e) {
+	
+	// trap the return key being pressed
+	if (e.keyCode === 13) {
+		// insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+		document.execCommand('insertHTML', false, '<br><br>');
+		// prevent the default behaviour of return key pressed
+		return false;
+	}
+}).on('keyup', function(){
+	if($("#writeTextarea").text().length > 0){
+		$("#dropzone .placeholder").css('display', 'none');
+	}else{
+		$("#dropzone .placeholder").css('display', 'block');
+	}
+});
 //지역 정보 수정 시 
 
 $("#historyplace").click(function(){

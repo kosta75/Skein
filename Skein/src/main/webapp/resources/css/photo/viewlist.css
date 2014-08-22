@@ -1,35 +1,47 @@
 @CHARSET "UTF-8";
+/* a태그 초기화 */
+a, a:hover, a:visited, a:link, a:active, a:focus{text-decoration:none;color:black;}
+*{font-family:'맑은 고딕';}
+/* clearfix */
+.main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
-#selectpage {
-	border-bottom-color: gray;
-	display: none;
-	background-color: #fff;
-	width: 100px;
-	height: 300px;
-	position: fixed;
-	top: 10%;
-	left: 2%;
-	z-index: 3;
-}
-/*왼쪽 메뉴 시작   */
-#sideProfileImg {
-	width:80px;
-	height:80px;
-	border: 3px solid;
-	border-color: #fff;
-	border-radius: 6px;
-	vertical-align: middle;
-	margin-left: 10px;
+/* 기본메뉴 */
+#subNavigationContainer{height:55px;padding-bottom:20px;}
+ul.arrowunderline {list-style-type:none;margin:0;}
+ul.arrowunderline li {height:55px;float:left;border-right:1px solid skyblue;padding:0px 25px;}
+ul.arrowunderline li:first-child {border-left:1px solid skyblue;}
+ul.arrowunderline li a, ul.arrowunderline li a:hover, ul.arrowunderline li a:active, ul.arrowunderline li a:visited{color:black;}
+ul.arrowunderline li a{display:block;height:51px;line-height:55px;font-family:'맑은 고딕';font-weight:bold;font-size:15px;}
+ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
-}
-#sideProfileHeader{
-position: absolute;
-z-index: 0;
-width: 230px;
-margin-top: 40px;
+.sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff;}
+.sub-menu2 {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;}
+.menu-username {float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
 
-}
-/*왼쪽 메뉴 끝  */
+#menu1 .sub-navigation{float:left;}
+#menu2 .sub-navigation{position:absolute;right:0px;}
+
+#menu2 .menu-username a{color:#fff;}
+#menu2 ul.arrowunderline li a{color:#fff;}
+/* 가운데 전체 컨테이너 */
+.content-container{position:relative;}
+
+/* 왼쪽 사용자 정보 */
+#subUserProfileContainer{width:180px;position:absolute;left:0px;}
+.sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
+.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
+.sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
+.sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;}
+.sub-user-profile-name{margin-left:100px;padding:12px 0px;font-size:14px;}
+.sub-user-proifle-info{font-family:'맑은 고딕';font-size:14px;padding:8px;}
+.sub-user-profile-birthday{}
+
+/* 가운데 내용 */
+.content-wrapper{width:760px;margin-left:200px;position:relative;}
+.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;}
+.img-list{padding:10px;}
+
+ /* style="border-radius: 6px 6px 6px 6px; width: 174px; height: 174px;" */
 .list {
 	width: 98%;
 	height: 100%;
@@ -41,15 +53,6 @@ margin-top: 40px;
 
 .list div {
 	padding: 10px;
-}
-
-#myinfo div {
-	padding-top: 15px;
-	float: left;
-}
-
-#container div {
-	float: left;
 }
 
 #list {
@@ -65,9 +68,6 @@ margin-top: 40px;
 	padding: 10px;
 }
 
-#boardlist {
-	margin-bottom: 20px;
-}
 
 #side {
 	height: 100%;
@@ -76,8 +76,4 @@ margin-top: 40px;
 	text-align: left;
 	font-weight: bold;
 	vertical-align: top;
-}
-
-textarea {
-	resize: none;
 }

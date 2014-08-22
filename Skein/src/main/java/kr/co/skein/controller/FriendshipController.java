@@ -102,4 +102,9 @@ public class FriendshipController {
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}
+	
+	@RequestMapping("/viewlist")
+	public String viewFriendList(){
+		return "friendship.viewlist";
+	}
 }
