@@ -40,6 +40,8 @@ $(document).ready(function() {
 	});
 	
 	
+	
+	alert($(".A").data("phonenumberpublic"));
 });
 	function edit_ajax(){
 		/*여기 ajax */

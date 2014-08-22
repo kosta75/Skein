@@ -111,32 +111,44 @@
 ${memberProfile.fullName} ${memberProfile.birthday }
 <br />
 <c:forEach var="profiles" items="${memberProfile.profiles}">
-	<c:if test="${profiles.profileName == '프로필사진' }">
+	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
+		<c:set var="profileImagePublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '상태글' }">
+	<c:if test="${profiles.profileCode == 5 }">
 		<c:set var="statusComment" value="${profiles.profileInfo}" />
+		<c:set var="statusCommentPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '공개이메일' }">
+	<c:if test="${profiles.profileCode == 3 }">
 		<c:set var="openEmail" value="${profiles.profileInfo}" />
+		<c:set var="openEmailPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '휴대폰번호' }">
+	<c:if test="${profiles.profileCode == 4 }">
 		<c:set var="phoneNumber" value="${profiles.profileInfo}" />
+		<c:set var="phoneNumberPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '블로그' }">
+	<c:if test="${profiles.profileCode == 9 }">
 		<c:set var="blog" value="${profiles.profileInfo}" />
+		<c:set var="blogPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '사는곳' }">
+	<c:if test="${profiles.profileCode == 1 }">
 		<c:set var="address" value="${profiles.profileInfo}" />
+		<c:set var="addressPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '언어' }">
+	<c:if test="${profiles.profileCode == 8 }">
 		<c:set var="language" value="${profiles.profileInfo}" />
+		<c:set var="languagePublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '종교' }">
+	<c:if test="${profiles.profileCode == 6 }">
 		<c:set var="religion" value="${profiles.profileInfo}" />
+		<c:set var="religionPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
-	<c:if test="${profiles.profileName == '정치성향' }">
+	<c:if test="${profiles.profileCode == 7 }">
 		<c:set var="politics" value="${profiles.profileInfo}" />
+		<c:set var="politicsPublic" value="${profiles.publicLevelCode}" />
+	</c:if>
+	<c:if test="${profiles.profileCode == 10 }">
+		<c:set var="birthdayPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
 </c:forEach>
 
