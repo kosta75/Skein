@@ -4,21 +4,8 @@
 	
 	<!-- 사용자 프로필 업데이트 -->
 	<insert id="updateProfile" parameterType="kr.co.skein.model.vo.ProfileCommand">
-		INSERT INTO 
+		<!-- INSERT INTO --> 
 	</insert>
-	
-
-	<select id="getAccountEmail"  parameterType="kr.co.skein.model.vo.Member" resultType="String">
-		SELECT email FROM Members WHERE Email = #{email} AND FullName = #{fullName} AND Birthday = #{birthday}
-	</select>
-	
-	
-	<update id="updateAccountPassword" parameterType="kr.co.skein.model.vo.Member">
-		UPDATE Members
-		SET password = #{password}
-		WHERE email = #{email}
-	</update>
-	
 
 	
 </mapper>

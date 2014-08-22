@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/views/index/more/more-mainBoard.jsp=UTF-8
+=======
+>>>>>>> refs/remotes/original/release-1.1.0.2-info
 encoding/<project>=UTF-8
