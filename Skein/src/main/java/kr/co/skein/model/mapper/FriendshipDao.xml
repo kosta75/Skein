@@ -6,4 +6,21 @@
 	<insert id="addFriends">
 		INSERT INTO Friendship VALUES(#{param1}, #{param2}) 
 	</insert>
+	
+	<!--친구 목록 페이지 -->
+	<select id="getFriendList" resultType="kr.co.skein.model.vo.FriendshipListCommand">
+		      
+		SELECT * FROM 
+		(
+			SELECT ROWNUM r , s.* FROM 
+		(
+		SELECT m.email , m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, p.PROFILECODE
+		FROM members m 
+		JOIN friendship f ON m.email = f.friendemail
+		left OUTER JOIN profiles p ON p.email =f.friendemail
+		WHERE f.email=#{param1} ORDER BY email asc
+		) s
+		)WHERE r BETWEEN #{param2} AND #{param3}
+    </select>
+	
 </mapper>

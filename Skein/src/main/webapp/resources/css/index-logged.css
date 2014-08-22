@@ -13,7 +13,7 @@ ul.arrowunderline li a, ul.arrowunderline li a:hover, ul.arrowunderline li a:act
 ul.arrowunderline li a{display:block;height:51px;line-height:55px;font-family:'맑은 고딕';font-weight:bold;font-size:15px;}
 ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
-.sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff;}
+.sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff; border-radius: 8px 8px 8px 8px}
 .sub-menu2 {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;}
 .menu-username {float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
 
@@ -74,10 +74,8 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 #boardListContainer{}
 
 
-
-
-
 .write-menu-bar{width:100%;background:#dcdcdc;height:40px;}
+
 
 
 #historyDate{	display: none;}
@@ -85,6 +83,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 #historyImg img{width:78px;height:78px;padding:2px;border:1px solid #eee;margin:4px;}
 .image-item{position:relative;}
 .image-item .delete-button{display:none;position:absolute;top:7px;right:7px;width:10px;height:10px;background:#f00;z-index:5}
+
 
 #write{
 width: 99%; 
@@ -140,7 +139,9 @@ padding: 2px;
 #modal-close :HOVER {aria-label ="ㅇㅇㅇㅇㅇㅇ";
    
 }
-
+.imgBtn{
+	float: left;
+}
 
 #list {
    width: 98%;

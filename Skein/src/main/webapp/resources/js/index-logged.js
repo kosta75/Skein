@@ -460,9 +460,10 @@ function lastPostFunc(pictureCount){
        data:"pictureCount="+ pictureCount,
        dataType : "html",
        success : function(data) {
+    	
         if(data.trim()==""){
         }else{
-           $('#containerCenter').append(data);  
+           $('.content-wrapper').append(data);  
         }  
        },
        error: function(){

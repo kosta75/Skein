@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
+import kr.co.skein.model.vo.FriendshipListCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.NotificationCommand;
@@ -103,8 +104,52 @@ public class FriendshipController {
 		return jsonView;
 	}
 	
-	@RequestMapping("/viewlist")
-	public String viewFriendList(){
-		return "friendship.viewlist";
-	}
+	//친구 목록 조회
+	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
+		@RequestMapping("viewlist")
+		public String getFriendList(
+				HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
+				SQLException {
+			System.out.println("ㅍINFO : Skein-F002 - 친구 목록 불러오기," );
+			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+			
+			int startNum;
+			int endNum;
+			if(friendCount > 0 ){
+				startNum = friendCount +1 ;
+				endNum = startNum + 7;
+			}else{
+				startNum = 1;
+				endNum = 8;
+			}
+
+			System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
+			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+				System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+				SecurityContextImpl sci = (SecurityContextImpl) session
+						.getAttribute("SPRING_SECURITY_CONTEXT");
+				UserDetails user = (UserDetails) sci.getAuthentication()
+						.getPrincipal();
+
+				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
+
+				// 내 이메일 admin@skein.com
+				// 친구 이메일
+				String email = "admin@skein.com";
+				List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
+				//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+				for(int i=0; i< list.size();i++){
+					//System.out.println(list.get(i).getFriendEmail());
+				}
+				model.addAttribute("list", list);
+				
+			}
+			
+			if(startNum > 1){
+				return "friendship.morefriendlist";
+			}else{
+				return "friendship.viewlist";
+			}
+			
+		}
 }

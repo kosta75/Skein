@@ -88,4 +88,4 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 .user-profile-uri a{font-family:arial;font-size:15px;font-weight:bold;}
 
 /* 헤더에 있는 알림페이지 */
-#notificationList {display:none;border:1px solid #ccc;border-bottom-color:#999; background-color:#fff;width:220px;height:100px;position:absolute;top:55px;right:0px;}
+#notificationList {z-index:5;  display:none;border:1px solid #ccc;border-bottom-color:#999; background-color:#fff;width:400px;height:200px;position:absolute;top:55px;right:0px;}

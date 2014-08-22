@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+encoding//src/main/webapp/WEB-INF/views/friendship/morefriendlist.jsp=UTF-8
+>>>>>>> refs/remotes/original/release-1.1.9
 encoding//src/main/webapp/WEB-INF/views/index/more/more-mainBoard.jsp=UTF-8
 =======
 >>>>>>> refs/remotes/original/release-1.1.0.2-info
