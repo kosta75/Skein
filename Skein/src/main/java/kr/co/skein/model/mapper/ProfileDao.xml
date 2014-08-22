@@ -2,10 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.skein.model.dao.AccountDao">
 	
-	<!-- 사용자 프로필 업데이트 -->
-	<insert id="updateProfile" parameterType="kr.co.skein.model.vo.ProfileCommand">
-		<!-- INSERT INTO --> 
+	<!-- 사용자 프로필 조회 -->
+	<select id="getMemberProfiles" resultType="kr.co.skein.model.vo.ProfileCommand">
+		SELECT ProfileSeq, ProfileCode, ProfileInfo, PublicLevelCode, Email FROM Profiles WHERE email = #{email}
+	</select>
+	
+	<!-- 사용자 프로필 존재 여부 조회 -->
+	<select id="countProfiles" resultType="Integer">
+		SELECT COUNT(*) FROM Profiles WHERE email = #{email} AND profileCode = #{profileCode} 
+	</select>
+	
+	<!-- 사용자 프로필 추가 -->
+	<insert id="insertProfile">
+		<selectKey keyProperty="profileSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(Profiles)),0)+1 FROM Profiles
+		</selectKey>
+		INSERT INTO Profiles VLAUES(#{profileSeq}, #{profileCode}, #{profileInfo}, #{publicLevelCode}, #{email})
 	</insert>
+	
+	<!-- 사용자 프로필 업데이트 -->
+	<update id="updateProfile" parameterType="kr.co.skein.model.vo.ProfileCommand">
+		UPDATE Profiles
+		<set>
+			<if test="profileInfo != null">ProfileInfo = #{profileInfo},</if>
+			<if test="publicLevelCode != null">PublicLevelCode = #{publicLevelCode}</if>
+		</set>
+		WHERE email = #{email} AND profileCode = #{profileCode}
+	</update>
 
 	
 </mapper>
