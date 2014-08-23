@@ -11,7 +11,7 @@
 			</div>
 			<nav class="sub-navigation">
 				<ul class="arrowunderline">
-					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
+					<li><a href="/skein">타임라인</a></li>
 					<li><a href="#">정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>	
 					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
@@ -26,7 +26,7 @@
 
 			<nav class="sub-navigation">
 				<ul class="arrowunderline">
-					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
+					<li><a href="/skein">타임라인</a></li>
 					<li><a href="#">정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
 					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
