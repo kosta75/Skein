@@ -18,7 +18,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 .header-container, #globalTop, .logo, #search, #infoContainer{height:55px;}
 
 /* 헤더의 Bar  */
-.header-container{color:#fff; background:#f00;}
+.header-container{background:#f00;}
 .heder-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
 #globalTop{position:relative;}
@@ -28,10 +28,8 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 .logo a{display:block;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
 
 /* 헤더 Bar에 있는 a태그 메뉴 */
-.header-container a:LINK {	color: #fff; text-decoration: none;}
-.header-container a:visited {color: #fff;text-decoration: none;}
-.header-container a:hover {color: #fff;text-decoration: none;}
-.header-container a:active {color: #fff;text-decoration: none;}
+.header-container a:active, .header-container a:hover, .header-container a:LINK, .header-container a:visited{text-decoration:none;}
+ 
 
 /* 상단 로그인 Form */
 #loginFormContainer{position:absolute;top:5px;right:0px;}

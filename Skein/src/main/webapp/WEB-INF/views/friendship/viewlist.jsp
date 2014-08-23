@@ -96,3 +96,4 @@
 		</div>
 	</div>
 </section>
+<script src="${pageContext.request.contextPath}/resources/js/friendship.js"></script>

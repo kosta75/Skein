@@ -87,7 +87,7 @@ public class IndexController {
 	}
 	//메인 더보기 
 	@RequestMapping(value = { "/mainMoreBoard" }, method = RequestMethod.GET)
-	public String mainMoreBoard(HttpSession session, Model model,@RequestParam("pictureCount") int pictureCount) throws ClassNotFoundException, SQLException {
+	public String mainMoreBoard(HttpSession session, Model model, @RequestParam("pictureCount") int pictureCount) throws ClassNotFoundException, SQLException {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 
 		System.out.println("INFO : Skein-P101 - 서비스 접속 요청이 들어왔습니다.");
