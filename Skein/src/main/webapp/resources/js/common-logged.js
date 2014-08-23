@@ -18,7 +18,7 @@ $(document).ready(function() {
 	
 	///////////////색깔변경////////////////
 	var color = $(".header-container").css("background-color");
-	console.log(color);
+	var colorBarClicked = false;
 	
 	$('#changeBackgroundColor li').on('mouseover', function() {
 		$('.header-container').css("background-color",	$(this).css("background-color"));
@@ -26,13 +26,19 @@ $(document).ready(function() {
 		$('.sub-user-profile-tip').css("background-color",	$(this).css("background-color"));
 		$('#menu2').css("background-color",	$(this).css("background-color"));
 	}).on('mouseleave',function(e){
-		$('.header-container').css("background-color",	color);
-		$('.header-container').css("background-color",	color);
-		$('.sub-user-profile-tip').css("background-color", color);
-		$('#menu2').css("background-color", color);
+		if(!colorBarClicked){
+			$('.header-container').css("background-color",	color);
+			$('.header-container').css("background-color",	color);
+			$('.sub-user-profile-tip').css("background-color", color);
+			$('#menu2').css("background-color", color); 
+		}else{
+			colorBarClicked = false;
+		}
 	});
 	
 	$('#changeBackgroundColor li').on('click', function() {
+		colorBarClicked = true;
+		color = $(this).css("background-color");
 		var obj = $(this);
 		var colorTheme = $(this).context.className;
 		var urlText = "//localhost:8080/skein/member/colorTheme";
@@ -47,11 +53,6 @@ $(document).ready(function() {
 				$('.header-container').css("background-color",	$(obj).css("background-color"));
 				$('.sub-user-profile-tip').css("background-color",	$(obj).css("background-color"));
 				$('#menu2').css("background-color",	$(obj).css("background-color"));
-				
-				/*$('.header-container').css("background-color", $(this).css(colorTheme));
-				$('.header-container').css("background-color",$(this).css(colorTheme));
-				$('#leftinfo').css("background-color",$(this).css(colorTheme));
-				$('#menu2').css("background-color",$(this).css(colorTheme));*/
 			},
 			error : function() {
 				alert('Error while request..');

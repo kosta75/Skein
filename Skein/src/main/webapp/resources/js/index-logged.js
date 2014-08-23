@@ -477,12 +477,10 @@ function lastPostFunc(pictureCount){
 	
 	
 	//공유
-	$(".share").on("click",function(){
+	$(document).on('click', '.share', function(){
 		alert($(this).find("input[type='hidden']").val());
-	
 	});
-	$(".modalShare").on("click",function(){
+	$(document).on('click', '.modalShare', function(){
 		alert($(this).find("input[type='hidden']").val());
-	
 	});
 });

@@ -1,6 +1,7 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.SearchMemberCommand;
 
 import org.apache.ibatis.session.SqlSession;
@@ -52,6 +54,15 @@ public class SearchController {
 			String userName = user.getUsername();
 			
 			parameters.put("ignoreEmailValue", userName);
+			
+			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+
+			if (colorTheme == null || colorTheme.equals("")) {
+				model.addAttribute("colorTheme", "blue");
+			} else {
+				model.addAttribute("colorTheme", " " + colorTheme);
+			}
 		}
 
 		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);

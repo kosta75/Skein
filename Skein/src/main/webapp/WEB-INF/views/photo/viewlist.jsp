@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <se:authentication property="name" var="LoginUser" />
 <section class="content-container">
 	<div id="subNavigationContainer">

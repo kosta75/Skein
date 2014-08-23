@@ -71,6 +71,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 /* 게시물 리스트 */
 #boardListContainer{}
+.group-item-container{margin-bottom:20px;}
 
 
 .write-menu-bar{width:100%;background:#dcdcdc;height:40px;}
