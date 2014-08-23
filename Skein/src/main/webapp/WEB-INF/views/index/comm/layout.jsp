@@ -42,11 +42,11 @@
 	<script src="${pageContext.request.contextPath}/resources/js/index-logged.js"></script>
 </head>
 <body>
+
 	<div class="header-container${colorTheme}">  <!-- Bar -->
 		<div class="wrapper">
 			<tiles:insertAttribute name="header" />
 		</div>
-	</div>
 	<div class="main-section-container">
 		<div class="wrapper">
 			<tiles:insertAttribute name="index-logged" />

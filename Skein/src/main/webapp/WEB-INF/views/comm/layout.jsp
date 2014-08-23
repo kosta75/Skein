@@ -18,7 +18,6 @@
 </head>
 <body>
 
-
 <div class="header-container${colorTheme}">
 	<div class="wrapper">
 		<tiles:insertAttribute name="header" />

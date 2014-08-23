@@ -135,20 +135,14 @@ public class FriendshipController {
 	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
 		@RequestMapping("/viewlist")
 		public String getFriendList(
-				HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
+				HttpSession session, Model model) throws ClassNotFoundException,
 				SQLException {
 			System.out.println("INFO : Skein-F002 - 친구 목록 불러오기," );
 			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+
+			int	startNum = 1;
+			int	endNum = 8;
 			
-			int startNum;
-			int endNum;
-			if(friendCount > 0 ){
-				startNum = friendCount +1 ;
-				endNum = startNum + 7;
-			}else{
-				startNum = 1;
-				endNum = 8;
-			}
 
 			System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
 			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
@@ -162,7 +156,7 @@ public class FriendshipController {
 
 				// 내 이메일 admin@skein.com
 				// 친구 이메일
-				String email = "admin@skein.com";
+				String email = user.getUsername();
 				List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
 				//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
 				for(int i=0; i< list.size();i++){
@@ -183,12 +177,46 @@ public class FriendshipController {
 				model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
 				
 			}
-			
-			if(startNum > 1){
-				return "friendship.morefriendlist";
-			}else{
-				return "friendship.viewlist";
-			}
-			
+			return "friendship.viewlist";
+		
 		}
+		
+		//더보기 
+		@RequestMapping("/moreviewlist")
+		public String getFriendList(
+				HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
+				SQLException {
+			System.out.println("INFO : Skein-F003 - 친구 목록 더 불러오기," );
+			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		
+			
+				int startNum = friendCount +1 ;
+				int endNum = startNum + 7;
+			
+
+			System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
+			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+				System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+				SecurityContextImpl sci = (SecurityContextImpl) session
+						.getAttribute("SPRING_SECURITY_CONTEXT");
+				UserDetails user = (UserDetails) sci.getAuthentication()
+						.getPrincipal();
+
+				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
+
+				// 내 이메일 admin@skein.com
+				// 친구 이메일
+				String email = user.getUsername();
+				List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
+				//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+				for(int i=0; i< list.size();i++){
+					//System.out.println(list.get(i).getFriendEmail());
+				}
+				model.addAttribute("list", list);
+				
+			}
+				return "friendship.morefriendlist";
+
+		}
+		
 }

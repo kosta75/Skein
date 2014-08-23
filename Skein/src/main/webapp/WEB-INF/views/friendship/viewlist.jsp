@@ -87,17 +87,7 @@
 						</div>
 						<div>
 							<p>${list.fullname }</p>
-						</div>
-						<div>
-							<p>${list.birthday }</p>
-						</div>
-						<div>
-							<p>${list.personaluri }</p>
-						</div>
-						<div>
-							<p>${list.profilecode }= 지금은 null</p>
-						</div>
-						
+						</div>						
 					</div>		
 				</div>
 				<div class="unfriend-button" data-uri="${list.personaluri}" data-name="${list.fullname}"></div>
@@ -106,4 +96,3 @@
 		</div>
 	</div>
 </section>
-<script src="${pageContext.request.contextPath}/resources/js/friendship.js"></script>

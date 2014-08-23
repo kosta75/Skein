@@ -121,13 +121,15 @@ public class IndexController {
 	}
 	@RequestMapping(value ="/member/colorTheme", method = RequestMethod.POST)
 	public View the(String colorTheme, Model model, HttpSession session) throws ClassNotFoundException, SQLException {
-		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		System.out.println("INFO : Skein-I101 - 사용자 지정색상 정보 입력, colorTheme=" + colorTheme);
-
 		SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
-
+			
 		String email = user.getUsername();
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		System.out.println("INFO : Skein-I101 - 사용자 지정색상 정보 입력, colorTheme=" + colorTheme+"email"+email);
+
+		
+		
 		memberDao.updateColorTheme(colorTheme, email);
 		/* String color=memberDao.selectColorTheme(user.getUsername()); */
 		model.addAttribute("colorTheme", colorTheme);

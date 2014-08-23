@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <se:authentication property="name" var="LoginUser" />
 <section class="content-container">
 	<div id="subNavigationContainer">
@@ -13,9 +14,8 @@
 				<ul class="arrowunderline">
 					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>	
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
-	
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>	
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -29,7 +29,7 @@
 				<ul class="arrowunderline">
 					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>
 					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
@@ -86,4 +86,4 @@
 		</div>
 	</div>
 </section>
-<script src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/photoviewlist.js"></script>

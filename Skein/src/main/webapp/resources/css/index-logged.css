@@ -27,7 +27,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 /* Modal */
 #modal-content{display:none;}
-
+.modalcontent{width:380px;}
 /* 가운데 전체 컨테이너 */
 .content-container{position:relative;}
 
@@ -127,7 +127,7 @@ padding: 2px;
    float: left;
 }
 
-#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4, #mon :HOVER {
+#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4,.share,.modalShare, #mon :HOVER {
    cursor: pointer;
 }
 

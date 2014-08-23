@@ -30,25 +30,26 @@ $(document).ready(function(){
 	
 	//**********************친구 목록 페이지 처리 ************************//
 	/*스크롤 감지  */
-	function lastPostFunc(friendCount){
-		$.ajax({
-			type:'get',
-			url:"viewlist",
-			data:"friendCount="+ friendCount,
-			dataType : "html",
-			success : function(data) {
-				console.log(data);
-				if(data.trim()==""){
-		
-				}else{
-					$('#friendlist').append(data);
-				}
-			},
-			error: function(){
-				alert('스크롤 에러 :error while request..'   );
-			}
-		});
-	};
+    function lastPostFunc(friendCount){ 
+    $.ajax({
+          type:'get',
+          url:"moreviewlist",
+          data:"friendCount="+ friendCount,
+          dataType : "html",
+          success : function(data) {
+        	console.log(data);
+           if(data.trim()==""){
+              
+           }else{
+              $('#friendlist').append(data);  
+           }  
+          },
+          error: function(){
+             alert('스크롤 에러 :error while request..'   );
+          }
+       });
+    }; 
+     
 	
 	$(window).scroll(function(){
 		if ($(window).scrollTop() == $(document).height() - $(window).height()){
