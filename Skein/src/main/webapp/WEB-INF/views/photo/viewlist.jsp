@@ -72,7 +72,7 @@
 	</div>
 	
 	<div class="content-wrapper">
-		<div id="boardlist-picture">
+		<div id="boardlist-picture" >
 		<c:forEach var="list" items="${list}">  
 			<c:if test="${list.fileName !=null}">  
 			<div class="list-item">

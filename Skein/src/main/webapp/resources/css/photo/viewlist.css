@@ -4,7 +4,9 @@ a, a:hover, a:visited, a:link, a:active, a:focus{text-decoration:none;color:blac
 *{font-family:'맑은 고딕';}
 /* clearfix */
 .main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
-
+#boardlist-picture{
+	width:800px;
+}
 /* 기본메뉴 */
 #subNavigationContainer{height:55px;padding-bottom:20px;}
 ul.arrowunderline {list-style-type:none;margin:0;}
@@ -38,7 +40,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 /* 가운데 내용 */
 .content-wrapper{width:760px;margin-left:200px;position:relative;}
-.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;}
+.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;margin: 7px;}
 .img-list{padding:10px;}
 
  /* style="border-radius: 6px 6px 6px 6px; width: 174px; height: 174px;" */
