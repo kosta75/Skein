@@ -4,11 +4,11 @@ $(document).ready(function() {
 		var obj = $(this);
 		$.ajax({
 			type:'post',
-			url:'../friendship/add/' + $(this).data('uri'),
+			url:'../notification/addFriendsNotification/' + $(this).data('uri'),
 			processData : false,
 			contentType : false,
 			success : function(data){
-				obj.parent().append("<div>Text</div>");
+				obj.parent().append("<div>친구 수락 대기 중</div>");
 				obj.remove();
 			},error : function(){
 				
