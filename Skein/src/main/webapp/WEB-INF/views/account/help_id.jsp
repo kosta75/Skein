@@ -1,30 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
 <div class="wrap_wrap">
 	<div class="form_wrap">
 		<form id="helpId" action="id" method="post">
 			<div class="help_subject_container">
-				<b>°èÁ¤ Ã£±â</b> <font class="subject_sub">°èÁ¤¸í(e-mail) ÈùÆ®Á¦°ø</font>
+				<b>ê³„ì • ì°¾ê¸°</b> <font class="subject_sub">ê³„ì •ëª…(e-mail) ížŒíŠ¸ì œê³µ</font>
 			</div>
 			<div class="help_container">	
 				<div class="help_search_con" id="help_search">
 					<table style="text-align:left;">
-						<tr><td style="text-align:right;">ÀÌ¸§ : </td><td><input id="helpIdName" type="text" name="fullName" ></td></tr>
-						<tr><td style="text-align:right;">»ý³â¿ùÀÏ : </td><td><input id="helpIdBirthday" type="date" name="birthday" ></td></tr>
+						<tr><td style="text-align:right;">ì´ë¦„ : </td><td><input id="helpIdName" type="text" name="fullName" ></td></tr>
+						<tr><td style="text-align:right;">ìƒë…„ì›”ì¼ : </td><td><input id="helpIdBirthday" type="date" name="birthday" ></td></tr>
 					</table>
 				</div>
 			</div>
 			<div class="button_container">
-				<input id="helpIdBtn" type="button" value="°Ë»ö" class="submitBtn">
-				<input type="button" value="Ãë¼Ò" class="resetBtn" onclick="location.href='../' ">
+				<input id="helpIdBtn" type="button" value="ê²€ìƒ‰" class="submitBtn">
+				<input type="button" value="ì·¨ì†Œ" class="resetBtn" onclick="location.href='../' ">
 			</div>
 		</form>
 	</div>
@@ -32,20 +24,20 @@
 	<div class="form_wrap">
 		<form id="helpPwd" action="pwd" method="post">
 			<div class="help_subject_container">
-				<b>ºñ¹Ð¹øÈ£ Ã£±â</b>
+				<b>ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°</b>
 			</div>
 			<div class="help_container">	
 				<div class="help_search_con">
 					<table style="text-align:left;">
-						<tr><td style="text-align:right;">°èÁ¤(e-mail) : </td><td><input id="helpPwdEmail" type="email" name="email" ></td></tr>
-						<tr><td style="text-align:right;">ÀÌ¸§ : </td><td><input id="helpPwdName" type="text" name="fullName" ></td></tr>
-						<tr><td style="text-align:right;">»ý³â¿ùÀÏ : </td><td><input id="helpPwdBirthday" type="date" name="birthday" ></td></tr>
+						<tr><td style="text-align:right;">ê³„ì •(e-mail) : </td><td><input id="helpPwdEmail" type="email" name="email" ></td></tr>
+						<tr><td style="text-align:right;">ì´ë¦„ : </td><td><input id="helpPwdName" type="text" name="fullName" ></td></tr>
+						<tr><td style="text-align:right;">ìƒë…„ì›”ì¼ : </td><td><input id="helpPwdBirthday" type="date" name="birthday" ></td></tr>
 					</table>
 				</div>
 			</div>
 			<div class="button_container">
-				<input id="helpPwdBtn" type="button" value="°Ë»ö" class="submitBtn">
-				<input type="button" value="Ãë¼Ò" class="resetBtn" onclick="location.href='../' ">
+				<input id="helpPwdBtn" type="button" value="ê²€ìƒ‰" class="submitBtn">
+				<input type="button" value="ì·¨ì†Œ" class="resetBtn" onclick="location.href='../' ">
 			</div>
 		</form>
 	</div>
@@ -58,40 +50,38 @@
 	<input type="hidden" value="${result }" id="result">
 	
 		<c:if test="${noResult == 'y' }">
-			°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.<br>
-			<a href="javascript:history.back()">µ¹¾Æ°¡±â</a>
+			ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.<br>
+			<a href="javascript:history.back()">ëŒì•„ê°€ê¸°</a>
 		</c:if>
 		<c:if test="${!empty emails  }">
-			email ¸ñ·Ï<br>
+			email ëª©ë¡<br>
 			<c:forEach items="${emails}" var="email">
 				${email }<br>
 			</c:forEach>
-			<a href="javascript:history.back()">µ¹¾Æ°¡±â</a>
+			<a href="javascript:history.back()">ëŒì•„ê°€ê¸°</a>
 		</c:if>
 		
 		<c:if test="${noResultPwd == 'y' }">
-			°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.<br>
-			<a href="javascript:history.back()">µ¹¾Æ°¡±â</a>
+			ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.<br>
+			<a href="javascript:history.back()">ëŒì•„ê°€ê¸°</a>
 		</c:if>
 		<c:if test="${!empty email  }">
-			[email]  ${email } ·Î ÀÓ½Ã ºñ¹Ð¹øÈ£¸¦ Àü¼ÛÇÏ½Ã°Ú½À´Ï±î?
+			[email]  ${email } ë¡œ ìž„ì‹œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì „ì†¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 			<div class="button_container">
 			<form action="pwdUpdate" method="post">
 			<input type="hidden" name="email" value="${email }">
-				<input type="submit" value="È®ÀÎ" class="submitBtn">
-				<input type="button" value="Ãë¼Ò" class="resetBtn" onclick="location='refind'">
+				<input type="submit" value="í™•ì¸" class="submitBtn">
+				<input type="button" value="ì·¨ì†Œ" class="resetBtn" onclick="location='refind'">
 			</form>
 			</div>
 		</c:if>
 		
 		<c:if test="${!empty result  }">
-			ÀÓ½Ãºñ¹Ð¹øÈ£°¡ Àü¼ÛµÇ¾ú½À´Ï´Ù.<br>
-			<a href="javascript:history.back()">µ¹¾Æ°¡±â</a>
+			ìž„ì‹œë¹„ë°€ë²ˆí˜¸ê°€ ì „ì†¡ë˜ì—ˆìŠµë‹ˆë‹¤.<br>
+			<a href="javascript:history.back()">ëŒì•„ê°€ê¸°</a>
 		</c:if>
 	</div>
 	
 	
 </div>
-	
-</body>
-</html>
+<script src="${pageContext.request.contextPath}/resources/js/account.js"></script>
