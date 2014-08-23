@@ -323,7 +323,10 @@ $(document).ready(function(){
 		$('#sidemenu3').after($('#mon').toggle("display"));
 	});
 	// modal- 기능 구현
-	$("#modal-launcher,#modal-close, #modal-background").on('click', function() {
+	
+	
+	
+	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
@@ -362,8 +365,14 @@ $(document).ready(function(){
 			$(".modalViewcontent").remove();
 		}
 
-		$("#modal-content, #modal-background").toggleClass("active");
+		$("#modal-content, #modal-background").toggleClass("active");	
+		
+		
+		
 	});
+
+		
+
 
 	/*$("#writeTextarea").focus();*/
 	//개인기록 메뉴 
