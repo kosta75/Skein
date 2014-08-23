@@ -98,7 +98,7 @@ public class PhotoController {
 			if (colorTheme == null || colorTheme.equals("")) {
 				model.addAttribute("colorTheme", "blue");
 			} else {
-				model.addAttribute("colorTheme", colorTheme);
+				model.addAttribute("colorTheme", " " + colorTheme);
 			}
 			model.addAttribute("member", member);
 			model.addAttribute("birthDay",

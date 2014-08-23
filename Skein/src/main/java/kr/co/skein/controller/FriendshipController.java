@@ -93,6 +93,44 @@ public class FriendshipController {
 		return jsonView;
 	}
 	
+	@RequestMapping("/delete/{personalURI}")
+	public View deleteFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		System.out.println("INFO : Skein-F001 - 친구 추가, personalURI=" + personalURI );
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("searchKey", "personalURI");
+		parameters.put("searchValue", personalURI);
+		
+		List<Member> list = memberDao.getMembers(parameters);
+		if(list.size() > 0){
+			Member member = list.get(0);
+			System.out.println("INFO : Skein-F001 - 삭제하려는 계정 정보, email=" + member.getEmail());
+			
+			/*1	공지사항
+			2	친구신청
+			3	친구신청수락
+			4	공유신청
+			5	공유신청수락
+			6	댓글*/
+			
+			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+				SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+				UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
+				int friendshipRegResult = friendshipDao.deleteFriendship(user.getUsername(), member.getEmail());
+				System.out.println("INFO : Skein-F001 - 친구 등록 결과, friendshipRegResult=" + friendshipRegResult);				
+			}
+		}
+		
+		model.addAttribute("result", "true");
+		
+		/*return "friendship.searchMembers";*/
+		return jsonView;
+	}
+	
+	
+	
 	//친구 목록 조회
 	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
 		@RequestMapping("/viewlist")
@@ -138,7 +176,7 @@ public class FriendshipController {
 				if (colorTheme == null || colorTheme.equals("")) {
 					model.addAttribute("colorTheme", "blue");
 				} else {
-					model.addAttribute("colorTheme", colorTheme);
+					model.addAttribute("colorTheme", " " + colorTheme);
 				}
 				model.addAttribute("member", member);
 				model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));

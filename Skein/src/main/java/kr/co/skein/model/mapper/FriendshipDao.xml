@@ -22,5 +22,11 @@
 		) s
 		)WHERE r BETWEEN #{param2} AND #{param3}
     </select>
+    
+    <!-- 친구 삭제 -->
+    <delete id="deleteFriendship">
+    	DELETE FROM Friendship WHERE (Email = #{param1} AND FriendEmail = #{param2}) OR (Email = #{param2} AND FriendEmail = #{param1})  
+    </delete>
+    
 	
 </mapper>

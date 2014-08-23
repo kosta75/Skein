@@ -72,7 +72,7 @@ public class IndexController {
 			if (colorTheme == null || colorTheme.equals("")) {
 				model.addAttribute("colorTheme", "blue");
 			} else {
-				model.addAttribute("colorTheme", colorTheme);
+				model.addAttribute("colorTheme", " " + colorTheme);
 			}
 			
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);

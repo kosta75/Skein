@@ -14,7 +14,7 @@
 					<li><a href="${pageContext.request.contextPath}/timeline/viewlist">타임라인</a></li>
 					<li><a href="#">정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/photo/viewlist?pictureCount=0">사진</a></li>	
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist?friendCount=0">친구</a></li>
 	
 				</ul>
 			</nav>

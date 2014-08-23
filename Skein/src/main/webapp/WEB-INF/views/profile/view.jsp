@@ -45,7 +45,7 @@
 </c:forEach>
 
 <section class="content-container">
-	<se:authorize ifAnyGranted="ROLE-USER,ROLE-ADMIN">
+	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div id="subNavigationContainer">
 		<div id="menu" class="sub-menu">
 			<div class="menu-username">
@@ -62,7 +62,7 @@
 			</nav>
 		</div>
 			
-		<div id="menu2" class="sub-menu2 ${(colorTheme != null) ? colorTheme:'orange' }">
+		<div id="menu2" class="sub-menu2 ${colorTheme}">
 			<div class="menu-username">
 				<a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
 			</div>

@@ -5,89 +5,14 @@
 /* 가운데 전체 컨테이너 */
 .content-container{position:relative;}
 
-.friendship-content-wrapper{width:770px;margin-left:200px;position:relative;}
+/* 친구 페이지 가운데 컨테이너 */
+.friendship-content-wrapper{width:760px;margin-left:200px;position:relative;}
 
+.friend-item-container{position:relative;background:#fff;height:120px;border:1px solid;border-color:#C5C8CF;padding:10px;border-radius:8px;margin-bottom:5px;}
+.friend-image-wrapper{position:absolute;}
+.friend-image-wrapper img{width:120px;height:120px;}
 
+.friend-item-info-container{margin-left:130px;}
+.friend-info-wrapper{font-family:'맑은 고딕';font-size:14px;}
 
-
-
-
-
-
-
-.list {
-	/* width: 98%;
-	height: 100%; */
-	width: 100%;height: 200px;
-	background: #fff;
-	border: 1px solid;
-	border-color: #C5C8CF;
-	padding: 2px;
-	border-radius: 16px 16px 16px 16px;
-}
-
-.list div {
-	padding: 10px;
-}
-
-#myinfo div {
-	padding-top: 15px;
-	float: left;
-}
-
-#container div {
-	float: left;
-}
-
-#list {
-	width: 98%;
-	height: 100%;
-	background: #fff;
-	border: 1px solid;
-	border-color: #C5C8CF;
-	padding: 2px;
-}
-
-#list div {
-	padding: 10px;
-}
-
-#boardlist {
-	margin-bottom: 20px;
-}
-
-#side {
-	height: 100%;
-	list-style-image: url('../../resources/media/image/sidebar.png');
-	font-size: 20px;
-	text-align: left;
-	font-weight: bold;
-	vertical-align: top;
-}
-
-textarea {
-	resize: none;
-}
- /*  친구 목록 DIV  시작*/
- .friendlistInfo{
-border-radius: 6px 6px 6px 6px;
-width: 97%;
-height: 90%;
-
-}
- 
-.friendlistInfo div{
-height: 90%;
-width: 30%;
-}
-
-.finfo div {
-	width : 100%;
-	height : 20%;
-	clear:both;
-	
-	
-}
- 
- 
- /* 친구 목록 DIV  끝 */
+.unfriend-button{display:none;position:absolute;right:10px;top:10px;width:40px;height:40px;border:1px solid #f00;}

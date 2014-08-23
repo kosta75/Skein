@@ -1,6 +1,7 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +36,26 @@ public class MemberController {
 	private View jsonView;
 
 	@RequestMapping("/{personalURI}")
-	public String userProfile(@PathVariable String personalURI, Model model) throws ClassNotFoundException, SQLException{
+	public String userProfile(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		System.out.println("INFO : Skein-M006 - 사용자 프로필 조회 요청");
+		
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인된 사용자 정보를 정의합니다.");
+			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+			
+			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+		
+			if (colorTheme == null || colorTheme.equals("")) {
+				model.addAttribute("colorTheme", "blue");
+			} else {
+				model.addAttribute("colorTheme", " " + colorTheme);
+			}
+		}
+		
 		
 		if(!personalURI.endsWith("/")){
 			System.out.println("INFO : Skein-M006 - 사용자 프로필 조회 요청 정보, personalURI=" + personalURI);
@@ -48,6 +65,9 @@ public class MemberController {
 			
 			List<Member> members = memberDao.getMembers(parameters);
 			List<ProfileCommand> profiles = profileDao.getMemberProfiles(personalURI);
+			
+			
+			
 			
 			if(members.size() > 0){
 				System.out.println("INFO : Skein-M526 - 사용자 기본 정보 및 상세 프로필 조회");
