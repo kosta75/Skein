@@ -67,23 +67,23 @@ public class FriendshipController {
 				SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 				UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
 				
-				FriendshipNotificationCommand friendshipNotificationCommand = new FriendshipNotificationCommand();
+				/*FriendshipNotificationCommand friendshipNotificationCommand = new FriendshipNotificationCommand();
 				System.out.println("INFO : Skein-F001 - 사용자 알림 정보 주입");
 				friendshipNotificationCommand.setEmail(user.getUsername());
 				friendshipNotificationCommand.setFriendEmail(member.getEmail());
 				friendshipNotificationCommand.setNotificationCode(2);
 				friendshipNotificationCommand.setFriendshipConfirm(0);
-				friendshipNotificationCommand.setIsRead(0);
+				friendshipNotificationCommand.setIsRead(0);*/
 				
 				
 				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-				NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
-				
+				//NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+				System.out.println("여기서 알림정보를 업데이트 해야된다");
 				int friendshipRegResult = friendshipDao.addFriends(user.getUsername(), member.getEmail());
-				int notificationRegResult = notificationDao.friendshipNotificationReg(friendshipNotificationCommand);
+				//int notificationRegResult = notificationDao.friendshipNotificationReg(friendshipNotificationCommand);
 				
 				System.out.println("INFO : Skein-F001 - 친구 등록 결과, friendshipRegResult=" + friendshipRegResult);
-				System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, notificationRegResult=" + notificationRegResult);				
+				//System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, notificationRegResult=" + notificationRegResult);				
 			}
 		}
 		
@@ -92,6 +92,10 @@ public class FriendshipController {
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/delete/{personalURI}")
 	public View deleteFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
@@ -128,9 +132,7 @@ public class FriendshipController {
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}
-	
-	
-	
+
 	//친구 목록 조회
 	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
 		@RequestMapping("/viewlist")

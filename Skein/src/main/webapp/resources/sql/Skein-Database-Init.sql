@@ -863,7 +863,7 @@ ALTER TABLE FriendshipNotification
 		)
 		REFERENCES Notifications (
 			NotificationSeq
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE FriendshipNotification
 	ADD
