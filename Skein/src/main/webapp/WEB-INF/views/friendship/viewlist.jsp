@@ -113,6 +113,6 @@
 
    <div style="clear: both;"></div>
 
-	
+<script src="${pageContext.request.contextPath}/resources/js/friendship.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/friendship.js"></script>
 </section>

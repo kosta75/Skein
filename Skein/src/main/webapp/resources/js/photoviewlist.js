@@ -1,5 +1,6 @@
-$(document).ready(function() {
-	
+////photo js
+
+$(document).ready(function(){
 	// /////////////색깔변경////////////////
 	$('#changeBackgroundColor li').on('mouseover', function() {
 		$('.header-container').css("background-color",	$(this).css("background-color"));
@@ -11,10 +12,10 @@ $(document).ready(function() {
 	$('#changeBackgroundColor li').on('click', function() {
 		var obj = $(this);
 		var colorTheme = $(this).context.className;
-		var urlText = "//localhost:8080/skein/member/colorTheme";
+		
 		$.ajax({
 			type : 'post',
-			url : urlText,
+			url : '../member/colorTheme',
 			cache : false,
 			data :'colorTheme='+ colorTheme,
 			success : function(data) {
@@ -35,47 +36,42 @@ $(document).ready(function() {
 		});
 	});
 	// Bar 색상 변경 End /////////////////////////////////////////
-		
-	//헤더 네비게이션 메뉴
-	$('#notification').on('click', function() { 	//알림
-		$('#notificationList').toggle("display");
-		return false;
-	});
-
-
 	
+	//사진 mouseover 배경 색상 변경
+	$(document).on('mouseover', '.img-list', function(){
+		$(this).css("background-color",$('.sub-user-profile-tip').css("background-color"));
+	}).on('mouseout', '.img-list', function(){
+		$(this).css("background-color","white");
+	})
 	
-	//아이디 찾기, 비밀번호 찾기
-	$("#helpPwdBtn").on("click", function(){
-		if($("#helpPwdEmail").val() == ""){
-			alert("이메일을 입력해주세요");
-		}else if($("#helpPwdName").val() == ""){ 
-			alert("이름을 입력해주세요");
-		}else if($("#helpPwdBirthday").val() == ""){ 
-			alert("생년월일을 입력해주세요");
-		}else{
-			$("#helpPwd").submit();
+	/*스크롤 감지  */
+	function lastPostFunc(pictureCount){
+		$.ajax({
+			type:'get',
+			url:"moreviewlist",
+			data:"pictureCount="+ pictureCount,
+			dataType : "html",
+			success : function(data) {
+				console.log(data);
+				alert("ajax");
+				if(data.trim()==""){
+					
+				}else{
+					$('#boardlist-picture').append(data);
+				}
+			},
+			error: function(){
+				alert('스크롤 에러 :error while request..'   );
+			}
+		});
+	} 
+	         
+	$(window).scroll(function(){
+		if ($(window).scrollTop() == $(document).height() - $(window).height()){
+			alert('스크롤 감지');
+			//alert("현재 사진 불러온 수 : "+ $('.list').size());
+			var pictureCount = $('.list-item').size();
+			lastPostFunc(pictureCount);
 		}
 	});
-	$("#helpIdBtn").on("click", function(){
-		 if($("#helpIdName").val() == ""){ 
-			alert("이름을 입력해주세요");
-		}else if($("#helpIdBirthday").val() == ""){ 
-			alert("생년월일을 입력해주세요");
-		}else{
-			$("#helpId").submit();
-		}
-	});
-	if($("#noResult").val() != "" || $("#noResultPwd").val() != "" || $("#emails").val() != "" ||$("#email").val() != "" ||$("#result").val() != ""){
-		$(".form_wrap").css("display", "none");
-		$("#search_result").css("display", "block");
-	}
-	//아이디,비번찾기 끝
-	
-	
-	 $(".scroll").click(function(event){            
-	        event.preventDefault();
-	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-	});
-
 });
