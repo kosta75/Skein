@@ -25,7 +25,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 
 /* 헤더에 있는 로고 */
 .logo{width:70px;float:left;}
-.logo a{display:block;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
+div.logo a{display:block;color:#fff;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
 
 /* 헤더 Bar에 있는 a태그 메뉴 */
 .header-container a:active, .header-container a:hover, .header-container a:LINK, .header-container a:visited{text-decoration:none;}
@@ -61,7 +61,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 
 /* --------------------------- 로그인 됐을 때 헤더에 적용되는 CSS --------------------------- */
 /* 색상변경 */
-#changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:10px;height:55px;}
+#changeBackgroundColor{position:absolute; top:0px;left:0px;font-family:'맑은 고딕';font-size:15px;width:10px;height:55px;z-index:5}
 #changeBackgroundColor ul li{width:10px;height:9px;}
 #changeBackgroundColor ul li:first-child{height:10px;}
 #changeBackgroundColor, #changeBackgroundColor ul li, #changeBackgroundColor ul li:first-child{-webkit-transition:width 200ms, height 200ms; transition:width 200ms, height 200ms;}
@@ -90,6 +90,7 @@ body {background-color: #e9eaed;	margin: 0px; padding:0px;overflow-y:scroll;}
 /* 사용자 정보 네비게이션 */
 .info-nav-wrapper{height:inherit;}
 #infoContainer{position:absolute;right:0px;width:360px;height:inherit;}
+#infoContainer a{color:#fff;}
 #global-navigation ul{padding-top:17px;}
 #global-navigation ul li{float:left;font-family:'맑은 고딕';font-size:14px;padding:0px 10px;border-left:1px solid #fff;}
 #global-navigation ul li:first-child{border-left:none;}

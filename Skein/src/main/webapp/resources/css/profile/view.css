@@ -4,7 +4,7 @@
 
 .informbox-header {padding:12px;border-bottom:1px solid #d3d6db;background:#f6f7f8;font-size:20px;	vertical-align: bottom;}
 .informbox-header img {margin-right:10px;}
-.informbox-content {padding:10px 0;height:auto;}
+.informbox-content {padding:10px 0;height:450px;}
 
 .content-inner {padding:0 10px;float:left;min-width:400px;height:auto;margin-bottom:10px;}
 .content-inner:first-child {border-right:1px solid #d3d6db;}

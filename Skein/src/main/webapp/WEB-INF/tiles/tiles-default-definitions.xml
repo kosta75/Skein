@@ -32,13 +32,13 @@
 	
 	
 	<!-- time 라인  -->
-   <definition name="photo.viewlist" template="/WEB-INF/views/photo/comm/layout.jsp" extends="index">
-      <!-- 각 페이지에 추가하려는 요소 Load -->
+   <!-- <definition name="photo.viewlist" template="/WEB-INF/views/photo/comm/layout.jsp" extends="index">
+      각 페이지에 추가하려는 요소 Load
       <put-attribute name="title" value="viewlist" />
-      <!-- content -->
+      content
       <put-attribute name="viewlist" value="/WEB-INF/views/photo/viewlist.jsp" />
       
-   </definition>
+   </definition> -->
    
  
    

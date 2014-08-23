@@ -33,6 +33,7 @@
 					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="${pageContext.request.contextPath}/security/logout">Log Out</a></li>
+					<li><a href="#changeBackgroundColor" class="scroll">▲TOP</a></li>
 				</ul>
 			</nav>
 		</div>

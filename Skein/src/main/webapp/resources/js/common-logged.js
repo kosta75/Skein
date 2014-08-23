@@ -1,11 +1,35 @@
 $(document).ready(function() {
 	
-	// /////////////색깔변경////////////////
+	//상단 메뉴 고정
+	var menupos = $("#menu").offset().top;
+	
+	$(window).scroll(function() {
+		if ($(window).scrollTop() >= menupos) {
+
+			$("#menu2").fadeIn('fast');
+			$("#menu2").css("position", "fixed");
+			$("#menu2").css("top", "0");
+
+		} else {
+			$("#menu2").css("display", "none");
+			$("#menu2").css("top", "");
+		}
+	});
+	
+	///////////////색깔변경////////////////
+	var color = $(".header-container").css("background-color");
+	console.log(color);
+	
 	$('#changeBackgroundColor li').on('mouseover', function() {
 		$('.header-container').css("background-color",	$(this).css("background-color"));
 		$('.header-container').css("background-color",	$(this).css("background-color"));
 		$('.sub-user-profile-tip').css("background-color",	$(this).css("background-color"));
 		$('#menu2').css("background-color",	$(this).css("background-color"));
+	}).on('mouseleave',function(e){
+		$('.header-container').css("background-color",	color);
+		$('.header-container').css("background-color",	color);
+		$('.sub-user-profile-tip').css("background-color", color);
+		$('#menu2').css("background-color", color);
 	});
 	
 	$('#changeBackgroundColor li').on('click', function() {

@@ -5,21 +5,7 @@
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
 	<div id="subNavigationContainer">
-		<div id="menu" class="sub-menu">
-			<div class="menu-username">
-				<a  href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
-			</div>
-			<nav class="sub-navigation">
-				<ul class="arrowunderline">
-					<li><a href="/skein">타임라인</a></li>
-					<li><a href="#">정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>	
-					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
 	
-				</ul>
-			</nav>
-		</div>
-			
 		<div id="menu2" class="sub-menu2 ${colorTheme}">
 			<div class="menu-username">
 				<a  href="${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
@@ -37,6 +23,23 @@
 				</ul>
 			</nav>
 		</div>
+		
+		<div id="menu" class="sub-menu">
+			<div class="menu-username">
+				<a  href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${sessionScope.PersonalURI}</a>
+			</div>
+			<nav class="sub-navigation">
+				<ul class="arrowunderline">
+					<li><a href="/skein">타임라인</a></li>
+					<li><a href="#">정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/photo/viewlist">사진</a></li>	
+					<li><a href="${pageContext.request.contextPath}/friendship/viewlist">친구</a></li>
+	
+				</ul>
+			</nav>
+		</div>
+			
+		
 	</div>
 
 	<div id="modal-background"></div>
