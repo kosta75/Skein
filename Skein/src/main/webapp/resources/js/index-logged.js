@@ -313,19 +313,15 @@ $(document).ready(function(){
 		}
 	});*/
 
-
 	$('#sidemenu1').click(function() {
 		$('#sidemenu1').append($('#mon').toggle("display"));
 	});
-
 	$('#sidemenu2').click(function() {
 		$('#sidemenu2').after($('#mon').toggle("display"));
 	});
-
 	$('#sidemenu3').click(function() {
 		$('#sidemenu3').after($('#mon').toggle("display"));
 	});
-
 	// modal- 기능 구현
 	$("#modal-launcher,#modal-close, #modal-background").on('click', function() {
 		var groupSeq = $(this).find("input").val();
@@ -334,7 +330,7 @@ $(document).ready(function(){
 			$('body').on('wheel.modal mousewheel.modal', 	function() {
 				return false;
 			});
-			
+
 			$.ajax({
 				type : 'post',
 				url : 'board/detailView',
@@ -355,7 +351,7 @@ $(document).ready(function(){
 					}
 				},
 				error : function() {
-					alert('Error while request..');
+					alert('indexlogged 354 : Error while request..');
 				}
 			});
 		} else {
@@ -369,7 +365,6 @@ $(document).ready(function(){
 	});
 
 	/*$("#writeTextarea").focus();*/
-	
 	//개인기록 메뉴 
 	$("#historyWriteMenu1").click(function() {
 		if($("#historyImg").css("display") == "block"){
@@ -382,7 +377,6 @@ $(document).ready(function(){
 		}
 		});
 
-	
 	$("#historyWriteMenu2").click(function() {
 		
 		if($("#historyDate").css("display") == "block"){
@@ -395,7 +389,6 @@ $(document).ready(function(){
 		}
 		});
 
-	
 	$("#historyWriteMenu4").click(function() {
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
@@ -409,17 +402,13 @@ $(document).ready(function(){
 	});
 	
 	//다이어리 메뉴
-	$("#diaryWriteMenu1").click(function() {
-		
+	$("#diaryWriteMenu1").click(function() {	
 		$("#diaryImg").css("display","block");
 			});
 
-	
 	//이모티콘 추가
 	$(".emoticon").click(function(){
-		
 		$("#writeTextarea").append($(this).clone());	
-	
 		$("#writeTextarea").focus();
 	
 	});
@@ -474,21 +463,16 @@ function lastPostFunc(pictureCount){
  
  $(window).scroll(function(){ 
     if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
-      
-      var pictureCount = $('.boardlist').size();
-    
+      var pictureCount = $('.group-item-container').size();
+     alert(pictureCount);
        lastPostFunc(pictureCount); 
-    }
-    //
-    //}       
+    }      
  });
+ 
 //submit
 	$("#hitstoryWriteBtn").click(function(){
-		
 		$("#content").val($("#writeTextarea").html());
-		
 		$("#hitstoryForm").submit();
-		
 	});
 	
 

@@ -1,3 +1,5 @@
+////photo js
+
 $(document).ready(function(){
 	// /////////////색깔변경////////////////
 	$('#changeBackgroundColor li').on('mouseover', function() {
@@ -46,11 +48,12 @@ $(document).ready(function(){
 	function lastPostFunc(pictureCount){
 		$.ajax({
 			type:'get',
-			url:"viewlist",
+			url:"moreviewlist",
 			data:"pictureCount="+ pictureCount,
 			dataType : "html",
 			success : function(data) {
 				console.log(data);
+				alert("ajax");
 				if(data.trim()==""){
 					
 				}else{
@@ -65,7 +68,7 @@ $(document).ready(function(){
 	         
 	$(window).scroll(function(){
 		if ($(window).scrollTop() == $(document).height() - $(window).height()){
-			//alert('스크롤 감지');
+			alert('스크롤 감지');
 			//alert("현재 사진 불러온 수 : "+ $('.list').size());
 			var pictureCount = $('.list-item').size();
 			lastPostFunc(pictureCount);

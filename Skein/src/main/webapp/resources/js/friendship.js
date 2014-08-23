@@ -15,7 +15,7 @@ $(document).ready(function(){
 				
 			},
 			error : function() {
-				alert('Error while request..');
+				alert('friendship  line 18 :Error while request..');
 			}
 		});
 	});
@@ -24,11 +24,11 @@ $(document).ready(function(){
     function lastPostFunc(friendCount){ 
     $.ajax({
           type:'get',
-          url:"viewlist",
+          url:"moreviewlist",
           data:"friendCount="+ friendCount,
           dataType : "html",
           success : function(data) {
-        	 // alert(data);
+        	  alert(data);
            if(data.trim()==""){
               
            }else{
@@ -43,7 +43,7 @@ $(document).ready(function(){
      
     $(window).scroll(function(){ 
        if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
-         // alert('스크롤 감지');
+          alert('스크롤 감지');
          //alert("현재 사진 불러온 수 : "+ $('.list').size());
     	  
          var pictureCount = $('.list').size();
