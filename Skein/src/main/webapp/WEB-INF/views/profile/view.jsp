@@ -99,16 +99,36 @@
 .has-sub{
 	display:none;
 	position: absolute;
-	min-width: 100%;
-	min-height: 100%;
+	border: 1px solid #777;
+	background-color: #fff;
+	margin-top: 2px;
 }
 
 .has-sub ul {
 	list-style: none;
 	min-width: 100%;
+	padding: 3px 0 4px;
+	overflow-y: auto;
+	
+}
+.has-sub .publicbtn{
+	border: solid #fff;
+	border-width: 1px 0;
+	color: #111;
+	display: block;
+	font-weight: normal;
+	line-height: 16px;
+	padding: 1px 16px 1px 22px;
+	text-decoration: none;
+}
+.has-sub li a.checked{
+	background: url(resources/media/image/checked.png) left 4px no-repeat;
+}
+.has-sub li a.selected{
+	background-color: fuchsia;
 }
 </style>
-${memberProfile.fullName} ${memberProfile.birthday }
+
 <br />
 <c:forEach var="profiles" items="${memberProfile.profiles}">
 	<c:if test="${profiles.profileCode == 2 }">
@@ -188,12 +208,26 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata profileImage">${profileImage }</div>
 								<div class="inform_button profileImage">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty profileImage }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 								<div class="inform_edit profileImage">
-									<input type="hidden" value="2">
+									<input type="hidden" name="profileImage" value="2">
 									<div class="dropzon profileImage"></div>
-									<input type="button" value="저장" class="profile_editBtn ${profileImage }">
+									<select name="publicLevelCode">
+										<option value="5">전체공개</option>
+										<option value="4">Sil사용자공개</option>
+										<option value="3">친구공개</option>
+										<option value="1">나만보기</option>
+									</select>
+									<input type="button" value="저장" class="profile_editBtn profileImage">
 								</div>
 							</div>
 						</div>
@@ -205,10 +239,18 @@ birthdayPublic
 								<div class="informdata birthday">${memberProfile.birthday }</div>
 								<div class="inform_button birthday">
 									<input type="button" value="공개범위">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit birthday">
-								<input type="hidden" value="2"> 수정form
+								<input type="hidden" name="birthday" value="10">
 							</div>
 						</div>
 					</div>
@@ -218,28 +260,45 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata statusComment">${statusComment }</div>
 								<div class="inform_button statusComment">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty statusComment }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit statusComment">
-								<input type="hidden" value="5">
-								수정form
-								<input type="button" value="저장" class="profile_editBtn ${statusComment }">
+								<input type="hidden" name="statusComment" value="5">
+								<input type="text" name="profileInfo" value="${statusComment }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn statusComment">
 							</div>
 						</div>
 					</div>
-					<div class="inform_elem status">
-						<b>계정 설정</b>
-						<div class="inform_status">
-							<div>
-								<a href="#"> 비빌번호변경 </a><br>
-							</div>
-							<div>
-								<a href="#"> 휴면계정신청 </a> || <a href="#"> 탈퇴 </a> || <a href="#">
-									계정폐쇄 </a>
+					
+					<c:if test="${sessionScope.PersonalURI == personalURI}">
+						<div class="inform_elem status">
+							<b>계정 설정</b>
+							<div class="inform_status">
+								<div>
+									<a href="#"> 비빌번호변경 </a><br>
+								</div>
+								<div>
+									<a href="#"> 휴면계정신청 </a> || <a href="#"> 탈퇴 </a> || <a href="#">
+										계정폐쇄 </a>
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 				<div class="content_inner">
 					<!-- 오른쪽 -->
@@ -249,12 +308,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata openEmail">${openEmail }</div>
 								<div class="inform_button openEmail">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty openEmail }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit openEmail">
-								<input type="hidden" value="3"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${openEmail }">
+								<input type="hidden" name="openEmail" value="3">
+								<input type="text" name="profileInfo" value="${openEmail }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn openEmail">
 							</div>
 						</div>
 					</div>
@@ -264,12 +338,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata phoneNumber">${phoneNumber }</div>
 								<div class="inform_button phoneNumber">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty phoneNumber }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit phoneNumber">
-								<input type="hidden" value="4"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${phoneNumber }">
+								<input type="hidden" name="phoneNumber" value="4">
+								<input type="text" name="profileInfo" value="${phoneNumber }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn phoneNumber">
 							</div>
 						</div>
 					</div>
@@ -279,12 +368,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata blog">${blog }</div>
 								<div class="inform_button blog">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty blog }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit blog">
-								<input type="hidden" value="9"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${blog }">
+								<input type="hidden" name="blog" value="9">
+								<input type="text" name="profileInfo" value="${blog }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn blog">
 							</div>
 						</div>
 					</div>
@@ -294,12 +398,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata address">${address }</div>
 								<div class="inform_button address">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty address }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit address">
-								<input type="hidden" value="1"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${address }">
+								<input type="hidden" name="address" value="1">
+								<input type="text" name="profileInfo" value="${address }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn address">
 							</div>
 						</div>
 					</div>
@@ -309,12 +428,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata language">${language }</div>
 								<div class="inform_button language">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty language }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit language">
-								<input type="hidden" value="8"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${language }">
+								<input type="hidden" name="language" value="8">
+								<input type="text" name="profileInfo" value="${language }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn language">
 							</div>
 						</div>
 					</div>
@@ -324,12 +458,27 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata politics">${politics }</div>
 								<div class="inform_button politics">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty politics }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<div class='has-sub' >
+								      <ul>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								      </ul>
+								   </div>
 								</div>
 							</div>
 							<div class="inform_edit politics">
-								<input type="hidden" value="7"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${politics }">
+								<input type="hidden" name="politics" value="7">
+								<input type="text" name="profileInfo" value="${politics }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn politics">
 							</div>
 						</div>
 					</div>
@@ -339,25 +488,34 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata religion">${religion }</div>
 								<div class="inform_button religion">
-									<input type="button" value="공개범위"><input type="button" value="수정">
+									<c:if test="${!empty religion }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li>전체공개</li>
-								         <li>친구공개</li>
-								         <li>나만보기</li>
+								         <li><a href="#" class="publicbtn public">전체공개</a></li>
+								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
+								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
 							</div>
 							<div class="inform_edit religion">
-								<input type="hidden" value="6"> 수정form
-								<input type="button" value="저장" class="profile_editBtn ${religion }">
+								<input type="hidden" name="religion" value="6"> 
+								<input type="text" name="profileInfo" value="${religion }" />
+								<select name="publicLevelCode">
+									<option value="5">전체공개</option>
+									<option value="4">Sil사용자공개</option>
+									<option value="3">친구공개</option>
+									<option value="1">나만보기</option>
+								</select>
+								<input type="button" value="저장" class="profile_editBtn religion">
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- right 끝 -->
 			</div>
+			<input type="hidden" name="email" value="${email }" />
 			<input type="hidden" name="profileImagePublic" value="${profileImagePublic }" />
 			<input type="hidden" name="statusCommentPublic" value="${statusCommentPublic }" />
 			<input type="hidden" name="openEmailPublic" value="${openEmailPublic }" />
@@ -371,4 +529,8 @@ birthdayPublic
 		</form>
 	</div>
 </div>
+
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
+<c:if test="${sessionScope.PersonalURI == personalURI}">
+	<script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>
+</c:if>

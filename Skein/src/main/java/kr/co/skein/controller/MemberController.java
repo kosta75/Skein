@@ -58,8 +58,9 @@ public class MemberController {
 				mpc.setBirthday(member.getBirthday());
 				mpc.setProfiles(profiles);
 				
+				model.addAttribute("email", member.getEmail());
 				model.addAttribute("memberProfile", mpc);
-				
+				model.addAttribute("personalURI",personalURI);
 				return "profile.view"; 
 			}else{
 				System.out.println("INFO : Skein-U516 - 요청된 URI의 사용자가 존재하지 않습니다.");
