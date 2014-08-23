@@ -17,7 +17,7 @@
          ${list.fullName}<br>
          ${list.writeDate}
       </div>
-      
+       <div style="float: right;"><input type="button" value="공유하기"> </div>
       <div style="clear: both; ">
          ${list.content}
          <c:if test="${list.fileName != null}">

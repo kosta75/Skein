@@ -337,8 +337,8 @@ $(document).ready(function(){
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
-					$(".modalcontent").append("<div style='height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div><div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
+					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
+							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
 
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
@@ -438,7 +438,6 @@ $("#historyplace").click(function(){
 	$("#historyplace").val('');
 	
 });
-
 
 //메인 더보기 
 function lastPostFunc(pictureCount){ 

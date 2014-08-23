@@ -28,7 +28,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 /* Modal */
 #modal-content{display:none;}
-
+.modalcontent{width:380px;}
 /* 가운데 전체 컨테이너 */
 .content-container{position:relative;}
 

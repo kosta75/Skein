@@ -75,6 +75,37 @@ $(document).ready(function(){
 		$(this).find('.friendBtn').css("display","block")
 	});
     
-   
+   /////////////////////색상변경//////////////////////////////////////////////////////////////////
+	$('#changeBackgroundColor li').on('mouseover', function() {
+		$('.header-container').css("background-color",	$(this).css("background-color"));
+		$('.header-container').css("background-color",	$(this).css("background-color"));
+		$('.sub-user-profile-tip').css("background-color",	$(this).css("background-color"));
+		$('#menu2').css("background-color",	$(this).css("background-color"));
+	});
+	
+	$('#changeBackgroundColor li').on('click', function() {
+		var obj = $(this);
+		var colorTheme = $(this).context.className;
+		
+		$.ajax({
+			type : 'post',
+			url : 'member/colorTheme',
+			cache : false,
+			data :'colorTheme='+ colorTheme,
+			success : function(data) {
+				alert("사용자 지정색상이 변경되었습니다!");
+				$('.header-container').css("background-color",	$(obj).css("background-color"));
+				$('.header-container').css("background-color",	$(obj).css("background-color"));
+				$('.sub-user-profile-tip').css("background-color",	$(obj).css("background-color"));
+				$('#menu2').css("background-color",	$(obj).css("background-color"));
+				
+				
+			},
+			error : function() {
+				alert('Error while request..');
+			}
+		});
+	});
+	////////////////////////////////////////////////////////////////////////////////////
 
 });

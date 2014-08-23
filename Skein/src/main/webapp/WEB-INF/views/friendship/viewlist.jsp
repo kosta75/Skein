@@ -24,7 +24,7 @@
       <!--left  -->
    
       <!--/////////////////사이드 바!! 사용자 정보 //////////////////  -->
-  <div id="containerLeft" style="width:25%; height: 100%;float: left;">
+ <%--  <div id="containerLeft" style="width:25%; height: 100%;float: left;">
 
 
 <div id="infomember"   style="width: 98%;height:200px; ">
@@ -50,7 +50,30 @@
 </div> 
 
 </div> 
-<div style="clear: both; margin-top: 20px; ">하이아아아이</div>
+<div style="clear: both; margin-top: 20px; ">하이아아아이</div> --%>
+<!-- 왼쪽 사용자 개인정보  -->
+	<div id="subUserProfileContainer">
+		<div id="infomember">
+			<div class="sub-user-profile-tip ${colorTheme}"></div>
+			<div class="sub-user-profile-wrapper">
+				<div class="sub-user-profile-image-container">
+					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+				</div>
+				<div class="sub-user-profile-name">
+					<a href="${pageContext.request.contextPath}/${sessionScope.PersonalURI}">${member.fullName}</a>
+				</div>
+				
+				<div class="sub-user-proifle-info">
+					<p>${member.email}</p>
+					<div class="sub-user-profile-birthday">								
+						<fmt:formatDate value="${member.birthday}" type="date" pattern="YYYY년MM월dd일"/>
+						<c:if test="${birthDay == toDay}">
+							<img src="${pageContext.request.contextPath}/resources/media/image/birthday.jpg" style="width: 30px;height: 30px;"/>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
 <!--******************************날씨 정보******************************   -->
          <div
             style="clear: both; width: 96%; height: 350px; background-color: white; border-radius: 10px 10px 10px 10px; margin-top: 30px;">
