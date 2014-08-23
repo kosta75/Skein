@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <se:authentication property="name" var="LoginUser" />
 <section class="content-container">
 	<div id="subNavigationContainer">
@@ -86,4 +87,4 @@
 		</div>
 	</div>
 </section>
-<script src="${pageContext.request.contextPath}/resources/js/photo.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/photoviewlist.js"></script>
