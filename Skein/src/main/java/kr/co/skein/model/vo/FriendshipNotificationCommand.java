@@ -3,16 +3,9 @@ package kr.co.skein.model.vo;
 
 public class FriendshipNotificationCommand extends NotificationCommand{
 
-	private int friendshipNotificationSeq;
 	private String friendEmail;
 	private int friendshipConfirm;
 	
-	public int getFriendshipNotificationSeq() {
-		return friendshipNotificationSeq;
-	}
-	public void setFriendshipNotificationSeq(int friendshipNotificationSeq) {
-		this.friendshipNotificationSeq = friendshipNotificationSeq;
-	}
 	public String getFriendEmail() {
 		return friendEmail;
 	}
@@ -24,5 +17,7 @@ public class FriendshipNotificationCommand extends NotificationCommand{
 	}
 	public void setFriendshipConfirm(int friendshipConfirm) {
 		this.friendshipConfirm = friendshipConfirm;
-	}		
+	}
+	
+	
 }

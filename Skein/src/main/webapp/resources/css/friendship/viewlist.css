@@ -1,36 +1,20 @@
 @CHARSET "UTF-8";
-@CHARSET "UTF-8";
+/* clearfix */
+.main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
-#selectpage {
-	border-bottom-color: gray;
-	display: none;
-	background-color: #fff;
-	width: 100px;
-	height: 300px;
-	position: fixed;
-	top: 10%;
-	left: 2%;
-	z-index: 3;
-}
-/*왼쪽 메뉴 시작   */
-#sideProfileImg {
-	width:80px;
-	height:80px;
-	border: 3px solid;
-	border-color: #fff;
-	border-radius: 6px;
-	vertical-align: middle;
-	margin-left: 10px;
+/* 가운데 전체 컨테이너 */
+.content-container{position:relative;}
 
-}
-#sideProfileHeader{
-position: absolute;
-z-index: 0;
-width: 230px;
-margin-top: 40px;
+.friendship-content-wrapper{width:770px;margin-left:200px;position:relative;}
 
-}
-/*왼쪽 메뉴 끝  */
+
+
+
+
+
+
+
+
 .list {
 	/* width: 98%;
 	height: 100%; */

@@ -1,24 +1,6 @@
 $(document).ready(function(){
 	
-	$(".addFriends").on('click', function(){
-		var obj = $(this);
-		console.log($(this));
-		$.ajax({
-			type : 'post',
-			url : '../../friendship/add/' + $(this).data("uri"),
-			cache : false,
-			success : function(data) {
-				//console.log(data);
-				obj.parent().append("<div>Text</div>");
-				obj.remove();
-				
-				
-			},
-			error : function() {
-				alert('Error while request..');
-			}
-		});
-	});
+	
 	//**********************친구 목록 페이지 처리 ************************//
 	/*스크롤 감지  */
     function lastPostFunc(friendCount){ 

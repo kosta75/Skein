@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class NotificationCommand {
 
-	private int notificationSeq;
+	private String notificationSeq;
 	private String email;
 	private int isRead;
 	
@@ -14,10 +14,10 @@ public class NotificationCommand {
 	private Date createDate;
 	private int notificationCode;
 	
-	public int getNotificationSeq() {
+	public String getNotificationSeq() {
 		return notificationSeq;
 	}
-	public void setNotificationSeq(int notificationSeq) {
+	public void setNotificationSeq(String notificationSeq) {
 		this.notificationSeq = notificationSeq;
 	}
 	public String getEmail() {

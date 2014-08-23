@@ -3,15 +3,17 @@
 <mapper namespace="kr.co.skein.model.dao.NotificationDao">
 
 	<!-- 사용자 알림 등록 -->
-	<insert id="notificationReg" parameterType="kr.co.skein.model.vo.NotificationCommand">
-		
-		INSERT INTO Notifications VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
+	<insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
+		</selectKey>
+		INSERT ALL
+			INTO Notifications(NotificationSeq, Email, IsRead, CreateDate, NotificationCode)
+			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
+			INTO FriendshipNotification(NotificationSeq, Email, FriendEmail, FriendshipConfirm)
+			VALUES(#{notificationSeq},#{email}, #{friendEmail}, #{friendshipConfirm})
+		SELECT * FROM DUAL
 	</insert>
-
-	<!-- 가장 큰 사용자알림 식별번호 얻기 -->
-	<select id="getNotificationMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(NotificationSeq)+1,1) FROM Notifications
-	</select>
 	
 	<!--  친구알림 등록  -->
 	
@@ -21,7 +23,7 @@
 	4	공유신청
 	5	공유신청수락
 	6	댓글 -->
-	<insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.Notification">
+	<!-- <insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.Notification">
 		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
 			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
 		</selectKey>
@@ -41,12 +43,7 @@
 			INTO FriendshipNotification VALUES(#{notificationSeq}, #{email}, #{friendEmail}, #{friendshipConfirm})
 			</if>
 		SELECT * FROM DUAL 
-	</insert>
-	
-	<!-- 가장 큰 친구알림 식별번호 얻기 -->
-	<select id="getFriendshipNotificationMaxSequence" resultType="Integer">
-		SELECT NVL(MAX(FriendshipNotificationSeq)+1,1) FROM FriendshipNotification
-	</select>
+	</insert> -->
 	
 	<!-- 사용자 알림 조회  -->
 	<select id="getNotifications" resultType="kr.co.skein.model.vo.NotificationCountCommand">

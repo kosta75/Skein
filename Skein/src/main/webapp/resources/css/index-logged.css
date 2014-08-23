@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-
 /* a태그 초기화 */
 a, a:hover, a:visited, a:link, a:active, a:focus{text-decoration:none;color:black;}
 *{font-family:'맑은 고딕';}

@@ -4,24 +4,24 @@ $(document).ready(function() {
 	$('#changeBackgroundColor li').on('mouseover', function() {
 		$('.header-container').css("background-color",	$(this).css("background-color"));
 		$('.header-container').css("background-color",	$(this).css("background-color"));
-		$('#leftinfo').css("background-color",	$(this).css("background-color"));
+		$('.sub-user-profile-tip').css("background-color",	$(this).css("background-color"));
 		$('#menu2').css("background-color",	$(this).css("background-color"));
 	});
 	
 	$('#changeBackgroundColor li').on('click', function() {
 		var obj = $(this);
 		var colorTheme = $(this).context.className;
-		
+		var urlText = "//localhost:8080/skein/member/colorTheme";
 		$.ajax({
 			type : 'post',
-			url : 'member/colorTheme',
+			url : urlText,
 			cache : false,
 			data :'colorTheme='+ colorTheme,
 			success : function(data) {
 				alert("사용자 지정색상이 변경되었습니다!");
 				$('.header-container').css("background-color",	$(obj).css("background-color"));
 				$('.header-container').css("background-color",	$(obj).css("background-color"));
-				$('#leftinfo').css("background-color",	$(obj).css("background-color"));
+				$('.sub-user-profile-tip').css("background-color",	$(obj).css("background-color"));
 				$('#menu2').css("background-color",	$(obj).css("background-color"));
 				
 				/*$('.header-container').css("background-color", $(this).css(colorTheme));

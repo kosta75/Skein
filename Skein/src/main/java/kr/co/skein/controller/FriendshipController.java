@@ -1,6 +1,8 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,43 +61,30 @@ public class FriendshipController {
 			3	친구신청수락
 			4	공유신청
 			5	공유신청수락
-			6	댓글
-			7	공지사항*/
+			6	댓글*/
 			
 			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 				SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 				UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
 				
-				FriendshipNotificationCommand command = new FriendshipNotificationCommand();
+				FriendshipNotificationCommand friendshipNotificationCommand = new FriendshipNotificationCommand();
 				System.out.println("INFO : Skein-F001 - 사용자 알림 정보 주입");
-				command.setEmail(user.getUsername());
-				command.setFriendEmail(member.getEmail());
-				command.setNotificationCode(2);
-				command.setFriendshipConfirm(0);
-				command.setIsRead(0);
+				friendshipNotificationCommand.setEmail(user.getUsername());
+				friendshipNotificationCommand.setFriendEmail(member.getEmail());
+				friendshipNotificationCommand.setNotificationCode(2);
+				friendshipNotificationCommand.setFriendshipConfirm(0);
+				friendshipNotificationCommand.setIsRead(0);
+				
 				
 				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
 				NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 				
-				int notificationSeq = notificationDao.getNotificationMaxSequence();
-				int friendshipNotificationSeq = notificationDao.getFriendshipNotificationMaxSequence();
-
-				int res1 = friendshipDao.addFriends(user.getUsername(), member.getEmail());
-				System.out.println("INFO : Skein-F001 - 친구 등록 결과, res1=" + res1);
+				int friendshipRegResult = friendshipDao.addFriends(user.getUsername(), member.getEmail());
+				int notificationRegResult = notificationDao.friendshipNotificationReg(friendshipNotificationCommand);
 				
-				command.setNotificationSeq(notificationSeq);
-				int res2 = notificationDao.notificationReg(command);
-				System.out.println("INFO : Skein-F001 - 사용자 알림 등록 결과, res2=" + res2);
-				command.setNotificationSeq(notificationSeq);
-				command.setFriendshipNotificationSeq(friendshipNotificationSeq);
-				
-				int res3 = notificationDao.friendshipNotificationReg(command);
-				System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, res3=" + res3);
-				
+				System.out.println("INFO : Skein-F001 - 친구 등록 결과, friendshipRegResult=" + friendshipRegResult);
+				System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, notificationRegResult=" + notificationRegResult);				
 			}
-						
-			//친구 추가
-			//알림 생성
 		}
 		
 		model.addAttribute("result", "true");
@@ -142,6 +131,18 @@ public class FriendshipController {
 					//System.out.println(list.get(i).getFriendEmail());
 				}
 				model.addAttribute("list", list);
+				
+				Member member = memberDao.getMemberInfo(user.getUsername());
+				String colorTheme = memberDao.selectColorTheme(user.getUsername());
+				SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+				if (colorTheme == null || colorTheme.equals("")) {
+					model.addAttribute("colorTheme", "blue");
+				} else {
+					model.addAttribute("colorTheme", colorTheme);
+				}
+				model.addAttribute("member", member);
+				model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
+				model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
 				
 			}
 			
