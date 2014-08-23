@@ -473,7 +473,7 @@ function lastPostFunc(pictureCount){
  $(window).scroll(function(){ 
     if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
       var pictureCount = $('.group-item-container').size();
-     alert(pictureCount);
+     
        lastPostFunc(pictureCount); 
     }      
  });
