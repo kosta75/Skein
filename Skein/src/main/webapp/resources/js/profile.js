@@ -10,6 +10,9 @@ $(document).ready(function() {
 		$(".informbox_content").css("height", lheight);
 	}
 
+	
+	
+	
 	$(".inform_edit").on("click",".profile_editBtn",function(){
 		/*
 		data = "profileName="+$(".inform_edit."+$(this).attr("class").substring(14) +" input[type=hidden]").val() +
@@ -36,13 +39,16 @@ $(document).ready(function() {
 	});
 	
 	$("input:button[value=공개범위]").click( function(){
+		$("div.has-sub").css("display", "none").css("z-index", "");
 		$(this).parent().find("div.has-sub").css("display", "block").css("z-index", "100");
 	});
 	
 	
 	
-	alert($(".A").data("phonenumberpublic"));
 });
+
+
+
 	function edit_ajax(){
 		/*여기 ajax */
 		

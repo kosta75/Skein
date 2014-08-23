@@ -151,7 +151,25 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 		<c:set var="birthdayPublic" value="${profiles.publicLevelCode}" />
 	</c:if>
 </c:forEach>
+<!-- 
+profileImagePublic
+statusCommentPublic
+openEmailPublic
+phoneNumberPublic
+blogPublic
+addressPublic
+languagePublic
+religionPublic
+politicsPublic
+birthdayPublic
 
+1 Privacy
+2 Share
+3 Friend
+4 User
+5 Public
+
+ -->
 <div class="informbox information">
 	<div class="informbox_header">
 		<!-- 정보헤더 -->
@@ -340,6 +358,16 @@ ${memberProfile.fullName} ${memberProfile.birthday }
 				</div>
 				<!-- right 끝 -->
 			</div>
+			<input type="hidden" name="profileImagePublic" value="${profileImagePublic }" />
+			<input type="hidden" name="statusCommentPublic" value="${statusCommentPublic }" />
+			<input type="hidden" name="openEmailPublic" value="${openEmailPublic }" />
+			<input type="hidden" name="phoneNumberPublic" value="${phoneNumberPublic }" />
+			<input type="hidden" name="blogPublic" value="${blogPublic }" />
+			<input type="hidden" name="addressPublic" value="${addressPublic }" />
+			<input type="hidden" name="languagePublic" value="${languagePublic }" />
+			<input type="hidden" name="religionPublic" value="${religionPublic }" />
+			<input type="hidden" name="politicsPublic" value="${politicsPublic }" />
+			<input type="hidden" name="birthdayPublic" value="${birthdayPublic }" />
 		</form>
 	</div>
 </div>
