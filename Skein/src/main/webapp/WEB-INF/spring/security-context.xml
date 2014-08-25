@@ -42,9 +42,16 @@
 		invalidate-session="true"/>
 
 		<!-- 권한별 URL Pattern  -->
+		<security:intercept-url pattern="/board/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/notification/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/friendship/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/photo/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/account/*" access="hasRole('ROLE_ADMIN')" />
+		<!-- <security:intercept-url pattern="/friendship/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/friendship/add/*" access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/post/*" access="ROLE_USER" />
-		<security:intercept-url pattern="/admin/*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/friendship/add/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/friendship/add/*" access="hasRole('ROLE_USER')" /> -->
+		
 		<!-- <security:intercept-url pattern="/post/*" access="permitAll" />
 		<security:intercept-url pattern="/admin/*" access="hasAnyRole('TEACHER','MANAGER','CENTER','MASTER')" /> -->
 	</security:http>

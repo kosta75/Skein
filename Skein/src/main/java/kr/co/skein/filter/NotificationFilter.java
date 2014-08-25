@@ -1,22 +1,25 @@
 package kr.co.skein.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class BaseInfoFilter
  */
-public class BaseInfoFilter implements Filter {
+public class NotificationFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public BaseInfoFilter() {
+    public NotificationFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -33,6 +36,11 @@ public class BaseInfoFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		if(session.getAttribute("SPRING_SECURITY_CONTEXT") != null){
+			System.out.println("로그인 된 사용자입니다.");
+		}
 		System.out.println("페이지 들어오고 나갈때 마다 정보 확인!");
 
 		// pass the request along the filter chain
