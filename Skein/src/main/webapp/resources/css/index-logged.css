@@ -255,7 +255,15 @@ textarea {
    display: block;
 }
 
+/*리플 리스트 출력   */
+.replyModalList{
+overflow-y:auto; 
+clear: both;
+width: 100%;
+height:210px;	
+margin: auto;
 
+}
 
 /*왼쪽메뉴 시작  */
 #sideProfileImg {

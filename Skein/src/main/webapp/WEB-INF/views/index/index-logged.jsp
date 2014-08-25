@@ -82,11 +82,19 @@
 					</div>
 				</div>
 			</div>
-			
-			<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:100%;  border: 1px solid; border-color:  #e4e4e4;">
+			<div class="replyModalList" >
+				<c:forEach begin="1" end="20" step="1">
+				<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
+					<img src="${pageContext.request.contextPath}/resources/media/image/" style="width: 40px;height:40px; ">
+				dd</div>
+				</c:forEach>
+			</div>
+			<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
+				
 				<div style="float: left;padding:5px;padding-left:10px;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 35px;height:35px; ">
+					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width:40px;height:40px; ">
 				</div>
+				
 				<div style="float: left;padding-top:10px;">
 					<div >
 						<form action="" id="rWrite" >
@@ -94,7 +102,9 @@
 						</form>
 					</div>
 				</div>
-			</div>
+	
+				</div>
+			
 		</div>
 	</div>
 	
@@ -283,11 +293,14 @@
 								</div>
 							</div>
 						</div>
+						
+					
 					</div>
 
 					<%-- </c:forEach> --%>
-
+				
 				</c:forEach>
+			
 			</div>
 		</div>
 	</div>

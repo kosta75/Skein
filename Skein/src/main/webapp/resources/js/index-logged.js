@@ -331,7 +331,7 @@ $(document).ready(function(){
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
 			$("html").css("overflow-y", "hidden");
-			$('body').on('wheel.modal mousewheel.modal', 	function() {
+			$('.content-wrapper').on('wheel.modal mousewheel.modal', 	function() {
 				return false;
 			});
 
@@ -359,7 +359,7 @@ $(document).ready(function(){
 				}
 			});
 		} else {
-			$('body').off('wheel.modal mousewheel.modal');
+			$('.content-wrapper').off('wheel.modal mousewheel.modal');
 			$("html").css("overflow-y", "auto");
 			$(".imgBtn").remove();
 			$(".modalViewcontent").remove();
