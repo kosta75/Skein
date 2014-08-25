@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.skein.model.dao.AccountDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.vo.AuthorityCommand;
@@ -22,9 +24,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 @Controller
 public class AccountController {
+	
+	
+	@Autowired
+	private View jsonView;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -239,6 +246,23 @@ public class AccountController {
 			model.addAttribute("result", "success");
 		}
 		return "account.help_id";
+	}
+	
+	@RequestMapping("/account/modify")
+	public String modifyPassword(){
+		return "account.modifyPwd";
+	}
+	
+	@RequestMapping(value="/account/getpwd", method=RequestMethod.POST)
+	public View modifyPassword(Member member,Model model) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		
+		String dbPwd = accountDao.getAccountPassword(member.getEmail());
+		
+		model.addAttribute("dbPwd", dbPwd);
+/*		member.setPassword(new PasswordEncryptor().getEncryptSource(newPassword));*/	
+
+		return jsonView;
 	}
 	
 }

@@ -13,6 +13,10 @@
 	</select>
 	
 	
+	<select id="getAccountPassword"  parameterType="String" resultType="String">
+		SELECT password FROM Members WHERE Email = #{email} 
+	</select>
+	
 	<update id="updateAccountPassword" parameterType="kr.co.skein.model.vo.Member">
 		UPDATE Members
 		SET password = #{password}

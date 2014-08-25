@@ -16,4 +16,7 @@ public interface AccountDao {
 	//임시비밀번호 변경
 	public int updateAccountPassword(Member member) throws ClassNotFoundException, SQLException;
 	
+	//현재 비밀번호 확인 
+	public String getAccountPassword(String email) throws ClassNotFoundException, SQLException;
+	
 }
