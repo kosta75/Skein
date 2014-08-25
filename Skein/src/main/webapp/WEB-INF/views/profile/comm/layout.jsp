@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="header-container${colorTheme}">
+<div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}"">
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div id="changeBackgroundColor">
 		<ul>
