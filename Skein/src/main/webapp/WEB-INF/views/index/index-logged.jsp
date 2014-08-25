@@ -43,22 +43,25 @@
 	</div>
 
 	<div id="modal-background"></div>
-	<div id="modal-content">
+	<div id="modal-content" >
+	<div id="modal-content-view" class="modal-content-view">
 		<div  style="float: right;">
 			<img id="modal-close" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" style="width: 20px;height: 20px; border-radius:0 6px 0 0;" >
 		</div>
 		
 		<div style="float: left; width: 59%;height: 100%;">
 			<div style="height: 87%;" >
-				<div id="detailImg" style="height:100%; z-index: -2;"  >
+				<div id="detailImg"   style="height:100%; z-index: -2;"  >
 				<c:forEach var="imgNumber" begin="0" end="9" step="1">
-					<input type="hidden" value="${imgNumber}">
+					<div class="detailImg">
 					<c:if test="${imgNumber == 0}">
-						<img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;">
+						<img id="detailImg${imgNumber}"  src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;">
 					</c:if>
 					<c:if test="${imgNumber > 0}">
 						<img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: none;z-index: -1;border-radius:6px 0 0 0;">
 					</c:if>
+					<input type="hidden" value="${imgNumber}">
+					</div>
 				</c:forEach>
 				</div>
 			</div>
@@ -82,6 +85,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="modalreply">
 			<div class="replyModalList" >
 				<c:forEach begin="1" end="20" step="1">
 				<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
@@ -102,9 +106,10 @@
 						</form>
 					</div>
 				</div>
-	
+			</div>
 				</div>
 			
+		</div>
 		</div>
 	</div>
 	

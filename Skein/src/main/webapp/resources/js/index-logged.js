@@ -341,6 +341,7 @@ $(document).ready(function(){
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
+					$(".modal-content-view").css("display","block");
 					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
 							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
 
@@ -361,8 +362,10 @@ $(document).ready(function(){
 		} else {
 			$('.content-wrapper').off('wheel.modal mousewheel.modal');
 			$("html").css("overflow-y", "auto");
+			$("#modal-detile-view").remove();
 			$(".imgBtn").remove();
 			$(".modalViewcontent").remove();
+		
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -491,5 +494,15 @@ function lastPostFunc(pictureCount){
 	});
 	$(document).on('click', '.modalShare', function(){
 		alert($(this).find("input[type='hidden']").val());
+	});
+	
+	$(document).on('click','.detailImg',function(){
+		alert($(this).find("img").attr("src"));
+		
+	
+		
+		$("#modal-content-view").css("display","none");
+		$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10' src='"+$(this).find("img").attr("src")+"'></div>");
+	
 	});
 });

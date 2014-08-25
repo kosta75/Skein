@@ -247,10 +247,17 @@ textarea {
    display: none;
    height: 520px;
    position: fixed;
+  
+   z-index: 6;
+}
+#modal-content-view {
+   background: #fff;
+ display: none;
+   height: 520px;
+   position: fixed;
    width: 960px;
    z-index: 6;
 }
-
 #modal-background.active, #modal-content.active {
    display: block;
 }
