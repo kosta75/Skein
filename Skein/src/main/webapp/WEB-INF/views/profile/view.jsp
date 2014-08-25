@@ -127,6 +127,10 @@
 .has-sub li a.selected{
 	background-color: fuchsia;
 }
+/* 
+.publichover{
+	display: none;
+} */
 </style>
 
 <br />
@@ -208,7 +212,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata profileImage">${profileImage }</div>
 								<div class="inform_button profileImage">
-									<c:if test="${!empty profileImage }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -260,7 +264,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata statusComment">${statusComment }</div>
 								<div class="inform_button statusComment">
-									<c:if test="${!empty statusComment }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -308,7 +312,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata openEmail">${openEmail }</div>
 								<div class="inform_button openEmail">
-									<c:if test="${!empty openEmail }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -338,7 +342,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata phoneNumber">${phoneNumber }</div>
 								<div class="inform_button phoneNumber">
-									<c:if test="${!empty phoneNumber }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -368,7 +372,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata blog">${blog }</div>
 								<div class="inform_button blog">
-									<c:if test="${!empty blog }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -398,7 +402,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata address">${address }</div>
 								<div class="inform_button address">
-									<c:if test="${!empty address }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -428,7 +432,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata language">${language }</div>
 								<div class="inform_button language">
-									<c:if test="${!empty language }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -458,7 +462,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata politics">${politics }</div>
 								<div class="inform_button politics">
-									<c:if test="${!empty politics }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
@@ -488,7 +492,7 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata religion">${religion }</div>
 								<div class="inform_button religion">
-									<c:if test="${!empty religion }"><input type="button" value="공개범위"></c:if><input type="button" value="수정">
+									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a href="#" class="publicbtn public">전체공개</a></li>
