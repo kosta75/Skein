@@ -127,10 +127,9 @@
 .has-sub li a.selected{
 	background-color: fuchsia;
 }
-/* 
-.publichover{
-	display: none;
-} */
+.publicbtn{
+	cursor: pointer;
+}
 </style>
 
 <br />
@@ -215,10 +214,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -245,10 +244,10 @@ birthdayPublic
 									<input type="button" value="공개범위">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -267,10 +266,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -315,10 +314,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -345,10 +344,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -375,10 +374,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -405,10 +404,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -435,10 +434,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -465,10 +464,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -495,10 +494,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
