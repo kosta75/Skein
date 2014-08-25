@@ -31,16 +31,19 @@ public class JoinusController {
 	@Autowired
 	private EmailSender emailSender;
 
+	//로그인 페이지
 	@RequestMapping("/login")
 	public String login(){
 		return "joinus.login";
 	}
 	
+	//사용자 등록 페이지
 	@RequestMapping(value="/registerMember", method=RequestMethod.GET)
 	public String registerMember(){
 		return "joinus.registerMember";
 	}
 	
+	//사용자 등록 처리
 	@RequestMapping(value="/registerMember", method=RequestMethod.POST)
 	@Transactional
 	public String registerMember(Member member) throws Exception{

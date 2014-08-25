@@ -7,16 +7,25 @@
 		<put-attribute name="title" value="Skein" />
 		<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
+		
 		<put-attribute name="index-logged" value="/WEB-INF/views/index/index-logged.jsp" />
 		<put-attribute name="index-not-logged" value="/WEB-INF/views/index/index-not-logged.jsp" />
+		
+		<put-attribute name="menu-logged" value="/WEB-INF/views/comm/menu-logged.jsp" />
+		<put-attribute name="aside-logged" value="/WEB-INF/views/comm/aside-logged.jsp" />
+		
 	</definition>
 	
-	<definition name="*.*" template="/WEB-INF/views/comm/layout.jsp">
+	<definition name="*.*" template="/WEB-INF/views/comm/layout.jsp" extends="index">
 		<put-attribute name="css" value="/resources/css/{1}/{2}.css" />
 		<put-attribute name="title" value="Notice" />
-		<put-attribute name="header" value="/WEB-INF/views/comm/header.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/views/comm/footer.jsp" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="profile.profileView" template="/WEB-INF/views/profile/comm/layout.jsp" extends="index">
+		<put-attribute name="css" value="/resources/css/profile/profileView.css" />
+		<put-attribute name="title" value="Notice" />
+		<put-attribute name="content" value="/WEB-INF/views/profile/profileView.jsp" />
 	</definition>
 
 	

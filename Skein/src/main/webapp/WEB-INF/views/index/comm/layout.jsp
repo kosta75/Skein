@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
@@ -43,12 +44,25 @@
 </head>
 <body>
 
-	<div class="header-container${colorTheme}">  <!-- Bar -->
+	<div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}">  <!-- Bar -->
+		<div id="changeBackgroundColor">
+			<ul>
+				<li class="green"></li>
+				<li class="skyblue"></li>
+				<li class="red"></li>
+				<li class="orange"></li>
+				<li class="blue"></li>
+				<li class="yellowgreen"></li>
+			</ul>
+		</div>
 		<div class="wrapper">
 			<tiles:insertAttribute name="header" />
 		</div>
+	</div>
 	<div class="main-section-container">
 		<div class="wrapper">
+			<tiles:insertAttribute name="menu-logged" />
+			<tiles:insertAttribute name="aside-logged" />
 			<tiles:insertAttribute name="index-logged" />
 		</div>
 	</div>

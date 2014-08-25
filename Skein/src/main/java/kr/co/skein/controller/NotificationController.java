@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
 @Controller
@@ -33,7 +34,14 @@ public class NotificationController {
 	
 	@Autowired
 	private View jsonView;
+	
+	//알림 페이지 첫 진입점
+	@RequestMapping(value = "/", method=RequestMethod.GET)
+	public String viewNotificationList() throws ClassNotFoundException, SQLException{
+		return "notification.notificationView";
+	}
 
+	//친구 신청 알림 추가 메서드
 	@RequestMapping("/addFriendsNotification/{personalURI}")
 	public View addFriendsNotification(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		System.out.println("INFO : Skein-F001 - 친구 추가, personalURI=" + personalURI );
@@ -84,4 +92,7 @@ public class NotificationController {
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}
+	
+	
+	
 }

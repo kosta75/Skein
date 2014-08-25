@@ -1,19 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-<div id="changeBackgroundColor">
-	<ul>
-		<li class="green"></li>
-		<li class="skyblue"></li>
-		<li class="red"></li>
-		<li class="orange"></li>
-		<li class="blue"></li>
-		<li class="yellowgreen"></li>
-	</ul>
-</div>
-</se:authorize>
-
 <header id="globalTop">
 
 	<div class="logo">
@@ -43,13 +30,15 @@
 	</div>
 	</se:authorize>
 	
-	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div id="search" >
 		<form class="serch-form" id="searchBar" method="post" action="${pageContext.request.contextPath}/search/members" role="search">
 			<input type="text" class="textbox" name="fullName"  placeholder="당신의 친구를 찾아보세요" autocomplete="off">
 			<button type="submit" class="search-button" onclick="" title="당신의 친구를 찾아보세요" ></button>
 		</form>
 	</div>
+	
+	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	
 	
 	<div id="infoContainer">
 		<div class="info-nav-wrapper">

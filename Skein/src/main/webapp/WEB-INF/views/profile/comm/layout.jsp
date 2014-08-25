@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}">
+<div class="header-container${colorTheme}">
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div id="changeBackgroundColor">
 		<ul>
@@ -39,7 +39,6 @@
 	<div class="wrapper">
 		<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 		<tiles:insertAttribute name="menu-logged" />
-		<tiles:insertAttribute name="aside-logged" />
 		</se:authorize>
 		<tiles:insertAttribute name="content" />
 	</div>

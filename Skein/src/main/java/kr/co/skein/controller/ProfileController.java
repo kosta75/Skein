@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+//프로필 수정시에 사용할 컨트롤러
 @Controller
 @RequestMapping("/profile/*")
 public class ProfileController {

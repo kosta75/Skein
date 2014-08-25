@@ -35,6 +35,7 @@ public class MemberController {
 	@Autowired
 	private View jsonView;
 
+	//사용자 프로필 조회
 	@RequestMapping("/{personalURI}")
 	public String userProfile(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -82,7 +83,7 @@ public class MemberController {
 				
 				model.addAttribute("memberProfile", mpc);
 				
-				return "profile.view"; 
+				return "profile.profileView"; 
 			}else{
 				System.out.println("INFO : Skein-U516 - 요청된 URI의 사용자가 존재하지 않습니다.");
 				return "error.notFound";

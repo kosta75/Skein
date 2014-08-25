@@ -32,6 +32,7 @@ public class AccountController {
 	@Autowired
 	private EmailSender emailSender;
 	
+	//사용자 계정인증 메일 보내기
 	@RequestMapping("/{personalURI}/account/certification/mailsend")
 	public String sendCertificationText(@PathVariable String personalURI) throws ClassNotFoundException, SQLException{
 		System.out.println("INFO: Skein-U142 - 계정 인증 메일을 보냅니다. personalURI=" + personalURI);
@@ -59,6 +60,7 @@ public class AccountController {
 		return "account.certificationSend";
 	}
 	
+	//사용자 계정 인증 검사하기
 	@RequestMapping("/{personalURI}/account/certification/check/{certificationText}")
 	public String memberCertification(@PathVariable String personalURI,@PathVariable String certificationText, Model model) throws ClassNotFoundException, SQLException{
 		
@@ -166,11 +168,13 @@ public class AccountController {
 		}
 	}
 	
+	//사용자 정보 찾기
 	@RequestMapping("/account/refind")
 	public String help(){
 		return "account.help_id";
 	}
 	
+	//사용자 아이디 찾기
 	@RequestMapping("/account/id")
 	public String helpId(Member member, Model model) throws ClassNotFoundException, SQLException{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
@@ -200,6 +204,8 @@ public class AccountController {
 		model.addAttribute("emails", emails);
 		return "account.help_id";
 	}
+	
+	//사용자 비밀번호 찾기
 	@RequestMapping("/account/pwd")
 	public String helpPwd(Member member, Model model) throws ClassNotFoundException, SQLException{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
@@ -213,7 +219,7 @@ public class AccountController {
 		return "account.help_id";
 	}
 	
-	
+	//사용자 임시 비밀번호 수정
 	@RequestMapping("/account/pwdUpdate")
 	public String helpPwdUpdate(Member member, Model model) throws Exception{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);

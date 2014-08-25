@@ -30,7 +30,8 @@ public class PhotoController {
 	@Autowired
 	private SqlSession sqlSession;
 
-	@RequestMapping(value = "viewlist", method = RequestMethod.GET)
+	//사진 페이지 첫 진입점
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String picturetab(HttpSession session, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("INFO : Skein-G120 - PhotoController");
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -96,12 +97,11 @@ public class PhotoController {
 					SimpleDateFormat.format(member.getBirthday()));
 			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
 		}
-			System.out.println("photo.viewlist");
-			return "photo.viewlist";
-	
+		return "photo.photoView";
 	}
 	
 	
+	//사진 더보기 처리
 	@RequestMapping(value = "moreviewlist", method = RequestMethod.GET)
 	public String morepicturetab(HttpSession session, Model model, @RequestParam(value="pictureCount",required=false, defaultValue="0") int pictureCount) throws ClassNotFoundException, SQLException {
 		System.out.println("INFO : Skein-G120 - PhotoController");

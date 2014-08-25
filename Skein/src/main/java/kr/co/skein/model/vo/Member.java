@@ -26,6 +26,8 @@ public class Member {
 	
 	private int failedPasswordAttemptCount;//default 0
 	private String certificationText;
+	private String colorTheme;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -122,4 +124,12 @@ public class Member {
 	public void setCertificationText(String certificationText) {
 		this.certificationText = certificationText;
 	}
+	public String getColorTheme() {
+		return colorTheme;
+	}
+	public void setColorTheme(String colorTheme) {
+		this.colorTheme = colorTheme;
+	}
+	
+	
 }

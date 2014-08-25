@@ -41,6 +41,53 @@ public class FriendshipController {
 	@Autowired
 	private View jsonView;
 	
+	//친구 페이지 첫 진입점
+	@RequestMapping(value = "/", method=RequestMethod.GET)
+	public String getFriendList(HttpSession session, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("INFO : Skein-F002 - 친구 목록 불러오기," );
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+
+		int	startNum = 1;
+		int	endNum = 8;
+		
+
+		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+			SecurityContextImpl sci = (SecurityContextImpl) session
+					.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication()
+					.getPrincipal();
+
+			FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
+
+			// 내 이메일 admin@skein.com
+			// 친구 이메일
+			String email = user.getUsername();
+			List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
+			//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			for(int i=0; i< list.size();i++){
+				//System.out.println(list.get(i).getFriendEmail());
+			}
+			model.addAttribute("list", list);
+			
+			Member member = memberDao.getMemberInfo(user.getUsername());
+			String colorTheme = memberDao.selectColorTheme(user.getUsername());
+			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+			if (colorTheme == null || colorTheme.equals("")) {
+				model.addAttribute("colorTheme", "blue");
+			} else {
+				model.addAttribute("colorTheme", " " + colorTheme);
+			}
+			model.addAttribute("member", member);
+			model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
+			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
+			
+		}
+		return "friendship.friendshipView";
+	}
+	
+	//친구 추가 메서드
 	@RequestMapping("/add/{personalURI}")
 	@Transactional
 	public View addFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
@@ -93,10 +140,7 @@ public class FriendshipController {
 		return jsonView;
 	}
 	
-	
-	
-	
-	
+	//친구 삭제 메서드
 	@RequestMapping("/delete/{personalURI}")
 	public View deleteFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		System.out.println("INFO : Skein-F001 - 친구 추가, personalURI=" + personalURI );
@@ -133,92 +177,42 @@ public class FriendshipController {
 		return jsonView;
 	}
 
-	//친구 목록 조회
-	//@RequestMapping(value = "/viewlist", method = RequestMethod.GET)
-		@RequestMapping("/viewlist")
-		public String getFriendList(
-				HttpSession session, Model model) throws ClassNotFoundException,
-				SQLException {
-			System.out.println("INFO : Skein-F002 - 친구 목록 불러오기," );
-			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	//더보기 
+	@RequestMapping("/moreviewlist")
+	public String getFriendList(
+			HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
+			SQLException {
+		System.out.println("INFO : Skein-F003 - 친구 목록 더 불러오기," );
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	
+		
+			int startNum = friendCount +1 ;
+			int endNum = startNum + 7;
+		
 
-			int	startNum = 1;
-			int	endNum = 8;
-			
+		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
+			SecurityContextImpl sci = (SecurityContextImpl) session
+					.getAttribute("SPRING_SECURITY_CONTEXT");
+			UserDetails user = (UserDetails) sci.getAuthentication()
+					.getPrincipal();
 
-			System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
-			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-				System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-				SecurityContextImpl sci = (SecurityContextImpl) session
-						.getAttribute("SPRING_SECURITY_CONTEXT");
-				UserDetails user = (UserDetails) sci.getAuthentication()
-						.getPrincipal();
+			FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
 
-				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-
-				// 내 이메일 admin@skein.com
-				// 친구 이메일
-				String email = user.getUsername();
-				List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
-				//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
-				for(int i=0; i< list.size();i++){
-					//System.out.println(list.get(i).getFriendEmail());
-				}
-				model.addAttribute("list", list);
-				
-				Member member = memberDao.getMemberInfo(user.getUsername());
-				String colorTheme = memberDao.selectColorTheme(user.getUsername());
-				SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
-				if (colorTheme == null || colorTheme.equals("")) {
-					model.addAttribute("colorTheme", "blue");
-				} else {
-					model.addAttribute("colorTheme", " " + colorTheme);
-				}
-				model.addAttribute("member", member);
-				model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
-				model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
-				
+			// 내 이메일 admin@skein.com
+			// 친구 이메일
+			String email = user.getUsername();
+			List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
+			//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			for(int i=0; i< list.size();i++){
+				//System.out.println(list.get(i).getFriendEmail());
 			}
-			return "friendship.viewlist";
-		
-		}
-		
-		//더보기 
-		@RequestMapping("/moreviewlist")
-		public String getFriendList(
-				HttpSession session, Model model, @RequestParam("friendCount") int friendCount) throws ClassNotFoundException,
-				SQLException {
-			System.out.println("INFO : Skein-F003 - 친구 목록 더 불러오기," );
-			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-		
+			model.addAttribute("list", list);
 			
-				int startNum = friendCount +1 ;
-				int endNum = startNum + 7;
-			
-
-			System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
-			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-				System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-				SecurityContextImpl sci = (SecurityContextImpl) session
-						.getAttribute("SPRING_SECURITY_CONTEXT");
-				UserDetails user = (UserDetails) sci.getAuthentication()
-						.getPrincipal();
-
-				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-
-				// 내 이메일 admin@skein.com
-				// 친구 이메일
-				String email = user.getUsername();
-				List<FriendshipListCommand> list = friendshipDao.getFriendList(email, startNum, endNum);
-				//List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
-				for(int i=0; i< list.size();i++){
-					//System.out.println(list.get(i).getFriendEmail());
-				}
-				model.addAttribute("list", list);
-				
-			}
-				return "friendship.morefriendlist";
-
 		}
+			return "friendship.morefriendlist";
+
+	}
 		
 }

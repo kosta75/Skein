@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Member;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,83 +32,49 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void setSqlSession(SqlSession sqlSession) {this.sqlSession = sqlSession;}
 
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
-		
-		
-		
+
     	System.out.println("INFO : Skein-U202 - 로그인에 성공하였습니다.");
     	request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 
-    	//권한이 없으면 해당 실패핸들러작동
     	logger.info("Login, user="+auth.getName()+",Authorities="+auth.getAuthorities().toString());
-    	//logger.info(auth.getDetails().toString());
-    	//logger.info(auth.getPrincipal().toString());
 
     	//권한이 부족할시 이동할 URL
-    	String url = request.getContextPath() + "/login?error=denied";
+    	//String url = request.getContextPath() + "/login?error=denied";
     	
-    	
-    	HttpSession session = request.getSession();
-    	MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
-    	String personalURI = "";
-    	//사용자 고유 주소 설정을 위한 세션 생성
-    	if(session.getAttribute("PersonalURI") == null){
-			System.out.println("INFO : Skein-P103 - 사용자 진입 요청에 관한 처리");
+    	try {
+	    	HttpSession session = request.getSession();
+	    	MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	    	
+	    	System.out.println("INFO : Skein-P103 - 로그인 후 첫 진입시 사용자 세션을 생성합니다.");
+			BaseMemberInfo baseMemberInfo = new BaseMemberInfo();
 			
-			try {
-				personalURI = memberDao.getPersonalURI(auth.getName());
-				session.setAttribute("PersonalURI", personalURI);
-				System.out.println("INFO : Skein-I102 - 사용자 고유주소 조회. personalURI=" + personalURI);	
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else{
-			System.out.println("INFO : Skein-I101 - 현재 유효한 접속이 존재합니다. user=" + auth.getName());
-		}
-		//return "redirect:/";
-    	//권한 확인 후 해당 URL 지정
-    	/*for(GrantedAuthority a : auth.getAuthorities()){
-    		//logger.info(a.getAuthority());
-    		if(a.getAuthority().equals("MASTER") || 
-        			a.getAuthority().equals("CENTER") || 
-        			a.getAuthority().equals("TEACHER") || 
-        			a.getAuthority().equals("MANAGER")){
-    			url = request.getContextPath() + "/employeeLogin"; //직원 로그인
-    			break;
-    		}else if(a.getAuthority().equals("STUDENT")){
-    			url = request.getContextPath() + "/studentLogin"; //학생 로그인
-    		}
-    	}*/
-    	
-    	
-    	System.out.println("INFO : Skein-T0102 - 로그인 요청이 들어온 URL requestURI=" + request.getRequestURI());
-    	System.out.println("INFO : Skein-T0102 - 이동 경로 정보 contextPath=" + request.getContextPath() + ", =" + request.getServletPath());
-    	//url = request.getRequestURI();
-    	//url = request.getContextPath() + "/joinus/login";
-    	
-    	Map<String, String> param = new HashMap<String, String>();
-		param.put("searchKey", "email");
-		param.put("searchValue", request.getParameter("email"));
-    	
-    	
-		try {
+			Map<String, String> param = new HashMap<String, String>();
+			param.put("searchKey", "email");
+			param.put("searchValue", auth.getName());
+			
 			List<Member> list = memberDao.getMembers(param);
+			
 			if(list.size() > 0){
 				Member member = list.get(0);
+				
 				member.setLastLoginDate(Calendar.getInstance().getTime());
 				member.setFailedPasswordAttemptCount(0);
 				memberDao.updateMemberAccount(member);
+				
+				baseMemberInfo.setEmail(auth.getName());
+				baseMemberInfo.setPersonalURI(member.getPersonalURI());
+				baseMemberInfo.setBirthday(member.getBirthday());
+				baseMemberInfo.setColorTheme(member.getColorTheme());
+				baseMemberInfo.setFullName(member.getFullName());
+				baseMemberInfo.setLastName(member.getLastName());
+				baseMemberInfo.setFirstName(member.getFirstName());
+				
+				session.setAttribute("BASE_MEMBER_INFO", baseMemberInfo);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-    	
-    	
+
     	response.sendRedirect(request.getContextPath());
     }
 }

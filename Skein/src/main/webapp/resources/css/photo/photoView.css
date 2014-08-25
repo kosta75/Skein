@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+/* 가운데 내용 */
+.photo-content-wrapper{width:760px;margin-left:200px;position:relative;}
+.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;}
+.img-list{padding:10px;}
+
+ /* style="border-radius: 6px 6px 6px 6px; width: 174px; height: 174px;" */
+.list{width:98%;height:100%;background:#fff;border:1px solid;border-color:#C5C8CF;padding:2px;}
+.list div{padding:10px;}
+#list{width:98%;height:100%;background:#fff;border:1px solid;border-color:#C5C8CF;padding:2px;}
+#list div{padding:10px;}
+#side{height:100%;list-style-image:url('../../resources/media/image/sidebar.png');font-size:20px;	text-align:left;font-weight:bold;vertical-align:top;}
