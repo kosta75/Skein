@@ -19,7 +19,7 @@ $(document).ready(function(){
 			dataType : "html",
 			success : function(data) {
 				console.log(data);
-				alert("ajax");
+			
 				if(data.trim()==""){
 					
 				}else{
@@ -34,7 +34,7 @@ $(document).ready(function(){
 	         
 	$(window).scroll(function(){
 		if ($(window).scrollTop() == $(document).height() - $(window).height()){
-			alert('스크롤 감지');
+			
 			//alert("현재 사진 불러온 수 : "+ $('.list').size());
 			var pictureCount = $('.list-item').size();
 			lastPostFunc(pictureCount);
