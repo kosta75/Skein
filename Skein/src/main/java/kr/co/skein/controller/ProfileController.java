@@ -1,11 +1,10 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpSession;
 
-import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.ProfileCommand;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,12 +29,16 @@ public class ProfileController {
 	private View jsonView;
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public View updateProfileInfo(ProfileCommand command, Model model,HttpSession session) throws ClassNotFoundException, SQLException{
-	
-		
-	
-		return jsonView;
-	
 
+	public View updateProfileInfo(ProfileCommand command, Model model) throws ClassNotFoundException, SQLException{
+		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+		System.out.println(command.getEmail());
+		if(profileDao.countProfiles(command) > 0){
+			profileDao.updateProfile(command);
+		}else{
+			profileDao.insertProfile(command);
+		}
+
+		return jsonView;
 	}
 }

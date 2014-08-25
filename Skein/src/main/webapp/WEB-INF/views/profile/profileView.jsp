@@ -46,9 +46,26 @@
 </c:forEach>
 
 <section class="content-container">
+<!-- 
+profileImagePublic
+statusCommentPublic
+openEmailPublic
+phoneNumberPublic
+blogPublic
+addressPublic
+languagePublic
+religionPublic
+politicsPublic
+birthdayPublic
 
-	 ${memberProfile.birthday }
-	<br />
+1 Privacy
+2 Share
+3 Friend
+4 User
+5 Public
+
+ -->
+	 
 	<div class="informbox information">
 		<div class="informbox-header">
 		<!-- 정보헤더 -->
@@ -257,4 +274,9 @@
 </div>
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
+${sessionScope.BASE_MEMBER_INFO.personalURI}
+<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI} == ${requestPersonalURI}">
+		<script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>
+	</c:if>
+</se:authorize>

@@ -38,24 +38,13 @@ public class MemberController {
 	//사용자 프로필 조회
 	@RequestMapping("/{personalURI}")
 	public String userProfile(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		
+		
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		System.out.println("INFO : Skein-M006 - 사용자 프로필 조회 요청");
 		
-		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-			System.out.println("INFO : Skein-P102 - 로그인된 사용자 정보를 정의합니다.");
-			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
-			
-			Member member = memberDao.getMemberInfo(user.getUsername());
-			String colorTheme = memberDao.selectColorTheme(user.getUsername());
 		
-			if (colorTheme == null || colorTheme.equals("")) {
-				model.addAttribute("colorTheme", "blue");
-			} else {
-				model.addAttribute("colorTheme", " " + colorTheme);
-			}
-		}
 		
 		
 		if(!personalURI.endsWith("/")){
@@ -81,9 +70,12 @@ public class MemberController {
 				mpc.setBirthday(member.getBirthday());
 				mpc.setProfiles(profiles);
 				
+				model.addAttribute("email", member.getEmail());
 				model.addAttribute("memberProfile", mpc);
-				
+				model.addAttribute("requestPersonalURI", personalURI);
+
 				return "profile.profileView"; 
+
 			}else{
 				System.out.println("INFO : Skein-U516 - 요청된 URI의 사용자가 존재하지 않습니다.");
 				return "error.notFound";

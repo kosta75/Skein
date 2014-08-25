@@ -1,20 +1,4 @@
 $(document).ready(function() {
-	//상단 메뉴 고정
-	var menupos = $("#menu").offset().top;
-	
-	$(window).scroll(function() {
-		if ($(window).scrollTop() >= menupos) {
-
-			$("#menu2").fadeIn('slow');
-			$("#menu2").css("position", "fixed");
-			$("#menu2").css("top", "0");
-
-		} else {
-			$("#menu2").css("display", "none");
-			$("#menu2").css("top", "");
-		}
-	});
-	
 	//프로필 이미지 수정
 	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
 	var filelist = document.getElementById("file-list");
@@ -161,40 +145,5 @@ $(document).ready(function() {
 		$(".informbox_content").css("height", lheight);
 	}
 
-	$(".inform_edit").on("click",".profile_editBtn",function(){
-		/*
-		data = "profileName="+$(".inform_edit."+$(this).attr("class").substring(14) +" input[type=hidden]").val() +
-		"&profileInfo="+$(".inform_edit."+$(this).attr("class").substring(14) +" input[name=edit]").val();
-		*/
-		
-		$(this).parent().css("display", "none").siblings().css("display", "block");
-		
-		
-	});
-	$(".inform_elem").mouseenter(function(){
-		if($(this).find("div.inform_edit").css("display") == "none"){
-			$(this).find("div.inform_button").css("display", "block");
-		}
-	});
-	
-	$(".inform_elem").mouseleave(function(){
-		$(this).find("div.inform_button").css("display","none");
-	});
-	
-	$("input:button[value=수정]").click( function(){
-		$(this).parent().parent().parent().find("div.inform_edit").siblings().css("display","none");
-		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block");
-	});
-	
-	$("input:button[value=공개범위]").click( function(){
-		$(this).parent().find("div.has-sub").css("display", "block").css("z-index", "100");
-	});
-	
-	
-	
-	//alert($(".A").data("phonenumberpublic"));
 });
-	function edit_ajax(){
-		/*여기 ajax */
-		
-	}
+

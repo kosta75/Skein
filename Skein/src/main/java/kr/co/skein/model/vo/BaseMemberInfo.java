@@ -11,7 +11,7 @@ public class BaseMemberInfo {
 	private String fullName;
 	private String lastName;
 	private String firstName;
-	
+	private boolean isReal;
 	public String getEmail() {
 		return email;
 	}
@@ -54,6 +54,11 @@ public class BaseMemberInfo {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
-	
+	public boolean isReal() {
+		return isReal;
+	}
+	public void setReal(boolean isReal) {
+		this.isReal = isReal;
+	}
+
 }
