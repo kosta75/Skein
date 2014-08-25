@@ -253,15 +253,15 @@ public class AccountController {
 		return "account.modifyPwd";
 	}
 	
-	@RequestMapping(value="/account/getpwd", method=RequestMethod.POST)
+	@RequestMapping(value="/account/getpwd", method=RequestMethod.GET)
 	public View modifyPassword(Member member,Model model) throws Exception{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
-		
+		System.out.println(member.getEmail());
 		String dbPwd = accountDao.getAccountPassword(member.getEmail());
 		
 		model.addAttribute("dbPwd", dbPwd);
 /*		member.setPassword(new PasswordEncryptor().getEncryptSource(newPassword));*/	
-
+		System.out.println("비번" +dbPwd);
 		return jsonView;
 	}
 	
