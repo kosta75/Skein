@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 /* 가운데 내용 */
 .photo-content-wrapper{width:760px;margin-left:200px;position:relative;}
-.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;}
+.list-item{border-radius:6px 6px 6px 6px;width:174px;height:174px;float:left;border:1px solid #eee;background:#fff;margin:7px;}
 .img-list{padding:10px;}
 
  /* style="border-radius: 6px 6px 6px 6px; width: 174px; height: 174px;" */
