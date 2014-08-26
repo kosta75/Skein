@@ -37,5 +37,7 @@ public interface MemberDao {
 
 	//사용자 검색 searchMembers
 	public List<SearchMemberCommand> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
+	
+	
 		
 }

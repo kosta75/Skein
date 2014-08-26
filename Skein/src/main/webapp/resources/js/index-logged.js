@@ -529,7 +529,7 @@ $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e
 			type : 'post',
 			url : 'reply/insert',
 			cache : false,
-			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
+			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent ,
 			success : function(data) {
 				reply.append("<li><div class='replyMainList'>"+replyContent+"</div></li>");	
 				
@@ -611,7 +611,10 @@ function lastPostFunc(pictureCount){
 	//*************************************************************************************************
 	//공유하기 버튼 클릭시 공유목록 출력!
 	var ShowOrHide=true ;
-	$(document).on('click', '.share p', function(){
+	
+	
+	
+	$(document).on('click', '.share-btn', function(){
 		//alert($(this).find("input[type='hidden']").val());
 		var parent = $(this).parent();
 		parent.find(".share-img-list").empty();
@@ -708,6 +711,9 @@ function lastPostFunc(pictureCount){
 	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
 	$("#share-detail-form").submit(function(event) {
 		alert('사용자 공유하기 확인 버튼 클릭!!');
+		$.ajax({
+			
+		});
 		
 		/*
 		event.preventDefault();

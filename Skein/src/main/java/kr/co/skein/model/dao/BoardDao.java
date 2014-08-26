@@ -44,4 +44,7 @@ public interface BoardDao {
 	//사용자 그룹 게시물 상세조회( 공유하기 버튼 클릭시)
 	public List<BoardShareDetailView> getBoardShareDetailView(int groupSeq) throws ClassNotFoundException, SQLException;
 	
+	//게시물 번호로 사용자 알아오기
+	public String getUserEmailByBoardSeq(int boardSeq) throws ClassNotFoundException, SQLException;
+	
 }
