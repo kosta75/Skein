@@ -273,6 +273,7 @@ textarea {
    position: fixed;
    width: 960px;
    z-index: 6;
+   border-radius:6px 6px 6px 6px;
 }
 #modal-background.active, #modal-content.active {
    display: block;
