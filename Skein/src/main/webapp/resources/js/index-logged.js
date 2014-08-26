@@ -447,35 +447,29 @@ function lastPostFunc(pictureCount){
 	//공유하기 버튼 클릭시 공유목록 출력!
 	var ShowOrHide=true ;
 	$(document).on('click', '.share p', function(){
-		//alert($(this).find("input[type='hidden']").val());
+		
 		var parent = $(this).parent();
 		parent.find(".share-img-list").empty();
 		var groupSeq = $(this).parent().find("input").val();
-	
-		parent.find('.share-info-div').toggle(ShowOrHide);
-		if(ShowOrHide === true){
+		$('.share-info-div').hide();
+		parent.find('.share-info-div').show("slide", {direction : "up"}, function(){
 			$.ajax({
 				type : 'post',
 				url : 'board/shareView',
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
-					//alert(data);
 					var boardsharedetail = data.boardshare.length;
-					//$("#imglength").val(data.detailView.length);
-					//alert("a"+boardsharedetail);
-					if(boardsharedetail==0){
-						//alert('이미지 없음');
-						parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>"
+					//alert(boardsharedetail);
+					if(boardsharedetail == 1){
+						parent.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[0].boardSeq +"' style='background-color : white;border-radius:10px 10px 10px 10px;'>"
 															+ "<div style='float:left;'>" 
 															+ "<input type='radio' value=1 checked='checked'></div>"
 															+ "<div class='imgBtn'style='float:left;width:135px;'>"
 															+ "<input type='hidden' value='1'><p style='margin-left: -27px;'>현재 글 공유</p></div></div>");
 					}else{	
 						for (var j=0; j<boardsharedetail; j++) {
-							//alert("b"+data.boardshare.length);
-							console.log($(this).parent());
-							parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>" 
+							parent.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
 																	+ "<div style='float:left;margin-top:10px'>" 
 																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+j+"></div>" 
 																	+ "<div class='imgBtn'style='float:left;width:135px;'>"
@@ -484,22 +478,16 @@ function lastPostFunc(pictureCount){
 																	+ "'style='clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
 						}
 					}
-					
 				},
 				error : function() {
 					alert('indexlogged : Error while request..');
 				}
 			});
+		
 			
 			
-			parent.find('.share-info-div').slideDown();
-			ShowOrHide= false;
-		}else if(ShowOrHide === false ){
-			parent.find('.share-info-div').slideUp();
-			
-			ShowOrHide= true;
-		}
-	
+		});
+		
 	});
 	
 	$(document).on('click', '.modalShare', function(){
@@ -509,25 +497,12 @@ function lastPostFunc(pictureCount){
 	
 	//*************************************************************************************************
 		//공유하기 상세 마우스 올렸을때!
-	
 	$(document).on('mouseover','.imgbtn',function(){
-		//alert('상세보기 들어옴');
-		//alert($(this).attr("src"));
-		
-		//alert($('#share-detail-preview-imgtag').attr("src",$(this).attr("src")));
 		$('#share-detail-preview').css("display","block");
 		$('#share-detail-preview-imgtag').attr("src",$(this).attr("src"));
-/*		
-		$('#share-detail-preview-imgtag').attr("src",$(this).css("src"));
-		alert('상세보기 들어옴3');
-		$('#share-detail-preview').css("display","block");
-		alert('상세보기 들어옴4');
-*/
 	});
 	$(document).on('mouseout','.imgbtn',function(){
-		//alert('상세보기 나감');
 		$('#share-detail-preview').css("display","none");
-	
 	});
 	//*************************************************************************************************
 	//*************************************************************************************************
@@ -539,10 +514,21 @@ function lastPostFunc(pictureCount){
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
-	$("#share-detail-form").submit(function(event) {
+	$(document).on('click','#share-confirm-btn',function(){
+		alert("확인 버튼");
+		alert($(this).parent().parent().find('.share-data-groupSeq').data("groupSeq"));
+		
+		
+		
+	});
+	$(document).on('click','#share-cancel-btn',function(){
+		alert("취소 버튼");
+	});0
+	
+	/*$("#share-0detail-form").submit(function(event) {
 		alert('사용자 공유하기 확인 버튼 클릭!!');
 		
-		/*
+		
 		event.preventDefault();
 		console.log("INFO : Skein-T543 - ShareForm Submit 처리");
 		var data = new FormData();
@@ -588,8 +574,8 @@ function lastPostFunc(pictureCount){
 			}
 		});
 		return false;
-		*/
-	});
+		
+	});*/
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////	
 	

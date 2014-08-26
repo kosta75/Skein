@@ -210,7 +210,10 @@ public class BoardController {
 		public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+			
 			model.addAttribute("boardshare", boardshare);
+			
+			
 			return jsonView;
 		}
 		

@@ -2,22 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:forEach var="list" items="${groupList}" varStatus="groupStep">
-	
 	<div id="group-item-container" class="group-item-container">
 		<div id="list" style="border-radius: 6px 6px 6px 6px;">
 			<div style="float: left;">
 				<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
 					style="width: 50px; height: 50px;">
 			</div>
-			<div style="float: left;">
+			<div  style="float: left;">
 				${list.fullName}<br> ${list.writeDate}
 			</div>
 			<div class="share" style="float: right;">
 				<input type="hidden" value="${list.groupSeq}"
 					id="boardSeq${list.boardSeq}" class="share-input"><p>공유하기</p>
 		<!-- 	<div class="form-group"> -->
-				<form id="share-detail-form" method="post">
-					<div class="share-info-div"
+				<!-- <form id="share-detail-form" method="post"> -->
+				
+					<div  class="share-info-div"
 						style="text-align:center; border-radius: 10px 10px 10px 10px ;width: 250px; /* height: 300px; */ display: none; right: -265px; margin-top: -33px; background-color: white; z-index: 1; position: absolute;">
 						<b>공 유 하 기</b>
 						
@@ -25,13 +25,12 @@
 							<!-- 목록 들어가는 곳  -->
 						
 						</div>
-						
 						<div style="clear: both;">
-							<input type="submit" value="확인"> 
-							<input type="reset" value="취소">
+							<input id="share-confirm-btn" type="button" value="확인"> 
+							<input id="share-cancel-btn" type="button" value="취소">
 						</div>
 					</div>
-				</form>
+				<!-- </form> -->
 		<!-- 	</div> -->
 			</div>
 			<div style="clear: both;">
