@@ -14,7 +14,14 @@ $(document).ready(function() {
 				
 			}
 		});
-		
-	})
+
+	});
+	$(document).on("mouseover",".serch-friend-list-detail",function(){
+		$(this).css("background-color","skyblue");
+	});
+	
+	$(document).on("mouseout",".serch-friend-list-detail",function(){
+		$(this).css("background-color","white");
+	});
 	
 });

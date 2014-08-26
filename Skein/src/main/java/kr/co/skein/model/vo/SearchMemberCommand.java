@@ -1,11 +1,19 @@
 package kr.co.skein.model.vo;
 
 public class SearchMemberCommand {
-
+	
+	
 	private String fullName;
 	private String personalURI;
 	private int isFriend;
+	private String profileInfo;
 	
+	public String getProfileInfo() {
+		return profileInfo;
+	}
+	public void setProfileInfo(String profileInfo) {
+		this.profileInfo = profileInfo;
+	}
 	public String getFullName() {
 		return fullName;
 	}

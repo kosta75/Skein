@@ -6,6 +6,7 @@ import java.util.List;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
+import kr.co.skein.model.vo.BoardShareDetailView;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.MemberBoardCommand;
 
@@ -40,5 +41,7 @@ public interface BoardDao {
 	////////////////////////////
 	public List<MemberBoardCommand> getBoardsPage(String personalURI, int startNum, int endNum) throws ClassNotFoundException, SQLException;
 	
+	//사용자 그룹 게시물 상세조회( 공유하기 버튼 클릭시)
+	public List<BoardShareDetailView> getBoardShareDetailView(int groupSeq) throws ClassNotFoundException, SQLException;
 	
 }

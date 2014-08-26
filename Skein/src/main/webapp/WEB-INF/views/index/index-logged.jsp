@@ -38,7 +38,7 @@
 					<div class="modalcontent" >
 					
 					 <div class="modalShare" style="float: right;padding-right: 10px;">
-    				  <input  type="hidden" value="">공유하기</div>
+    				  <input type="hidden" value="">공유하기</div>
 					
 						<div style="float: left;">
 							<img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
@@ -169,12 +169,16 @@
 				</div>
 			  </div>
 			</div>
+			
+			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
+			<div id="share-detail-preview" style="border-radius:5px 5px 5px 5px;padding:10px; width:300px; height:400px; margin-left:340px; margin-top: -400px;background-color: skyblue; opacity: 1; display:none;z-index:100;position:fixed;">
+				<img id="share-detail-preview-imgtag" src="" style="width:100%; height:100%">
 
+			</div>
 
 			<!-- 게시물 출력 부분 Start -->
 			<div id="boardListContainer">
 				<c:forEach var="list" items="${groupList}" varStatus="groupStep">
-
 					<%-- <c:forEach var="list" items="${boardList}"> --%>
 					<div id="group-item-container" class="group-item-container">
 						<%-- ${groupStep.count} 번째 그룹 <br /> --%>
@@ -190,10 +194,11 @@
 							<div style="float: left;">
 								${list.fullName}<br> ${list.writeDate}
 							</div>
+							
 							<div class="share" style="float: right;">
-								<input type="hidden" value="${list.groupSeq}"
-									id="boardSeq${list.boardSeq}"> 공유하기
+								<input type="hidden" value="${list.groupSeq}"id="boardSeq${list.boardSeq}"> 공유하기
 							</div>
+							
 							<div style="clear: both;">
 								${list.content}
 								<c:if test="${list.fileName != null}">
@@ -240,7 +245,7 @@
 			</div>
 		</div>
 	</div>
-
+		
 
 
 </section>

@@ -29,6 +29,7 @@
 		</set>
 		WHERE email = #{email} AND profileCode = #{profileCode}
 	</update>
-
+	
+	
 	
 </mapper>
