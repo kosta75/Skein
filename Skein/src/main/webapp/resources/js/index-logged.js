@@ -451,8 +451,12 @@ function lastPostFunc(pictureCount){
 		var parent = $(this).parent();
 		parent.find(".share-img-list").empty();
 		var groupSeq = $(this).parent().find("input").val();
-		$('.share-info-div').hide();
-		parent.find('.share-info-div').show("slide", {direction : "up"}, function(){
+		$('.share-info-div').hide(function(){
+			//해체 목록
+			$(document).find('input[type=checkbox]').attr("checked",false);
+		});
+		
+		parent.find('.share-info-div').show("slide", {direction : "left"}, function(){
 			$.ajax({
 				type : 'post',
 				url : 'board/shareView',
@@ -515,15 +519,33 @@ function lastPostFunc(pictureCount){
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
 	$(document).on('click','#share-confirm-btn',function(){
-		alert("확인 버튼");
-		alert($(this).parent().parent().find('.share-data-groupSeq').data("groupSeq"));
+		//alert("확인 버튼");
+		var ret = get_chked_values();
+		alert(ret);
 		
 		
 		
 	});
+	//----------------------------------------------------------------------
+	function get_chked_values(){
+		var chked_val = "";
+		$(document).find("input[name=shareCheckBoxGroup]:checked").each(function(pi,po){
+		chked_val += ","+po.value;
+		});
+		if(chked_val!="")chked_val = chked_val.substring(1);
+		return chked_val;
+		}
+	//----------------------------------------------------------------------
 	$(document).on('click','#share-cancel-btn',function(){
-		alert("취소 버튼");
-	});0
+		//alert("취소 버튼");
+		$('.share-info-div').hide("slide", {direction : "left"});
+	});
+	$(document).on('click','#share-ALL-choice-btn',function(){
+		$(document).find('input[type=checkbox]').attr("checked","checked");
+	});
+	$(document).on('click','#share-ALL-clear-btn',function(){
+		$(document).find('input[type=checkbox]').attr("checked",false);
+	});
 	
 	/*$("#share-0detail-form").submit(function(event) {
 		alert('사용자 공유하기 확인 버튼 클릭!!');

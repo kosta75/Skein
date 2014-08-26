@@ -26,8 +26,12 @@
 						
 						</div>
 						<div style="clear: both;">
-							<input id="share-confirm-btn" type="button" value="확인"> 
+							<input id="share-confirm-btn" type="button" value="확인">
 							<input id="share-cancel-btn" type="button" value="취소">
+							<c:if test="${list.groupCount > 2}">
+							<input id="share-ALL-choice-btn" type="button" value="전체선택">
+							<input id="share-ALL-clear-btn" type="button" value="전체해제"> 
+						</c:if>
 						</div>
 					</div>
 				<!-- </form> -->
