@@ -60,7 +60,7 @@ public class ReplyController {
 			System.out.println(replylist.size());
 			for(int i =0;i<replylist.size();i++){
 				
-				System.out.println("modal ="+replylist.get(i).getReplyContent());
+				System.out.println("modal ="+replylist.get(i).getFullName());
 				
 			}
 			model.addAttribute("replylist",replylist );

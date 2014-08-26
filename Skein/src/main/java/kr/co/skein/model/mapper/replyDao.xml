@@ -11,7 +11,8 @@
 	</insert>
 	<select id="selectReply" resultType="kr.co.skein.model.vo.reply">
 	
-	select * from reply where boardSeq = #{boardSeq}
+	SELECT r.replyseq,r.boardseq,r.email,r.replycontent,m.fullname FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{boardSeq}
+
 	</select>
 </mapper>
 
