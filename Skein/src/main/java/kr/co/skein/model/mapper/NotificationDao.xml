@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.skein.model.dao.NotificationDao">
 
-	<!-- 사용자 알림 등록 -->
+	<!-- 사용자 친구 알림 등록 -->
 	<insert id="friendshipNotificationReg" parameterType="kr.co.skein.model.vo.FriendshipNotificationCommand">
 		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
 			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
@@ -12,6 +12,19 @@
 			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
 			INTO FriendshipNotification(NotificationSeq, Email, FriendEmail, FriendshipConfirm)
 			VALUES(#{notificationSeq},#{email}, #{friendEmail}, #{friendshipConfirm})
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- 사용자 댓글 알림 등록 -->
+	<insert id="replyNotificationReg" parameterType="kr.co.skein.model.vo.ReplyNotificationCommand">
+		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
+		</selectKey>
+		INSERT ALL
+			INTO Notifications(NotificationSeq, Email, IsRead, CreateDate, NotificationCode)
+			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
+			INTO ReplyNotification(NotificationSeq, ReplySeq)
+			VALUES(#{notificationSeq},#{replySeq})
 		SELECT * FROM DUAL
 	</insert>
 	
@@ -54,6 +67,15 @@
 		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
 		FROM Notifications n JOIN FriendshipNotification f ON n.Email = f.Email
 		WHERE n.Email = #{email}
+	</select>
+	
+	<!-- 사용자 모든 알림 조회 -->
+	<select id="getNotificationAllList" resultType="kr.co.skein.model.vo.NotificationAllCommand">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm, r.replySeq, s.BoardSeq
+		FROM NOTIFICATIONS n JOIN FRIENDSHIPNOTIFICATION f ON n.notificationSeq = f.notificationSeq
+		LEFT OUTER JOIN ReplyNotification r ON n.notificationSeq = r.notificationSeq
+		LEFT OUTER JOIN SHARENOTIFICATION s ON n.notificationSeq = s.notificationSeq
+		WHERE n.email = #{email} ORDER BY n.notificationCode ASC, n.notificationSeq DESC
 	</select>
 	
 </mapper>

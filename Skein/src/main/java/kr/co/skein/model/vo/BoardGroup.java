@@ -42,11 +42,11 @@ public class BoardGroup {
 	private String fileName;
 	private int fileSize;
 	private String extension;
-	private List<reply> replyList;
-	public List<reply> getReplyList() {
+	private List<Reply> replyList;
+	public List<Reply> getReplyList() {
 		return replyList;
 	}
-	public void setReplyList(List<reply> replyList) {
+	public void setReplyList(List<Reply> replyList) {
 		this.replyList = replyList;
 	}
 	private String fullName;

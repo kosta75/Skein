@@ -887,10 +887,157 @@ ALTER TABLE FriendshipNotification
 
 
 
+-----------------------------------------------------------------------------------------------
+-- 16. Reply(댓글)
+-----------------------------------------------------------------------------------------------
+-- 16.1 Reply(댓글) 테이블 삭제 및 생성
+/* 댓글 */
+CREATE TABLE Reply (
+	ReplySeq NUMBER NOT NULL, /* 댓글인덱스 */
+	BoardSeq NUMBER NOT NULL, /* 글번호 */
+	Email VARCHAR2(127) NOT NULL, /* 이메일 */
+	ReplyContent VARCHAR2(4000), /* 댓글내용 */
+	isActivated INT DEFAULT 1 NOT NULL  /* 댓글활성화 */
+);
+
+COMMENT ON TABLE Reply IS '댓글';
+
+COMMENT ON COLUMN Reply.ReplySeq IS '댓글인덱스';
+
+COMMENT ON COLUMN Reply.BoardSeq IS '글번호';
+
+COMMENT ON COLUMN Reply.Email IS '이메일';
+
+COMMENT ON COLUMN Reply.ReplyContent IS '댓글내용';
+
+COMMENT ON COLUMN Reply.isActivated IS '댓글활성화';
+
+CREATE UNIQUE INDEX PK_Reply
+	ON Reply (
+		ReplySeq ASC
+	);
+
+ALTER TABLE Reply
+	ADD
+		CONSTRAINT PK_Reply
+		PRIMARY KEY (
+			ReplySeq
+		);
+
+ALTER TABLE Reply
+	ADD
+		CONSTRAINT FK_Board_TO_Reply
+		FOREIGN KEY (
+			BoardSeq
+		)
+		REFERENCES Board (
+			BoardSeq
+		) ON DELETE CASCADE;
+
+ALTER TABLE Reply
+	ADD
+		CONSTRAINT FK_Members_TO_Reply
+		FOREIGN KEY (
+			Email
+		)
+		REFERENCES Members (
+			Email
+		) ON DELETE CASCADE;
 
 
 
 
+
+
+
+-----------------------------------------------------------------------------------------------
+-- 17. ReplyNotification(댓글알림)
+-----------------------------------------------------------------------------------------------
+-- 17.1 ReplyNotification(댓글알림) 테이블 삭제 및 생성
+/* 댓글알림 */
+CREATE TABLE ReplyNotification (
+	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
+	ReplySeq NUMBER NOT NULL /* 댓글인덱스 */
+);
+
+COMMENT ON TABLE ReplyNotification IS '댓글알림';
+
+COMMENT ON COLUMN ReplyNotification.NotificationSeq IS '사용자알림번호';
+
+COMMENT ON COLUMN ReplyNotification.ReplySeq IS '댓글인덱스';
+
+ALTER TABLE ReplyNotification
+	ADD
+		CONSTRAINT FK_Notif_TO_ReplyNotif
+		FOREIGN KEY (
+			NotificationSeq
+		)
+		REFERENCES Notifications (
+			NotificationSeq
+		) ON DELETE CASCADE;
+
+ALTER TABLE ReplyNotification
+	ADD
+		CONSTRAINT FK_Reply_TO_ReplyNotif
+		FOREIGN KEY (
+			ReplySeq
+		)
+		REFERENCES Reply (
+			ReplySeq
+		) ON DELETE CASCADE;
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------
+-- 18. ShareNotification(공유알림)
+-----------------------------------------------------------------------------------------------
+-- 18.1 ShareNotification(공유알림) 테이블 생성
+/* 공유알림 */
+CREATE TABLE ShareNotification (
+	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
+	BoardSeq NUMBER NOT NULL /* 글번호 */
+);
+
+COMMENT ON TABLE ShareNotification IS '공유알림';
+
+COMMENT ON COLUMN ShareNotification.NotificationSeq IS '사용자알림번호';
+
+COMMENT ON COLUMN ShareNotification.BoardSeq IS '글번호';
+
+CREATE UNIQUE INDEX PK_ShareNotification
+	ON ShareNotification (
+		NotificationSeq ASC
+	);
+
+ALTER TABLE ShareNotification
+	ADD
+		CONSTRAINT PK_ShareNotification
+		PRIMARY KEY (
+			NotificationSeq
+		);
+
+ALTER TABLE ShareNotification
+	ADD
+		CONSTRAINT FK_Notifications_TO_ShareNotif
+		FOREIGN KEY (
+			NotificationSeq
+		)
+		REFERENCES Notifications (
+			NotificationSeq
+		) ON DELETE CASCADE;
+
+ALTER TABLE ShareNotification
+	ADD
+		CONSTRAINT FK_Board_TO_ShareNotif
+		FOREIGN KEY (
+			BoardSeq
+		)
+		REFERENCES Board (
+			BoardSeq
+		) ON DELETE CASCADE;
 
 
 

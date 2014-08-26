@@ -14,14 +14,14 @@ import kr.co.skein.model.dao.NotificationDao;
 
 import kr.co.skein.model.vo.BaseMemberInfo;
 
-import kr.co.skein.model.dao.replyDao;
+import kr.co.skein.model.dao.ReplyDao;
 
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
-import kr.co.skein.model.vo.reply;
+import kr.co.skein.model.vo.Reply;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class IndexController {
 			int endNum = 2;
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(baseMemberInfo.getEmail(),startNum,endNum);
-		    replyDao replydao = sqlSession.getMapper(replyDao.class);
+		    ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 			for(int i=0;i<listSource.size();i++){
 				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
 			}
@@ -171,7 +171,7 @@ public class IndexController {
             System.out.println("시작 넘 :"+startNum+ "종료값"+endNum);
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(user.getUsername(),startNum,endNum);
-		    replyDao replydao = sqlSession.getMapper(replyDao.class);
+		    ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 			for(int i=0;i<listSource.size();i++){
 				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
 			}

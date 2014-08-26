@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
+import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberProfileCommand;
 import kr.co.skein.model.vo.ProfileCommand;
@@ -38,6 +39,10 @@ public class MemberController {
 	//사용자 프로필 조회
 	@RequestMapping("/{personalURI}")
 	public String userProfile(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			
+		}
 		
 		
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);

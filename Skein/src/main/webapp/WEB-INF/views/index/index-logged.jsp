@@ -191,10 +191,10 @@
 								<li>
 									<c:choose>
 										<c:when test="${groupItem.groupCount > 1}">
-											<div class="icon-box group-share" title="그룹 공유하기">그룹 공유하기</div>
+											<div class="icon-box group-share share-btn" title="그룹 공유하기">그룹 공유하기</div>
 										</c:when>
 										<c:otherwise>
-											<div class="icon-box one-share" title="공유하기">공유하기</div>
+											<div class="icon-box one-share share-btn" title="공유하기">공유하기</div>
 										</c:otherwise>
 									</c:choose>
 								</li>

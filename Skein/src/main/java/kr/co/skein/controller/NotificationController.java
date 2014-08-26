@@ -13,6 +13,7 @@ import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.model.vo.NotificationAllCommand;
 import kr.co.skein.model.vo.NotificationCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
 
@@ -70,9 +71,17 @@ public class NotificationController {
 		return jsonView;
 	}
 	
+		
 	//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)
-	public String viewNotificationList() throws ClassNotFoundException, SQLException{
+	public String viewNotificationList(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+		
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			List<NotificationAllCommand> list = notificationDao.getNotificationAllList(baseMemberInfo.getEmail());
+			model.addAttribute("notificationList", list);
+		}
 		return "notification.notificationView";
 	}
 	
