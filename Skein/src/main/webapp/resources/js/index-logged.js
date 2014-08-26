@@ -307,6 +307,8 @@ $(document).ready(function(){
 	$('#sidemenu3').click(function() {
 		$('#sidemenu3').after($('#mon').toggle("display"));
 	});
+	
+	
 	// modal- 기능 구현
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
