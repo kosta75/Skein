@@ -9,10 +9,10 @@
 <title><tiles:getAsString name="title"/></title>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
 <script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
 </se:authorize>
 </head>

@@ -4,80 +4,73 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
-
 	<div id="modal-background"></div>
 	<div id="modal-content" >
-	<div id="modal-content-view" class="modal-content-view">
-		<div  style="float: right;">
-			<img id="modal-close" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" style="width: 20px;height: 20px; border-radius:0 6px 0 0;" >
-		</div>
-		
-		<div style="float: left; width: 59%;height: 100%;">
-			<div style="height: 87%;" >
-				<div id="detailImg"   style="height:100%; z-index: -2;"  >
-				<c:forEach var="imgNumber" begin="0" end="9" step="1">
-					<div class="detailImg">
-					<c:if test="${imgNumber == 0}">
-						<img id="detailImg${imgNumber}"  src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;">
-					</c:if>
-					<c:if test="${imgNumber > 0}">
-						<img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: none;z-index: -1;border-radius:6px 0 0 0;">
-					</c:if>
-					<input type="hidden" value="${imgNumber}">
-					</div>
-				</c:forEach>
-				</div>
+		<div id="modal-content-view" class="modal-content-view">
+			<div  style="float: right;">
+				<img id="modal-close" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" style="width: 20px;height: 20px; border-radius:0 6px 0 0;" >
 			</div>
 			
-			<div style=" clear: both; " id="imgBtnList"></div>
-		</div>
-		
-		<div style="float: right;width: 40%;">
-			<div >
-				<div style="float: left;  padding-top: 15px;width: 200px;">
-					<div class="modalcontent" >
-					
-					 <div class="modalShare" style="float: right;padding-right: 10px;">
-    				  <input  type="hidden" value="">공유하기</div>
-					
-						<div style="float: left;">
-							<img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
+			<div style="float: left; width: 59%;height: 100%;">
+				<div style="height: 87%;" >
+					<div id="detailImg"   style="height:100%; z-index: -2;"  >
+					<c:forEach var="imgNumber" begin="0" end="9" step="1">
+						<div class="detailImg">
+						<c:if test="${imgNumber == 0}">
+							<img id="detailImg${imgNumber}"  src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;">
+						</c:if>
+						<c:if test="${imgNumber > 0}">
+							<img id="detailImg${imgNumber}" src="" style="width: 566px; height: 452px; display: none;z-index: -1;border-radius:6px 0 0 0;">
+						</c:if>
+						<input type="hidden" value="${imgNumber}">
 						</div>
-						
-						<!--작성자 이름 날짜 내용 출력  -->
+					</c:forEach>
 					</div>
 				</div>
-			</div>
-			<div class="modalreply">
-			<div class="replyModalList" >
-				<c:forEach begin="1" end="20" step="1">
-				<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/" style="width: 40px;height:40px; ">
-				dd</div>
-				</c:forEach>
-			</div>
-			<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
 				
-				<div style="float: left;padding:5px;padding-left:10px;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width:40px;height:40px; ">
-				</div>
-				
-				<div style="float: left;padding-top:10px;">
-					<div >
-						<form action="" id="rWrite" >
-							<input name="replyWrite" type="text" style="width:210%; height: 20px;">
-						</form>
-					</div>
-				</div>
+				<div style=" clear: both; " id="imgBtnList"></div>
 			</div>
-				</div>
 			
-		</div>
+			<div style="float: right;width: 40%;">
+				<div >
+					<div style="float: left;  padding-top: 15px;width: 200px;">
+						<div class="modalcontent" >
+							<div class="modalShare" style="float: right;padding-right: 10px;">
+								<input  type="hidden" value="">공유하기
+							</div>
+							<div style="float: left;">
+								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+								<%-- <img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> --%>
+							</div>
+							
+							<!--작성자 이름 날짜 내용 출력  -->
+						</div>
+					</div>
+				</div>
+				<div class="modalreply">
+					<div class="replyModalList" >
+						<c:forEach begin="1" end="20" step="1">
+						<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
+							<%-- <img src="${pageContext.request.contextPath}/resources/media/image/" style="width: 40px;height:40px; "> --%>
+						</div>
+						</c:forEach>
+					</div>
+					<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
+						<div style="float: left;padding:5px;padding-left:10px;">
+							<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width:40px;height:40px; ">
+						</div>
+						<div style="float: left;padding-top:10px;">
+							<div >
+								<form action="" id="rWrite" >
+									<input name="replyWrite" type="text" style="width:210%; height: 20px;">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
-	
-	
 	
 	<!-- 오른쪽 날짜 선택 부분  -->
 	<div id="dateSelector">
@@ -106,8 +99,8 @@
 	</div>
 	
 
-	<div class="content-wrapper">
-		<!--center  -->
+	<div class="main-content-wrapper">
+		<!-- 메인 화면 가운데 부분 -->
 		<div class="content-center-wrapper">
 			<div id="boardListTimelineContainer"></div>
 			<div id="writeTabs">
@@ -173,76 +166,62 @@
 
 			<!-- 게시물 출력 부분 Start -->
 			<div id="boardListContainer">
-				<c:forEach var="list" items="${groupList}" varStatus="groupStep">
-
-					<%-- <c:forEach var="list" items="${boardList}"> --%>
-					<div id="group-item-container" class="group-item-container">
-						<%-- ${groupStep.count} 번째 그룹 <br /> --%>
-						<div id="list" style="border-radius: 6px 6px 6px 6px;">
-
-
-							<div style="float: left;">
-								<img
-									src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
-									style="width: 50px; height: 50px;">
-							</div>
-
-							<div style="float: left;">
-								${list.fullName}<br> ${list.writeDate}
-							</div>
-							<div class="share" style="float: right;">
-								<input type="hidden" value="${list.groupSeq}"
-									id="boardSeq${list.boardSeq}"> 공유하기
-							</div>
-							<div style="clear: both;">
-								${list.content}
-								<c:if test="${list.fileName != null}">
-									<div id="modal-launcher">
-										<div id="imghover">
-											<input type="hidden" value="${list.groupSeq}"
-												id="boardSeq${list.boardSeq}"> <img
-												id="imghover${list.boardSeq}"
-												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
-												style="width: 100%; height: 250px;">
-										</div>
-									</div>
-								</c:if>
-							</div>
-							<div style="clear: both; float: right;">수정 삭제</div>
+				<c:forEach var="groupItem" items="${groupList}">
+				<div class="group-item-container">
+					<div class="group-item-wrapper">
+						<div class="group-item-controller-container">
+							<ul>
+								<li><div class="icon-box group-item-edit" title="수정">수정</div></li>
+								<li><div class="icon-box group-item-delete" title="삭제">삭제</div></li>
+								<li>
+									<c:choose>
+										<c:when test="${list.groupCount > 1}">
+											<div class="icon-box group-share" title="그룹 공유하기">그룹 공유하기</div>
+										</c:when>
+										<c:otherwise>
+											<div class="icon-box one-share" title="공유하기">공유하기</div>
+										</c:otherwise>
+									</c:choose>
+								</li>
+							</ul>
 						</div>
-
-
-						<div id="reply"
-							style="background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
-							<div>
-								<div style="float: left; padding: 5px; padding-left: 10px;">
-									<img
-										src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
-										style="width: 35px; height: 35px;">
-								</div>
-								<div style="float: left; padding-top: 10px;">
-									<form action="board/reply" id="replyMain" method="post">
-										<input type="hidden" value="${list.boardSeq}" id="boardSeq"
-											name="boardSeq"> <input name="replyWrite" type="text"
-											style="width: 270%; height: 20px;">
-									</form>
-								</div>
+						<div class="group-item-user-info-container">
+							<div class="group-item-user-profile-image-wrapper">
+								<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+							</div>
+							<div class="group-item-user-info-wrapper">
+								<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
+								<span class="group-item-write-date">${groupItem.writeDate}</span>
 							</div>
 						</div>
 						
+						<div class="group-item-content-wrapper">
+							${groupItem.content}
+						</div>
+					</div>
 					
+					<div class="group-item-reply-write-form-container">
+						<div class="image-icon reply-icon">댓글</div>
+						<form action="">
+							<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
+							<input type="text" id="boardSeq" name="replyWrite" />
+						</form>
 					</div>
 
-					<%-- </c:forEach> --%>
-				
+					
+					<div class="group-item-reply-container">
+						<div class="group-item-reply-info-container">
+							
+						</div>
+						<div>
+						</div>
+					</div>
+					
+				</div>
 				</c:forEach>
-			
 			</div>
 		</div>
 	</div>
-
-
-
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/map.js"></script>

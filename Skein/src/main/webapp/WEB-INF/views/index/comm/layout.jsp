@@ -33,7 +33,8 @@
 	<meta charset="UTF-8">
 	<title><tiles:getAsString name="title"/></title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 	

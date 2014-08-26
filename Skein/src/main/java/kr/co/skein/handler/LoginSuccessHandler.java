@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Member;
 
@@ -44,6 +45,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     	try {
 	    	HttpSession session = request.getSession();
 	    	MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+	    	ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 	    	
 	    	System.out.println("INFO : Skein-P103 - 로그인 후 첫 진입시 사용자 세션을 생성합니다.");
 			BaseMemberInfo baseMemberInfo = new BaseMemberInfo();
@@ -65,10 +67,20 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 				baseMemberInfo.setPersonalURI(member.getPersonalURI());
 				baseMemberInfo.setBirthday(member.getBirthday());
 				baseMemberInfo.setColorTheme(member.getColorTheme());
+				if(member.getColorTheme() ==null){
+					baseMemberInfo.setColorTheme("skyblue");
+				}
 				baseMemberInfo.setFullName(member.getFullName());
 				baseMemberInfo.setLastName(member.getLastName());
 				baseMemberInfo.setFirstName(member.getFirstName());
 				
+				String profileImageFileName = null;
+				if((profileImageFileName = profileDao.getMemberProfileByProfileCode(member.getPersonalURI(), 2)) != null){
+					baseMemberInfo.setProfileImageFileName(profileImageFileName);
+				}else{
+					baseMemberInfo.setProfileImageFileName("default-profile-image.png");
+				}
+								
 				session.setAttribute("BASE_MEMBER_INFO", baseMemberInfo);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

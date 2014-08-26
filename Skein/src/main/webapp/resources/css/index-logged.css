@@ -1,56 +1,14 @@
 @CHARSET "UTF-8";
-/* a태그 초기화 */
-a, a:hover, a:visited, a:link, a:active, a:focus{text-decoration:none;color:black;}
-*{font-family:'맑은 고딕';}
-
-/* 기본메뉴 */
-#subNavigationContainer{height:55px;padding-bottom:20px;}
-ul.arrowunderline {list-style-type:none;margin:0;}
-ul.arrowunderline li {height:55px;float:left;border-right:1px solid skyblue;padding:0px 25px;}
-ul.arrowunderline li:first-child {border-left:1px solid skyblue;}
-ul.arrowunderline li a, ul.arrowunderline li a:hover, ul.arrowunderline li a:active, ul.arrowunderline li a:visited{color:black;}
-ul.arrowunderline li a{display:block;height:51px;line-height:55px;font-family:'맑은 고딕';font-weight:bold;font-size:15px;}
-ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
-
-.sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff; border-radius: 0px 0px 8px 8px}
-.sub-menu2 {position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:2;left:0;}
-.menu-username {float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
-
-#menu1 .sub-navigation{float:left;}
-#menu2 .sub-navigation{position:absolute;right:0px;}
-
-#menu2 .menu-username a{color:#fff;}
-#menu2 ul.arrowunderline li a{color:#fff;}
-
-
-
 /* Modal */
 #modal-content{display:none; border-radius:6px;}
 .modalcontent{width:380px;}
-/* 가운데 전체 컨테이너 */
-.content-container{position:relative;}
-
-/* 왼쪽 사용자 정보 */
-#subUserProfileContainer{width:180px;position:absolute;left:0px;}
-.sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
-.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
-.sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
-.sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;}
-.sub-user-profile-name{margin-left:100px;padding:12px 0px;font-size:14px;}
-.sub-user-proifle-info{font-family:'맑은 고딕';font-size:14px;padding:8px;}
-.sub-user-profile-birthday{}
-
-/* */
-#locationinfo{font-family:'맑은 고딕';font-size:12px;}
-#observinfo{height:160px;}
-.weather-info-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 
 /* 오른쪽 날짜 선택기 */
 #dateSelector{position:absolute;right:0px;width:80px;}
 #side {height: 100%;list-style-image: url('../../resources/media/image/sidebar.png');font-size:12px;text-align: left;font-weight: bold;vertical-align: top;}
 
-/* 가운데 내용 */
-.content-wrapper{width:650px;margin-left:200px;position:relative;}
+/* 메인 가운데 내용 */
+.main-content-wrapper{width:650px;min-height:300px;margin-left:200px;position:relative;}
 
 /* 그래프 */
 #boardListTimelineContainer{width:650px;height:320px;margin-bottom:10px;}
@@ -69,8 +27,49 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 #file-list li{float:left;}
 
 /* 게시물 리스트 */
+/* 차트 */
 #boardListContainer{}
-.group-item-container{margin-bottom:20px;}
+
+/* 게시물(하나) 감싸는 컨테이너 */
+.group-item-container{position:relative;margin-bottom:20px;background:#fff;border-radius:5px;border:1px solid #ccc;padding:10px}
+
+/* 게시물 컨트롤러 */
+.group-item-controller-container{position:absolute;right:10px;top:10px;z-index:10;}
+.group-item-controller-container ul li{float:left;margin-left:10px;height:20px;}
+.group-item-controller-container ul li a{display:block;height:20px;}
+.group-item-controller-container ul li:first-child{margin-left:0px;}
+
+.icon-box{width:20px;height:20px;text-indent:-100000px;font-size:1px;padding:0px;cursor:pointer;border:1px solid #f00;}
+
+
+.group-item-edit, .one-share, .group-share{background-repeat:no-repeat;background-position:center;}
+/* .one-share{background-image:url("../media/image/one-share2.png");}
+.group-share{background-image:url("../media/image/one-share2.png");}
+.group-item-edit{background-image:url("../media/image/group-item-edit3.png");}
+.group-item-delete{background-image:url("../media/image/group-item-delete.png");} */
+
+
+
+/* 게시물 각각의 사용자 정보 */
+.group-item-user-info-container{position:relative;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #ddd;}
+.group-item-user-info-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
+.group-item-user-profile-image-wrapper{float:left;overflow:hidden;height:50px;}
+.group-item-user-profile-image-wrapper img{border-radius:100px;background:#fff;width:50px;height:50px;}
+.group-item-user-info-wrapper{float:left;padding-left:10px;padding-top:6px;}
+
+.group-item-user-info-wrapper a{display:block;color:#000;font-family:'맑은 고딕';font-size:16px;font-weight:bold;}
+.group-item-write-date{font-family:'맑은 고딕';font-size:12px;}
+
+/* 게시물의 내용 */
+.group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;}
+
+
+/* 게시물 댓글 */
+.group-item-reply-write-form-container{background:#eee;border-radius:3px;}
+.group-item-reply-write-form-container input{border:1px solid #ccc;padding:2px;width:80%;}
+
+.image-icon{text-indent:-10000px;background-repeat:no-repeat}
+.reply-icon{float:left;padding:2px 2px 2px 4px;width:22px;height:22px;background-image:url("../media/image/mention1.png");background-size:55%;background-position:center}
 
 
 .write-menu-bar{width:100%;background:#dcdcdc;height:40px;}
@@ -102,9 +101,7 @@ border: 1px solid;
 border-color: #C5C8CF;
 padding: 2px;
 }
-.list div{
-   padding: 10px;   
-}
+
 
 /* 이모티콘 */
 #historyemoticon{
@@ -151,7 +148,7 @@ padding: 2px;
    padding: 2px;
 }
 
-#list div {
+div#list{
    padding: 10px;
 }
 
@@ -270,24 +267,3 @@ width: 100%;
 height:210px;	
 margin: auto;
 }
-
-
-/*왼쪽메뉴 시작  */
-#sideProfileImg {
-	width:80px;
-	height:80px;
-	border: 3px solid;
-	border-color: #fff;
-	border-radius: 6px;
-	vertical-align: middle;
-	margin-left: 10px;
-
-}
-#sideProfileHeader{
-position: absolute;
-z-index: 0;
-width: 230px;
-margin-top: 40px;
-
-}
-/* 왼쪽메뉴끝 */

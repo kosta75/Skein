@@ -50,4 +50,10 @@
 		SELECT NotificationCode, COUNT(*) AS groupCount FROM Notifications WHERE email = #{email} GROUP BY notificationcode
 	</select>
 	
+	<select id="getFriendshipNotification" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
+		FROM Notifications n JOIN FriendshipNotification f ON n.Email = f.Email
+		WHERE n.Email = #{email}
+	</select>
+	
 </mapper>

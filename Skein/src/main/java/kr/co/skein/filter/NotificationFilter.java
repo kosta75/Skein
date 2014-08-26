@@ -39,9 +39,9 @@ public class NotificationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		if(session.getAttribute("SPRING_SECURITY_CONTEXT") != null){
-			System.out.println("로그인 된 사용자입니다.");
+		
 		}
-		System.out.println("페이지 들어오고 나갈때 마다 정보 확인!");
+		
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+/*
+*
+* 모든 상태(로그인/비로그인) 에서의 헤더와 푸터에 적용되는 스타일
+*
+*/
+
+body{background-color:#e9eaed;margin:0px;padding:0px;overflow-y:scroll;}
+.wrapper{width:960px;margin:0px auto;position:relative;} /* 헤더/본문/푸터 너비 */
+.header-container, #globalTop, .logo, #search, #infoContainer{height:55px;} /* 공통 헤더 높이 */
+
+/* 헤더 공통 스타일 */
+.header-container{background:skyblue;} /* 헤더 Bar  */
+/* .heder-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;} */
+
+#globalTop{position:relative;}
+
+.logo{width:70px;float:left;} /* 헤더에 있는 로고 */
+.logo a{display:block;color:#fff;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
+
+/* 사용자 지정 색상 */
+.green {background: #336666;}
+.skyblue {background: skyblue;}
+.red {background: red;}
+.orange {background:#f96e5b;}
+.blue {background: #00B4DB;}
+.yellowgreen {background: #a7bc7a;}
+
+/* searchBar */
+#search{float:left;padding:0px 20px;}
+#searchBar{margin-top:12px;}
+#search input {float:left;width:270px;}
+.serch-form {width:350px;height:25px;padding-bottom:3px;border-radius: 5px;position: relative;background: #FFF;}
+.serch-form .textbox {position: absolute;	top: 3px;	left: 8px;	border: 0px;	height: 20px;	width: 305px;	font-weight: bold;outline: none;}
+.serch-form .search-button {cursor:pointer;position:absolute;margin-top:2px;top:3px;right:1px;border:background;height:15px;width:22px;font-weight:bold;background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yR/r/Ta1klT5AM7h.png);	background-position: -223px -141px;}
+
+/* 상단 로그인 Form */
+#loginFormContainer{position:absolute;top:5px;right:0px;}
+#loginForm fieldset{border:none;margin:0px;padding:0px;}
+#loginForm legend{width:0px;height:0px;text-indent:-10000px;}
+#loginForm table th{text-align:left;color:#fff;padding-left:2px;font-size:12px;font-family:'맑은 고딕';font-weight:normal;}
+#loginForm input{border:1px solid #eee;padding:2px;}
+#loginForm input.input-filed{width:120px;margin-right:5px;}
+#loginForm input.login-button{padding:2px 10px;cursor:pointer;}
+
+/* 가운데 전체 컨테이너 */
+/* main-section 공통 스타일 */
+.main-section-container{min-height:450px;}
+.main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;margin-bottom:100px;}
+.content-container{position:relative;}
+
+/* 푸터 공통 스타일 */
+.footer-container{background:#ddd;'}
+#globalBottom, .sitemap-navigation{height:120px;}
+.sitemap-navigation{margin:0px auto;width:232px;}
+.sitemap-navigation ul{padding:15px 0px;}
+.sitemap-navigation ul li{float:left;padding:0px 10px;border-left:1px solid #555;height:23px;}
+.sitemap-navigation ul li:first-child{border-left:0px;}
+.sitemap-navigation ul li a{font-family:'맑은 고딕';font-size:13px;line-height:23px;color:#555}

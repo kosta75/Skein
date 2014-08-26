@@ -19,6 +19,7 @@
 				${list.fullName}<br> ${list.writeDate}
 			</div>
 			<div class="share" style="float: right;">
+			${list.groupCount}
 				<input type="hidden" value="${list.groupSeq}"
 					id="boardSeq${list.boardSeq}"> 공유하기
 			</div>

@@ -1,4 +1,69 @@
+//알림 목록 읽기
+function readNotificationList(){
+	var contextURI = "//localhost:8080/skein/notification/notificationCountList";
+	//$(".notification-list").empty();
+	$.ajax({
+		type : 'POST',
+		url : contextURI,
+		dataType : 'JSON',
+		/*data : "fullName=" + $("#search .textbox").val(),*/
+		success : function(data) {
+			var obj = data.notificationList;
+			var totalCount = 0;
+			var notificationText = "";
+			console.log(obj);
+			
+			$.each(obj, function(key, value){
+				var msg = "";
+				/*1	공지사항
+				2	친구신청
+				3	친구신청수락
+				4	공유신청
+				5	공유신청수락
+				6	댓글*/
+				switch (value.notificationCode) {
+				  case 1 : msg = "공지사항";
+					  break;
+				  case 2 : msg = "친구신청";
+					  break;
+				  case 4 : msg = "공유신청";
+					  break;
+				  case 6 : msg = "댓글";
+					  break;
+				}
+				notificationText += "<li>";
+				notificationText +="<div class='notification-info'><span class='notification-code'>"+msg+"</span>";
+				notificationText += "<span class='notification-count'>" + value.groupCount+"</span>개의 알림이 있습니다.</div>";
+				console.log(value.notificationCode);
+				totalCount += value.groupCount;
+				notificationText += "</li>";
+			});
+			
+			
+			if(totalCount >0){
+				$("#notificationCounter").show();
+				$(".notification-title").show();
+				$(".notification-count-number").text(totalCount);
+				$(".notification-list").append(notificationText);
+			}else{
+				notificationText = "<div class='not-exist'><span>읽지 않은 알림이 없습니다.</span></div>";
+				$("#notificationListContainer").append(notificationText);
+			}
+			
+			
+			
+			
+		},
+		error : function() {
+			alert('Error while request..');
+		}
+	});
+}
+
 $(document).ready(function() {
+	
+	//알림 목록 읽기
+	readNotificationList();
 	
 	//상단 메뉴 고정
 	var menupos = $("#menu").offset().top;
@@ -62,9 +127,8 @@ $(document).ready(function() {
 	// Bar 색상 변경 End /////////////////////////////////////////
 		
 	//헤더 네비게이션 메뉴
-	$('#notification').on('click', function() { 	//알림
-		$('#notificationList').toggle("display");
-		return false;
+	$('.notification-btn').on('click', function() { 	//알림
+		$('#notificationListContainer').toggle("slide", {direction: "up"});
 	});
 
 

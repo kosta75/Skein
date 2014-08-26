@@ -1,4 +1,9 @@
+
+
+
 $(document).ready(function(){
+	
+	/*
 	
 	//상단 메뉴 고정
 	var menupos = $("#menu").offset().top;
@@ -14,7 +19,10 @@ $(document).ready(function(){
 			$("#menu2").css("display", "none");
 			$("#menu2").css("top", "");
 		}
-	});
+	});*/
+	
+	
+	
 
 	
 	//게시물 타임라인 설정 Start //////////////////////////////////////////////////////////////////////////
@@ -30,7 +38,7 @@ $(document).ready(function(){
 	
 	$.getJSON("board/getBoardGroup" , function(data){
 				
-		console.log(data.listSource);
+		
 		var obj = data.listSource;
 		var source = new Array();
 		var flagSource = new Array();
@@ -50,7 +58,7 @@ $(document).ready(function(){
 			);
 		});
 		
-		console.log(flagSource);
+		
 		
 		$('#boardListTimelineContainer').highcharts('StockChart', {
 

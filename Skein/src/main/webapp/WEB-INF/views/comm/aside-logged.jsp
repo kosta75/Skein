@@ -11,7 +11,7 @@
 		<div class="sub-user-profile-tip ${sessionScope.BASE_MEMBER_INFO.colorTheme}"></div>
 		<div class="sub-user-profile-wrapper">
 			<div class="sub-user-profile-image-container">
-				<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+				<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
 			</div>
 			<div class="sub-user-profile-name">
 				<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>

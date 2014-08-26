@@ -41,9 +41,37 @@ public class IndexController {
 	//메인 페이지 첫 진입점
 	@RequestMapping(value = { "/", "/index.skein" }, method = RequestMethod.GET)
 	public String home(HttpSession session, Model model) throws ClassNotFoundException, SQLException {
-		//MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 
 		System.out.println("INFO : Skein-P101 - 서비스 접속 요청이 들어왔습니다.");
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			int startNum = 1;
+			int endNum = 2;
+			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(baseMemberInfo.getEmail(),startNum,endNum);
+			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
+			
+			model.addAttribute("groupList", listSource);
+
+			Member member = memberDao.getMemberInfo(baseMemberInfo.getEmail());
+			String colorTheme = memberDao.selectColorTheme(baseMemberInfo.getEmail());
+
+			SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("MMdd");
+			if (colorTheme == null || colorTheme.equals("")) {
+				model.addAttribute("colorTheme", "blue");
+			} else {
+				model.addAttribute("colorTheme", " " + colorTheme);
+			}
+			
+			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+			List<NotificationCountCommand> notificationList = notificationDao.getNotifications(baseMemberInfo.getEmail());
+
+			model.addAttribute("member", member);
+			model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
+			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
+			model.addAttribute("notificationList", notificationList);
+		}
 		/*if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 			System.out.println("INFO : Skein-P102 - 로그인된 사용자 정보를 정의합니다.");
 			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
