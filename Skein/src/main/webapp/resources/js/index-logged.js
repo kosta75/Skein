@@ -594,7 +594,7 @@ function lastPostFunc(pictureCount){
     	
         if(data.trim()==""){
         }else{
-           $('.content-wrapper').append(data);  
+           $('#boardListContainer').append(data);  
         }  
        },
        error: function(){
