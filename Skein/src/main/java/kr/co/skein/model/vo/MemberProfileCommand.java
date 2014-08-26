@@ -4,7 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public class MemberProfileCommand {
-
+	
+	
 	private String lastName;
 	private String firstName;
 	private String fullName;

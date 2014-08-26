@@ -171,9 +171,15 @@
 				</div>
 			  </div>
 			</div>
+			
+			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
+			<div id="share-detail-preview" style="border-radius:5px 5px 5px 5px;padding:10px; width:300px; height:400px; margin-left:340px; margin-top: -400px;background-color: skyblue; opacity: 1; display:none;z-index:100;position:fixed;">
+				<img id="share-detail-preview-imgtag" src="" style="width:100%; height:100%">
 
+			</div>
 
 			<!-- 게시물 출력 부분 Start -->
+
 			<div id="boardListContainer">
 				<c:forEach var="groupItem" items="${groupList}">
 				<div class="group-item-container">
@@ -205,7 +211,23 @@
 							</div>
 						</div>				
 						<div class="group-item-content-wrapper">
-							${groupItem.content}
+							<div>
+								
+								<c:if test="${list.fileName != null}">
+									<div id="modal-launcher">
+										<div id="imghover">
+											<input type="hidden" value="${list.groupSeq}"
+												id="boardSeq${list.boardSeq}"> <img
+												id="imghover${list.boardSeq}"
+												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
+												style="width: 100%; height: 250px;">
+										</div>
+									</div>
+								</c:if>
+							</div>
+							<div>
+								${groupItem.content}
+							</div>
 						</div>
 					</div>
 					
@@ -239,7 +261,6 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/map.js"></script>

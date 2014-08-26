@@ -2,11 +2,9 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="globalTop">
-
 	<div class="logo">
 		<a href="${pageContext.request.contextPath}">Sil</a>
 	</div>
-	
 	<se:authorize ifNotGranted="ROLE_USER">
 	<div id="loginFormContainer">
 		<form id="loginForm" action="${pageContext.request.contextPath}/security/login" method="post">
@@ -25,7 +23,6 @@
 					</tr>
 				</table>
 			</fieldset>
-			
 		</form>
 	</div>
 	</se:authorize>
@@ -38,8 +35,6 @@
 	</div>
 	
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	
-	
 	<div id="infoContainer">
 		<div class="info-nav-wrapper">
 			<div class="user-profile-info-container">
@@ -54,7 +49,6 @@
 			<nav id="global-navigation">
 				<ul>
 					<li>
-						
 						<div id="notification">
 							<span class="notification-btn">알림</span>
 							<div id="notificationCounter"><a class="notification-count-number" href="${pageContext.request.contextPath}/notification/"></a></div>

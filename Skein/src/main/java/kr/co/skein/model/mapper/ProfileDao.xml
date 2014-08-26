@@ -29,11 +29,11 @@
 		</set>
 		WHERE email = #{email} AND profileCode = #{profileCode}
 	</update>
+
 	<!-- 사용자 프로필 코드로 프로필 조회 -->
 	<select id="getMemberProfileByProfileCode" resultType="String">
 		SELECT ProfileInfo FROM Profiles p JOIN MEMBERS m ON p.email = m.email
 		WHERE m.personalURI = #{param1} AND profileCode = #{param2}
 	</select>
 
-	
 </mapper>

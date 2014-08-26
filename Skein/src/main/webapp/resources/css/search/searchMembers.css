@@ -1,2 +1,25 @@
 @CHARSET "UTF-8";
-.search-content-wrapper{width:760px;margin-left:200px;position:relative;}
+
+.search-content-wrapper {
+	border-radius: 15px;
+	width: 760px;
+	margin-left: 200px;
+	position: relative;
+	background-color: white;
+}
+
+.search-detail-info {
+	border: solid 1px;
+	border-radius: 8px 8px 8px 8px;
+	background-color: white;
+	width: 355px;
+	float: left;
+	margin: 10px;
+}
+
+.s-d-i-image {
+	border-radius: 8px 0px 0px 8px;
+	height: 50px;
+	width: 50px;
+	float: left;
+}

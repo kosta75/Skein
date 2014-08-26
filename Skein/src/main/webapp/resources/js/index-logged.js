@@ -265,7 +265,7 @@ $(document).ready(function(){
 		$(this).css("cursor", "pointer");
 	});
 
-	
+
 	/*$(document).on(	'click', '.members', function() {
 		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
 		if (result) {
@@ -309,6 +309,20 @@ $(document).ready(function(){
 		}
 	});*/
 
+	$(document).on('click',".imgBtn", function(){
+		var imgBtn = "#imgBtn" + $(this).find("input").val();
+		var detailImg = "#detailImg"	+ $(this).find("input").val();
+		var j = $(this).find("input").val();
+		for (var i = 0; i < 9; i++) {
+			if (i == j) {
+				$("#detailImg" + i).css("display", "block");
+			} else {
+				$("#detailImg" + i).css("display", "none");
+			}
+		}
+	});
+	
+
 	$('#sidemenu1').click(function() {
 		$('#sidemenu1').append($('#mon').toggle("display"));
 	});
@@ -319,9 +333,6 @@ $(document).ready(function(){
 		$('#sidemenu3').after($('#mon').toggle("display"));
 	});
 	// modal- 기능 구현
-	
-	
-	
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		var boardSeq = $(this).data("boardseq");
@@ -598,7 +609,7 @@ function lastPostFunc(pictureCount){
         }  
        },
        error: function(){
-          alert('스크롤 에러 :error while request..'   );
+          alert('스크롤 에러 인덱스-로그드 :error while request..'   );
        }
     });
  }; 
@@ -619,21 +630,160 @@ function lastPostFunc(pictureCount){
 		$("#hitstoryForm").submit();
 	});
 	
+	//*************************************************************************************************
+	//*************************************************************************************************
+	//공유하기 버튼 클릭시 공유목록 출력!
+	var ShowOrHide=true ;
+	$(document).on('click', '.share p', function(){
+		//alert($(this).find("input[type='hidden']").val());
+		var parent = $(this).parent();
+		parent.find(".share-img-list").empty();
+		var groupSeq = $(this).parent().find("input").val();
 	
-	//공유
-	$(document).on('click', '.share', function(){
-		alert($(this).find("input[type='hidden']").val());
+		parent.find('.share-info-div').toggle(ShowOrHide);
+		if(ShowOrHide === true){
+			$.ajax({
+				type : 'post',
+				url : 'board/shareView',
+				cache : false,
+				data : 'groupSeq=' + groupSeq,
+				success : function(data) {
+					//alert(data);
+					var boardsharedetail = data.boardshare.length;
+					//$("#imglength").val(data.detailView.length);
+					//alert("a"+boardsharedetail);
+					if(boardsharedetail==0){
+						//alert('이미지 없음');
+						parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>"
+															+ "<div style='float:left;'>" 
+															+ "<input type='radio' value=1 checked='checked'></div>"
+															+ "<div class='imgBtn'style='float:left;width:135px;'>"
+															+ "<input type='hidden' value='1'><p style='margin-left: -27px;'>현재 글 공유</p></div></div>");
+					}else{	
+						for (var j=0; j<boardsharedetail; j++) {
+							//alert("b"+data.boardshare.length);
+							console.log($(this).parent());
+							parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>" 
+																	+ "<div style='float:left;margin-top:10px'>" 
+																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+j+"></div>" 
+																	+ "<div class='imgBtn'style='float:left;width:135px;'>"
+																		+ "<input type='hidden' value='"+j+"'>"
+																	+ "<img class='imgbtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
+																	+ "'style='clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
+						}
+					}
+					
+				},
+				error : function() {
+					alert('indexlogged : Error while request..');
+				}
+			});
+			
+			
+			parent.find('.share-info-div').slideDown();
+			ShowOrHide= false;
+		}else if(ShowOrHide === false ){
+			parent.find('.share-info-div').slideUp();
+			
+			ShowOrHide= true;
+		}
+	
 	});
+	
 	$(document).on('click', '.modalShare', function(){
 		alert($(this).find("input[type='hidden']").val());
+		
 	});
-	//확대보기
-	$(document).on('click','.detailImg',function(){
-		
+
 	
+	//*************************************************************************************************
+		//공유하기 상세 마우스 올렸을때!
+	
+	$(document).on('mouseover','.imgbtn',function(){
+		//alert('상세보기 들어옴');
+		//alert($(this).attr("src"));
 		
+		//alert($('#share-detail-preview-imgtag').attr("src",$(this).attr("src")));
+		$('#share-detail-preview').css("display","block");
+		$('#share-detail-preview-imgtag').attr("src",$(this).attr("src"));
+/*		
+		$('#share-detail-preview-imgtag').attr("src",$(this).css("src"));
+		alert('상세보기 들어옴3');
+		$('#share-detail-preview').css("display","block");
+		alert('상세보기 들어옴4');
+*/
+	});
+	$(document).on('mouseout','.imgbtn',function(){
+		//alert('상세보기 나감');
+		$('#share-detail-preview').css("display","none");
+	
+	});
+	//*************************************************************************************************
+	//*************************************************************************************************
+
+	$(document).on('click','.detailImg',function(){
+		alert($(this).find("img").attr("src"));
 		$("#modal-content-view").css("display","none");
 		$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10' src='"+$(this).find("img").attr("src")+"'></div>");
-	
 	});
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
+	$("#share-detail-form").submit(function(event) {
+		alert('사용자 공유하기 확인 버튼 클릭!!');
+		
+		/*
+		event.preventDefault();
+		console.log("INFO : Skein-T543 - ShareForm Submit 처리");
+		var data = new FormData();
+		
+		//사용자가 올린 파일을 FormData에 등록한다.
+		$.each(multiFiles, 	function(count, file) {
+			console.log(count);
+			data.append("files[" + count + "]", file);
+		});
+		
+		console.log("INFO : Skein-T543 - Serialize된 Form Data");
+		
+		//Form Data를 serialize 한다.
+		var historyForm = $(this).serializeArray();
+		$.each(historyForm, function(i, field) {
+			console.log("[name : " + field.name	+ ", value : "	+ field.value + "]");
+			data.append(field.name, field.value);
+		});
+		
+		$.ajax({
+			url : 'board/historyReg',
+			type : "post",
+			dataType : "JSON",
+			data : data,
+			// cache: false,
+			processData : false,
+			contentType : false,
+			success : function(data,
+					textStatus, jqXHR) {
+				var msg = data.result;
+
+				if (data.result == 'success') {
+					location.reload();
+				} else if (data.result == 'not file') {
+					alert("이미지 업로드 안했음요");
+					location.reload();
+				}
+			},
+			error : function(jqXHR,
+					textStatus,
+					errorThrown) {
+
+			}
+		});
+		return false;
+		*/
+	});
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
 });
+
+
+

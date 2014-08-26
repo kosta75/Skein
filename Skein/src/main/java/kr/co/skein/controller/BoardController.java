@@ -14,6 +14,7 @@ import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
+import kr.co.skein.model.vo.BoardShareDetailView;
 import kr.co.skein.model.vo.HistoryCommand;
 import kr.co.skein.model.vo.Media;
 import kr.co.skein.util.CustomFileRenamePolicy;
@@ -192,11 +193,15 @@ public class BoardController {
 		}	
 		return fileNames;
 	}
+
 	
-	
-	
-	
-	
-	
-	
+	//게시물 공유하기 
+		@RequestMapping(value ="/shareView", method = RequestMethod.POST)
+		public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+			List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+			model.addAttribute("boardshare", boardshare);
+			return jsonView;
+		}
+
 }

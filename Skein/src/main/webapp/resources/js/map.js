@@ -70,7 +70,7 @@ function weatherAjax(latitude,longitude){
 		//url : "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/conditions/lang:KR/q/Korea/Busan.json",//도시이름 날씨
 		//url: "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/q/autoip.json",//IP기반 날씨
 		//url: "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/q/36.776289,127.395234.json",/위도 경도 날씨
-		url : "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/conditions/lang:KR/q/"+latitude+","+longitude+".json",
+		//url : "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/conditions/lang:KR/q/"+latitude+","+longitude+".json",
 		//url : "http://api.wunderground.com/api/047cfd871300e5c2/geolookup/conditions/lang:KR/q/25.2001,127.5002.json",
 		
 		dataType : "jsonp",

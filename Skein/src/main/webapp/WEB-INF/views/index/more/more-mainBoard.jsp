@@ -30,7 +30,23 @@
 			</div>
 		</div>				
 		<div class="group-item-content-wrapper">
-			${groupItem.content}
+			<div>
+				
+				<c:if test="${list.fileName != null}">
+					<div id="modal-launcher">
+						<div id="imghover">
+							<input type="hidden" value="${list.groupSeq}"
+								id="boardSeq${list.boardSeq}"> <img
+								id="imghover${list.boardSeq}"
+								src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
+								style="width: 100%; height: 250px;">
+						</div>
+					</div>
+				</c:if>
+			</div>
+			<div>
+				${groupItem.content}
+			</div>
 		</div>
 	</div>
 	
@@ -48,8 +64,7 @@
 			<li>
 				<div class="group-item-reply-container">
 					<div class="group-item-reply-info-container">
-						<%-- <div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileImageFileName}" alt="${replyItem.writer}" title="${replyItem.writer}" /><span>${replyItem.writer}</span></a></div> --%>
-						<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="댓글작성자" title="댓글작성자" /><span>댓글작성자</span></a></div>
+						<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileImageFileName}" alt="${replyItem.writer}" title="${replyItem.writer}" /><span>${replyItem.writer}</span></a></div>
 					</div>
 					<div class="group-item-reply-content-container">
 						${replyItem.replyContent}

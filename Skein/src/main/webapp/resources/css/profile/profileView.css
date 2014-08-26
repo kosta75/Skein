@@ -27,9 +27,13 @@
 
 .informbox_content {
 	padding: 10px 0;
-	height: auto;
+
 }
 
+.informbox_content{
+	hight: 525px;
+	background-color: white;
+}
 .content_inner {
 	padding: 0 10px;
 	float: left;

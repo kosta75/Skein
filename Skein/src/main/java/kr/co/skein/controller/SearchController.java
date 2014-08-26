@@ -68,7 +68,7 @@ public class SearchController {
 		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);
 		System.out.println("INFO : Skein-M006 - 검색 결과, " + list.size());
 		
-		model.addAttribute("list", list);		
+		model.addAttribute("list", list);
 		return "search.searchMembers";
 	}
 }

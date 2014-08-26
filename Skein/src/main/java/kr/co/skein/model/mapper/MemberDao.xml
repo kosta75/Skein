@@ -71,23 +71,27 @@
 	<!-- 친구 검색 -->
 	<!--  WHERE fullName LIKE '${searchValue}%' -->
 	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
-		SELECT fullName, personalURI, email
+		
+		SELECT m.fullName, m.personalURI, m.email, p.profileInfo
 			<if test="ignoreEmailValue != null">
 			,
 				CASE
-					WHEN email IN (SELECT FriendEmail FROM FRIENDSHIP WHERE email = #{ignoreEmailValue}) THEN 1
-					ELSE 0
-				END AS isFriend
+			    WHEN m.email IN (SELECT friendemail FROM friendship WHERE email = #{ignoreEmailValue}) THEN 1
+			    ELSE 0
+			    END AS isFriend
 			</if>
-		FROM Members
-		
+		FROM members m 
+		left OUTER JOIN (SELECT email, profileInfo, publicLevelCode FROM profiles WHERE  profilecode = 2) p 
+		ON m.email = p.email
 		<where>
 			<if test="searchNameValue != null">
-				fullName LIKE '${searchNameValue}%'
+				 m.fullName LIKE '%${searchNameValue}%'
 			</if>
 			<if test="ignoreEmailValue != null">
-				AND email != #{ignoreEmailValue}
+				AND m.email != #{ignoreEmailValue}
 			</if>
-		</where>		
+			 
+		</where>
+		
 	</select>
 </mapper>
