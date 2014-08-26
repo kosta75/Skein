@@ -1,3 +1,5 @@
+<%@page import="kr.co.skein.model.vo.BoardGroup"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
@@ -53,7 +55,7 @@
 			<div style="height: 87%;" >
 				<div id="detailImg"   style="height:100%; z-index: -2;"  >
 				<c:forEach var="imgNumber" begin="0" end="9" step="1">
-					<div class="detailImg">
+					<div class="detailImg" data-boardSeq="1234">
 					<c:if test="${imgNumber == 0}">
 						<img id="detailImg${imgNumber}"  src="" style="width: 566px; height: 452px; display: block;z-index: -1;border-radius:6px 0 0 0;">
 					</c:if>
@@ -85,13 +87,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="modalreply">
+	
 			<div class="replyModalList" >
-				<c:forEach begin="1" end="20" step="1">
-				<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
-					<img src="${pageContext.request.contextPath}/resources/media/image/" style="width: 40px;height:40px; ">
-				dd</div>
-				</c:forEach>
+				
+				<div class="modalreplyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
+					
+					
+					
+					</div>
+				
 			</div>
 			<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
 				
@@ -99,15 +103,11 @@
 					<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width:40px;height:40px; ">
 				</div>
 				
-				<div style="float: left;padding-top:10px;">
-					<div >
-						<form action="" id="rWrite" >
-							<input name="replyWrite" type="text" style="width:210%; height: 20px;">
-						</form>
-					</div>
+				<div class="replyWriteForm"style="float: left;padding-top:10px;">
+					<input class="modalreplyWrite"type="text" style="width:210%; height: 20px;" >
 				</div>
 			</div>
-				</div>
+				
 			
 		</div>
 		</div>
@@ -266,10 +266,10 @@
 							<div style="clear: both;">
 								${list.content}
 								<c:if test="${list.fileName != null}">
-									<div id="modal-launcher">
-										<div id="imghover">
-											<input type="hidden" value="${list.groupSeq}"
-												id="boardSeq${list.boardSeq}"> <img
+									<div id="modal-launcher" class="boardSeq" data-boardSeq="${list.boardSeq}">
+										<div id="imghover" >
+											<input type="hidden" value="${list.groupSeq}"id="boardSeq${list.boardSeq}" > 
+												<img
 												id="imghover${list.boardSeq}"
 												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
 												style="width: 100%; height: 250px;">
@@ -277,38 +277,42 @@
 									</div>
 								</c:if>
 							</div>
-							<div style="clear: both; float: right;">수정 삭제</div>
+							
 						</div>
 
-
+							<div class="replyList">
+								
+			<c:forEach items="${list.replyList}" var="replyList">
+			<div class="replyMainList" >${replyList.replyContent}</div>
+			</c:forEach>  
+						
+							</div>
 						<div id="reply"
 							style="background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
-							<div>
+							
 								<div style="float: left; padding: 5px; padding-left: 10px;">
 									<img
 										src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
 										style="width: 35px; height: 35px;">
-								</div>
-								<div style="float: left; padding-top: 10px;">
-									<form action="board/reply" id="replyMain" method="post">
 										<input type="hidden" value="${list.boardSeq}" id="boardSeq"
-											name="boardSeq"> <input name="replyWrite" type="text"
-											style="width: 270%; height: 20px;">
-									</form>
-								</div>
+											name="boardSeq"> <input name="replyWrite" class="replyWrite" type="text"
+											style="width: 480px; height: 20px;">
+								
+									</div>
+									
 							</div>
 						</div>
-						
+						</c:forEach>
 					
 					</div>
 
 					<%-- </c:forEach> --%>
 				
-				</c:forEach>
+				
 			
 			</div>
 		</div>
-	</div>
+
 
 
 
