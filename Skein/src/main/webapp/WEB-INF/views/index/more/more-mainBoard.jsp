@@ -31,17 +31,13 @@
 		</div>				
 		<div class="group-item-content-wrapper">
 			<div>
-				
-				<c:if test="${list.fileName != null}">
-					<div id="modal-launcher">
-						<div id="imghover">
-							<input type="hidden" value="${list.groupSeq}"
-								id="boardSeq${list.boardSeq}"> <img
-								id="imghover${list.boardSeq}"
-								src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
-								style="width: 100%; height: 250px;">
-						</div>
+				<c:if test="${groupItem.fileName != null}">
+				<div id="modal-launcher">
+					<div id="imghover">
+							<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}">
+							<img id="imghover${groupItem.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${groupItem.fileName}" style="width: 100%; height: 250px;">
 					</div>
+				</div>
 				</c:if>
 			</div>
 			<div>

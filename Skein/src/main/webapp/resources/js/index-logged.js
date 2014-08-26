@@ -1,30 +1,5 @@
-
-
-
 $(document).ready(function(){
-	
-	/*
-	
-	//상단 메뉴 고정
-	var menupos = $("#menu").offset().top;
-	
-	$(window).scroll(function() {
-		if ($(window).scrollTop() >= menupos) {
 
-			$("#menu2").fadeIn('slow');
-			$("#menu2").css("position", "fixed");
-			$("#menu2").css("top", "0");
-
-		} else {
-			$("#menu2").css("display", "none");
-			$("#menu2").css("top", "");
-		}
-	});*/
-	
-	
-	
-
-	
 	//게시물 타임라인 설정 Start //////////////////////////////////////////////////////////////////////////
 	Highcharts.setOptions({
 		lang: {
@@ -544,9 +519,11 @@ $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e
 		if (e.keyCode === 13) {
 			
 		 var boardSeq = $(this).parent().find("input[type=hidden]").val();
-		 var replyContent =  $(this).val();
+		 var replyContent = $(this).val();
 		
-		 var reply = $(this).parent().parent().parent().find(".replyList");
+		 //var reply = $(".group-item-reply-secition ul");
+		 var reply = $(this).parent().siblings().eq(1).find("ul");
+		 console.log(reply);
 			
 		$.ajax({
 			type : 'post',
@@ -554,9 +531,9 @@ $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-				reply.append("<div class='replyMainList'>"+replyContent+"</div>");	
+				reply.append("<li><div class='replyMainList'>"+replyContent+"</div></li>");	
 				
-					},
+			},
 			error : function() {
 				alert('indexlogged 354 : Error while request..');
 			}

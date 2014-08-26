@@ -55,6 +55,10 @@ public class IndexController {
 			int endNum = 2;
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(baseMemberInfo.getEmail(),startNum,endNum);
+		    replyDao replydao = sqlSession.getMapper(replyDao.class);
+			for(int i=0;i<listSource.size();i++){
+				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+			}
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
 			
 			model.addAttribute("groupList", listSource);
@@ -170,8 +174,7 @@ public class IndexController {
 		    replyDao replydao = sqlSession.getMapper(replyDao.class);
 			for(int i=0;i<listSource.size();i++){
 				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
-					
-				}
+			}
 			
 			
 		

@@ -39,7 +39,7 @@
 							<div class="modalShare" style="float: right;padding-right: 10px;">
 								<input  type="hidden" value="">공유하기
 							</div>
-							<div style="float: left;">
+							<div class="modal-user-profile-image" style="float: left;">
 								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
 								<%-- <img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> --%>
 							</div>
@@ -190,7 +190,7 @@
 								<li><div class="icon-box group-item-delete" title="삭제">삭제</div></li>
 								<li>
 									<c:choose>
-										<c:when test="${list.groupCount > 1}">
+										<c:when test="${groupItem.groupCount > 1}">
 											<div class="icon-box group-share" title="그룹 공유하기">그룹 공유하기</div>
 										</c:when>
 										<c:otherwise>
@@ -212,40 +212,35 @@
 						</div>				
 						<div class="group-item-content-wrapper">
 							<div>
-								
-								<c:if test="${list.fileName != null}">
-									<div id="modal-launcher">
-										<div id="imghover">
-											<input type="hidden" value="${list.groupSeq}"
-												id="boardSeq${list.boardSeq}"> <img
-												id="imghover${list.boardSeq}"
-												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
-												style="width: 100%; height: 250px;">
-										</div>
+								<c:if test="${groupItem.fileName != null}">
+								<div id="modal-launcher" data-boardSeq="${groupItem.boardSeq}">
+									<div id="imghover">
+										<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}">
+										<img id="imghover${groupItem.boardSeq}" src="${pageContext.request.contextPath}/resources/upload/${groupItem.fileName}" style="width: 100%; height: 250px;">
 									</div>
+								</div>
 								</c:if>
 							</div>
 							<div>
-								${groupItem.content}
+								${groupItem.content} <br />
+								${groupItem.replyList.size()}
 							</div>
 						</div>
 					</div>
 					
 					<div class="group-item-reply-write-form-container">
 						<div class="image-icon reply-icon">댓글</div>
-						<form action="">
-							<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
-							<input type="text" id="boardSeq" name="replyWrite" />
-						</form>
+						<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
+						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />						
 					</div>
 
-					<div class="group-item-reply-secition">
+					<div class="group-item-reply-section">
 						<ul>
 							<c:forEach items="${groupItem.replyList}" var="replyItem">
 							<li>
 								<div class="group-item-reply-container">
 									<div class="group-item-reply-info-container">
-										<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a></div>
+										<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a></div>
 									</div>
 									<div class="group-item-reply-content-container">
 										${replyItem.replyContent}
