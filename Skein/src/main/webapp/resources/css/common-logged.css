@@ -59,7 +59,7 @@ ul.arrowunderline li a{display:block;color:#000;height:51px;line-height:55px;fon
 ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 .sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff; border-radius: 0px 0px 8px 8px}
-.sub-menu2{position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:5;left:0;}
+.sub-menu2{position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:15;left:0;}
 .menu-username{float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
 
 #menu1 .sub-navigation{float:left;}
@@ -72,7 +72,7 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 /* --------------------------- 로그인 됐을 때 사용자 정보 섹션에 적용되는 CSS --------------------------- */
 /* 왼쪽 사용자 정보 */
-#subUserProfileContainer{width:180px;position:absolute;left:0px;}
+#subUserProfileContainer{width:180px;position:absolute;left:0px;z-index:10}
 .sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
 .sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
 .sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
