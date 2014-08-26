@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	
 	//상단 메뉴 고정
-	var menupos = $("#menu").offset().top;
+	/*var menupos = $("#menu").offset().top;*/
 	
 	$(window).scroll(function() {
-		if ($(window).scrollTop() >= menupos) {
+		if ($(window).scrollTop() >= 0) {
 
 			$("#menu2").fadeIn('fast');
 			$("#menu2").css("position", "fixed");
