@@ -1,6 +1,6 @@
 package kr.co.skein.model.vo;
 
-public class reply {
+public class reply extends Member {
 private String replySeq;
 private String boardSeq;
 private String email;

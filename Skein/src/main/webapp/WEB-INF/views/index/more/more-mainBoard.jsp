@@ -39,7 +39,12 @@
 					<div class="replyList">
 								
 			<c:forEach items="${list.replyList}" var="replyList">
-			<div class="replyMainList" >${replyList.replyContent}</div>
+			<div class="replyMainList bubble" >
+			<div style=" background: #fff">${replyList.fullName}<br> ${replyList.replyContent}</div>
+			
+			
+			
+			</div>
 			</c:forEach>  
 						
 							</div>
