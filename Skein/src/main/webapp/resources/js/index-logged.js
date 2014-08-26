@@ -311,6 +311,7 @@ $(document).ready(function(){
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		var boardSeq = $(this).data("boardseq");
+	
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
 			$("html").css("overflow-y", "hidden");
@@ -347,10 +348,10 @@ $(document).ready(function(){
 						success : function(data) {
 							
 							for(var j =0;j<data.replylist.length;j++){
+								/*alert(data.replylist[j].replyContent);	
+								*/
 								
-								
-								
-			$(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+data.replylist[j].replyContent+"</div>");
+			$(".replyList").append("<div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
 							}
 						
 						
@@ -367,12 +368,13 @@ $(document).ready(function(){
 				}
 			});
 		} else {
+			
 			$('.content-wrapper').off('wheel.modal mousewheel.modal');
 			$("html").css("overflow-y", "auto");
 			$("#modal-detile-view").remove();
 			$(".imgBtn").remove();
 			$(".modalViewcontent").remove();
-			$(".modalreplyList").empty();
+			$(".replyList").empty();
 			
 		}
 
@@ -437,7 +439,7 @@ $(document).ready(function(){
 	var boardSeq =0;
 	//모달 댓글 리스트 출력
 	$(document).on('click',".imgBtn", function(){
-		$(".modalreplyList").empty();
+		$(".replyList").empty();
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
 		 boardSeq = $(this).data("boardseq");
@@ -462,8 +464,8 @@ $(document).ready(function(){
 					
 					
 					
-$(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+data.replylist[j].replyContent+"</div>");
-				
+					$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
+									
 				}
 			
 			
@@ -492,17 +494,16 @@ $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e
 			
 		 var replyContent =  $(this).val();
 		
-		 
-		 $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+replyContent+"</div>");
-		
+				
 		$.ajax({
 			type : 'post',
 			url : 'reply/insert',
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-			
-				$(this).val('');
+				$(".replyList").append("<div class='replymodalList modal-bubble'>"+replyContent+"</div>");
+				
+				
 				},
 			error : function() {
 				alert('indexlogged 354 : Error while request..');
@@ -531,7 +532,9 @@ $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-				reply.append("<li><div class='replyMainList'>"+replyContent+"</div></li>");	
+				reply.append("<li><div class='group-item-reply-container'>" +
+						
+						"<div class='group-item-reply-content-container modal-bubble'>"+replyContent+"</div></div></li>");	
 				
 			},
 			error : function() {
@@ -699,8 +702,8 @@ function lastPostFunc(pictureCount){
 	//*************************************************************************************************
 
 	$(document).on('click','.detailImg',function(){
-		alert($(this).find("img").attr("src"));
-		$("#modal-content-view").css("display","none");
+		/*alert($(this).find("img").attr("src"));
+	*/	$("#modal-content-view").css("display","none");
 		$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10' src='"+$(this).find("img").attr("src")+"'></div>");
 	});
 	//////////////////////////////////////////////////////////////////////////////////////////////////////

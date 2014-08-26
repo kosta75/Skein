@@ -50,11 +50,9 @@
 				</div>
 				<div class="modalreply">
 					<div class="replyModalList" >
-						<c:forEach begin="1" end="20" step="1">
-						<div class="replyList" style="width: 95%;margin: auto; background:#e4e4e4;border:1px solid #fff;">
-							<%-- <img src="${pageContext.request.contextPath}/resources/media/image/" style="width: 40px;height:40px; "> --%>
+							<div class="replyList" style="width: 95%;margin: auto; border:1px solid #fff;">
 						</div>
-						</c:forEach>
+						
 					</div>
 					
 					<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
@@ -63,7 +61,7 @@
 						</div>
 						
 						<div class="replyWriteForm"style="float: left;padding-top:10px;">
-							<input class="modalreplyWrite"type="text" style="width:210%; height: 20px;" >
+							<input class="modalreplyWrite"type="text" style="width:200%; height: 20px;" >
 						</div>
 						
 						<!-- <div style="float: left;padding-top:10px;">
@@ -222,8 +220,8 @@
 								</c:if>
 							</div>
 							<div>
-								${groupItem.content} <br />
-								${groupItem.replyList.size()}
+								${groupItem.content} 
+								
 							</div>
 						</div>
 					</div>
@@ -242,7 +240,7 @@
 									<div class="group-item-reply-info-container">
 										<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a></div>
 									</div>
-									<div class="group-item-reply-content-container">
+									<div class="group-item-reply-content-container bubble">
 										${replyItem.replyContent}
 									</div>
 								</div>
