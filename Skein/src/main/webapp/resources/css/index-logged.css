@@ -75,7 +75,7 @@
 .group-item-reply-secition ul li{margin-top:1px;}
 .group-item-reply-secition ul li:first-child{margin-top:0px;}
 .group-item-reply-container{padding:7px 7px 7px 55px;background:#eee;position:relative;min-height:33px;margin-top:1px;}
-.group-item-reply-info-container{position:absolute;left:4px;top:4px;}
+.group-item-reply-info-container{position:absolute;left:4px;top:4px; height: 100%;}
 .group-item-reply-profile-image span{text-indent:-10000px;font-size:0px;}
 .group-item-reply-profile-image img{width:37px;height:37px;border-radius:100px;border:1px solid #777;}
 
@@ -283,4 +283,30 @@ height:210px;
 margin: auto;
 
 }
+/*댓글 말풍선  */
+.bubble 
+{
+position: relative;
+width: 96%;
+height: 25px;
+padding: 10px;
+background: #fff;
+-webkit-border-radius: 12px;
+-moz-border-radius: 12px;
+border-radius: 12px;
 
+}
+
+.bubble:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 11px 13px 11px 0;
+border-color: transparent #fff;
+display: block;
+width: 0;
+z-index: 1;
+left: -13px;
+top: 10px;
+}

@@ -49,9 +49,11 @@
 				<div class="group-item-reply-container">
 					<div class="group-item-reply-info-container">
 						<%-- <div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileImageFileName}" alt="${replyItem.writer}" title="${replyItem.writer}" /><span>${replyItem.writer}</span></a></div> --%>
-						<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="댓글작성자" title="댓글작성자" /><span>댓글작성자</span></a></div>
+						<div class="group-item-reply-profile-image"><a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>댓글작성자</span></a></div>
+					 
 					</div>
-					<div class="group-item-reply-content-container">
+				
+					<div class="group-item-reply-content-container bubble">
 						${replyItem.replyContent}
 					</div>
 				</div>
