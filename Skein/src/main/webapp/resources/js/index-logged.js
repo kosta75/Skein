@@ -265,19 +265,7 @@ $(document).ready(function(){
 		$(this).css("cursor", "pointer");
 	});
 
-	$(document).on('click',".imgBtn", function(){
-		var imgBtn = "#imgBtn" + $(this).find("input").val();
-		var detailImg = "#detailImg"	+ $(this).find("input").val();
-		var j = $(this).find("input").val();
-		for (var i = 0; i < 9; i++) {
-			if (i == j) {
-				$("#detailImg" + i).css("display", "block");
-			} else {
-				$("#detailImg" + i).css("display", "none");
-			}
-		}
-	});
-		
+	
 	/*$(document).on(	'click', '.members', function() {
 		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
 		if (result) {
@@ -336,6 +324,7 @@ $(document).ready(function(){
 	
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
+		var boardSeq = $(this).data("boardseq");
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
 			$("html").css("overflow-y", "hidden");
@@ -357,11 +346,35 @@ $(document).ready(function(){
 					$("#imglength").val(data.detailView.length);
 					
 					for (var i = 0; i < data.detailView.length; i++) {
-						$("#imgBtnList").append("<div class='imgBtn'>" + "<input type='hidden' value='" + i + "'>"
+						$("#imgBtnList").append("<div class='imgBtn' data-boardSeq='"+data.detailView[i].boardSeq+"'>" + "<input type='hidden' value='" + i + "'>"
 								+ "<img class='imgbtn' data-imgBtnNumber = '"	+ i 	+ "'  src='./resources/upload/" + data.detailView[i].filename
 								+ "' style='width: 40px; height: 40px; padding-left:15px;padding-top:10px;opacity:0.4;'></div>" + "</div>");
 						$("#detailImg"+ i).attr("src",'./resources/upload/'+ data.detailView[i].filename);
+					
 					}
+					
+					$.ajax({
+						type : 'post',
+						url : 'reply/select',
+						cache : false,
+						data : 'boardSeq=' + boardSeq,
+						success : function(data) {
+							
+							for(var j =0;j<data.replylist.length;j++){
+								
+								
+								
+			$(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+data.replylist[j].replyContent+"</div>");
+							}
+						
+						
+						},
+						error : function() {
+							alert('indexlogged 354 : Error while request..');
+						}
+						
+						
+					});
 				},
 				error : function() {
 					alert('indexlogged 354 : Error while request..');
@@ -373,7 +386,8 @@ $(document).ready(function(){
 			$("#modal-detile-view").remove();
 			$(".imgBtn").remove();
 			$(".modalViewcontent").remove();
-		
+			$(".modalreplyList").empty();
+			
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -434,8 +448,116 @@ $(document).ready(function(){
 	
 	});
 	
-  
+	var boardSeq =0;
+	//모달 댓글 리스트 출력
+	$(document).on('click',".imgBtn", function(){
+		$(".modalreplyList").empty();
+		var imgBtn = "#imgBtn" + $(this).find("input").val();
+		var detailImg = "#detailImg"	+ $(this).find("input").val();
+		 boardSeq = $(this).data("boardseq");
+		
+		var j = $(this).find("input").val();
+		for (var i = 0; i < 9; i++) {
+			if (i == j) {
+				$("#detailImg" + i).css("display", "block");
+			} else {
+				$("#detailImg" + i).css("display", "none");
+			}
+		}
+		
+		$.ajax({
+			type : 'post',
+			url : 'reply/select',
+			cache : false,
+			data : 'boardSeq=' + boardSeq,
+			success : function(data) {
+				
+				for(var j =0;j<data.replylist.length;j++){
+					
+					
+					
+$(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+data.replylist[j].replyContent+"</div>");
+				
+				}
+			
+			
+			},
+			error : function() {
+				alert('indexlogged 354 : Error while request..');
+			}
+			
+			
+		});
+		
+	
+		
+		
+		
+		
+		
+		
+	});
+		
+	
+	//모달 댓글
+	$(document).on('keydown',".modalreplyWrite",function(e){
+		if (e.keyCode === 13) {
+		
+			
+		 var replyContent =  $(this).val();
+		
+		 
+		 $(".modalreplyList").append("<div class='replymodalList' style='background: #e4e4e4; width: 99%; height: 35px; border-bottom: 1px solid;border-top: 1px solid; border-color: #fff;'>"+replyContent+"</div>");
+		
+		$.ajax({
+			type : 'post',
+			url : 'reply/insert',
+			cache : false,
+			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
+			success : function(data) {
+			
+				$(this).val('');
+				},
+			error : function() {
+				alert('indexlogged 354 : Error while request..');
+			}
+		});
+	}
 
+});
+	
+	
+	
+  //댓글
+	$(document).on('keydown',".replyWrite",function(e){
+		if (e.keyCode === 13) {
+			
+		 var boardSeq = $(this).parent().find("input[type=hidden]").val();
+		 var replyContent =  $(this).val();
+		
+		 var reply = $(this).parent().parent().parent().find(".replyList");
+			
+		$.ajax({
+			type : 'post',
+			url : 'reply/insert',
+			cache : false,
+			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
+			success : function(data) {
+				reply.append("<div class='replyMainList'>"+replyContent+"</div>");	
+				
+					},
+			error : function() {
+				alert('indexlogged 354 : Error while request..');
+			}
+		});
+	
+	
+	
+	
+	}
+	
+	
+});
 //엔터키 처리
 $("#writeTextarea").on('keydown', function(e) {
 	
@@ -489,6 +611,8 @@ function lastPostFunc(pictureCount){
     }      
  });
  
+ 
+ 
 //submit
 	$("#hitstoryWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
@@ -503,9 +627,8 @@ function lastPostFunc(pictureCount){
 	$(document).on('click', '.modalShare', function(){
 		alert($(this).find("input[type='hidden']").val());
 	});
-	
+	//확대보기
 	$(document).on('click','.detailImg',function(){
-		alert($(this).find("img").attr("src"));
 		
 	
 		

@@ -1,3 +1,5 @@
+<%@page import="kr.co.skein.model.vo.BoardGroup"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
@@ -10,7 +12,6 @@
 			<div  style="float: right;">
 				<img id="modal-close" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" style="width: 20px;height: 20px; border-radius:0 6px 0 0;" >
 			</div>
-			
 			<div style="float: left; width: 59%;height: 100%;">
 				<div style="height: 87%;" >
 					<div id="detailImg"   style="height:100%; z-index: -2;"  >
@@ -55,18 +56,26 @@
 						</div>
 						</c:forEach>
 					</div>
+					
 					<div id="reply" style="clear:both; background: #e4e4e4;width:99%;height:50px;  border: 1px solid; border-color:  #e4e4e4;">
 						<div style="float: left;padding:5px;padding-left:10px;">
 							<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width:40px;height:40px; ">
 						</div>
-						<div style="float: left;padding-top:10px;">
+						
+						<div class="replyWriteForm"style="float: left;padding-top:10px;">
+							<input class="modalreplyWrite"type="text" style="width:210%; height: 20px;" >
+						</div>
+						
+						<!-- <div style="float: left;padding-top:10px;">
 							<div >
+							
 								<form action="" id="rWrite" >
 									<input name="replyWrite" type="text" style="width:210%; height: 20px;">
 								</form>
 							</div>
-						</div>
+						</div> -->
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -166,6 +175,7 @@
 
 			<!-- 게시물 출력 부분 Start -->
 			<div id="boardListContainer">
+<<<<<<< HEAD
 				<c:forEach var="groupItem" items="${groupList}">
 				<div class="group-item-container">
 					<div class="group-item-wrapper">
@@ -184,7 +194,46 @@
 									</c:choose>
 								</li>
 							</ul>
+=======
+				<c:forEach var="list" items="${groupList}" varStatus="groupStep">
+
+					<%-- <c:forEach var="list" items="${boardList}"> --%>
+					<div id="group-item-container" class="group-item-container">
+						<%-- ${groupStep.count} 번째 그룹 <br /> --%>
+						<div id="list" style="border-radius: 6px 6px 6px 6px;">
+
+
+							<div style="float: left;">
+								<img
+									src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
+									style="width: 50px; height: 50px;">
+							</div>
+
+							<div style="float: left;">
+								${list.fullName}<br> ${list.writeDate}
+							</div>
+							<div class="share" style="float: right;">
+								<input type="hidden" value="${list.groupSeq}"
+									id="boardSeq${list.boardSeq}"> 공유하기
+							</div>
+							<div style="clear: both;">
+								${list.content}
+								<c:if test="${list.fileName != null}">
+									<div id="modal-launcher" class="boardSeq" data-boardSeq="${list.boardSeq}">
+										<div id="imghover" >
+											<input type="hidden" value="${list.groupSeq}"id="boardSeq${list.boardSeq}" > 
+												<img
+												id="imghover${list.boardSeq}"
+												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
+												style="width: 100%; height: 250px;">
+										</div>
+									</div>
+								</c:if>
+							</div>
+							
+>>>>>>> refs/remotes/original/release-1.2.2
 						</div>
+<<<<<<< HEAD
 						<div class="group-item-user-info-container">
 							<div class="group-item-user-profile-image-wrapper">
 								<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
@@ -192,13 +241,40 @@
 							<div class="group-item-user-info-wrapper">
 								<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
 								<span class="group-item-write-date">${groupItem.writeDate}</span>
+=======
+
+							<div class="replyList">
+								
+			<c:forEach items="${list.replyList}" var="replyList">
+			<div class="replyMainList" >${replyList.replyContent}</div>
+			</c:forEach>  
+						
+							</div>
+						<div id="reply"
+							style="background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
+							
+								<div style="float: left; padding: 5px; padding-left: 10px;">
+									<img
+										src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
+										style="width: 35px; height: 35px;">
+										<input type="hidden" value="${list.boardSeq}" id="boardSeq"
+											name="boardSeq"> <input name="replyWrite" class="replyWrite" type="text"
+											style="width: 480px; height: 20px;">
+								
+									</div>
+									
+>>>>>>> refs/remotes/original/release-1.2.2
 							</div>
 						</div>
+<<<<<<< HEAD
 						
 						<div class="group-item-content-wrapper">
 							${groupItem.content}
 						</div>
 					</div>
+=======
+						</c:forEach>
+>>>>>>> refs/remotes/original/release-1.2.2
 					
 					<div class="group-item-reply-write-form-container">
 						<div class="image-icon reply-icon">댓글</div>
@@ -238,6 +314,7 @@
 			</div>
 		</div>
 	</div>
+
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/map.js"></script>

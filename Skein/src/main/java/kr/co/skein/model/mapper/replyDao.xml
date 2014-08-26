@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.skein.model.dao.replyDao">
+
+	<!-- 1. 그룹 등록 -->
+	<insert id="insertReply" >
+		<selectKey order="BEFORE" keyProperty="replySeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(replySeq)),0)+1 FROM reply
+		</selectKey>
+		INSERT INTO reply(replySeq, boardSeq, email, replyContent)VALUES(#{replySeq}, #{param1}, #{param2}, #{param3})
+	</insert>
+	<select id="selectReply" resultType="kr.co.skein.model.vo.reply">
+	
+	select * from reply where boardSeq = #{boardSeq}
+	</select>
+</mapper>
+
+
+
+	

@@ -26,10 +26,9 @@
 			<div style="clear: both;">
 				${list.content}
 				<c:if test="${list.fileName != null}">
-					<div id="modal-launcher">
-						<div id="imghover">
-							<input type="hidden" value="${list.groupSeq}"
-								id="boardSeq${list.boardSeq}"> <img
+					<div id="modal-launcher" class="boardSeq" data-boardSeq="${list.boardSeq}">
+						<div id="imghover" >
+								<input type="hidden" value="${list.groupSeq}"id="boardSeq${list.boardSeq}" > <img
 								id="imghover${list.boardSeq}"
 								src="${pageContext.request.contextPath}/resources/upload/${list.fileName}"
 								style="width: 100%; height: 250px;">
@@ -37,27 +36,28 @@
 					</div>
 				</c:if>
 			</div>
-			<div style="clear: both; float: right;">수정 삭제</div>
 		</div>
-
-
-		<div id="reply"
-			style="background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
-			<div>
-				<div style="float: left; padding: 5px; padding-left: 10px;">
-					<img
-						src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
-						style="width: 35px; height: 35px;">
-				</div>
-				<div style="float: left; padding-top: 10px;">
-					<form action="board/reply" id="replyMain" method="post">
-						<input type="hidden" value="${list.boardSeq}" id="boardSeq"
-							name="boardSeq"> <input name="replyWrite" type="text"
-							style="width: 270%; height: 20px;">
-					</form>
-				</div>
-			</div>
-		</div>
+					<div class="replyList">
+								
+			<c:forEach items="${list.replyList}" var="replyList">
+			<div class="replyMainList" >${replyList.replyContent}</div>
+			</c:forEach>  
+						
+							</div>
+						<div id="reply"
+							style="background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
+							
+								<div style="float: left; padding: 5px; padding-left: 10px;">
+									<img
+										src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg"
+										style="width: 35px; height: 35px;">
+										<input type="hidden" value="${list.boardSeq}" id="boardSeq"
+											name="boardSeq"> <input name="replyWrite" class="replyWrite" type="text"
+											style="width: 480px; height: 20px;">
+								
+									</div>
+									
+							</div>
 	</div>
 
 	<%-- </c:forEach> --%>

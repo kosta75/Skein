@@ -133,16 +133,6 @@ public class BoardController {
 		return jsonView;
 	}
 	
-	//댓글 등록
-	@RequestMapping(value="/reply", method=RequestMethod.POST)
-	public String reply(String replyWrite,HttpSession session,int boardSeq){
-	SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-	UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
-	
-		System.out.println(boardSeq+replyWrite+user.getUsername());
-		
-		return "";
-	}
 	
 	//공통 게시물 초기설정
 	protected BoardCommand initBoard(BoardCommand command){
@@ -202,8 +192,6 @@ public class BoardController {
 		}	
 		return fileNames;
 	}
-	
-	
 	
 	
 	

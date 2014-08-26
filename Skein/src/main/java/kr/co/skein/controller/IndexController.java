@@ -11,12 +11,17 @@ import javax.servlet.http.HttpSession;
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
+
 import kr.co.skein.model.vo.BaseMemberInfo;
+
+import kr.co.skein.model.dao.replyDao;
+
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
+import kr.co.skein.model.vo.reply;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,12 +107,12 @@ public class IndexController {
 			
 			int startNum = 1;
 			int endNum = 2;
+	       
+
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(user.getUsername(),startNum,endNum);
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
-			
-			model.addAttribute("groupList", listSource);
-
+		 
 			Member member = memberDao.getMemberInfo(user.getUsername());
 			String colorTheme = memberDao.selectColorTheme(user.getUsername());
 
@@ -117,10 +122,15 @@ public class IndexController {
 			} else {
 				model.addAttribute("colorTheme", " " + colorTheme);
 			}
-			
+		
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 			List<NotificationCountCommand> notificationList = notificationDao.getNotifications(user.getUsername());
-
+		    replyDao replydao = sqlSession.getMapper(replyDao.class);
+			for(int i=0;i<listSource.size();i++){
+				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+					
+				}
+			model.addAttribute("groupList", listSource);
 			model.addAttribute("member", member);
 			model.addAttribute("birthDay", SimpleDateFormat.format(member.getBirthday()));
 			model.addAttribute("toDay", SimpleDateFormat.format(new Date()));
@@ -155,9 +165,16 @@ public class IndexController {
             int startNum = pictureCount+1;
             int endNum = startNum+1;
             System.out.println("시작 넘 :"+startNum+ "종료값"+endNum);
-            
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(user.getUsername(),startNum,endNum);
+		    replyDao replydao = sqlSession.getMapper(replyDao.class);
+			for(int i=0;i<listSource.size();i++){
+				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+					
+				}
+			
+			
+		
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
 			
 			model.addAttribute("groupList", listSource);

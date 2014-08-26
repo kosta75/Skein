@@ -1,6 +1,7 @@
 package kr.co.skein.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class BoardGroup {
@@ -41,7 +42,13 @@ public class BoardGroup {
 	private String fileName;
 	private int fileSize;
 	private String extension;
-	
+	private List<reply> replyList;
+	public List<reply> getReplyList() {
+		return replyList;
+	}
+	public void setReplyList(List<reply> replyList) {
+		this.replyList = replyList;
+	}
 	private String fullName;
 	private Date birthday;
 	private String personalURI;
