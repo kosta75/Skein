@@ -534,7 +534,7 @@ $(document).ready(function(){
 			success : function(data) {
 				reply.append("<li><div class='group-item-reply-container'>" +
 						
-						"<div class='group-item-reply-content-container modal-bubble'>"+replyContent+"</div></div></li>");	
+						"<div class='group-item-reply-content-container bubble'>"+replyContent+"</div></div></li>");	
 				
 			},
 			error : function() {
