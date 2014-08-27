@@ -16,7 +16,7 @@ $(document).ready(function() {
 				cache : false,
 				data :'profileInfo='+ profileInfo + '&profileCode='+ profileCode + '&publicLevelCode='+ publicLevelCode + '&email='+ email,
 				success : function(data) {
-					alert("정보가 수정되었습니다!");
+					/*alert("정보가 수정되었습니다!");*/
 					profileName = $("input:hidden[value=" + profileCode + "]").attr("name");
 					$("input:hidden[name=" + profileName + "Public]").val(publicLevelCode);
 					$(".informdata."+profileName).html(profileInfo);
@@ -26,7 +26,6 @@ $(document).ready(function() {
 					return false;
 				}
 			});
-			publicBtn($(this).parent());
 			
 		}//else end
 		
@@ -74,7 +73,30 @@ $(document).ready(function() {
 	});	
 	
 	//프로필 삭제 
-	
+	$(".profile_deleteBtn").click(function(){
+		var profileName = $(this).attr("class").substring(18);
+		var profileCode = $("input:hidden[name=" + profileName + "]").attr("value");
+		var email = $("input:hidden[name=email]").val();
+		var deletebtn = $(this);
+
+		$.ajax({
+			type : 'post',
+			url : 'profile/delete',
+			cache : false,
+			data : 'profileCode='+ profileCode + '&email='+ email,
+			success : function(data) {
+				/*alert("정보가 수정되었습니다!");*/
+				$("input:hidden[name=" + profileName + "Public]").val('');
+				$(".informdata."+profileName).html('');
+				deletebtn.parent().css("display", "none").siblings().css("display", "block");
+			},
+			error : function() {
+				alert('Error');
+				return false;
+			}
+		});
+		
+	});
 	
 	
 	
@@ -102,7 +124,14 @@ $(document).ready(function() {
 		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block");
 		profileName = $(this).parent().attr("class").substring(14);
 		PublicCode = $("input:hidden[name=" + profileName + "Public]").val();
+		if(PublicCode == ''){
+			PublicCode = 5;
+			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "none");
+		}else{
+			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "");
+		}
 		$(this).parent().parent().parent().find("select").val(PublicCode);
+		
 	});
 	
 	// 공개범위 클릭시 공개범위 선택지 보이기

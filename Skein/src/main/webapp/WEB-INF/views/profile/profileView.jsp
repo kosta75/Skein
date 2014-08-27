@@ -115,6 +115,7 @@ birthdayPublic
 										<option value="1">나만보기</option>
 									</select>
 									<input type="button" value="저장" class="profile_editBtn profileImage">
+									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
 								</div>
 							</div>
 						</div>
@@ -168,6 +169,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn statusComment">
+								<input type="button" value="삭제" class="profile_deleteBtn statusComment">
 							</div>
 						</div>
 					</div>
@@ -216,6 +218,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn openEmail">
+								<input type="button" value="삭제" class="profile_deleteBtn openEmail">
 							</div>
 						</div>
 					</div>
@@ -246,6 +249,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn phoneNumber">
+								<input type="button" value="삭제" class="profile_deleteBtn phoneNumber">
 							</div>
 						</div>
 					</div>
@@ -276,6 +280,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn blog">
+								<input type="button" value="삭제" class="profile_deleteBtn blog">
 							</div>
 						</div>
 					</div>
@@ -306,6 +311,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn address">
+								<input type="button" value="삭제" class="profile_deleteBtn address">
 							</div>
 						</div>
 					</div>
@@ -336,6 +342,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn language">
+								<input type="button" value="삭제" class="profile_deleteBtn language">
 							</div>
 						</div>
 					</div>
@@ -366,6 +373,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn politics">
+								<input type="button" value="삭제" class="profile_deleteBtn politics">
 							</div>
 						</div>
 					</div>
@@ -396,6 +404,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn religion">
+								<input type="button" value="삭제" class="profile_deleteBtn religion">
 							</div>
 						</div>
 					</div>

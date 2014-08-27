@@ -28,8 +28,7 @@ public class ProfileController {
 	@Autowired
 	private View jsonView;
 	
-	@RequestMapping(value="", method=RequestMethod.POST)
-
+	@RequestMapping(value="update", method=RequestMethod.POST)
 	public View updateProfileInfo(ProfileCommand command, Model model) throws ClassNotFoundException, SQLException{
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		System.out.println(command.getEmail());
@@ -39,6 +38,15 @@ public class ProfileController {
 			profileDao.insertProfile(command);
 		}
 
+		return jsonView;
+	}
+	
+	@RequestMapping(value="delete", method=RequestMethod.POST)
+	public View deleteProfileInfo(ProfileCommand command, Model model) throws ClassNotFoundException, SQLException{
+		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+		if(profileDao.deleteProfile(command) > 0){
+			model.addAttribute("result", "success");
+		}
 		return jsonView;
 	}
 }

@@ -59,7 +59,7 @@ ul.arrowunderline li a{display:block;color:#000;height:51px;line-height:55px;fon
 ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 .sub-menu{height:54px;border-bottom:1px solid skyblue;background-color:#fff; border-radius: 0px 0px 8px 8px}
-.sub-menu2{position:relative;height:54px;width:100%;display:none;border-bottom:1px solid skyblue;z-index:15;left:0;}
+.sub-menu2{position:relative;height:54px;width:100%;display:none;z-index:15;left:0;}
 .menu-username{float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
 
 #menu1 .sub-navigation{float:left;}
@@ -67,7 +67,9 @@ ul.arrowunderline li a:hover {border-bottom:3px solid skyblue;}
 
 #menu .menu-username a{color:#000;}
 #menu2 .menu-username a{color:#fff;}
-#menu2 ul.arrowunderline li a{color:#fff;}
+#menu2 ul.arrowunderline li a{border-bottom:0; color:inherit;}
+#menu2 ul.arrowunderline li:hover {background-color: white; color:black;}
+#menu2 ul.arrowunderline li {border-width:0;color:#fff;}
 
 
 /* --------------------------- 로그인 됐을 때 사용자 정보 섹션에 적용되는 CSS --------------------------- */

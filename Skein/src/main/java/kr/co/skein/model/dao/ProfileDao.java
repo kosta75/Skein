@@ -20,5 +20,8 @@ public interface ProfileDao {
 	public int updateProfile(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
 	
 	//사용자 프로필 코드로 프로필 조회
-	public String getMemberProfileByProfileCode(String personalURI, int profileCode) throws ClassNotFoundException, SQLException; 
+	public String getMemberProfileByProfileCode(String personalURI, int profileCode) throws ClassNotFoundException, SQLException;
+	
+	//사용자 프로필 삭제
+	public int deleteProfile(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
 }

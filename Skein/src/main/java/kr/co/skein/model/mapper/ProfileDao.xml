@@ -36,4 +36,9 @@
 		WHERE m.personalURI = #{param1} AND profileCode = #{param2}
 	</select>
 
+	<!-- 사용자 프로필 업데이트 -->
+	<delete id="deleteProfile" parameterType="kr.co.skein.model.vo.ProfileCommand">
+		DELETE Profiles
+		WHERE email = #{email} AND profileCode = #{profileCode}
+	</delete>
 </mapper>

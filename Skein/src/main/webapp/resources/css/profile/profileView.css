@@ -121,7 +121,7 @@
 	text-decoration: none;
 }
 .has-sub li a.checked{
-	background: url(resources/media/image/checked.png) left 4px no-repeat;
+	background: url(../../../resources/media/image/checked.png) left 4px no-repeat;
 }
 .has-sub li a.selected{
 	background-color: fuchsia;
