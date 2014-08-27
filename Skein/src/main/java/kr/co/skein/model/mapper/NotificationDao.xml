@@ -72,7 +72,8 @@
 	<!-- 사용자 모든 알림 조회 -->
 	<select id="getNotificationAllList" resultType="kr.co.skein.model.vo.NotificationAllCommand">
 		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm, r.replySeq, s.BoardSeq
-		FROM NOTIFICATIONS n JOIN FRIENDSHIPNOTIFICATION f ON n.notificationSeq = f.notificationSeq
+		FROM NOTIFICATIONS n 
+		LEFT OUTER JOIN FRIENDSHIPNOTIFICATION f ON n.notificationSeq = f.notificationSeq
 		LEFT OUTER JOIN ReplyNotification r ON n.notificationSeq = r.notificationSeq
 		LEFT OUTER JOIN SHARENOTIFICATION s ON n.notificationSeq = s.notificationSeq
 		WHERE n.email = #{email} AND n.isRead = 0 ORDER BY n.notificationCode ASC, n.notificationSeq DESC

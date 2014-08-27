@@ -180,7 +180,7 @@
 
 			<div id="boardListContainer">
 				<c:forEach var="groupItem" items="${groupList}">
-				<div class="group-item-container">
+				<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 					<div class="group-item-wrapper">
 						<div class="group-item-controller-container">
 							<ul>

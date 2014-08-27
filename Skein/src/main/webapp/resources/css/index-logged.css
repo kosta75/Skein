@@ -29,6 +29,7 @@
 /* 게시물 리스트 */
 /* 차트 */
 #boardListContainer{}
+.highcharts-markers{cursor:pointer;}
 
 /* 게시물(하나) 감싸는 컨테이너 */
 .group-item-container{position:relative;margin-bottom:20px;background:#fff;border-radius:5px;border:1px solid #ccc;padding:10px}

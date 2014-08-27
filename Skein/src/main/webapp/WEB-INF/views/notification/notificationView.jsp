@@ -2,33 +2,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="content-container">
 	<div class="notification-content-wrapper">
-		<c:forEach var="notificationList" items="${notificationList}">
+	
+		<c:forEach var="notifList" items="${notificationList}">
+			
 			<c:choose>
-				<c:when test="${notificationList.notificationCode == 1}">
+				<c:when test="${notifList.notificationCode == 1}">
 					공지사항 <br />
-					${notificationList.notificationSeq} <br />
+					${notifList.notificationSeq} <br />
 				</c:when>
-				<c:when test="${notificationList.notificationCode == 2}">
+				<c:when test="${notifList.notificationCode == 2}">
 					<div>
 						친구 신청 <br />
-						${notificationList.notificationSeq} <br />
-						${notificationList.friendEmail} <br />
-						<div class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-friendemail="${notificationList.friendEmail}">친구 수락</div>
+						${notifList.notificationSeq} <br />
+						${notifList.friendEmail} <br />
+						<div class="friendship-approved" data-notificationseq="${notifList.notificationSeq}" data-friendemail="${notifList.friendEmail}">친구 수락</div>
 					</div>
 				</c:when>
-				<c:when test="${notificationList.notificationCode == 4}">
+				<c:when test="${notifList.notificationCode == 4}">
 					공유신청 <br />
-					${notificationList.notificationSeq} <br />
-					${notificationList.boardSeq} <br />
+					${notifList.notificationSeq} <br />
+					${notifList.boardSeq} <br />
+					<div class="reply-notification-confirm">공유 수락</div>
 				</c:when>
-				<c:when test="${notificationList.notificationCode == 6}">
+				<c:when test="${notifList.notificationCode == 6}">
+					<div>
 					댓글 <br />
-					${notificationList.notificationSeq} <br />
-					${notificationList.replySeq} <br />
+					${notifList.notificationSeq} <br />
+					${notifList.replySeq} <br />
+					<div class="reply-notification-confirm">알림 확인</div>
+					</div>
 				</c:when>
 			</c:choose>
 			
-			${notificationList.notificationCode} <br />
+			
 			
 		</c:forEach>
 	</div>

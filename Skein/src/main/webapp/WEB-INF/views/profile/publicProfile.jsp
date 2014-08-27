@@ -141,12 +141,13 @@
 							</div>
 						</div>
 					</div>
-					
+					<c:if test="${PROFILE_RESPONSE_CODE != 20}">
 					<div class="group-item-reply-write-form-container">
 						<div class="image-icon reply-icon">댓글</div>
 						<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
 						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />						
 					</div>
+					</c:if>
 
 					<div class="group-item-reply-section">
 						<ul>
@@ -171,3 +172,4 @@
 		</div>
 	</div>
 </section>
+<script src="${pageContext.request.contextPath}/resources/js/publicProfile.js"></script>

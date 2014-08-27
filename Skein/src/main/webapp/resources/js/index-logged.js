@@ -28,7 +28,8 @@ $(document).ready(function(){
 				{
 					x:value.groupStartDate,
 					title:"P",
-					text:value.content
+					text:value.content,
+					groupSeq:value.groupSeq
 				}
 			);
 		});
@@ -62,14 +63,37 @@ $(document).ready(function(){
 				width : 16,
 				events: {
 	                click: function(event) {
-	                	console.log(event);
-	                	console.log(event.point.text);
+	                	//console.log(event);
+	                	//console.log(event.point.text);
+	                	var groupSeq = event.point.groupSeq;
+	                	var target_id = '#groupItem[' + groupSeq + ']';
+	                	//$('body, html').css('scrollTop', $(target_id).offset().top);
+	                	var obj = $(target_id);
+	                	console.log(document.getElementById("groupItem[24]").offsetTop);
+	                	var posY = document.getElementById("groupItem[24]").offsetTop;
+	                	//$('body, html').animate({ scrollTop: $("" + target_id).offset().top }, 1000); 
+	                	window.scrollTo(0, posY);
 	                }
 	            }
             }]
         });
 	});
 	//게시물 타임라인 설정 End //////////////////////////////////////////////////////////////////////////
+	
+	//위치 구하는 함수
+	function findPos(obj)
+	{
+	    var curLeft = curTop = 0;
+
+	    if (obj.offsetParent) {
+	        do {
+	            curLeft += obj.offsetLeft;
+	            curTop += obj.offsetTop;
+	        } while (obj = obj.offsetParent);
+	    }
+
+	    return {'left': curLeft, 'top': curTop};
+	}
 	
 	
 	//글쓰기 탭

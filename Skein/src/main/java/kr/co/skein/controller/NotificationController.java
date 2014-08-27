@@ -81,6 +81,8 @@ public class NotificationController {
 		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
 			List<NotificationAllCommand> list = notificationDao.getNotificationAllList(baseMemberInfo.getEmail());
 			model.addAttribute("notificationList", list);
+			System.out.println("INFO : Skein-E252 - 조회 요청 이메일 정보, email=" + baseMemberInfo.getEmail());
+			System.out.println("INFO : Skein-F252 - 조회한 알림 게시물, size=" +  list.size());
 		}
 		return "notification.notificationView";
 	}

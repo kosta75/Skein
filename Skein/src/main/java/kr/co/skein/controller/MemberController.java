@@ -11,6 +11,7 @@ import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
+import kr.co.skein.model.dao.ReplyDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.Member;
@@ -102,15 +103,19 @@ public class MemberController {
 							param.put("isFriend", "false");
 						}
 
-						List<BoardGroup> list = boardDao.getMemberBoardGroup(param);
-						System.out.println("INFO : Skein-R123 - 조회된 게시물, size=" + list.size());
+						List<BoardGroup> listSource = boardDao.getMemberBoardGroup(param);
+						System.out.println("INFO : Skein-R123 - 조회된 게시물, size=" + listSource.size());
+						ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
+						for(int i=0;i<listSource.size();i++){
+							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+						}
 						
 						BaseMemberInfo publicMember = memberDao.getPublicMember(email);
 						if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
 							publicMember.setProfileImageFileName("default-profile-image.png");
 						}
 						
-						model.addAttribute("boardGroupList", list);
+						model.addAttribute("boardGroupList", listSource);
 						model.addAttribute("requestPersonalURI", personalURI);
 						model.addAttribute("publicMember", publicMember);
 						model.addAttribute("PROFILE_RESPONSE_CODE", 10);
