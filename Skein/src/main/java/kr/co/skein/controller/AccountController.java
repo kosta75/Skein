@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import kr.co.skein.model.dao.AccountDao;
 import kr.co.skein.model.dao.MemberDao;
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 @Controller
 public class AccountController {
@@ -31,6 +33,9 @@ public class AccountController {
 
 	@Autowired
 	private EmailSender emailSender;
+	
+	@Autowired
+	private View jsonView;
 	
 	//사용자 계정인증 메일 보내기
 	@RequestMapping("/{personalURI}/account/certification/mailsend")
@@ -246,5 +251,128 @@ public class AccountController {
 		}
 		return "account.help_id";
 	}
+	
+	@RequestMapping("/account/")
+	public void modify(){
+		System.out.println("짜증");
+	}
+	
+
+	@RequestMapping("/account/modifypwd")
+	public String modifyPassword(){
+		System.out.println("왜 안와");
+		return "account.modifyPwd";
+	}
+	
+	@RequestMapping(value="/account/update", method=RequestMethod.POST)
+	public View modifyPassword(Member member,Model model, HttpServletRequest request) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		String dbPassword = accountDao.getAccountPassword(member.getEmail());
+		String currentPassword = new PasswordEncryptor().getEncryptSource(member.getPassword());
+		System.out.println(currentPassword);
+		System.out.println(dbPassword);
+
+		if(dbPassword.equals(currentPassword)){
+			String newPassword = request.getParameter("newpwd");
+			member.setPassword(new PasswordEncryptor().getEncryptSource(newPassword));
+			System.out.println(member.getEmail() + " / " + member.getPassword());
+			
+			int result = accountDao.updateAccountPassword(member);
+			if(result == 1){
+				model.addAttribute("result", "success");
+			}else{
+				model.addAttribute("result", "updatefail");
+			}
+		}else{
+			model.addAttribute("result", "pwdERROR");
+		}
+		return jsonView;
+	}
+	
+	//계정휴면여부
+	@RequestMapping(value="/account/modifydomrant", method=RequestMethod.GET)
+	public String modifyDomrant(Model model){
+		model.addAttribute("check", "domrant");
+		return "account.modifyAccount";
+	}
+	
+	//계정탈퇴여부
+	@RequestMapping(value="/account/modifydropout", method=RequestMethod.GET)
+	public String modifyDropout(Model model){
+		model.addAttribute("check", "dropout");
+		return "account.modifyAccount";
+	}
+
+	//계정폐쇄여부
+	@RequestMapping(value="/account/modifylockout", method=RequestMethod.GET)
+	public String modifyLockout(Model model){
+		model.addAttribute("check", "lockout");
+		return "account.modifyAccount";
+	}
+	
+
+	@RequestMapping(value="/account/modifydomrant", method=RequestMethod.POST)
+	public View modifyDomrant(Member member,Model model) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		
+		String dbPassword = accountDao.getAccountPassword(member.getEmail());
+		String currentPassword = new PasswordEncryptor().getEncryptSource(member.getPassword());
+		if(dbPassword.equals(currentPassword)){
+			member.setIsApproved(0);
+			member.setIsDomranted(1);
+			int result = memberDao.updateMemberAccount(member);
+			if(result == 1){
+				model.addAttribute("result", "success");
+			}
+		}else{
+			model.addAttribute("result", "pwdERROR");
+		}
+		return jsonView;
+	}
+
+	@RequestMapping(value="/account/modifydropout", method=RequestMethod.POST)
+	public View modifyDropout(Member member,Model model) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		
+		String dbPassword = accountDao.getAccountPassword(member.getEmail());
+		String currentPassword = new PasswordEncryptor().getEncryptSource(member.getPassword());
+		if(dbPassword.equals(currentPassword)){
+			member.setIsApproved(0);
+			member.setIsDropedOut(1);
+			int result = memberDao.updateMemberAccount(member);
+			if(result == 1){
+				model.addAttribute("result", "success");
+			}
+		}else{
+			model.addAttribute("result", "pwdERROR");
+		}
+		
+		return jsonView;
+	}
+	
+	@RequestMapping(value="/account/modifylockout", method=RequestMethod.POST)
+	public View modifyLockout(Member member,Model model) throws Exception{
+		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		
+		String dbPassword = accountDao.getAccountPassword(member.getEmail());
+		String currentPassword = new PasswordEncryptor().getEncryptSource(member.getPassword());
+		if(dbPassword.equals(currentPassword)){
+			member.setIsApproved(0);
+			member.setIsLockedOut(1);
+			int result = memberDao.updateMemberAccount(member);
+			if(result == 1){
+				model.addAttribute("result", "success");
+			}
+		}else{
+			model.addAttribute("result", "pwdERROR");
+		}
+		
+		return jsonView;
+	}
+	
+	
 	
 }

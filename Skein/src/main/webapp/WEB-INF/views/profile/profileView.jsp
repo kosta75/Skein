@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
 <c:forEach var="profiles" items="${memberProfile.profiles}">
 	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
@@ -46,6 +45,7 @@
 </c:forEach>
 
 <section class="content-container">
+
 <!-- 
 profileImagePublic
 statusCommentPublic
@@ -65,13 +65,13 @@ birthdayPublic
 5 Public
 
  -->
-	 <div class="informbox_header">
+	 <div class="informbox information">
+	<div class="informbox_header">
 		<!-- 정보헤더 -->
 		<img
 			src="${pageContext.request.contextPath}/resources/media/image/info_img.png">정보
 	</div>
 	<div class="informbox_content">
-		<form action="#" method="post">
 			<!-- 정보컨텐츠 -->
 			<div class="clearfix">
 				<div class="content_inner">
@@ -80,21 +80,34 @@ birthdayPublic
 						<b>프로필사진</b>2
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
-								<div class="informdata profileImage">${profileImage }</div>
+								<c:if test="${empty profileImage }">
+									<font> 프로필사진을 등록해보세요.</font>
+								</c:if>
+								<div class="informdata profileImage"><c:if test="${!empty profileImage }">
+									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${profileImage }">
+								</c:if></div>
 								<div class="inform_button profileImage">
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
 								<div class="inform_edit profileImage">
 									<input type="hidden" name="profileImage" value="2">
-									<div class="dropzon profileImage"></div>
+									<!-- 이미지 -->
+									<div id="profileImageUp" class="offset2 arrow_box">
+									</div>
+									<!-- 프로필사진dropzone -->
+									<form id="profileImageForm" method="post" enctype="multipart/form-data">
+										<div class="dropzone profileImage">
+											<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+										</div>
+									</form>
 									<select name="publicLevelCode">
 										<option value="5">전체공개</option>
 										<option value="4">Sil사용자공개</option>
@@ -102,6 +115,7 @@ birthdayPublic
 										<option value="1">나만보기</option>
 									</select>
 									<input type="button" value="저장" class="profile_editBtn profileImage">
+									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
 								</div>
 							</div>
 						</div>
@@ -115,10 +129,10 @@ birthdayPublic
 									<input type="button" value="공개범위">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -137,10 +151,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -155,20 +169,22 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn statusComment">
+								<input type="button" value="삭제" class="profile_deleteBtn statusComment">
 							</div>
 						</div>
 					</div>
 					
-					<c:if test="${sessionScope.PersonalURI == personalURI}">
+					<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == personalURI}">	
 						<div class="inform_elem status">
 							<b>계정 설정</b>
 							<div class="inform_status">
 								<div>
-									<a href="#"> 비빌번호변경 </a><br>
+									<a href="${pageContext.request.contextPath}/account/modifypwd"> 비빌번호변경 </a><br>
 								</div>
 								<div>
-									<a href="#"> 휴면계정신청 </a> || <a href="#"> 탈퇴 </a> || <a href="#">
-										계정폐쇄 </a>
+									<a href="${pageContext.request.contextPath}/account/modifydomrant"> 휴면계정신청 </a> || 
+									<a href="${pageContext.request.contextPath}/account/modifydropout"> 탈퇴 </a> ||
+									<a href="${pageContext.request.contextPath}/account/modifylockout"> 계정폐쇄 </a>
 								</div>
 							</div>
 						</div>
@@ -185,10 +201,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -203,6 +219,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn openEmail">
+								<input type="button" value="삭제" class="profile_deleteBtn openEmail">
 							</div>
 						</div>
 					</div>
@@ -215,10 +232,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -233,6 +250,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn phoneNumber">
+								<input type="button" value="삭제" class="profile_deleteBtn phoneNumber">
 							</div>
 						</div>
 					</div>
@@ -245,10 +263,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -263,6 +281,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn blog">
+								<input type="button" value="삭제" class="profile_deleteBtn blog">
 							</div>
 						</div>
 					</div>
@@ -275,10 +294,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -293,6 +312,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn address">
+								<input type="button" value="삭제" class="profile_deleteBtn address">
 							</div>
 						</div>
 					</div>
@@ -305,10 +325,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -323,6 +343,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn language">
+								<input type="button" value="삭제" class="profile_deleteBtn language">
 							</div>
 						</div>
 					</div>
@@ -335,10 +356,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -353,6 +374,7 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn politics">
+								<input type="button" value="삭제" class="profile_deleteBtn politics">
 							</div>
 						</div>
 					</div>
@@ -365,10 +387,10 @@ birthdayPublic
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
 								      <ul>
-								         <li><a href="#" class="publicbtn public">전체공개</a></li>
-								         <li><a href="#" class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a href="#" class="publicbtn friend">친구공개</a></li>
-								         <li><a href="#" class="publicbtn privacy">나만보기</a></li>
+								         <li><a class="publicbtn public">전체공개</a></li>
+								         <li><a class="publicbtn user">Sil사용자공개</a></li>
+								         <li><a class="publicbtn friend">친구공개</a></li>
+								         <li><a class="publicbtn privacy">나만보기</a></li>
 								      </ul>
 								   </div>
 								</div>
@@ -383,12 +405,14 @@ birthdayPublic
 									<option value="1">나만보기</option>
 								</select>
 								<input type="button" value="저장" class="profile_editBtn religion">
+								<input type="button" value="삭제" class="profile_deleteBtn religion">
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- right 끝 -->
 			</div>
+			<input type="hidden" name="contextPath" value="${pageContext.request.contextPath }"/>
 			<input type="hidden" name="email" value="${email }" />
 			<input type="hidden" name="profileImagePublic" value="${profileImagePublic }" />
 			<input type="hidden" name="statusCommentPublic" value="${statusCommentPublic }" />
@@ -400,8 +424,10 @@ birthdayPublic
 			<input type="hidden" name="religionPublic" value="${religionPublic }" />
 			<input type="hidden" name="politicsPublic" value="${politicsPublic }" />
 			<input type="hidden" name="birthdayPublic" value="${birthdayPublic }" />
-		</form>
 	</div>
+</div>
+
+
 	
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>

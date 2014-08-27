@@ -121,8 +121,25 @@
 	text-decoration: none;
 }
 .has-sub li a.checked{
-	background: url(resources/media/image/checked.png) left 4px no-repeat;
+	background: url(../../../resources/media/image/checked.png) left 4px no-repeat;
 }
 .has-sub li a.selected{
 	background-color: fuchsia;
 }
+.informdata.profileImage{
+	font-size : 13px;
+	text-align: center;
+}
+.informdata.profileImage font{
+	top: 20px;
+}
+
+/* 글쓰기 */
+
+#profileImageForm{position:relative;}
+.dropzone{border:1px solid #dcdcdc;height:50px; width: 50px; position:relative;}
+.dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
+/* 
+#historyImg:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
+#file-list li{float:left;}
+ */

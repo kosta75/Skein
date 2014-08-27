@@ -16,11 +16,7 @@
 		
 	</definition>
 	
-	<definition name="*.*" template="/WEB-INF/views/comm/layout.jsp" extends="index">
-		<put-attribute name="css" value="/resources/css/{1}/{2}.css" />
-		<put-attribute name="title" value="Notice" />
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
-	</definition>
+	
 	
 	<definition name="profile.profileView" template="/WEB-INF/views/profile/comm/layout.jsp" extends="index">
 		<put-attribute name="css" value="/resources/css/profile/profileView.css" />
@@ -34,30 +30,18 @@
 		<put-attribute name="content" value="/WEB-INF/views/profile/publicProfile.jsp" />
 	</definition>
 	
+	<definition name="account.*" template="/WEB-INF/views/account/comm/layout.jsp" extends="index">
+		<put-attribute name="css" value="/resources/css/account/{1}.css" />
+		<put-attribute name="title" value="Notice" />
+		<put-attribute name="content" value="/WEB-INF/views/account/{1}.jsp" />
+	</definition>
 	
-
+	<definition name="*.*" template="/WEB-INF/views/comm/layout.jsp" extends="index">
+		<put-attribute name="css" value="/resources/css/{1}/{2}.css" />
+		<put-attribute name="title" value="Notice" />
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<!-- time 라인  -->
-   <!-- <definition name="photo.viewlist" template="/WEB-INF/views/photo/comm/layout.jsp" extends="index">
-      각 페이지에 추가하려는 요소 Load
-      <put-attribute name="title" value="viewlist" />
-      content
-      <put-attribute name="viewlist" value="/WEB-INF/views/photo/viewlist.jsp" />
-      
-   </definition> -->
-   
- 
    
     <!-- ***********************main 게시물 더보기**********************  -->
       <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp">
@@ -76,21 +60,5 @@
          <put-attribute name="morecontent" value="/WEB-INF/views/friendship/morefriendlist.jsp" />
       </definition>
    <!-- *******************************************************************  -->
-   
-   
-   <!-- 사용자 검색 페이지 -->
-<!-- 	<definition name="friendship.searchMembers" template="/WEB-INF/views/comm/layout.jsp" extends="joinus.login">
-	
-		<put-attribute name="custom-page-resources" value="/WEB-INF/views/friendship/resources/resources.jsp" />
-	
-		<put-attribute name="title" value="Search" />
-		
-	
-		<put-attribute name="header" value="/WEB-INF/views/friendship/comm/header.jsp" />
-		
-	
-		<put-attribute name="content" value="/WEB-INF/views/friendship/searchMembers.jsp" />
-	</definition> -->
-	
 
 </tiles-definitions>
