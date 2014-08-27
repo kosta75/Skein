@@ -95,7 +95,10 @@
 		
 	</select>
 	
-	
+	<!-- 고유주소로 사용자 이메일 조회하기 -->
+	<select id="getEmailByPersonalURI" resultType="String" parameterType="String">
+		SELECT email FROM MEMBERS WHERE personalURI=#{personalURI}
+	</select>
 	
 	
 </mapper>

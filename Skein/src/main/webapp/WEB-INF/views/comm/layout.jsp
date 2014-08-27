@@ -13,6 +13,7 @@
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
+<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
 </se:authorize>
 </head>

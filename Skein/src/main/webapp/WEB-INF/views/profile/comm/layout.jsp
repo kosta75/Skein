@@ -12,8 +12,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
 <script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
+<c:if test="${PROFILE_RESPONSE_CODE == 99}">
+<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
+</c:if>
 </se:authorize>
 </head>
 <body>
@@ -38,7 +42,9 @@
 <div class="main-section-container">
 	<div class="wrapper">
 		<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-		<tiles:insertAttribute name="menu-logged" />
+		<c:if test="${PROFILE_RESPONSE_CODE == 99}">
+			<tiles:insertAttribute name="menu-logged" />
+		</c:if>
 		</se:authorize>
 		<tiles:insertAttribute name="content" />
 	</div>

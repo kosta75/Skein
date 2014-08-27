@@ -309,10 +309,12 @@ $(document).ready(function(){
 	});
 	
 	
+	var boardSeq = 0;
+	
 	// modal- 기능 구현
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
-		var boardSeq = $(this).data("boardseq");
+		boardSeq = $(this).data("boardseq");
 	
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
@@ -438,13 +440,13 @@ $(document).ready(function(){
 	
 	});
 	
-	var boardSeq =0;
+	
 	//모달 댓글 리스트 출력
 	$(document).on('click',".imgBtn", function(){
 		$(".replyList").empty();
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
-		 boardSeq = $(this).data("boardseq");
+		boardSeq = $(this).data("boardseq");
 		
 		var j = $(this).find("input").val();
 		for (var i = 0; i < 9; i++) {

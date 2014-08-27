@@ -146,6 +146,37 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 	<select id="getUserEmailByBoardSeq" resultType="String">
 		SELECT Email FROM Board WHERE boardSeq = #{boardSeq}
 	</select>
+	
+	
+	
+	
+	
+	
+	<!-- 프로필 사용자 게시물 조회 -->
+	<select id="getMemberBoards" resultType="kr.co.skein.model.vo.MemberBoardCommand">
+		SELECT m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
+			h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
+			me.FILENAME, me.FILESIZE, me.EXTENSION
+			FROM MEMBERS m JOIN BOARD b ON m.EMAIL = b.email
+			JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
+			JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
+			LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
+		
+		<where>
+			<if test="personalURI != null">
+				m.PERSONALURI = #{personalURI}
+			</if>
+			<choose>
+				<when test="isFriend != null">
+					AND b.publicLevelCode IN (2, 3, 4, 5)
+				</when>
+				<otherwise>
+					AND b.publicLevelCode IN (4, 5)
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
+	</select>
    
    
 </mapper>

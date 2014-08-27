@@ -38,6 +38,8 @@ public interface MemberDao {
 	//사용자 검색 searchMembers
 	public List<SearchMemberCommand> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
 	
+	//고유주소로 사용자 이메일 조회
+	public String getEmailByPersonalURI(String personalURI)  throws ClassNotFoundException, SQLException;
 	
 		
 }

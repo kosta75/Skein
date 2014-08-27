@@ -27,6 +27,14 @@
 		<put-attribute name="title" value="Notice" />
 		<put-attribute name="content" value="/WEB-INF/views/profile/profileView.jsp" />
 	</definition>
+	
+	<definition name="profile.publicProfile" template="/WEB-INF/views/profile/comm/layout.jsp" extends="index">
+		<put-attribute name="css" value="/resources/css/profile/publicProfile.css" />
+		<put-attribute name="title" value="Notice" />
+		<put-attribute name="content" value="/WEB-INF/views/profile/publicProfile.jsp" />
+	</definition>
+	
+	
 
 	
 	

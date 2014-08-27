@@ -2,6 +2,7 @@ package kr.co.skein.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
@@ -46,5 +47,8 @@ public interface BoardDao {
 	
 	//게시물 번호로 사용자 알아오기
 	public String getUserEmailByBoardSeq(int boardSeq) throws ClassNotFoundException, SQLException;
+	
+	//5. 사용자 게시물 조회
+	public List<MemberBoardCommand> getMemberBoards(Map<String, String> param) throws ClassNotFoundException, SQLException;
 	
 }

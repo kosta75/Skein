@@ -28,5 +28,10 @@
     	DELETE FROM Friendship WHERE (Email = #{param1} AND FriendEmail = #{param2}) OR (Email = #{param2} AND FriendEmail = #{param1})  
     </delete>
     
+    <!-- 친구 여부 확인 -->
+    <select id="isFriend" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*) FROM Friendship WHERE email=#{param1} AND friendEmail=#{param2}
+    </select>
+    
 	
 </mapper>

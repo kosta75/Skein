@@ -14,6 +14,8 @@ public interface FriendshipDao {
 	public List<FriendshipListCommand> getFriendList(String email, int startNum, int endNum) throws ClassNotFoundException, SQLException;
 	
 	//친구 삭제
-	public int deleteFriendship(String email, String friendEmail)  throws ClassNotFoundException, SQLException;
+	public int deleteFriendship(String email, String friendEmail) throws ClassNotFoundException, SQLException;
 
+	//친구 여부 확인
+	public int isFriend(String email, String friendEmail) throws ClassNotFoundException, SQLException;
 }

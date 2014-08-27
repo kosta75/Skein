@@ -1,0 +1,306 @@
+@CHARSET "UTF-8";
+/* Modal */
+#modal-content{display:none; border-radius:6px;}
+.modalcontent{width:380px;}
+
+
+/* 게시물(하나) 감싸는 컨테이너 */
+.group-item-container{position:relative;margin-bottom:20px;background:#fff;border-radius:5px;border:1px solid #ccc;padding:10px}
+
+/* 게시물 컨트롤러 */
+.group-item-controller-container{position:absolute;right:10px;top:10px;z-index:10;}
+.group-item-controller-container ul li{float:left;margin-left:10px;height:20px;}
+.group-item-controller-container ul li a{display:block;height:20px;}
+.group-item-controller-container ul li:first-child{margin-left:0px;}
+
+.icon-box{width:20px;height:20px;text-indent:-100000px;font-size:1px;padding:0px;cursor:pointer;border:1px solid #f00;}
+
+
+.group-item-edit, .one-share, .group-share{background-repeat:no-repeat;background-position:center;}
+/* .one-share{background-image:url("../media/image/one-share2.png");}
+.group-share{background-image:url("../media/image/one-share2.png");}
+.group-item-edit{background-image:url("../media/image/group-item-edit3.png");}
+.group-item-delete{background-image:url("../media/image/group-item-delete.png");} */
+
+
+
+/* 게시물 각각의 사용자 정보 */
+.group-item-user-info-container{position:relative;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #ddd;}
+.group-item-user-info-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
+.group-item-user-profile-image-wrapper{float:left;overflow:hidden;height:50px;}
+.group-item-user-profile-image-wrapper img{border-radius:100px;background:#fff;width:50px;height:50px;}
+.group-item-user-info-wrapper{float:left;padding-left:10px;padding-top:6px;}
+
+.group-item-user-info-wrapper a{display:block;color:#000;font-family:'맑은 고딕';font-size:16px;font-weight:bold;}
+.group-item-write-date{font-family:'맑은 고딕';font-size:12px;}
+
+/* 게시물의 내용 */
+.group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;}
+
+
+/* 게시물 댓글 */
+.group-item-reply-write-form-container{background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}
+.group-item-reply-write-form-container input{border:1px solid #ccc;padding:4px 2px;width:80%;}
+
+.image-icon{text-indent:-10000px;background-repeat:no-repeat}
+.reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../media/image/mention1.png");background-size:55%;background-position:center}
+
+
+.group-item-reply-secition ul li{margin-top:1px;}
+.group-item-reply-secition ul li:first-child{margin-top:0px;}
+.group-item-reply-container{padding:7px 7px 7px 55px;background:#eee;position:relative;min-height:33px;margin-top:1px;}
+.group-item-reply-info-container{position:absolute;left:4px;top:4px;}
+.group-item-reply-profile-image span{text-indent:-10000px;font-size:0px;}
+.group-item-reply-profile-image img{width:37px;height:37px;border-radius:100px;border:1px solid #777;}
+
+.group-item-reply-content-container{font-size:12px;font-family:'맑은 고딕';}
+
+
+
+
+/* 모달 */
+.modal-user-profile-image img{width:45px;height:45px;}
+
+
+#modal-background {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   opacity: .7;
+   /*  -webkit-opacity: .1; */
+   /*   -moz-opacity: .9; 
+    filter: alpha(opacity=100); */
+   z-index: 50;
+}
+
+#modal-content {
+   background: #fff;
+   display: none;
+   height: 520px;
+   position: fixed;
+   top:10px;
+   z-index: 55;
+}
+#modal-content-view {
+   background: #fff;
+ display: none;
+   height: 520px;
+   position: fixed;
+   width: 960px;
+   z-index: 6;
+   border-radius:6px 6px 6px 6px;
+}
+#modal-background.active, #modal-content.active {
+   display: block;
+}
+
+/*리플 리스트 출력   */
+.replyModalList{
+overflow-y:auto; 
+clear: both;
+width: 100%;
+height:210px;	
+margin: auto;
+
+}
+/*말풍선  */
+.bubble 
+{
+position: relative;
+width: 94%;
+height: 30px;
+padding: 15px;
+background: #FFFFFF;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+}
+
+.bubble:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 8px 12px 8px 0;
+border-color: transparent #FFFFFF;
+display: block;
+width: 0;
+z-index: 1;
+left: -12px;
+top: 11px;
+}
+/*모달 말풍선*/
+
+.modal-bubble 
+{
+position: relative;
+width: 78%;
+height: 40px;
+padding: 5px;
+background: #e4e4e4;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px;
+margin:10px;
+float: right;
+}
+.modal-bubble:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 8px 12px 8px 0;
+border-color: transparent #e4e4e4;
+display: block;
+width: 0;
+z-index: 1;
+left: -12px;
+top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.informbox {
+	position: relative;
+	width: 850px;
+	background: #fff;
+	border: 1px solid #d3d6db;
+	-webkit-border-radius: 3px;
+	margin: 10px auto;
+	margin-bottom: 40px;	
+}
+
+.clearfix:after {
+	clear:both;
+}
+
+.informbox_header {
+	padding: 12px;
+	border-bottom: 1px solid #d3d6db;
+	background: #f6f7f8;
+	font-size: 20px;
+	vertical-align: bottom;
+}
+
+.informbox_header img {
+	margin-right: 10px;
+}
+
+.informbox_content {
+	padding: 10px 0;
+
+}
+
+.informbox_content{
+	hight: 525px;
+	background-color: white;
+}
+.content_inner {
+	padding: 0 10px;
+	float: left;
+	min-width: 400px;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.content_inner:FIRST-CHILD {
+	border-right: 1px solid #d3d6db;
+}
+
+.inform_elem {
+	padding: 10px 0;
+}
+
+.inform_elem b {
+	color: #9197a3;
+	font-size: 13px;
+}
+
+.content_inner .status {
+	vertical-align: bottom;
+}
+
+.inform_status {
+	text-align: right;
+}
+
+.inform_status div {
+	padding: 6px 0;
+}
+
+.inform_status a {
+	text-decoration: none;
+}
+
+.inform_databox {
+	overflow: hidden;
+	margin-top: 8px;
+	min-height: 26px;
+}
+.informdata.profileImage{
+	height:100px;width:100px;
+	border: 1px dashed black;
+}
+.informdata {
+	float: left;
+}
+
+.inform_button {
+	min-height: 26px;
+	float: right;
+	vertical-align: top;
+	display:none;
+}
+
+.inform_edit {
+	clear: both;
+	display: none;
+}
+.has-sub{
+	display:none;
+	position: absolute;
+	border: 1px solid #777;
+	background-color: #fff;
+	margin-top: 2px;
+}
+
+.has-sub ul {
+	list-style: none;
+	min-width: 100%;
+	padding: 3px 0 4px;
+	overflow-y: auto;
+	
+}
+.has-sub .publicbtn{
+	border: solid #fff;
+	border-width: 1px 0;
+	color: #111;
+	display: block;
+	font-weight: normal;
+	line-height: 16px;
+	padding: 1px 16px 1px 22px;
+	text-decoration: none;
+}
+.has-sub li a.checked{
+	background: url(resources/media/image/checked.png) left 4px no-repeat;
+}
+.has-sub li a.selected{
+	background-color: fuchsia;
+}
