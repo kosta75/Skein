@@ -39,8 +39,9 @@
 				<div >
 					<div style="float: left;  padding-top: 15px;width: 200px;">
 						<div class="modalcontent" >
-							<div class="modalShare" style="float: right;padding-right: 10px;">
-								<input  type="hidden" value="">공유하기
+							<div style="float: right">
+							<div class="modal-Edit"style="float: left;margin-right: 10px">수정</div>
+							<div class="modal-Delete"style="float: left;margin-right: 10px">삭제</div>
 							</div>
 							<div class="modal-user-profile-image" style="float: left;">
 								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
@@ -118,9 +119,9 @@
 					<li><a href="#diaryWriteTabs">다이어리</a></li>
 					<li><a href="#historyWriteTabs">개인기록</a></li>
 				</ul>
-				<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
+			<%-- 	<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
 					<div id="diaryWriteForm" style="clear: both;">
-					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
+					<form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post">
 					<form id="diaryForm" method="post" enctype="multipart/form-data">
 					
 						<div id="dropzone">
@@ -161,7 +162,7 @@
 						</div>
 					</form> 
 				</div>
-				</div>
+				</div> --%>
 				<div id="historyWriteTabs">
 					<div id="historyWriteForm">
 					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
@@ -223,13 +224,36 @@
 			<!-- 게시물 출력 부분 Start -->
 
 			<div id="boardListContainer">
-				<c:forEach var="groupItem" items="${groupList}">
+				<c:forEach var="groupItem" items="${groupList}"> 
 				<div class="group-item-container">
-					<div class="group-item-wrapper">
-						<div class="group-item-controller-container">
+					<div class="editDiv" style="margin:auto;display:none;">
+						<div id="editTextarea" contenteditable="true" >${groupItem.content}</div>
+						<input type='hidden' name="editcontent" id="editcontent" data-boardSeq = "${groupItem.boardSeq }" />
+												<!--이모티콘  -->
+						<div class="editemoticon" style="display:none;">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
+						</div>		
+											
+											
+					   <div style="clear: both; float: right;">
+											<div class="edit-cancle"style="margin-right:10px;float: right;">취소</div>
+											<div class="edit-Btn"style="margin-right:10px;float: right;">수정완료</div>
+											<div class="edit-emoticon"style="margin-right:10px;float: right;">이모티콘</div>
+					  </div>
+										
+										
+								
+					</div>
+					<div class="group-item-wrapper" style="display: block" >
+					
+						<div class="group-item-controller-container" >
 							<ul>
-								<li><div class="icon-box group-item-edit" title="수정">수정</div></li>
-								<li><div class="icon-box group-item-delete" title="삭제">삭제</div></li>
+								<li><div class="icon-box group-item-edit" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">수정</div>
+									
+								</li>
+								<li><div class="icon-box group-item-delete" data-groupSeq="${groupItem.groupSeq }" data-groupCount="${groupItem.groupCount}" title="삭제">삭제</div></li>
 								<li>
 									<c:choose>
 										<c:when test="${groupItem.groupCount > 1}">
@@ -240,7 +264,9 @@
 										</c:otherwise>
 									</c:choose>
 								</li>
+
 							</ul>
+							
 						</div>
 
 						<div class="group-item-user-info-container">

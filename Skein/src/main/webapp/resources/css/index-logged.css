@@ -65,7 +65,7 @@
 
 
 /* 게시물 댓글 */
-.group-item-reply-write-form-container{background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}
+.group-item-reply-write-form-container{clear:both;  background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}
 .group-item-reply-write-form-container input{border:1px solid #ccc;padding:4px 2px;width:80%;}
 
 .image-icon{text-indent:-10000px;background-repeat:no-repeat}
@@ -127,7 +127,7 @@ padding: 2px;
 	display: none;
 	
 }
-.emoticon{
+.emoticon,.edit-emoticon-icon {
 	
 	width: 75px;
 	height: 75px;
@@ -143,7 +143,7 @@ padding: 2px;
    float: left;
 }
 
-#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4,.share,.modalShare, #mon :HOVER {
+#alram, #sidemenu1, #sidemenu2, #sidemenu3, #sidemenu4,.share,.modalShare,.modal-Delete,.modal-Edit, #mon :HOVER {
    cursor: pointer;
 }
 

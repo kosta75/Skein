@@ -493,6 +493,15 @@ $(document).ready(function(){
 		$("#writeTextarea").focus();
 	
 	});
+	//수정이모티콘 추가
+	$(".edit-emoticon-icon").click(function(){
+	$(this).parent().siblings().first().append($(this).clone());
+	
+	
+	
+	});
+	
+	
 	
 	
 	//모달 댓글 리스트 출력
@@ -660,6 +669,132 @@ function lastPostFunc(pictureCount){
     }      
  });
  
+ //삭제
+ $(document).on('click',".group-item-delete",function(){
+	var groupSeq = $(this).data("groupseq"); 	 
+	var groupCount = $(this).data("groupcount");
+	var result = confirm(groupCount+"개의 사진이 존재합니다 모두 삭제 하시겠습니까?");
+	var remove =  $(this).parent().parent().parent().parent().parent();
+	 if(result) 
+	 {
+		 $.ajax({
+				type : 'post',
+				url : 'board/deleteGroup',
+				cache : false,
+				data : 'groupSeq=' + groupSeq,
+				success : function(data) {
+				if(data.result >= 1){
+					alert("삭제 성공했습니다");
+					remove.remove();
+				}else{
+					
+					alert("삭제 실패했습니다");
+				}
+				
+				},
+				error : function() {
+					alert('groupDelete 354 : Error while request..');
+				}
+
+			});		
+	 } 
+	 else 
+	 {
+	 alert("취소");
+	 }
+		
+
+ });
+// modal 게시물 삭제
+ $(document).on('click',".modal-Delete",function(){
+	 
+	 $.ajax({
+			type : 'post',
+			url : 'board/deleteBoard',
+			cache : false,
+			data : 'boardSeq=' + boardSeq,
+			success : function(data) {
+			if(data.result >= 1){
+				alert("삭제 성공했습니다");
+				window.location.reload();
+			}else{
+				
+				alert("삭제 실패했습니다");
+			}
+			
+			},
+			error : function() {
+				alert('groupDelete 354 : Error while request..');
+			}
+
+		});	
+	 
+	 
+ });
+
+ 
+ //수정
+ var editcontent
+ $(document).on('click','.group-item-edit',function(){
+	 var boardSeq = $(this).data("boardSeq"); 	 
+		
+	 editcontent = $(this).parent().parent().parent().parent();
+	
+	 editcontent.css("display","none");
+	 editcontent.siblings().first().css("display","block");
+ });
+ $(document).on('click','.edit-cancle',function(){
+	
+	 editcontent.css("display","block");
+	 editcontent.siblings().first().css("display","none");
+
+	 
+ });
+ $(document).on('click','.edit-emoticon',function(){
+	
+	 if( $(this).parent().siblings().first().next().next().css('display') == "none"){
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"block"); 
+		 
+	 }else{
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"none"); 
+	 }
+	 
+	 
+ });
+ 
+ 
+ $(".edit-Btn").click(function(){
+	 
+
+	 
+ $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
+ var editContent =  $(this).parent().siblings().first().next().val();
+ var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
+$.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
+		}
+		
+		
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
+	
+	
+	 
+	});
  
  
 //submit
