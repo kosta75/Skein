@@ -14,6 +14,10 @@
 .button_container{text-align: center;background-color: #f2f2f2;border-top: 1px solid #ccc;}
 table.pwdmodifytb tr td{
 	vertical-align: middle;
+	text-align: left;
+}
+table.pwdmodifytb tr:first-child{
+	vertical-align: middle;
 	text-align: right;
 }
 table  tr td.inputblock{

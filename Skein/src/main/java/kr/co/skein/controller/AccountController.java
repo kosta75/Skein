@@ -252,15 +252,9 @@ public class AccountController {
 		return "account.help_id";
 	}
 	
-	@RequestMapping("/account/")
-	public void modify(){
-		System.out.println("짜증");
-	}
-	
 
 	@RequestMapping("/account/modifypwd")
 	public String modifyPassword(){
-		System.out.println("왜 안와");
 		return "account.modifyPwd";
 	}
 	

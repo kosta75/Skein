@@ -56,7 +56,7 @@ public class MemberController {
 			parameters.put("searchValue", personalURI);
 			
 			List<Member> members = memberDao.getMembers(parameters);
-			List<ProfileCommand> profiles = profileDao.getMemberProfiles(personalURI);
+			List<ProfileCommand> profiles = profileDao.getMemberProfiles(members.get(0).getEmail());
 			
 			if(members.size() > 0){
 				if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){

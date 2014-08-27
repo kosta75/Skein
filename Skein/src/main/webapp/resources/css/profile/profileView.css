@@ -75,6 +75,7 @@
 	overflow: hidden;
 	margin-top: 8px;
 	min-height: 26px;
+	padding-left: 10px;
 }
 .informdata.profileImage{
 	height:100px;width:100px;

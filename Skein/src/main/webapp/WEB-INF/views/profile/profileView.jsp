@@ -432,7 +432,7 @@ birthdayPublic
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
 <se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == requestPersonalURI}">
+	<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == personalURI}">
 		<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>
 	</c:if>
