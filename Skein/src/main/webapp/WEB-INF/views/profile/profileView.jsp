@@ -65,7 +65,8 @@ birthdayPublic
 5 Public
 
  -->
-	 <div class="informbox_header">
+	 <div class="informbox information">
+	<div class="informbox_header">
 		<!-- 정보헤더 -->
 		<img
 			src="${pageContext.request.contextPath}/resources/media/image/info_img.png">정보
@@ -402,6 +403,8 @@ birthdayPublic
 			<input type="hidden" name="birthdayPublic" value="${birthdayPublic }" />
 		</form>
 	</div>
+</div>
+
 	
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>

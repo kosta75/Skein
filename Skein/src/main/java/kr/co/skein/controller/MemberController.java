@@ -79,7 +79,7 @@ public class MemberController {
 						model.addAttribute("memberProfile", mpc);
 						model.addAttribute("requestPersonalURI", personalURI);
 						model.addAttribute("PROFILE_RESPONSE_CODE", 99);
-
+						System.out.println("A");
 						return "profile.profileView"; 
 
 					}else{
