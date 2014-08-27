@@ -38,7 +38,20 @@
 			<div style="float: right;width: 40%;">
 				<div >
 					<div style="float: left;  padding-top: 15px;width: 200px;">
+						<div class="modal-content-area">
+						<div class="modal-edit-Div" style="margin:auto;display:none;">
+						<div id="modal-EditTextarea" contenteditable="true" style="width:360px" ></div>
+						<input type='hidden' name="modaleditcontent" id="modaleditcontent"  />
+							<div  style="float: right;">취소</div>
+							<div class="modaleditBtn"style="float: right;margin-right: 10px">수정</div>
+					
+						
+						</div>
+						
+						
+						
 						<div class="modalcontent" >
+						
 							<div style="float: right">
 							<div class="modal-Edit"style="float: left;margin-right: 10px">수정</div>
 							<div class="modal-Delete"style="float: left;margin-right: 10px">삭제</div>
@@ -49,6 +62,7 @@
 							</div>
 							
 							<!--작성자 이름 날짜 내용 출력  -->
+						</div>
 						</div>
 					</div>
 				</div>

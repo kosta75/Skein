@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.skein.model.vo.Board;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
@@ -57,4 +58,8 @@ public interface BoardDao {
 	public int boardDelete(int boardSeq)throws ClassNotFoundException, SQLException;
 	//게시물 수정
 	public int editBoard(String editContent,int boardSeq)throws ClassNotFoundException, SQLException;
+
+
+	//게시물 조회
+	public BoardDetailView detailViewBoardSeq(int boardSeq)throws ClassNotFoundException, SQLException;
 }

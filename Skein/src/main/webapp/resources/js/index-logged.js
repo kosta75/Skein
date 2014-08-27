@@ -288,6 +288,10 @@ $(document).ready(function(){
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
 		var j = $(this).find("input").val();
+		 $(".modal-edit-Div").css("display","none");
+		    $(".modalcontent").css("display","block");
+		  $("#modal-EditTextarea").empty();
+			 $("#modaleditcontent").val('');
 		for (var i = 0; i < 9; i++) {
 			if (i == j) {
 				$("#detailImg" + i).css("display", "block");
@@ -315,7 +319,8 @@ $(document).ready(function(){
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		boardSeq = $(this).data("boardseq");
-	
+	    $(".modal-edit-Div").css("display","none");
+	    $(".modalcontent").css("display","block");
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
 			$("html").css("overflow-y", "hidden");
@@ -379,7 +384,8 @@ $(document).ready(function(){
 			$(".imgBtn").remove();
 			$(".modalViewcontent").remove();
 			$(".replyList").empty();
-			
+			 $("#modal-EditTextarea").empty();
+			 $("#modaleditcontent").val('');
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -519,21 +525,53 @@ $(document).ready(function(){
 				$("#detailImg" + i).css("display", "none");
 			}
 		}
-		
 		$.ajax({
 			type : 'post',
-			url : 'reply/select',
+			url : 'board/DetailViewBoardSeq',
 			cache : false,
 			data : 'boardSeq=' + boardSeq,
 			success : function(data) {
+				$(".modalcontent").empty();
+				$(".modal-content-view").css("display","block");
+				$(".modalcontent").append("	<div style='float: right'>" +
+				"<div class='modal-Edit'style='float: left;margin-right: 10px'>수정</div>"	
+				+"<div class='modal-Delete'style='float: left;margin-right: 10px'>삭제</div>"		
+				+"</div>"
+				+"<div class='modal-user-profile-image' style='float: left;'>"
+				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
+				+"</div>"
+				+"<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView.fullname + "<br>"
+						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView.content + "</div>");
+	
+			
 				
-				for(var j =0;j<data.replylist.length;j++){
+				
+				
+				
+				$.ajax({
+					type : 'post',
+					url : 'reply/select',
+					cache : false,
+					data : 'boardSeq=' + boardSeq,
+					success : function(data) {
+						
+						for(var j =0;j<data.replylist.length;j++){
+							
+							
+							
+							$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
+											
+						}
 					
 					
+					},
+					error : function() {
+						alert('indexlogged 354 : Error while request..');
+					}
 					
-					$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
-									
-				}
+					
+				});
+					
 			
 			
 			},
@@ -766,13 +804,61 @@ function lastPostFunc(pictureCount){
  
  
  $(".edit-Btn").click(function(){
-	 
 
 	 
  $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
  var editContent =  $(this).parent().siblings().first().next().val();
  var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
-$.ajax({
+
+ boardSeq
+ $.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
+		}
+		
+		
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
+	
+	
+	 
+	});
+ 
+ 
+ 
+ 
+ 
+ //modal 수정
+ $(document).on("click",".modal-Edit",function(){
+	 
+	 $(this).parent().parent().css("display","none");
+	 
+	 $(this).parent().parent().siblings().first().css("display","block"); 
+/*	$(this).parent().parent().siblings().first().children().append($(this).parent().parent().children().last().text());
+*/	 
+	 
+	 
+ });
+ 
+//modal 수정
+ $(document).on("click",".modaleditBtn",function(){
+	 
+
+	 $(this).siblings().first().next().val( $(this).siblings().first().html());
+	 var editContent =$(this).siblings().first().next().val();
+ 
+ $.ajax({
 	type : 'post',
 	url : 'board/editBoard',
 	cache : false,

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
+import kr.co.skein.model.vo.Board;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
@@ -57,6 +58,17 @@ public class BoardController {
 			model.addAttribute("listSource", listSource);
 			System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + listSource.size());
 		}
+		return jsonView;
+	}
+	//사용자 게시물 조회 boardSeq 기준
+	
+	
+	@RequestMapping(value="/DetailViewBoardSeq" ,method=RequestMethod.POST)
+	public View detailViewBoard(int boardSeq,Model model) throws ClassNotFoundException, SQLException{
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		
+		BoardDetailView boardDetailView  = boardDao.detailViewBoardSeq(boardSeq);
+		model.addAttribute("detailView", boardDetailView);
 		return jsonView;
 	}
 	
@@ -223,11 +235,11 @@ public class BoardController {
 	//게시물 수정
 	@RequestMapping(value="/editBoard",method = RequestMethod.POST)
 	public View editBoard(int boardSeq,String editContent,Model model) throws ClassNotFoundException, SQLException{
-		
+		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent);
+
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		
 	    int result=boardDao.editBoard(editContent, boardSeq);
-		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent);
 		
 		model.addAttribute("result", result);
 		

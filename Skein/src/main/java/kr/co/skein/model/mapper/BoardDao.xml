@@ -142,6 +142,14 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 	</select>
 	
 	
+	<!--게시물 조회 boardSeq 기준  -->
+	
+	<select id="detailViewBoardSeq" resultType="kr.co.skein.model.vo.BoardDetailView">
+		select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
+		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.BOARDSEQ = #{boardSeq}
+	</select>
+	
+	
 	<!-- 게시물 번호로 사용자 이메일 조회 -->
 	<select id="getUserEmailByBoardSeq" resultType="String">
 		SELECT Email FROM Board WHERE boardSeq = #{boardSeq}
