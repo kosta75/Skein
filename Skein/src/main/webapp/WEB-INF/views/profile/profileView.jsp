@@ -179,11 +179,12 @@ birthdayPublic
 							<b>계정 설정</b>
 							<div class="inform_status">
 								<div>
-									<a href="#"> 비빌번호변경 </a><br>
+									<a href="${pageContext.request.contextPath}/account/modifypwd"> 비빌번호변경 </a><br>
 								</div>
 								<div>
-									<a href="#"> 휴면계정신청 </a> || <a href="#"> 탈퇴 </a> || <a href="#">
-										계정폐쇄 </a>
+									<a href="${pageContext.request.contextPath}/account/modifydomrant"> 휴면계정신청 </a> || 
+									<a href="${pageContext.request.contextPath}/account/modifydropout"> 탈퇴 </a> ||
+									<a href="${pageContext.request.contextPath}/account/modifylockout"> 계정폐쇄 </a>
 								</div>
 							</div>
 						</div>

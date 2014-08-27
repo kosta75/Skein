@@ -19,6 +19,9 @@
 		WHERE email = #{email}
 	</update>
 	
-
+	
+	<select id="getAccountPassword"  parameterType="String" resultType="String">
+		SELECT password FROM Members WHERE Email = #{email} 
+	</select>
 	
 </mapper>
