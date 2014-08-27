@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	// 수정form 저장
-	$(".inform_edit").on("click",".profile_editBtn",function(){
+	$(".inform_edit").not(".profileImage").on("click",".profile_editBtn",function(){
 		profileInfo = $(this).parent().find("input[name=profileInfo]").val();
 		if( profileInfo == ""){
 			alert("내용을 입력해주세요");
@@ -12,7 +12,7 @@ $(document).ready(function() {
 			email = $("input:hidden[name=email]").val();
 			$.ajax({
 				type : 'post',
-				url : 'profile/',
+				url : 'profile/update',
 				cache : false,
 				data :'profileInfo='+ profileInfo + '&profileCode='+ profileCode + '&publicLevelCode='+ publicLevelCode + '&email='+ email,
 				success : function(data) {
@@ -55,7 +55,7 @@ $(document).ready(function() {
 			}
 			$.ajax({
 				type : 'post',
-				url : 'profile/',
+				url : 'profile/update',
 				cache : false,
 				data : 'profileCode='+ profileCode + '&publicLevelCode='+ publicCode + '&email='+ email,
 				success : function(data) {
@@ -72,6 +72,11 @@ $(document).ready(function() {
 		}
 		
 	});	
+	
+	//프로필 삭제 
+	
+	
+	
 	
 	
 	
@@ -111,6 +116,7 @@ $(document).ready(function() {
 		    }
 	});
 	
+	//공개범위 선택지 마우스오버 색변화
 	$(".has-sub li a").hover(function(){
 		$(this).addClass("selected");
 	},function(){
@@ -119,8 +125,72 @@ $(document).ready(function() {
 	
 	
 	
+	
+	
+	
+	//프로필사진 설정 Start //////////////////////////////////////////////////////////////////////////
+
+	$(".dropzone.profileImage").fileReaderJS(opts);
+	$("body").fileClipboard(opts);
+	var opts = {
+		on : {
+			load : function(e, file) {
+				var fileDiv = $("#profileImageUp")
+
+				if (file.type.match(/image/)) {
+					// Create a thumbnail and add it to the output if it is an image
+					console.log("이미지 업로드 했음");
+					var img = new Image();
+					img.onload = function() {
+						//fileDiv.find(".modal").append(img);
+						fileDiv.prepend($(img).clone());
+					};
+					img.src = e.target.result;
+				} else {
+					//fileDiv.find(".modal").append($("<div />").text(e.target.result));
+				}
+			},
+			error : function(e, file) {
+				alert("파일올려줘");
+			}
+		}
+	};
+	$(".profile_editBtn.profileImage") .click(	function(event) {
+		event.preventDefault();
+		var file =  document.getElementById("profileImageUp");
+		var email = $("input:hidden[name=email]").val();
+		var publicLevelCode = $(this).parent().find("select").val();
+		var data = "profileInfo=" + file + "&email=" + email + "&profileCode=2" + '&publicLevelCode='+ publicLevelCode;
+	
+		$.ajax({
+			url : 'profile/',
+			type : "post",
+			data : data,
+			/*// cache: false,
+			processData : false,
+			contentType : false,*/
+			success : function(data) {
+				alert("정보가 수정되었습니다!");
+				var profileName = $("input:hidden[value=2]").attr("name");
+				var contextPath = $("input:hidden[name=contextPath]").val();
+				$("input:hidden[name=" + profileName + "Public]").val(publicLevelCode);
+				$(".informdata."+profileName).html('<img src="' + contextPath + '/resources/user-profile-image/' + file + '">');
+			},
+			error : function() {
+				alert("ERROR");
+			}
+		});
+		return false;
+	});
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////프로필사진 업데이트 ㅡㅡ하 
+	
+	
+	
 });
 
+
+
+//해당 프로필의 공개범위에 따라 체크표시
 function publicBtn(publicbtn){
 	publicbtn.parent().find("a.publicbtn").removeClass("checked");
 	profileName = publicbtn.parent().attr("class").substring(14);
@@ -138,25 +208,5 @@ function publicBtn(publicbtn){
 	
 
 }
-/*function publicBtn(publicbtn){
-	$(this).parent().find("a.publicbtn").removeClass("checked");
-	profileName = $(this).parent().attr("class").substring(14);
-	publicCode = $("input:hidden[name="+profileName+"Public]").val();
-	if( publicCode == 1){
-		$(this).parent().find("a.publicbtn.privacy").addClass("checked");
-	}else if(publicCode == 3){
-		$(this).parent().find("a.publicbtn.friend").addClass("checked");
-	}else if(publicCode == 4){
-		$(this).parent().find("a.publicbtn.user").addClass("checked");
-	}else if(publicCode == 5){
-		$(this).parent().find("a.publicbtn.public").addClass("checked");
-	}
-	
-	if ($(this).parent().find("div.has-sub").css("display") == "none") {
-		$("div.has-sub").css("display", "none").css("z-index", "");
-    	$(this).parent().find("div.has-sub").css("display", "block").css("z-index", "100")
-    }else{
-		$("div.has-sub").css("display", "none").css("z-index", "");
-    }
-}*/
+
 	

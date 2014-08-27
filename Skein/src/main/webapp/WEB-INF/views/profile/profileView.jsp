@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
 <c:forEach var="profiles" items="${memberProfile.profiles}">
 	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
@@ -46,6 +45,7 @@
 </c:forEach>
 
 <section class="content-container">
+
 <!-- 
 profileImagePublic
 statusCommentPublic
@@ -72,7 +72,6 @@ birthdayPublic
 			src="${pageContext.request.contextPath}/resources/media/image/info_img.png">정보
 	</div>
 	<div class="informbox_content">
-		<form action="#" method="post">
 			<!-- 정보컨텐츠 -->
 			<div class="clearfix">
 				<div class="content_inner">
@@ -81,7 +80,12 @@ birthdayPublic
 						<b>프로필사진</b>2
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
-								<div class="informdata profileImage">${profileImage }</div>
+								<c:if test="${empty profileImage }">
+									<font> 프로필사진을 등록해보세요.</font>
+								</c:if>
+								<div class="informdata profileImage"><c:if test="${!empty profileImage }">
+									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${profileImage }">
+								</c:if></div>
 								<div class="inform_button profileImage">
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
@@ -95,7 +99,15 @@ birthdayPublic
 								</div>
 								<div class="inform_edit profileImage">
 									<input type="hidden" name="profileImage" value="2">
-									<div class="dropzon profileImage"></div>
+									<!-- 이미지 -->
+									<div id="profileImageUp" class="offset2 arrow_box">
+									</div>
+									<!-- 프로필사진dropzone -->
+									<form id="profileImageForm" method="post" enctype="multipart/form-data">
+										<div class="dropzone profileImage">
+											<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+										</div>
+									</form>
 									<select name="publicLevelCode">
 										<option value="5">전체공개</option>
 										<option value="4">Sil사용자공개</option>
@@ -160,7 +172,7 @@ birthdayPublic
 						</div>
 					</div>
 					
-					<c:if test="${sessionScope.PersonalURI == personalURI}">
+					<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == personalURI}">	
 						<div class="inform_elem status">
 							<b>계정 설정</b>
 							<div class="inform_status">
@@ -390,6 +402,7 @@ birthdayPublic
 				</div>
 				<!-- right 끝 -->
 			</div>
+			<input type="hidden" name="contextPath" value="${pageContext.request.contextPath }"/>
 			<input type="hidden" name="email" value="${email }" />
 			<input type="hidden" name="profileImagePublic" value="${profileImagePublic }" />
 			<input type="hidden" name="statusCommentPublic" value="${statusCommentPublic }" />
@@ -401,7 +414,6 @@ birthdayPublic
 			<input type="hidden" name="religionPublic" value="${religionPublic }" />
 			<input type="hidden" name="politicsPublic" value="${politicsPublic }" />
 			<input type="hidden" name="birthdayPublic" value="${birthdayPublic }" />
-		</form>
 	</div>
 </div>
 

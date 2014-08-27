@@ -62,7 +62,7 @@ public class MemberController {
 					parameters.put("searchValue", personalURI);
 					
 					List<Member> members = memberDao.getMembers(parameters);
-					List<ProfileCommand> profiles = profileDao.getMemberProfiles(personalURI);
+					List<ProfileCommand> profiles = profileDao.getMemberProfiles(members.get(0).getEmail());
 					
 					if(members.size() > 0){
 						System.out.println("INFO : Skein-M526 - 사용자 기본 정보 및 상세 프로필 조회");
@@ -79,7 +79,6 @@ public class MemberController {
 						model.addAttribute("memberProfile", mpc);
 						model.addAttribute("requestPersonalURI", personalURI);
 						model.addAttribute("PROFILE_RESPONSE_CODE", 99);
-						System.out.println("A");
 						return "profile.profileView"; 
 
 					}else{
