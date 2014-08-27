@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title"/></title>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />

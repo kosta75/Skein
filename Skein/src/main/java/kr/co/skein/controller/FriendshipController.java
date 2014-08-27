@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
+import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.FriendshipListCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
@@ -88,15 +89,16 @@ public class FriendshipController {
 	}
 	
 	//친구 추가 메서드
-	@RequestMapping("/add/{personalURI}")
+	@RequestMapping("/add")
 	@Transactional
-	public View addFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		System.out.println("INFO : Skein-F001 - 친구 추가, personalURI=" + personalURI );
+	public View addFriends(@RequestParam("email") String email, @RequestParam("notificationSeq") int notificationSeq, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		System.out.println("INFO : Skein-F001 - 친구 추가, email=" + email );
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 		
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("searchKey", "personalURI");
-		parameters.put("searchValue", personalURI);
+		parameters.put("searchKey", "email");
+		parameters.put("searchValue", email);
 		
 		List<Member> list = memberDao.getMembers(parameters);
 		if(list.size() > 0){
@@ -114,23 +116,27 @@ public class FriendshipController {
 				SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
 				UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
 				
-				/*FriendshipNotificationCommand friendshipNotificationCommand = new FriendshipNotificationCommand();
-				System.out.println("INFO : Skein-F001 - 사용자 알림 정보 주입");
-				friendshipNotificationCommand.setEmail(user.getUsername());
-				friendshipNotificationCommand.setFriendEmail(member.getEmail());
-				friendshipNotificationCommand.setNotificationCode(2);
-				friendshipNotificationCommand.setFriendshipConfirm(0);
-				friendshipNotificationCommand.setIsRead(0);*/
-				
 				
 				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-				//NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+				
+				FriendshipNotificationCommand friendshipNotificationCommand = notificationDao.getFriendshipNotificationByNotificationSeq(notificationSeq);
+				System.out.println("INFO : Skein-F001 - 사용자 알림 정보 주입");
+				friendshipNotificationCommand.setFriendshipConfirm(1);
+				friendshipNotificationCommand.setIsRead(1);
+				
+				
+				
+				
 				System.out.println("여기서 알림정보를 업데이트 해야된다");
 				int friendshipRegResult = friendshipDao.addFriends(user.getUsername(), member.getEmail());
-				//int notificationRegResult = notificationDao.friendshipNotificationReg(friendshipNotificationCommand);
+				int notificationRegResult = notificationDao.updateNotification(friendshipNotificationCommand);
+				int friendshipNotificationRegResult = notificationDao.updateFriendshipNotification(friendshipNotificationCommand);
+				
 				
 				System.out.println("INFO : Skein-F001 - 친구 등록 결과, friendshipRegResult=" + friendshipRegResult);
-				//System.out.println("INFO : Skein-F001 - 친구 알림 등록 결과, notificationRegResult=" + notificationRegResult);				
+				System.out.println("INFO : Skein-F001 - 사용자 알림 수정 결과, notificationRegResult=" + notificationRegResult);
+				System.out.println("INFO : Skein-F001 - 친구 알림 수정 결과, friendshipNotificationRegResult=" + friendshipNotificationRegResult);
+				
 			}
 		}
 		
@@ -142,37 +148,60 @@ public class FriendshipController {
 	
 	//친구 삭제 메서드
 	@RequestMapping("/delete/{personalURI}")
+	@Transactional
 	public View deleteFriends(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		System.out.println("INFO : Skein-F001 - 친구 추가, personalURI=" + personalURI );
+		System.out.println("INFO : Skein-F001 - 친구 삭제, personalURI=" + personalURI );
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("searchKey", "personalURI");
-		parameters.put("searchValue", personalURI);
-		
-		List<Member> list = memberDao.getMembers(parameters);
-		if(list.size() > 0){
-			Member member = list.get(0);
-			System.out.println("INFO : Skein-F001 - 삭제하려는 계정 정보, email=" + member.getEmail());
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			Map<String, String> parameters = new HashMap<String, String>();
+			parameters.put("searchKey", "personalURI");
+			parameters.put("searchValue", personalURI);
 			
-			/*1	공지사항
-			2	친구신청
-			3	친구신청수락
-			4	공유신청
-			5	공유신청수락
-			6	댓글*/
-			
-			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-				SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-				UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
+			List<Member> list = memberDao.getMembers(parameters);
+			if(list.size() > 0){
+				Member member = list.get(0);
+				System.out.println("INFO : Skein-F001 - 삭제하려는 친구 정보, email=" + member.getEmail());
+				
+				/*1	공지사항
+				2	친구신청
+				3	친구신청수락
+				4	공유신청
+				5	공유신청수락
+				6	댓글*/
+				
 				FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-				int friendshipRegResult = friendshipDao.deleteFriendship(user.getUsername(), member.getEmail());
-				System.out.println("INFO : Skein-F001 - 친구 등록 결과, friendshipRegResult=" + friendshipRegResult);				
+				NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+				List<FriendshipNotificationCommand> flist = notificationDao.getFriendshipNotificationByFriendEmail(baseMemberInfo.getEmail(), member.getEmail());
+				for(int i=0;i<flist.size();i++){
+					FriendshipNotificationCommand friendshipNotificationCommand = flist.get(i);
+					String seq = friendshipNotificationCommand.getNotificationSeq();
+					System.out.println("INFO : Skein-R342 - 조회한 알림 번호, seq=" + seq);
+					
+					int notificationDeleteResult = notificationDao.deleteNotification(Integer.valueOf(seq));
+					System.out.println("INFO : Skein-F001 - 알림 삭제 결과, notificationDeleteResult=" + notificationDeleteResult);
+				}
+				
+				
+				
+				int friendshipDeleteResult = friendshipDao.deleteFriendship(baseMemberInfo.getEmail(), member.getEmail());
+				
+				
+				
+				//int notificationDeleteResult = notificationDao.
+				
+				System.out.println("INFO : Skein-F001 - 친구 삭제 결과, friendshipRegResult=" + friendshipDeleteResult);
+				
+				model.addAttribute("result", "true");
+				
+			}else{
+				model.addAttribute("result", "false");
 			}
-		}
-		
-		model.addAttribute("result", "true");
-		
+			
+		}else{
+			model.addAttribute("result", "false");	
+		}	
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}

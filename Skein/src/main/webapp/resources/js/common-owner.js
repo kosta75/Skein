@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var menupos = $("#menu").offset().top;
 	
 	$(window).scroll(function() {
+		
 		if ($(window).scrollTop() >= menupos) {
 
 			$("#menu2").fadeIn('fast');

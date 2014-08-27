@@ -72,7 +72,7 @@
 	<!--  WHERE fullName LIKE '${searchValue}%' -->
 	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
 		
-		SELECT m.fullName, m.personalURI, m.email, p.profileInfo
+		SELECT m.fullName, m.personalURI, m.email, p.profileInfo, NVL(f.friendshipConfirm, 3) AS friendshipConfirm
 			<if test="ignoreEmailValue != null">
 			,
 				CASE
@@ -81,8 +81,9 @@
 			    END AS isFriend
 			</if>
 		FROM members m 
-		left OUTER JOIN (SELECT email, profileInfo, publicLevelCode FROM profiles WHERE  profilecode = 2) p 
+		LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode FROM profiles WHERE profilecode = 2) p 
 		ON m.email = p.email
+		LEFT OUTER JOIN FriendshipNotification f ON m.email = f.email
 		<where>
 			<if test="searchNameValue != null">
 				 m.fullName LIKE '%${searchNameValue}%'
@@ -98,6 +99,14 @@
 	<!-- 고유주소로 사용자 이메일 조회하기 -->
 	<select id="getEmailByPersonalURI" resultType="String" parameterType="String">
 		SELECT email FROM MEMBERS WHERE personalURI=#{personalURI}
+	</select>
+	
+	
+	<!-- 사용자 기본 정보 -->
+ 	<select id="getPublicMember" resultType="kr.co.skein.model.vo.BaseMemberInfo">
+ 		SELECT m.email, m.personalURI, m.colorTheme, m.birthDay, m.fullName, m.lastName, m.firstName, p.profileInfo
+		FROM Members m LEFT OUTER JOIN (SELECT ProfileInfo, email FROM Profiles 
+		WHERE email = #{email} AND profilecode = 2) p ON m.email = p.email WHERE m.email = #{email} 
 	</select>
 	
 	

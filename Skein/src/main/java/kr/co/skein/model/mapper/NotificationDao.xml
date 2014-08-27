@@ -60,7 +60,7 @@
 	
 	<!-- 사용자 알림 조회  -->
 	<select id="getNotifications" resultType="kr.co.skein.model.vo.NotificationCountCommand">
-		SELECT NotificationCode, COUNT(*) AS groupCount FROM Notifications WHERE email = #{email} GROUP BY notificationcode
+		SELECT NotificationCode, COUNT(*) AS groupCount FROM Notifications WHERE email = #{email} AND isRead = 0 GROUP BY NotificationCode
 	</select>
 	
 	<select id="getFriendshipNotification" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
@@ -75,7 +75,36 @@
 		FROM NOTIFICATIONS n JOIN FRIENDSHIPNOTIFICATION f ON n.notificationSeq = f.notificationSeq
 		LEFT OUTER JOIN ReplyNotification r ON n.notificationSeq = r.notificationSeq
 		LEFT OUTER JOIN SHARENOTIFICATION s ON n.notificationSeq = s.notificationSeq
-		WHERE n.email = #{email} ORDER BY n.notificationCode ASC, n.notificationSeq DESC
+		WHERE n.email = #{email} AND n.isRead = 0 ORDER BY n.notificationCode ASC, n.notificationSeq DESC
 	</select>
+	
+	
+	<select id="getFriendshipNotificationByNotificationSeq" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
+		FROM Notifications n JOIN FriendshipNotification f ON n.notificationSeq = f.notificationSeq
+		WHERE n.notificationSeq = #{notificationSeq}	
+	</select>
+	
+	<select id="getFriendshipNotificationByFriendEmail" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
+		FROM Notifications n JOIN FriendshipNotification f ON n.notificationSeq = f.notificationSeq
+		WHERE (n.email = #{param1} AND f.friendEmail = #{param2}) OR (n.email = #{param2} AND f.friendEmail = #{param1}) 	
+	</select>
+	
+	<update id="updateNotification" parameterType="kr.co.skein.model.vo.NotificationCommand">
+		UPDATE Notifications
+		SET isRead = #{isRead}
+		WHERE notificationSeq = #{notificationSeq}
+	</update>
+	
+	<update id="updateFriendshipNotification" parameterType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+		UPDATE FriendshipNotification
+		SET friendshipConfirm = #{friendshipConfirm}
+		WHERE notificationSeq = #{notificationSeq}
+	</update>
+
+	<delete id="deleteNotification" parameterType="Integer">
+		DELETE FROM Notifications WHERE NotificationSeq = #{param1}
+	</delete>
 	
 </mapper>

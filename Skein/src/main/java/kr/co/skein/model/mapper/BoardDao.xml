@@ -177,6 +177,61 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 		</where>
 		ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
 	</select>
+	
+	
+	
+	<!-- 7. 사용자 그룹 게시물 조회 -->
+	<select id="getMemberBoardGroup" resultType="kr.co.skein.model.vo.BoardGroup">
+		SELECT * FROM
+		(
+		SELECT ROWNUM r, s.* from
+		(
+		SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.GroupEndDate,
+		            b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
+		            h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
+		            me.FILENAME, me.FILESIZE, me.EXTENSION,
+		            m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
+		            FROM BOARDGROUP bg JOIN
+		            (
+		            SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM
+		               (
+		               SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
+		               FROM Board
+		               
+		               <where>
+		               		<if test="email != null">
+		               			 email = #{email}
+		               		</if>
+							<choose>
+								<when test="isFriend != null">
+									<choose>
+										<when test="isFriend = true">
+											AND publicLevelCode IN (2, 3, 4, 5)
+										</when>
+										<otherwise>
+											AND publicLevelCode IN (4, 5)
+										</otherwise>
+									</choose>
+								</when>
+								<otherwise>
+									AND publicLevelCode IN (5)
+								</otherwise>
+							</choose>
+						</where>
+		               )
+		            WHERE rnum = 1
+		            ) b ON bg.groupSeq = b.groupSeq
+		      JOIN HISTORY h ON h.BOARDSEQ = b.BOARDSEQ
+		      JOIN MEMBERS m ON m.Email = b.Email
+		      LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
+		      ORDER BY GROUPSEQ DESC
+		    ) s
+		    )
+
+		
+		WHERE r BETWEEN #{startNum} AND #{endNum}
+		ORDER BY GROUPSTARTDATE ASC
+	</select>
    
    
 </mapper>

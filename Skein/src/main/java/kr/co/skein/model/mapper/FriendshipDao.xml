@@ -4,7 +4,10 @@
 	
 	<!--  친구 추가 addFriends -->
 	<insert id="addFriends">
-		INSERT INTO Friendship VALUES(#{param1}, #{param2}) 
+		INSERT ALL
+			INTO Friendship VALUES(#{param1}, #{param2})
+			INTO Friendship VALUES(#{param2}, #{param1})
+		SELECT * FROM DUAL 
 	</insert>
 	
 	<!--친구 목록 페이지 -->

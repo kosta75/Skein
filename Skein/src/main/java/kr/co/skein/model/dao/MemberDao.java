@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.skein.model.vo.AuthorityCommand;
+import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Member;
-import kr.co.skein.model.vo.ProfileCommand;
 import kr.co.skein.model.vo.SearchMemberCommand;
 
 public interface MemberDao {
@@ -39,7 +39,9 @@ public interface MemberDao {
 	public List<SearchMemberCommand> searchMembers(Map<String, String> parameters) throws ClassNotFoundException, SQLException;
 	
 	//고유주소로 사용자 이메일 조회
-	public String getEmailByPersonalURI(String personalURI)  throws ClassNotFoundException, SQLException;
+	public String getEmailByPersonalURI(String personalURI) throws ClassNotFoundException, SQLException;
 	
+	//사용자
+	public BaseMemberInfo getPublicMember(String email) throws ClassNotFoundException, SQLException;
 		
 }

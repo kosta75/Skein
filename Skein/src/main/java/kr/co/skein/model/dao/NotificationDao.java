@@ -25,4 +25,20 @@ public interface NotificationDao {
 	
 	//사용자 알림 목록 조회
 	public List<NotificationAllCommand> getNotificationAllList(String email) throws ClassNotFoundException, SQLException;
+	
+	//알림 조회
+	public FriendshipNotificationCommand getFriendshipNotificationByNotificationSeq(int notificationSeq) throws ClassNotFoundException, SQLException;
+	
+	//알림 조회
+	public List<FriendshipNotificationCommand> getFriendshipNotificationByFriendEmail(String email, String friendEmail) throws ClassNotFoundException, SQLException;
+	
+	//친구 알림 수정
+	public int updateFriendshipNotification(FriendshipNotificationCommand friendshipNotificationCommand) throws ClassNotFoundException, SQLException;
+	
+	//사용자 알림 수정
+	public int updateNotification(NotificationCommand notificationCommand) throws ClassNotFoundException, SQLException;
+	
+	//사용자 알림 삭제
+	public int deleteNotification(int notificationSeq) throws ClassNotFoundException, SQLException;
+	
 }

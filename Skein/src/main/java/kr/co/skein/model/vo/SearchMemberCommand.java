@@ -7,13 +7,7 @@ public class SearchMemberCommand {
 	private String personalURI;
 	private int isFriend;
 	private String profileInfo;
-	
-	public String getProfileInfo() {
-		return profileInfo;
-	}
-	public void setProfileInfo(String profileInfo) {
-		this.profileInfo = profileInfo;
-	}
+	private int friendshipConfirm;
 	public String getFullName() {
 		return fullName;
 	}
@@ -32,7 +26,18 @@ public class SearchMemberCommand {
 	public void setIsFriend(int isFriend) {
 		this.isFriend = isFriend;
 	}
-
+	public String getProfileInfo() {
+		return profileInfo;
+	}
+	public void setProfileInfo(String profileInfo) {
+		this.profileInfo = profileInfo;
+	}
+	public int getFriendshipConfirm() {
+		return friendshipConfirm;
+	}
+	public void setFriendshipConfirm(int friendshipConfirm) {
+		this.friendshipConfirm = friendshipConfirm;
+	}
 	
 	
 }

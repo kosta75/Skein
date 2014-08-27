@@ -24,7 +24,15 @@
 							<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 								<c:choose>
 									<c:when test="${list.isFriend != 1}">
-										<span class="addFriends" data-uri="${list.personalURI}">친구신청</span>
+										<c:choose>
+											
+											<c:when test="${list.friendshipConfirm == 0}">
+												<span class="wait-friendship" data-uri="${list.personalURI}">친구 신청 대기중</span>
+											</c:when>
+											<c:otherwise>
+												<span class="addFriends" data-uri="${list.personalURI}">친구신청</span>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:otherwise>
 										<span>Text</span>

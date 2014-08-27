@@ -51,4 +51,7 @@ public interface BoardDao {
 	//5. 사용자 게시물 조회
 	public List<MemberBoardCommand> getMemberBoards(Map<String, String> param) throws ClassNotFoundException, SQLException;
 	
+	//
+	public List<BoardGroup> getMemberBoardGroup(Map<String, String> param) throws ClassNotFoundException, SQLException;
+	
 }

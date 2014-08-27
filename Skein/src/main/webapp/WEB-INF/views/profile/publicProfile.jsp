@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
 	<div id="modal-background"></div>
 	<div id="modal-content" >
@@ -38,8 +37,7 @@
 								<input  type="hidden" value="">공유하기
 							</div>
 							<div class="modal-user-profile-image" style="float: left;">
-								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
-								<img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;">
+								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileImageFileName}" />
 							</div>
 							
 							<!--작성자 이름 날짜 내용 출력  -->
@@ -97,7 +95,7 @@
 			<div id="boardListContainer">
 				여기는 프로필!!!!! <br />
 				${PROFILE_RESPONSE_CODE}
-				<c:forEach var="groupItem" items="${groupList}">
+				<c:forEach var="groupItem" items="${boardGroupList}">
 				<div class="group-item-container">
 					<div class="group-item-wrapper">
 						<div class="group-item-controller-container">
@@ -119,10 +117,10 @@
 
 						<div class="group-item-user-info-container">
 							<div class="group-item-user-profile-image-wrapper">
-								<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileImageFileName}" />
 							</div>
 							<div class="group-item-user-info-wrapper">
-								<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
+								<a href="${pageContext.request.contextPath}/${publicMember.personalURI}">${publicMember.fullName}</a>
 								<span class="group-item-write-date">${groupItem.writeDate}</span>
 							</div>
 						</div>				
