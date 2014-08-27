@@ -319,6 +319,7 @@ $(document).ready(function(){
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		boardSeq = $(this).data("boardseq");
+	
 	    $(".modal-edit-Div").css("display","none");
 	    $(".modalcontent").css("display","block");
 		$(".modalShare").find("input").val(groupSeq);
@@ -500,15 +501,14 @@ $(document).ready(function(){
 	
 	});
 	//수정이모티콘 추가
-	$(".edit-emoticon-icon").click(function(){
-	$(this).parent().siblings().first().append($(this).clone());
 	
-	
-	
+	$(document).on("click",".edit-emoticon-icon",function(){
+		
+		
+		$(this).parent().siblings().first().append($(this).clone());
+		
 	});
-	
-	
-	
+
 	
 	//모달 댓글 리스트 출력
 	$(document).on('click',".imgBtn", function(){

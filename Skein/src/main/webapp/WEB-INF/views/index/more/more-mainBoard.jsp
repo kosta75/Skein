@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-			<c:forEach var="groupItem" items="${groupList}"> 
+		<c:forEach var="groupItem" items="${groupList}"> 
 				<div class="group-item-container">
 					<div class="editDiv" style="margin:auto;display:none;">
 						<div id="editTextarea" contenteditable="true" >${groupItem.content}</div>
@@ -98,4 +98,3 @@
 					
 				</div>
 				</c:forEach>
-		
