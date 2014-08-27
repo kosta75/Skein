@@ -361,14 +361,14 @@ $(document).ready(function(){
 						
 						},
 						error : function() {
-							alert('indexlogged 354 : Error while request..');
+							alert('indexlogged 364 : Error while request..');
 						}
 						
 						
 					});
 				},
 				error : function() {
-					alert('indexlogged 354 : Error while request..');
+					alert('indexlogged 371 : Error while request..');
 				}
 			});
 		} else {
@@ -475,7 +475,7 @@ $(document).ready(function(){
 			
 			},
 			error : function() {
-				alert('indexlogged 354 : Error while request..');
+				alert('indexlogged 478 : Error while request..');
 			}
 			
 			
@@ -510,7 +510,7 @@ $(document).ready(function(){
 				
 				},
 			error : function() {
-				alert('indexlogged 354 : Error while request..');
+				alert('indexlogged 513 : Error while request..');
 			}
 		});
 	}
@@ -542,7 +542,7 @@ $(document).ready(function(){
 				
 			},
 			error : function() {
-				alert('indexlogged 354 : Error while request..');
+				alert('indexlogged 545 : Error while request..');
 			}
 		});
 	
@@ -697,6 +697,10 @@ function lastPostFunc(pictureCount){
 		//alert("확인 버튼");
 		var ret = get_chked_values();
 		alert(ret);
+		
+		
+		
+		$('.share-info-div').hide("slide", {direction : "left"});
 		return false;
 	});
 	//----------------------------------------------------------------------
@@ -714,11 +718,16 @@ function lastPostFunc(pictureCount){
 		$('.share-info-div').hide("slide", {direction : "left"});
 		return false;
 	});
+	
+	/*
 	$(document).on('click','#share-ALL-choice-btn',function(){
-		$(document).find('input[type=checkbox]').attr("checked","checked");
+		console.log("dd");
+		$('input[name=shareCheckBoxGroup]').attr("checked",true);
 		return false;
 	});
+	*/
 	$(document).on('click','#share-ALL-clear-btn',function(){
+		console.log("zz");;
 		$(document).find('input[type=checkbox]').attr("checked",false);
 		return false;
 	});

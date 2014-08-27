@@ -10,14 +10,14 @@ $(document).ready(function() {
 				console.log(data);
 			},
 			error : function() {
-				alert('indexlogged 354 : Error while request..');
+				alert('notification 13 : Error while request..');
 			}
 		});
 	});
 ////////////////////////////////////////////////////////////////////////////////////
-	var jqDockOpts = {align: 'left', duration: 200, labels: 'tc', size: 48, distance: 85};
+	/*var jqDockOpts = {align: 'left', duration: 200, labels: 'tc', size: 48, distance: 85};
 	$('#jqDock').jqDock(jqDockOpts);
-	
+	*/
 
 	$('.dock-item').click(function(){
 		var alramSeq = $(this).find('input').val();
@@ -41,10 +41,24 @@ $(document).ready(function() {
 */
 		//return false;
 	});
-
+	
+	$(document).on('click',"#alram-checkbox-all", function() {
+		console.log("click1");
+		
+		$('input[type=checkbox]').attr("checked",true);
+		return false;
+	});
+	$(document).on('click',"#alram-checkbox-clear", function() {
+		console.log("click2");
+		$('input[type=checkbox]').attr("checked",false);
+		$('input[type=checkbox]').attr("disable",false);
+		$('input[type=checkbox]').removeAttr("checked");
+		return false;
+	});
+	
 	$(document).on('mouseover',".alram-page-list-div", function() {
-		console.log(aaa);
-		//$(this).css("background-color", "blanchedalmond");
+		//console.log(aaa);
+		$(this).css("background-color", "blanchedalmond");
 	});
 	$(document).on('mouseout',".alram-page-list-div", function(){
 		$(this).css("background-color", "white");

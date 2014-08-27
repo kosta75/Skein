@@ -230,11 +230,11 @@
 
 									<!-- <input id="share-confirm-btn" type="button" value="확인">
 									<input id="share-cancel-btn" type="button" value="취소"> -->
-									<c:if test="${groupItem.groupCount > 2}">
+									<c:if test="${groupItem.groupCount >= 2}">
 										<!-- <input id="share-ALL-choice-btn" type="button" value="전체선택">
 										<input id="share-ALL-clear-btn" type="button" value="전체해제"> -->
-										<img id="share-ALL-choice-btn" >전체선택
-										<img id="share-ALL-clear-btn" >전체해제
+										<!-- <a id="share-ALL-choice-btn">전체선택</a> -->
+										<a id="share-ALL-clear-btn" >전체해제</a>
 									</c:if>
 								</div>
 							</div>

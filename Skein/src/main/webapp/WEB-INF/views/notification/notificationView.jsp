@@ -25,8 +25,8 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 			</div>
 			
 		<div class="notification-top-menu" style="border-bottom: 4px solid red; clear: both; background-color: white; height:30px;">
-		<input type="checkbox">전체 선택
-			<input type="checkbox">전체 해제
+		<a id="alram-checkbox-all">전체 선택</a>
+		<a id="alram-checkbox-clear">전체 해제</a>
 		</div>
 		<div class="notification-middle-menu" style="clear: both; ">
 <!--글 내용 들어가는 곳  -->
@@ -70,7 +70,7 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 			<div style="border-bottom: solid 1px blue ; clear:both;height:30px; ">
-				<input type="checkbox" style="float: left;">
+				<input type="checkbox" name="alram-check"style="float: left;">
 				<div style="float: left;">[댓글]</div>
 				<div style="float: left;">test! 님이 admin님에게 댓글을 남겼습니다.</div>
 				<div style="float: right;">2014/07/31</div>
@@ -83,14 +83,14 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 		
 	</div>
 </section>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/alram/fisheye-iutil.min.js"></script> 
-
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> -->
+ 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/alram/dock-example1.js"></script> 
-<script src="${pageContext.request.contextPath}/resources/js/notificationView.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/alram/jquery.jqDock.min.js"></script>
-
-
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/alram/jquery.jqDock.min.js"></script> --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/alram/fisheye-iutil.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/notification.js"></script>
+
+
+
+
