@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
@@ -193,7 +194,46 @@ public class BoardController {
 		}	
 		return fileNames;
 	}
-
+	//게시물 그룹 전체 삭제 
+	@RequestMapping(value="/deleteBoard",method = RequestMethod.POST)
+	public View BoardDelete(int boardSeq, Model model) throws ClassNotFoundException, SQLException{
+		
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardDelete(boardSeq);
+		
+		
+		model.addAttribute("result", result);
+		return jsonView;
+		
+	}
+	//게시물별로 삭제
+	@RequestMapping(value="/deleteGroup",method = RequestMethod.POST)
+	public View BoardGroupDelete(int groupSeq, Model model) throws ClassNotFoundException, SQLException{
+		
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardGroupDelete(groupSeq);
+		
+		
+		model.addAttribute("result", result);
+		return jsonView;
+		
+	}
+	//게시물 수정
+	@RequestMapping(value="/editBoard",method = RequestMethod.POST)
+	public View editBoard(int boardSeq,String editContent,Model model) throws ClassNotFoundException, SQLException{
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		
+	    int result=boardDao.editBoard(editContent, boardSeq);
+		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent);
+		
+		model.addAttribute("result", result);
+		
+		return jsonView;
+	}
+	
 	
 	//게시물 공유하기 
 		@RequestMapping(value ="/shareView", method = RequestMethod.POST)

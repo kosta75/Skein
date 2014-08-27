@@ -177,6 +177,27 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 		</where>
 		ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
 	</select>
+   <!--게시물 그룹 전체 삭제  -->
+   
+   <delete id="boardGroupDelete" >
    
    
+   DELETE board WHERE GROUPSEQ = #{groupSeq}
+   
+   </delete>
+   
+   
+    <delete id="boardDelete" >
+   
+   
+   DELETE board WHERE BOARDSEQ = #{boardSeq}
+   
+   </delete>
+   
+   
+   <!--게시물 수정  -->
+   <update id="editBoard">
+   
+   UPDATE board SET  CONTENT = #{param1} WHERE BOARDSEQ = #{param2}
+   </update>
 </mapper>
