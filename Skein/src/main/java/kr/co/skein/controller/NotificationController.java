@@ -38,6 +38,12 @@ public class NotificationController {
 	//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String viewNotificationList() throws ClassNotFoundException, SQLException{
+		
+		
+		
+		
+		
+		
 		return "notification.notificationView";
 	}
 
@@ -92,6 +98,9 @@ public class NotificationController {
 		/*return "friendship.searchMembers";*/
 		return jsonView;
 	}
+	
+	
+	
 	
 	
 	

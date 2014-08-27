@@ -3,6 +3,7 @@ $(document).ready(function(){
 	//사진 mouseover 배경 색상 변경
 	$(document).on('mouseover', '.img-list', function(){
 		$(this).css("background-color",$('.sub-user-profile-tip').css("background-color"));
+		
 	}).on('mouseout', '.img-list', function(){
 		$(this).css("background-color","white");
 	})
