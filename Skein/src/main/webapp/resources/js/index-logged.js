@@ -66,11 +66,11 @@ $(document).ready(function(){
 	                	//console.log(event);
 	                	//console.log(event.point.text);
 	                	var groupSeq = event.point.groupSeq;
-	                	var target_id = '#groupItem[' + groupSeq + ']';
+	                	var target_id = 'groupItem[' + groupSeq + ']';
 	                	//$('body, html').css('scrollTop', $(target_id).offset().top);
 	                	var obj = $(target_id);
 	                	console.log(document.getElementById("groupItem[24]").offsetTop);
-	                	var posY = document.getElementById("groupItem[24]").offsetTop;
+	                	var posY = document.getElementById(""+target_id).offsetTop;
 	                	//$('body, html').animate({ scrollTop: $("" + target_id).offset().top }, 1000); 
 	                	window.scrollTo(0, posY);
 	                }
