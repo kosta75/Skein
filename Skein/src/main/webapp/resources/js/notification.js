@@ -14,5 +14,44 @@ $(document).ready(function() {
 			}
 		});
 	});
+////////////////////////////////////////////////////////////////////////////////////
+	var jqDockOpts = {align: 'left', duration: 200, labels: 'tc', size: 48, distance: 85};
+	$('#jqDock').jqDock(jqDockOpts);
+	
+
+	$('.dock-item').click(function(){
+		var alramSeq = $(this).find('input').val();
+		console.log(alramSeq);
+		alert(alramSeq);
+/*
+		$.ajax({
+			type : 'get',
+			url : 'notification/list',
+			cache : false,
+			data : 'alramSeq=' + alramSeq,
+			success : function(data) {
+				alert(aa);
+				
+				
+			},
+			error : function() {
+				alert('indexlogged notification 35 : Error while request..');
+			}
+		});
+*/
+		//return false;
+	});
+
+	$(document).on('mouseover',".alram-page-list-div", function() {
+		console.log(aaa);
+		//$(this).css("background-color", "blanchedalmond");
+	});
+	$(document).on('mouseout',".alram-page-list-div", function(){
+		$(this).css("background-color", "white");
+	});
+	
+	
+	
+	
 });
 

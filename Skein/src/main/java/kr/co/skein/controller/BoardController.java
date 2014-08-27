@@ -194,14 +194,15 @@ public class BoardController {
 		return fileNames;
 	}
 
-	
 	//게시물 공유하기 
-		@RequestMapping(value ="/shareView", method = RequestMethod.POST)
-		public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
-			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-			List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
-			model.addAttribute("boardshare", boardshare);
-			return jsonView;
-		}
+			@RequestMapping(value ="/shareView", method = RequestMethod.POST)
+			public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+				List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+				model.addAttribute("boardshare", boardshare);
+				return jsonView;
+			}
+			
+		
 
 }

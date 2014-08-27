@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	//알림 목록 읽기
 	function readNotificationList(){
-		var contextURI = "//192.168.7.127:8080/skein/notification/notificationCountList";
+		var contextURI = "//localhost:8080/skein/notification/notificationCountList";
 		//$(".notification-list").empty();
 		$.ajax({
 			type : 'POST',
