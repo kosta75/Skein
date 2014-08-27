@@ -411,11 +411,27 @@ $(document).ready(function(){
 		}else{
 		$("#historyImg").css("display","none");
 		$("#historyDate").css("display","block");
-		$("#historyemoticon").css("display","none");
 		$("#historymap").css("display","none");
+		$("#historyemoticon").css("display","none");
+		
 		}
 		});
 
+	$("#historyWriteMenu3").click(function() {
+		
+		if($("#historymap").css("display") == "block"){
+			$("#historymap").css("display","none");
+		}else{
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none");
+		$("#historymap").css("display","block");
+		$("#historyemoticon").css("display","none");
+		
+		}
+		});
+
+	
+	
 	$("#historyWriteMenu4").click(function() {
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
@@ -429,9 +445,47 @@ $(document).ready(function(){
 	});
 	
 	//다이어리 메뉴
-	$("#diaryWriteMenu1").click(function() {	
-		$("#diaryImg").css("display","block");
-			});
+	
+	
+	$("#diaryWriteMenu1").click(function() {
+		if($("#diaryImg").css("display") == "block"){
+			$("#diaryImg").css("display","none");
+		}else{
+	$("#diaryImg").css("display","block");
+	$("#diaryemoticon").css("display","none");
+	$("#diarymap").css("display","none");
+		}
+		});
+
+	$("#diaryWriteMenu3").click(function() {
+		
+		if($("#diarymap").css("display") == "block"){
+			$("#diarymap").css("display","none");
+		}else{
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","block");
+		$("#diaryemoticon").css("display","none");
+		
+		}
+		});
+
+	$("#diaryWriteMenu4").click(function() {
+		
+		if($("#diaryemoticon").css("display") == "block"){
+			$("#diaryemoticon").css("display","none");
+		}else{
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","none");
+		$("#diaryemoticon").css("display","block");
+		
+		}
+		});
+
+	
+	
+
+	
+	
 
 	//이모티콘 추가
 	$(".emoticon").click(function(){
@@ -644,7 +698,7 @@ function lastPostFunc(pictureCount){
 						parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>"
 															+ "<div style='float:left;'>" 
 															+ "<input type='radio' value=1 checked='checked'></div>"
-															+ "<div class='imgBtn'style='float:left;width:135px;'>"
+															+ "<div class='share_imgbtn'style='float:left;width:135px;'>"
 															+ "<input type='hidden' value='1'><p style='margin-left: -27px;'>현재 글 공유</p></div></div>");
 					}else{	
 						for (var j=0; j<boardsharedetail; j++) {
@@ -653,9 +707,9 @@ function lastPostFunc(pictureCount){
 							parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>" 
 																	+ "<div style='float:left;margin-top:10px'>" 
 																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+j+"></div>" 
-																	+ "<div class='imgBtn'style='float:left;width:135px;'>"
+																	+ "<div class='share_imgbtn'style='float:left;width:135px;'>"
 																		+ "<input type='hidden' value='"+j+"'>"
-																	+ "<img class='imgbtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
+																	+ "<img class='imgbtn2' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
 																	+ "'style='clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
 						}
 					}
@@ -686,7 +740,7 @@ function lastPostFunc(pictureCount){
 	//*************************************************************************************************
 		//공유하기 상세 마우스 올렸을때!
 	
-	$(document).on('mouseover','.imgbtn',function(){
+	$(document).on('mouseover','.share_imgbtn',function(){
 		//alert('상세보기 들어옴');
 		//alert($(this).attr("src"));
 		
@@ -700,7 +754,7 @@ function lastPostFunc(pictureCount){
 		alert('상세보기 들어옴4');
 */
 	});
-	$(document).on('mouseout','.imgbtn',function(){
+	$(document).on('mouseout','.share_imgbtn',function(){
 		//alert('상세보기 나감');
 		$('#share-detail-preview').css("display","none");
 	

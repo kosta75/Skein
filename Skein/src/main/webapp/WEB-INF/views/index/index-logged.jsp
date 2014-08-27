@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
+
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
 	<div id="modal-background"></div>
@@ -61,7 +64,7 @@
 						</div>
 						
 						<div class="replyWriteForm"style="float: left;padding-top:10px;">
-							<input class="modalreplyWrite"type="text" style="width:200%; height: 20px;" >
+							<input class="modalreplyWrite"type="text" style="width:310px; height: 20px;" >
 						</div>
 						
 						<!-- <div style="float: left;padding-top:10px;">
@@ -115,10 +118,49 @@
 					<li><a href="#diaryWriteTabs">다이어리</a></li>
 					<li><a href="#historyWriteTabs">개인기록</a></li>
 				</ul>
-				<div id="diaryWriteTabs">
-					<div>
-					Content
-					</div>
+				<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
+					<div id="diaryWriteForm" style="clear: both;">
+					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
+					<form id="diaryForm" method="post" enctype="multipart/form-data">
+					
+						<div id="dropzone">
+							<span class="placeholder">내용을 입력해 주세요...</span>
+							<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+							<div id="writeTextarea" contenteditable="true"></div>
+						</div>
+						<input type='hidden' name="content" id="content" />
+						<input type="hidden" name="email" value="${LoginUser}" />
+						<!--이미지  -->
+						<div id="diaryImg" class="offset2 arrow_box">
+							<ul id="file-list"></ul>
+						</div>
+						<!--위치정보  -->
+						<div id="diarymap" style="display: none;">
+							<input type="text" id="historyplace" name="historyplace">
+						</div>
+						<!--이모티콘  -->
+						<div id="diaryemoticon" style="display: none;">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
+						</div>
+						<!--  -->
+						<div class="write-menu-bar">
+							<div id="writeicon"  >
+								<div  class="icon_button" id="diaryWriteMenu1" ></div>
+								<div class="icon_button" id="diaryWriteMenu3"></div>
+								<div class="icon_button" id="diaryWriteMenu4"></div>
+								<div style="float: right; margin-right: 20px; ">
+								<select name="publicLevelCode" style="margin-left:120px;">
+									<c:forEach var="publicLevelList" items="${publicLevelList}">
+										<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+									</c:forEach>
+								</select>
+								<input id="diaryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
+							</div></div>
+						</div>
+					</form> 
+				</div>
 				</div>
 				<div id="historyWriteTabs">
 					<div id="historyWriteForm">
@@ -147,7 +189,7 @@
 						<!--이모티콘  -->
 						<div id="historyemoticon">
 						<c:forEach var="i" begin="1" end="16" step="1">
-							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
+							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 						</c:forEach>
 						</div>
 						<!--  -->
@@ -157,12 +199,14 @@
 								<div class="icon_button" id="historyWriteMenu2"></div>
 								<div class="icon_button" id="historyWriteMenu3"></div>
 								<div class="icon_button" id="historyWriteMenu4"></div>
+								<div style="float: right; margin-right: 20px; ">
 								<select name="publicLevelCode" style="margin-left:120px;">
 									<c:forEach var="publicLevelList" items="${publicLevelList}">
 										<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 									</c:forEach>
 								</select>
 								<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
+							</div>
 							</div>
 						</div>
 					</form> 
