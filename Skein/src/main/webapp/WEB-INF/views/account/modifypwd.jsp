@@ -8,7 +8,7 @@
 			<b>비밀번호 변경</b>
 		</div>
 		<div class="help_container">
-			<div class="fail_login"><input type="hidden" id="modifyformEmail" value="${LoginUser }">
+			<div class="fail_login"><input type="hidden" id="modifyformEmail">
 			
 				<table class="pwdmodifytb">
 					<tr>
