@@ -879,9 +879,11 @@ function lastPostFunc(pictureCount){
  });
  //modal 수정취소
  $(document).on("click",".modaleditCancleBtn",function(){
+
 	 $(".modal-EditTextarea").empty();
 	 $(this).parent().css("display","none");
-	 $(this).parent().siblings().first().css("display","block"); 
+	 $(this).parent().siblings().first().next().css("display","block");
+	 $(".modal-edit-emoticon").css("display","none");
  });
 //modal 이모티콘
  $(document).on("click",".modaleditEmoticon",function(){
