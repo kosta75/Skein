@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 .informbox {
 	position: relative;
-	width: 850px;
+	width: 100%;
 	background: #fff;
 	border: 1px solid #d3d6db;
 	-webkit-border-radius: 3px;
@@ -31,7 +31,6 @@
 }
 
 .informbox_content{
-	hight: 525px;
 	background-color: white;
 }
 .content_inner {
@@ -40,6 +39,7 @@
 	min-width: 400px;
 	height: auto;
 	margin-bottom: 10px;
+	width:47.5%
 }
 
 .content_inner:FIRST-CHILD {
@@ -134,11 +134,14 @@
 .informdata.profileImage font{
 	top: 20px;
 }
+input[type=text]{
+	width:200px;
+}
 
 /* 글쓰기 */
 
 #profileImageForm{position:relative;}
-.dropzone{border:1px solid #dcdcdc;height:50px; width: 50px; position:relative;}
+.dropzone{border:1px solid #dcdcdc;height:100px; width: 100px; position:relative;}
 .dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
 /* 
 #historyImg:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
