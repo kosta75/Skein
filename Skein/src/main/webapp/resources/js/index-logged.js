@@ -853,7 +853,7 @@ function lastPostFunc(pictureCount){
 	 $(this).parent().parent().css("display","none");
 	 
 	 $(this).parent().parent().siblings().first().css("display","block"); 
-	 $(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").text());
+	 $(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").html());
 /*	$(this).parent().parent().siblings().first().children().append($(this).parent().parent().children().last().text());
 */	 
 	 
