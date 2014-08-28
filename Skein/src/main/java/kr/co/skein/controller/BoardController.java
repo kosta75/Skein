@@ -206,6 +206,7 @@ public class BoardController {
 		}	
 		return fileNames;
 	}
+
 	//게시물 그룹 전체 삭제 
 	@RequestMapping(value="/deleteBoard",method = RequestMethod.POST)
 	public View BoardDelete(int boardSeq, Model model) throws ClassNotFoundException, SQLException{
@@ -245,15 +246,16 @@ public class BoardController {
 		
 		return jsonView;
 	}
-	
-	
+
 	//게시물 공유하기 
-		@RequestMapping(value ="/shareView", method = RequestMethod.POST)
-		public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
-			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-			List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
-			model.addAttribute("boardshare", boardshare);
-			return jsonView;
-		}
+			@RequestMapping(value ="/shareView", method = RequestMethod.POST)
+			public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+				List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+				model.addAttribute("boardshare", boardshare);
+				return jsonView;
+			}
+			
+		
 
 }

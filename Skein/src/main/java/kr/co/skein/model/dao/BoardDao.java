@@ -66,4 +66,8 @@ public interface BoardDao {
 
 	//게시물 조회
 	public BoardDetailView detailViewBoardSeq(int boardSeq)throws ClassNotFoundException, SQLException;
+	
+	//알림(게시물번호로 내용 얻어오기)
+	public List<BoardCommand> getBoardsInfo(String boardSeq)throws ClassNotFoundException, SQLException;
+		
 }

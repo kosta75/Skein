@@ -12,10 +12,39 @@ public class NotificationAllCommand {
 
 	private String friendEmail;
 	private int friendshipConfirm;
-	
 	private String boardSeq;
-	
 	private String replySeq;
+	
+	//notification code1
+	private String content;
+	
+	//notification code2
+	private String fullName;
+	
+	//notification code3
+	
+	//notification code4
+	
+	//notification code5
+	
+	//notification code6
+	
+	
+	public String getFullName() {
+		return fullName;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 	
 	private String personalURI;
 	
