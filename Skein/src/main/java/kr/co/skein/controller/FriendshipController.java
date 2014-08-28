@@ -49,9 +49,8 @@ public class FriendshipController {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 
 		int	startNum = 1;
-		int	endNum = 8;
+		int	endNum = 4;
 		
-
 		System.out.println("INFO : Skein-P101 - 서비스 접속 요청");
 		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");

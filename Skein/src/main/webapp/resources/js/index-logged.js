@@ -651,14 +651,14 @@ function lastPostFunc(pictureCount){
 					if(boardsharedetail == 0 || boardsharedetail == 1){
 						parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[0].boardSeq +"' style='background-color : white;border-radius:10px 10px 10px 10px;'>"
 															+ "<div style='float:left;'>" 
-															+ "<input type='radio' value=1 checked='checked'></div>"
+															+ "<input type='checkbox' checked disabled name='shareCheckBoxGroup' value="+data.boardshare[0].boardSeq+" data-boardSeq="+data.boardshare[0].boardSeq+"></div>" 
 															+ "<div class=''style='float:left;width:211px;'>"
 															+ "<input type='hidden' value='1'><p style='margin-left: -100px;'>현재 글 공유</p></div></div>");
 					}else{	
 						for (var j=0; j<boardsharedetail; j++) {
 							parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
 																	+ "<div style='float:left;margin-top:10px'>" 
-																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+"></div>" 
+																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+" data-boardSeq="+data.boardshare[j].boardSeq+"></div>" 
 																	+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
 																		+ "<input type='hidden' value='"+j+"'>"
 																	+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
@@ -694,13 +694,38 @@ function lastPostFunc(pictureCount){
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
 	$(document).on('click','#share-confirm-btn',function(){
-		/*alert("확인 버튼");*/
-		var ret = get_chked_values();
-		alert(ret);
 		
+		var checked = new Array();
+		$(document).find("input[name=shareCheckBoxGroup]:checked").each(function(i,j){
+			checked[i]= j.value;
+		});
+		//if(chked_val!="")chked_val = chked_val.substring(1);
+		var checkedLength = $(document).find("input[name=shareCheckBoxGroup]:checked").length;
 		
+		//alert(checkedLength);
+		for(var j=0;j<checkedLength;j++){
+			alert(checked[j]);
+		}
 		
-		$('.share-info-div').hide("slide", {direction : "left"});
+		if(checkedLength==0){
+			alert("게시물을 선택 해주세요.");
+		}else{
+			$.ajax({
+				type : 'POST',
+				url : 'share/shareDo',
+				data:"checked="+ checked,
+				success : function(data) {
+					
+					
+					alert(data);
+				},
+				error : function() {
+					alert('Error while request..');
+				}
+			});
+			$('.share-info-div').hide("slide", {direction : "left"});
+		}
+		
 		return false;
 	});
 	//----------------------------------------------------------------------
@@ -719,16 +744,16 @@ function lastPostFunc(pictureCount){
 		return false;
 	});
 	
-	/*
+	
 	$(document).on('click','#share-ALL-choice-btn',function(){
 		console.log("dd");
-		$('input[name=shareCheckBoxGroup]').attr("checked",true);
+		$('input[name=shareCheckBoxGroup]').prop("checked",true);
 		return false;
 	});
-	*/
+	
 	$(document).on('click','#share-ALL-clear-btn',function(){
 		console.log("zz");;
-		$(document).find('input[type=checkbox]').attr("checked",false);
+		$(document).find('input[type=checkbox]').prop("checked",false);
 		return false;
 	});
 	//////////////////////////////////////////////////////////////////////////////////////////////////////

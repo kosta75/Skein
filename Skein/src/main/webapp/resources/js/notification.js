@@ -23,7 +23,10 @@ $(document).ready(function() {
 		var alramSeq = $(this).find('input').val();
 		console.log(alramSeq);
 		alert(alramSeq);
-
+		//1 전체 보기  2.공지사항 3.친구 4. 게시판 5.댓글 
+		
+		
+		
 		$.ajax({
 			type : 'get',
 			url : 'notification/list',
@@ -45,14 +48,13 @@ $(document).ready(function() {
 	$(document).on('click',"#alram-checkbox-all", function() {
 		console.log("click1");
 		
-		$('input[type=checkbox]').attr("checked",true);
+		$('input[type=checkbox]').prop("checked",true);
 		return false;
 	});
 	$(document).on('click',"#alram-checkbox-clear", function() {
 		console.log("click2");
-		$('input[type=checkbox]').attr("checked",false);
-		$('input[type=checkbox]').attr("disable",false);
-		$('input[type=checkbox]').removeAttr("checked");
+		$('input[type=checkbox]').prop("checked",false);
+		
 		return false;
 	});
 	
