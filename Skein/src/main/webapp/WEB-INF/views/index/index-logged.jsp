@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
+
 <se:authentication property="name" var="LoginUser"/>
 <section class="content-container">
 	<div id="modal-background"></div>
@@ -35,9 +38,25 @@
 			<div style="float: right;width: 40%;">
 				<div >
 					<div style="float: left;  padding-top: 15px;width: 200px;">
+						<div class="modal-content-area">
+						<div class="modal-edit-Div" style="margin:auto;display:none;">
+						<div id="modal-EditTextarea" contenteditable="true"></div>
+						<input type='hidden' name="modaleditcontent" id="modaleditcontent"  />
+							
+						<div class="modaleditEmoticon" style="float: right;">이모티콘</div>
+							<div  class="modaleditCancleBtn"style="float: right;margin-right: 10px">취소</div>
+							<div class="modaleditBtn"style="float: right;margin-right: 10px">수정</div>
+								
+							
+						</div>
+						
+						
+						
 						<div class="modalcontent" >
-							<div class="modalShare" style="float: right;padding-right: 10px;">
-								<input  type="hidden" value="">공유하기
+						
+							<div style="float: right">
+							<div class="modal-Edit"style="float: left;margin-right: 10px">수정</div>
+							<div class="modal-Delete"style="float: left;margin-right: 10px">삭제</div>
 							</div>
 							<div class="modal-user-profile-image" style="float: left;">
 								<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
@@ -45,6 +64,12 @@
 							</div>
 							
 							<!--작성자 이름 날짜 내용 출력  -->
+						</div>
+						<div id="modalemoticon">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="modal-edit-emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -61,7 +86,7 @@
 						</div>
 						
 						<div class="replyWriteForm"style="float: left;padding-top:10px;">
-							<input class="modalreplyWrite"type="text" style="width:200%; height: 20px;" >
+							<input class="modalreplyWrite"type="text" style="width:310px; height: 20px;" >
 						</div>
 						
 						<!-- <div style="float: left;padding-top:10px;">
@@ -115,11 +140,49 @@
 					<li><a href="#diaryWriteTabs">다이어리</a></li>
 					<li><a href="#historyWriteTabs">개인기록</a></li>
 				</ul>
-				<div id="diaryWriteTabs">
-					<div>
-					Content
-					</div>
-				</div>
+		 <%-- 	<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
+					<div id="diaryWriteForm" style="clear: both;">
+					<form id="diaryForm" method="post" enctype="multipart/form-data">
+					
+						<div id="dropzone">
+							<span class="placeholder">내용을 입력해 주세요...</span>
+							<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+							<div id="writeTextarea" contenteditable="true"></div>
+						</div>
+						<input type='hidden' name="content" id="content" />
+						<input type="hidden" name="email" value="${LoginUser}" />
+						<!--이미지  -->
+						<div id="diaryImg" class="offset2 arrow_box">
+							<ul id="file-list"></ul>
+						</div>
+						<!--위치정보  -->
+						<div id="diarymap" style="display: none;">
+							<input type="text" id="historyplace" name="historyplace">
+						</div>
+						<!--이모티콘  -->
+						<div id="diaryemoticon" style="display: none;">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
+						</div>
+						<!--  -->
+						<div class="write-menu-bar">
+							<div id="writeicon"  >
+								<div  class="icon_button" id="diaryWriteMenu1" ></div>
+								<div class="icon_button" id="diaryWriteMenu3"></div>
+								<div class="icon_button" id="diaryWriteMenu4"></div>
+								<div style="float: right; margin-right: 20px; ">
+								<select name="publicLevelCode" style="margin-left:120px;">
+									<c:forEach var="publicLevelList" items="${publicLevelList}">
+										<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+									</c:forEach>
+								</select>
+								<input id="diaryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
+							</div></div>
+						</div>
+					</form> 
+				</div> 
+				</div> --%>
 				<div id="historyWriteTabs">
 					<div id="historyWriteForm">
 					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
@@ -147,7 +210,7 @@
 						<!--이모티콘  -->
 						<div id="historyemoticon">
 						<c:forEach var="i" begin="1" end="16" step="1">
-							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
+							<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 						</c:forEach>
 						</div>
 						<!--  -->
@@ -157,12 +220,14 @@
 								<div class="icon_button" id="historyWriteMenu2"></div>
 								<div class="icon_button" id="historyWriteMenu3"></div>
 								<div class="icon_button" id="historyWriteMenu4"></div>
+								<div style="float: right; margin-right: 20px; ">
 								<select name="publicLevelCode" style="margin-left:120px;">
 									<c:forEach var="publicLevelList" items="${publicLevelList}">
 										<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 									</c:forEach>
 								</select>
 								<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
+							</div>
 							</div>
 						</div>
 					</form> 
@@ -179,13 +244,35 @@
 			<!-- 게시물 출력 부분 Start -->
 
 			<div id="boardListContainer">
-				<c:forEach var="groupItem" items="${groupList}">
-				<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
+				<c:forEach var="groupItem" items="${groupList}"> 
+				<div class="group-item-container">
+					<div class="editDiv" style="margin:auto;display:none;">
+						<div id="editTextarea" contenteditable="true" >${groupItem.content}</div>
+						<input type='hidden' name="editcontent" id="editcontent" data-boardSeq = "${groupItem.boardSeq }" />
+												<!--이모티콘  -->
+						<div class="editemoticon" style="display:none;">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
+						</div>		
+											
+											
+					   <div style="clear: both; float: right;">
+											<div class="edit-cancle"style="margin-right:10px;float: right;">취소</div>
+											<div class="edit-Btn"style="margin-right:10px;float: right;">수정완료</div>
+											<div class="edit-emoticon"style="margin-right:10px;float: right;">이모티콘</div>
+					  </div>
+										
+										
+								
+					</div>
 					<div class="group-item-wrapper">
-						<div class="group-item-controller-container">
+						<div class="group-item-controller-container" >
 							<ul>
-								<li><div class="icon-box group-item-edit" title="수정">수정</div></li>
-								<li><div class="icon-box group-item-delete" title="삭제">삭제</div></li>
+								<li><div class="icon-box group-item-edit" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">수정</div>
+									
+								</li>
+								<li><div class="icon-box group-item-delete" data-groupSeq="${groupItem.groupSeq }" data-groupCount="${groupItem.groupCount}" title="삭제">삭제</div></li>
 								<li>
 									<c:choose>
 										<c:when test="${groupItem.groupCount > 1}">
@@ -196,7 +283,9 @@
 										</c:otherwise>
 									</c:choose>
 								</li>
+
 							</ul>
+							
 						</div>
 
 						<div class="group-item-user-info-container">

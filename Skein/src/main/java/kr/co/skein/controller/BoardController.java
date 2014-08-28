@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
+import kr.co.skein.model.vo.Board;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
@@ -28,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
@@ -56,6 +58,17 @@ public class BoardController {
 			model.addAttribute("listSource", listSource);
 			System.out.println("INFO : Skein-A123 - 전체 게시물 수, size=" + listSource.size());
 		}
+		return jsonView;
+	}
+	//사용자 게시물 조회 boardSeq 기준
+	
+	
+	@RequestMapping(value="/DetailViewBoardSeq" ,method=RequestMethod.POST)
+	public View detailViewBoard(int boardSeq,Model model) throws ClassNotFoundException, SQLException{
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		
+		BoardDetailView boardDetailView  = boardDao.detailViewBoardSeq(boardSeq);
+		model.addAttribute("detailView", boardDetailView);
 		return jsonView;
 	}
 	
@@ -193,7 +206,46 @@ public class BoardController {
 		}	
 		return fileNames;
 	}
+	//게시물 그룹 전체 삭제 
+	@RequestMapping(value="/deleteBoard",method = RequestMethod.POST)
+	public View BoardDelete(int boardSeq, Model model) throws ClassNotFoundException, SQLException{
+		
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardDelete(boardSeq);
+		
+		
+		model.addAttribute("result", result);
+		return jsonView;
+		
+	}
+	//게시물별로 삭제
+	@RequestMapping(value="/deleteGroup",method = RequestMethod.POST)
+	public View BoardGroupDelete(int groupSeq, Model model) throws ClassNotFoundException, SQLException{
+		
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardGroupDelete(groupSeq);
+		
+		
+		model.addAttribute("result", result);
+		return jsonView;
+		
+	}
+	//게시물 수정
+	@RequestMapping(value="/editBoard",method = RequestMethod.POST)
+	public View editBoard(int boardSeq,String editContent,Model model) throws ClassNotFoundException, SQLException{
+		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent);
 
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		
+	    int result=boardDao.editBoard(editContent, boardSeq);
+		
+		model.addAttribute("result", result);
+		
+		return jsonView;
+	}
+	
 	
 	//게시물 공유하기 
 		@RequestMapping(value ="/shareView", method = RequestMethod.POST)

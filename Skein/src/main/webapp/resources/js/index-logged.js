@@ -315,9 +315,14 @@ $(document).ready(function(){
 	});*/
 
 	$(document).on('click',".imgBtn", function(){
+		$("#modalemoticon").css("display","none");
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
 		var j = $(this).find("input").val();
+		 $(".modal-edit-Div").css("display","none");
+		    $(".modalcontent").css("display","block");
+		  $("#modal-EditTextarea").empty();
+			 $("#modaleditcontent").val('');
 		for (var i = 0; i < 9; i++) {
 			if (i == j) {
 				$("#detailImg" + i).css("display", "block");
@@ -346,6 +351,8 @@ $(document).ready(function(){
 		var groupSeq = $(this).find("input").val();
 		boardSeq = $(this).data("boardseq");
 	
+	    $(".modal-edit-Div").css("display","none");
+	    $(".modalcontent").css("display","block");
 		$(".modalShare").find("input").val(groupSeq);
 		if ($(this).attr("id") == "modal-launcher") {
 			$("html").css("overflow-y", "hidden");
@@ -360,8 +367,8 @@ $(document).ready(function(){
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
 					$(".modal-content-view").css("display","block");
-					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
+					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView[0].fullname + "<br>"
+							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
 
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
@@ -407,9 +414,12 @@ $(document).ready(function(){
 			$("html").css("overflow-y", "auto");
 			$("#modal-detile-view").remove();
 			$(".imgBtn").remove();
+			$(".modalViewinfo").remove();
 			$(".modalViewcontent").remove();
 			$(".replyList").empty();
-			
+			 $("#modal-EditTextarea").empty();
+			 $("#modaleditcontent").val('');
+			 $("#modalemoticon").css("display","none");
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -441,11 +451,27 @@ $(document).ready(function(){
 		}else{
 		$("#historyImg").css("display","none");
 		$("#historyDate").css("display","block");
-		$("#historyemoticon").css("display","none");
 		$("#historymap").css("display","none");
+		$("#historyemoticon").css("display","none");
+		
 		}
 		});
 
+	$("#historyWriteMenu3").click(function() {
+		
+		if($("#historymap").css("display") == "block"){
+			$("#historymap").css("display","none");
+		}else{
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none");
+		$("#historymap").css("display","block");
+		$("#historyemoticon").css("display","none");
+		
+		}
+		});
+
+	
+	
 	$("#historyWriteMenu4").click(function() {
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
@@ -459,20 +485,76 @@ $(document).ready(function(){
 	});
 	
 	//다이어리 메뉴
-	$("#diaryWriteMenu1").click(function() {	
-		$("#diaryImg").css("display","block");
-			});
+	
+	
+	$("#diaryWriteMenu1").click(function() {
+		if($("#diaryImg").css("display") == "block"){
+			$("#diaryImg").css("display","none");
+		}else{
+	$("#diaryImg").css("display","block");
+	$("#diaryemoticon").css("display","none");
+	$("#diarymap").css("display","none");
+		}
+		});
+
+	$("#diaryWriteMenu3").click(function() {
+		
+		if($("#diarymap").css("display") == "block"){
+			$("#diarymap").css("display","none");
+		}else{
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","block");
+		$("#diaryemoticon").css("display","none");
+		
+		}
+		});
+
+	$("#diaryWriteMenu4").click(function() {
+		
+		if($("#diaryemoticon").css("display") == "block"){
+			$("#diaryemoticon").css("display","none");
+		}else{
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","none");
+		$("#diaryemoticon").css("display","block");
+		
+		}
+		});
+
+	
+	
+
+	
+	
 
 	//이모티콘 추가
 	$(".emoticon").click(function(){
-		$("#writeTextarea").append($(this).clone());	
+		
+		
+		
+		alert();
+		$("#writeTextarea").append("<img class='emoticonImg' src="+$(this).attr("src")+">");	
 		$("#writeTextarea").focus();
 	
 	});
+	//수정이모티콘 추가
 	
+	$(document).on("click",".edit-emoticon-icon",function(){
+		
+		
+		$(this).parent().siblings().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
+		
+	});
+	//모달 수정 이모티콘 추가
+	$(document).on("click",".modal-edit-emoticon",function(){
+		
+		$(this).parent().siblings().first().children().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
+		
+	});
 	
 	//모달 댓글 리스트 출력
 	$(document).on('click',".imgBtn", function(){
+		
 		$(".replyList").empty();
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
@@ -486,21 +568,48 @@ $(document).ready(function(){
 				$("#detailImg" + i).css("display", "none");
 			}
 		}
-		
 		$.ajax({
 			type : 'post',
-			url : 'reply/select',
+			url : 'board/DetailViewBoardSeq',
 			cache : false,
 			data : 'boardSeq=' + boardSeq,
 			success : function(data) {
-				
-				for(var j =0;j<data.replylist.length;j++){
+				$(".modalcontent").empty();
+				$(".modal-content-view").css("display","block");
+				$(".modalcontent").append(
+				"<div style='float: right'>" +
+				"<div class='modal-Edit'style='float: left;margin-right: 10px'>수정</div>"	
+				+"<div class='modal-Delete'style='float: left;margin-right: 10px'>삭제</div>"		
+				+"</div>"
+				+"<div class='modal-user-profile-image' style='float: left;'>"
+				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
+				+"</div>"
+				+"<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView.fullname + "<br>"
+						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"  + data.detailView.content + "</div></div>");
+				$.ajax({
+					type : 'post',
+					url : 'reply/select',
+					cache : false,
+					data : 'boardSeq=' + boardSeq,
+					success : function(data) {
+						
+						for(var j =0;j<data.replylist.length;j++){
+							
+							
+							
+							$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
+											
+						}
 					
 					
+					},
+					error : function() {
+						alert('indexlogged 354 : Error while request..');
+					}
 					
-					$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
-									
-				}
+					
+				});
+					
 			
 			
 			},
@@ -636,12 +745,207 @@ function lastPostFunc(pictureCount){
     }      
  });
  
+ //삭제
+ $(document).on('click',".group-item-delete",function(){
+	var groupSeq = $(this).data("groupseq"); 	 
+	var groupCount = $(this).data("groupcount");
+	var result = confirm(groupCount+"개의 사진이 존재합니다 모두 삭제 하시겠습니까?");
+	var remove =  $(this).parent().parent().parent().parent().parent();
+	 if(result) 
+	 {
+		 $.ajax({
+				type : 'post',
+				url : 'board/deleteGroup',
+				cache : false,
+				data : 'groupSeq=' + groupSeq,
+				success : function(data) {
+				if(data.result >= 1){
+					alert("삭제 성공했습니다");
+					remove.remove();
+				}else{
+					
+					alert("삭제 실패했습니다");
+				}
+				
+				},
+				error : function() {
+					alert('groupDelete 354 : Error while request..');
+				}
+
+			});		
+	 } 
+	 else 
+	 {
+	 alert("취소");
+	 }
+		
+
+ });
+// modal 게시물 삭제
+ $(document).on('click',".modal-Delete",function(){
+	 
+	 $.ajax({
+			type : 'post',
+			url : 'board/deleteBoard',
+			cache : false,
+			data : 'boardSeq=' + boardSeq,
+			success : function(data) {
+			if(data.result >= 1){
+				alert("삭제 성공했습니다");
+				window.location.reload();
+			}else{
+				
+				alert("삭제 실패했습니다");
+			}
+			
+			},
+			error : function() {
+				alert('groupDelete 354 : Error while request..');
+			}
+
+		});	
+	 
+	 
+ });
+
+ 
+ //수정
+ var editcontent
+ $(document).on('click','.group-item-edit',function(){
+	 var boardSeq = $(this).data("boardSeq"); 	 
+		
+	 editcontent = $(this).parent().parent().parent().parent();
+	
+	 editcontent.css("display","none");
+	 editcontent.siblings().first().css("display","block");
+ });
+ $(document).on('click','.edit-cancle',function(){
+	
+	 editcontent.css("display","block");
+	 editcontent.siblings().first().css("display","none");
+
+	 
+ });
+ $(document).on('click','.edit-emoticon',function(){
+	
+	 if( $(this).parent().siblings().first().next().next().css('display') == "none"){
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"block"); 
+		 
+	 }else{
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"none"); 
+	 }
+	 
+	 
+ });
+ 
+ 
+ $(".edit-Btn").click(function(){
+
+	 
+ $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
+ var editContent =  $(this).parent().siblings().first().next().val();
+ var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
+
+ boardSeq
+ $.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
+		}
+		
+		
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
+	
+	
+	 
+	});
+ 
+ 
+ 
+ 
+ 
+ //modal 수정
+ $(document).on("click",".modal-Edit",function(){
+	 $(".modal-EditTextarea").empty();
+	 $(this).parent().parent().css("display","none");
+	 
+	 $(this).parent().parent().siblings().first().css("display","block"); 
+	 $(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").html());
+/*	$(this).parent().parent().siblings().first().children().append($(this).parent().parent().children().last().text());
+*/	 
+	 
+	 
+ });
+ //modal 수정취소
+ $(document).on("click",".modaleditCancleBtn",function(){
+	 $(".modal-EditTextarea").empty();
+	 $(this).parent().css("display","none");
+	 $(this).parent().siblings().first().css("display","block"); 
+ });
+//modal 이모티콘
+ $(document).on("click",".modaleditEmoticon",function(){
+	
+	 $("#modalemoticon").toggle("display");
+	 
+	 
+	 
+ });
+ 
+//modal 수정
+ $(document).on("click",".modaleditBtn",function(){
+	 
+
+	 $(this).siblings().first().next().val( $(this).siblings().first().html());
+	 var editContent =$(this).siblings().first().next().val();
+ 
+ $.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
+		}
+		
+		
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
+	
+	
+	 
+	});
  
  
 //submit
 	$("#hitstoryWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
 		$("#hitstoryForm").submit();
+	});
+	
+	$("#diaryWriteBtn").click(function(){
+		$("#content").val($("#writeTextarea").html());
+		/*$("#diaryForm").submit();*/
+		alert($("#content").val());
 	});
 	
 	//*************************************************************************************************
@@ -674,7 +978,7 @@ function lastPostFunc(pictureCount){
 						parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>"
 															+ "<div style='float:left;'>" 
 															+ "<input type='radio' value=1 checked='checked'></div>"
-															+ "<div class='imgBtn'style='float:left;width:135px;'>"
+															+ "<div class='share_imgbtn'style='float:left;width:135px;'>"
 															+ "<input type='hidden' value='1'><p style='margin-left: -27px;'>현재 글 공유</p></div></div>");
 					}else{	
 						for (var j=0; j<boardsharedetail; j++) {
@@ -683,9 +987,9 @@ function lastPostFunc(pictureCount){
 							parent.find(".share-img-list").append("<div style='background-color : white;border-radius:10px 10px 10px 10px;'>" 
 																	+ "<div style='float:left;margin-top:10px'>" 
 																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+j+"></div>" 
-																	+ "<div class='imgBtn'style='float:left;width:135px;'>"
+																	+ "<div class='share_imgbtn'style='float:left;width:135px;'>"
 																		+ "<input type='hidden' value='"+j+"'>"
-																	+ "<img class='imgbtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
+																	+ "<img class='imgbtn2' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
 																	+ "'style='clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
 						}
 					}
@@ -716,7 +1020,7 @@ function lastPostFunc(pictureCount){
 	//*************************************************************************************************
 		//공유하기 상세 마우스 올렸을때!
 	
-	$(document).on('mouseover','.imgbtn',function(){
+	$(document).on('mouseover','.share_imgbtn',function(){
 		//alert('상세보기 들어옴');
 		//alert($(this).attr("src"));
 		
@@ -730,7 +1034,7 @@ function lastPostFunc(pictureCount){
 		alert('상세보기 들어옴4');
 */
 	});
-	$(document).on('mouseout','.imgbtn',function(){
+	$(document).on('mouseout','.share_imgbtn',function(){
 		//alert('상세보기 나감');
 		$('#share-detail-preview').css("display","none");
 	
