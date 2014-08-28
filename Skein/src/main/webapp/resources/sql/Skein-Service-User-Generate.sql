@@ -33,9 +33,6 @@ COMMIT;
 
 
 
-
-
-
 INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
 VALUES('test4@skein.com','ÃÖ','½ÂÁö','ÃÖ½ÂÁö','fed33392d3a48aa149a87a38b875ba4a',SYSDATE,'test4',1,0,0,0,SYSDATE, 0,'test');
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test4@skein.com');

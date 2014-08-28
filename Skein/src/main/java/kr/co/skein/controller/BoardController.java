@@ -107,7 +107,9 @@ public class BoardController {
 				List<String> fileNames = fileUpload(fileUploadPath, files);
 
 				if(files.size() == fileNames.size()){
-					boardDao.groupReg(command);
+					System.out.println("INFO : Skein-T553 - groupSeq=" + command.getGroupSeq());
+					int groupReqResult = boardDao.groupReg(command);
+					System.out.println("INFO : Skein-T121 - 그룹 등록 결과, groupReqResult=" + groupReqResult + ", groupSeq=" + command.getGroupSeq());
 					for(int i = 0;i<fileNames.size();i++){
 						Media media = new Media();
 						media.setFileName(fileNames.get(i));
@@ -248,13 +250,13 @@ public class BoardController {
 	}
 
 	//게시물 공유하기 
-			@RequestMapping(value ="/shareView", method = RequestMethod.POST)
-			public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
-				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-				List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
-				model.addAttribute("boardshare", boardshare);
-				return jsonView;
-			}
+	@RequestMapping(value ="/shareView", method = RequestMethod.POST)
+	public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+		model.addAttribute("boardshare", boardshare);
+		return jsonView;
+	}
 			
 		
 

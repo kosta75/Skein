@@ -139,11 +139,11 @@
 							enctype="multipart/form-data">
 							<div id="dropzone">
 								<span class="placeholder">내용을 입력해 주세요...</span>
-								<span 	class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+								<span	class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
 								<div id="writeTextarea" contenteditable="true"></div>
 							</div>
 							<input type='hidden' name="content" id="content" />
-							<input type="hidden" name="email" value="${LoginUser}" />
+							<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email}" />
 							<!--이미지  -->
 							<div id="historyImg" class="offset2 arrow_box">
 								<ul id="file-list"></ul>
@@ -179,8 +179,8 @@
 										<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
 									</div>
 								</div>
-								<input type='hidden' name="content" id="content" />
-								<input type="hidden" name="email" value="${LoginUser}" />
+								<%-- <input type='hidden' name="content" id="content" />
+								<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email}" /> --%>
 								<!--이미지  -->
 								<div id="historyImg" class="offset2 arrow_box">
 									<ul id="file-list"></ul>
