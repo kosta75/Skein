@@ -48,27 +48,19 @@
 								<div class="modaleditCancleBtn" style="float: right; margin-right: 10px">취소</div>
 								<div class="modaleditBtn" style="float: right; margin-right: 10px">수정</div>
 							</div>
-
+							<div id="modalemoticon">
+									<c:forEach var="i" begin="1" end="16" step="1">
+										<img class="modal-edit-emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+									</c:forEach>
+								</div>
 							<div class="modalcontent">
 
 								<div style="float: right">
 									<div class="modal-Edit" style="float: left; margin-right: 10px">수정</div>
 									<div class="modal-Delete" style="float: left; margin-right: 10px">삭제</div>
-									<div class="modalShare" style="float: right; padding-right: 10px;">
-										<input type="hidden" value="">공유하기
-									</div>
-									<div class="modal-user-profile-image" style="float: left;">
-										<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
-										<%-- <img  src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 50px;height:50px;"> --%>
-									</div>
-
-									<!--작성자 이름 날짜 내용 출력  -->
+								<!--작성자 이름 날짜 내용 출력  -->
 								</div>
-								<div id="modalemoticon">
-									<c:forEach var="i" begin="1" end="16" step="1">
-										<img class="modal-edit-emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
-									</c:forEach>
-								</div>
+								
 							</div>
 						</div>
 					</div>

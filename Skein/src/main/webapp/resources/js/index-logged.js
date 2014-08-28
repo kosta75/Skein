@@ -229,8 +229,7 @@ $(document).ready(function(){
 		return false;
 	});
 	//파일업로드 설정 End //////////////////////////////////////////////////////////////////////////
-	
-	
+
 	$(document).on('mouseout', ".imgBtn", function(){
 		$(this).css("opacity", "0.4");
 		$(this).css("cursor", "pointer");
@@ -240,6 +239,50 @@ $(document).ready(function(){
 		$(this).css("opacity", "1");
 		$(this).css("cursor", "pointer");
 	});
+
+
+	/*$(document).on(	'click', '.members', function() {
+		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
+		if (result) {
+			$.ajax({
+				type : 'POST',
+				url : 'friendship/add/' + $(	this).data("uri"),
+				success : function(data) {
+					alert(data.result);
+				},
+				error : function() {
+					alert('Error while request..');
+				}
+			});
+		} else {
+			console.log("친구 추가취소");
+		}
+	});
+
+	$('#search .textbox').on('keyup', function() {
+		if ($("#search .textbox").val().length > 0) {
+			$.ajax({
+				type : 'POST',
+				url : 'search/members',
+				data : "fullName=" + $("#search .textbox").val(),
+				success : function(data) {
+					console.log(data);
+					console.log(data.list);
+					var obj = data.list;
+					var msg = "";
+					
+					for (var i = 0; i < obj.length; i++) {
+						msg += "<div class='members' data-name='"	+ obj[i].fullName + "' data-uri='"	+ obj[i].personalURI + "'>" + obj[i].fullName + "/" + obj[i].personalURI + "</div>";
+					}
+					
+					$("#searchMembers").html(msg);
+				},
+				error : function() {
+					alert('Error while request..');
+				}
+			});
+		}
+	});*/
 
 	$(document).on('click',".imgBtn", function(){
 		$("#modalemoticon").css("display","none");
@@ -294,7 +337,9 @@ $(document).ready(function(){
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
 					$(".modal-content-view").css("display","block");
-					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView[0].fullname + "<br>"
+					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
+							+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
+							+ data.detailView[0].fullname + "<br>"
 							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
 
 					detail = data.detailView.length;
@@ -314,20 +359,29 @@ $(document).ready(function(){
 						cache : false,
 						data : 'boardSeq=' + boardSeq,
 						success : function(data) {
+							
 							for(var j =0;j<data.replylist.length;j++){
-								$(".replyList").append("<div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
-							}											
+								/*alert(data.replylist[j].replyContent);	
+								*/
+								
+			$(".replyList").append("<div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
+							}
+						
+						
 						},
 						error : function() {
-							alert('indexlogged 364 : Error while request..');
+							alert('indexlogged 354 : Error while request..');
 						}
+						
+						
 					});
 				},
 				error : function() {
-					alert('indexlogged 371 : Error while request..');
+					alert('indexlogged 354 : Error while request..');
 				}
 			});
 		} else {
+			
 			$('.content-wrapper').off('wheel.modal mousewheel.modal');
 			$("html").css("overflow-y", "auto");
 			$("#modal-detile-view").remove();
@@ -335,47 +389,58 @@ $(document).ready(function(){
 			$(".modalViewinfo").remove();
 			$(".modalViewcontent").remove();
 			$(".replyList").empty();
-			$("#modal-EditTextarea").empty();
-			$("#modaleditcontent").val('');
-			$("#modalemoticon").css("display","none");
+			 $("#modal-EditTextarea").empty();
+			 $("#modaleditcontent").val('');
+			 $("#modalemoticon").css("display","none");
 		}
 
-		$("#modal-content, #modal-background").toggleClass("active");
+		$("#modal-content, #modal-background").toggleClass("active");	
+		
+		
+		
 	});
 
+		
+
+
+	/*$("#writeTextarea").focus();*/
 	//개인기록 메뉴 
 	$("#historyWriteMenu1").click(function() {
 		if($("#historyImg").css("display") == "block"){
 			$("#historyImg").css("display","none");
 		}else{
-			$("#historyImg").css("display","block");
-			$("#historyDate").css("display","none");
-			$("#historyemoticon").css("display","none");
-			$("#historymap").css("display","none");
+	$("#historyImg").css("display","block");
+	$("#historyDate").css("display","none");
+	$("#historyemoticon").css("display","none");
+	$("#historymap").css("display","none");
 		}
-	});
+		});
 
-	$("#historyWriteMenu2").click(function() {	
+	$("#historyWriteMenu2").click(function() {
+		
 		if($("#historyDate").css("display") == "block"){
 			$("#historyDate").css("display","none");
 		}else{
-			$("#historyImg").css("display","none");
-			$("#historyDate").css("display","block");
-			$("#historymap").css("display","none");
-			$("#historyemoticon").css("display","none");
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","block");
+		$("#historymap").css("display","none");
+		$("#historyemoticon").css("display","none");
+		
 		}
-	});
+		});
 
-	$("#historyWriteMenu3").click(function() {	
+	$("#historyWriteMenu3").click(function() {
+		
 		if($("#historymap").css("display") == "block"){
 			$("#historymap").css("display","none");
 		}else{
-			$("#historyImg").css("display","none");
-			$("#historyDate").css("display","none");
-			$("#historymap").css("display","block");
-			$("#historyemoticon").css("display","none");
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none");
+		$("#historymap").css("display","block");
+		$("#historyemoticon").css("display","none");
+		
 		}
-	});
+		});
 
 	
 	
@@ -383,59 +448,80 @@ $(document).ready(function(){
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
 		}else{
-			$("#historyImg").css("display","none");
-			$("#historyDate").css("display","none")
-			$("#historyemoticon").css("display","block");
-			$("#historymap").css("display","none");
+		$("#historyImg").css("display","none");
+		$("#historyDate").css("display","none")
+		$("#historyemoticon").css("display","block");
+		$("#historymap").css("display","none");
 		}
+		
 	});
 	
 	//다이어리 메뉴
+	
+	
 	$("#diaryWriteMenu1").click(function() {
 		if($("#diaryImg").css("display") == "block"){
 			$("#diaryImg").css("display","none");
 		}else{
-			$("#diaryImg").css("display","block");
-			$("#diaryemoticon").css("display","none");
-			$("#diarymap").css("display","none");
+	$("#diaryImg").css("display","block");
+	$("#diaryemoticon").css("display","none");
+	$("#diarymap").css("display","none");
 		}
-	});
+		});
 
 	$("#diaryWriteMenu3").click(function() {
+		
 		if($("#diarymap").css("display") == "block"){
 			$("#diarymap").css("display","none");
 		}else{
-			$("#diaryImg").css("display","none");
-			$("#diarymap").css("display","block");
-			$("#diaryemoticon").css("display","none");
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","block");
+		$("#diaryemoticon").css("display","none");
+		
 		}
-	});
+		});
 
 	$("#diaryWriteMenu4").click(function() {
+		
 		if($("#diaryemoticon").css("display") == "block"){
 			$("#diaryemoticon").css("display","none");
 		}else{
-			$("#diaryImg").css("display","none");
-			$("#diarymap").css("display","none");
-			$("#diaryemoticon").css("display","block");
+		$("#diaryImg").css("display","none");
+		$("#diarymap").css("display","none");
+		$("#diaryemoticon").css("display","block");
+		
 		}
-	});
+		});
+
+	
+	
+
+	
+	
 
 	//이모티콘 추가
 	$(".emoticon").click(function(){
+		
+		
+		
 		alert();
 		$("#writeTextarea").append("<img class='emoticonImg' src="+$(this).attr("src")+">");	
-		$("#writeTextarea").focus();	
-	});
+		$("#writeTextarea").focus();
 	
+	});
 	//수정이모티콘 추가
-	$(document).on("click",".edit-emoticon-icon",function(){		
-		$(this).parent().siblings().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
-	});
 	
+	$(document).on("click",".edit-emoticon-icon",function(){
+		
+		
+		$(this).parent().siblings().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
+		
+	});
 	//모달 수정 이모티콘 추가
 	$(document).on("click",".modal-edit-emoticon",function(){
+		
 		$(this).parent().siblings().first().children().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
+		
 	});
 	
 	//모달 댓글 리스트 출력
@@ -478,263 +564,351 @@ $(document).ready(function(){
 					cache : false,
 					data : 'boardSeq=' + boardSeq,
 					success : function(data) {
+						
 						for(var j =0;j<data.replylist.length;j++){
-							$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");				
+							
+							
+							
+							$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
+											
 						}
+					
+					
 					},
 					error : function() {
 						alert('indexlogged 354 : Error while request..');
 					}
+					
+					
 				});
+					
+			
+			
 			},
 			error : function() {
-				alert('indexlogged 478 : Error while request..');
+				alert('indexlogged 354 : Error while request..');
 			}
+			
+			
 		});
+		
+	
+		
+		
+		
+		
+		
+		
 	});
 		
 	
 	//모달 댓글
 	$(document).on('keydown',".modalreplyWrite",function(e){
 		if (e.keyCode === 13) {
-			var replyContent =  $(this).val();	
-			$.ajax({
-				type : 'post',
-				url : 'reply/insert',
-				cache : false,
-				data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
-				success : function(data) {
-					$(".replyList").append("<div class='replymodalList modal-bubble'>"+replyContent+"</div>");
-					},
-				error : function() {
-					alert('indexlogged 513 : Error while request..');
-				}
-			});
-		}
-	});
-	
-	
-	//댓글
-	$(document).on('keydown',".replyWrite",function(e){
-		if (e.keyCode === 13) {			
-			var boardSeq = $(this).parent().find("input[type=hidden]").val();
-			var replyContent = $(this).val();
 		
-			//var reply = $(".group-item-reply-secition ul");
-			var reply = $(this).parent().siblings().next().next().next().find("ul");
-			console.log(reply);
 			
-			$.ajax({
-				type : 'post',
-				url : 'reply/insert',
-				cache : false,
-				data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent ,
-				success : function(data) {
-					reply.append("<li><div class='group-item-reply-container'>" +
-							
-							"<div class='group-item-reply-content-container bubble'>"+replyContent+"</div></div></li>");	
-					
-				},
-				error : function() {
-					alert('indexlogged 545 : Error while request..');
-				}
-			});
-		}
-	});
-
-	//엔터키 처리
-	$("#writeTextarea").on('keydown', function(e) {
-		// trap the return key being pressed
-		if (e.keyCode === 13) {
-			// insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
-			document.execCommand('insertHTML', false, '<br><br>');
-			// prevent the default behaviour of return key pressed
-			return false;
-		}
-	}).on('keyup', function(){
-		if($("#writeTextarea").text().length > 0){
-			$("#dropzone .placeholder").css('display', 'none');
-		}else{
-			$("#dropzone .placeholder").css('display', 'block');
-		}
-	});
-
-	//지역 정보 수정 시 
-	$("#historyplace").click(function(){
-		$("#historyplace").val('');
-	});
-
-	//메인 더보기 
-	function lastPostFunc(pictureCount){
+		 var replyContent =  $(this).val();
+		
+				
 		$.ajax({
-			type:'get',
-			url:"mainMoreBoard",
-			data:"pictureCount="+ pictureCount,
-			dataType : "html",
+			type : 'post',
+			url : 'reply/insert',
+			cache : false,
+			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-				if(data.trim()==""){
-				}else{
-					$('#boardListContainer').append(data);  
-				}  
-			},
-			error: function(){
-				alert('스크롤 에러 인덱스-로그드 :error while request..'   );
+				$(".replyList").append("<div class='replymodalList modal-bubble'>"+replyContent+"</div>");
+				
+				
+				},
+			error : function() {
+				alert('indexlogged 354 : Error while request..');
 			}
-	    });
-	}; 
- 
-	$(window).scroll(function(){ 
-		if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
-			var pictureCount = $('.group-item-container').size();
-			lastPostFunc(pictureCount);
-		}      
-	});
- 
+		});
+	}
 
-	//삭제
-	$(document).on('click',".group-item-delete",function(){
-		var groupSeq = $(this).data("groupseq"); 	 
-		var groupCount = $(this).data("groupcount");
-		var result = confirm(groupCount+"개의 사진이 존재합니다 모두 삭제 하시겠습니까?");
-		var remove =  $(this).parent().parent().parent().parent().parent();
-		 
-		if(result){
-			$.ajax({
+});
+	
+	
+	
+  //댓글
+	$(document).on('keydown',".replyWrite",function(e){
+		if (e.keyCode === 13) {
+			
+		 var boardSeq = $(this).parent().find("input[type=hidden]").val();
+		 var replyContent = $(this).val();
+		
+		 //var reply = $(".group-item-reply-secition ul");
+		 var reply = $(this).parent().siblings().next().next().next().find("ul");
+		 console.log(reply);
+			
+		$.ajax({
+			type : 'post',
+			url : 'reply/insert',
+			cache : false,
+			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent ,
+			success : function(data) {
+				reply.append("<li><div class='group-item-reply-container'>" +
+						
+						"<div class='group-item-reply-content-container bubble'>"+replyContent+"</div></div></li>");	
+				
+			},
+			error : function() {
+				alert('indexlogged 354 : Error while request..');
+			}
+		});
+	
+	
+	
+	
+	}
+	
+	
+});
+//엔터키 처리
+$("#writeTextarea").on('keydown', function(e) {
+	
+	// trap the return key being pressed
+	if (e.keyCode === 13) {
+		// insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+		document.execCommand('insertHTML', false, '<br><br>');
+		// prevent the default behaviour of return key pressed
+		return false;
+	}
+}).on('keyup', function(){
+	if($("#writeTextarea").text().length > 0){
+		$("#dropzone .placeholder").css('display', 'none');
+	}else{
+		$("#dropzone .placeholder").css('display', 'block');
+	}
+});
+//지역 정보 수정 시 
+
+$("#historyplace").click(function(){
+	$("#historyplace").val('');
+	
+});
+
+//메인 더보기 
+function lastPostFunc(pictureCount){ 
+ 
+    $.ajax({
+          type:'get',
+       url:"mainMoreBoard",
+       data:"pictureCount="+ pictureCount,
+       dataType : "html",
+       success : function(data) {
+    	
+        if(data.trim()==""){
+        }else{
+           $('#boardListContainer').append(data);  
+        }  
+       },
+       error: function(){
+          alert('스크롤 에러 인덱스-로그드 :error while request..'   );
+       }
+    });
+ }; 
+ 
+ $(window).scroll(function(){ 
+    if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
+      var pictureCount = $('.group-item-container').size();
+     
+       lastPostFunc(pictureCount); 
+    }      
+ });
+ 
+ //삭제
+ $(document).on('click',".group-item-delete",function(){
+	var groupSeq = $(this).data("groupseq"); 	 
+	var groupCount = $(this).data("groupcount");
+	var result = confirm(groupCount+"개의 사진이 존재합니다 모두 삭제 하시겠습니까?");
+	var remove =  $(this).parent().parent().parent().parent().parent();
+	 if(result) 
+	 {
+		 $.ajax({
 				type : 'post',
 				url : 'board/deleteGroup',
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
-					if(data.result >= 1){
-						alert("삭제 성공했습니다");
-						remove.remove();
-					}else{						
-						alert("삭제 실패했습니다");
-					 }
+				if(data.result >= 1){
+					alert("삭제 성공했습니다");
+					remove.remove();
+				}else{
+					
+					alert("삭제 실패했습니다");
+				}
+				
 				},
 				error : function() {
 					alert('groupDelete 354 : Error while request..');
 				}
+
 			});		
-		}else {
-			alert("취소");
-		}
-	});
-	
-	// modal 게시물 삭제
-	$(document).on('click',".modal-Delete",function(){
-		$.ajax({
+	 } 
+	 else 
+	 {
+	 alert("취소");
+	 }
+		
+
+ });
+// modal 게시물 삭제
+ $(document).on('click',".modal-Delete",function(){
+	 
+	 $.ajax({
 			type : 'post',
 			url : 'board/deleteBoard',
 			cache : false,
 			data : 'boardSeq=' + boardSeq,
 			success : function(data) {
-				if(data.result >= 1){
-					alert("삭제 성공했습니다");
-					window.location.reload();
-				}else{			
-					alert("삭제 실패했습니다");
-				}
+			if(data.result >= 1){
+				alert("삭제 성공했습니다");
+				window.location.reload();
+			}else{
+				
+				alert("삭제 실패했습니다");
+			}
+			
 			},
 			error : function() {
 				alert('groupDelete 354 : Error while request..');
 			}
+
 		});	
-	});
+	 
+	 
+ });
 
  
-	//수정
-	var editcontent
-	$(document).on('click','.group-item-edit',function(){
-		var boardSeq = $(this).data("boardSeq"); 	 
-		editcontent = $(this).parent().parent().parent().parent();
-		editcontent.css("display","none");
-		editcontent.siblings().first().css("display","block");
-	});
+ //수정
+ var editcontent
+ $(document).on('click','.group-item-edit',function(){
+	 var boardSeq = $(this).data("boardSeq"); 	 
+		
+	 editcontent = $(this).parent().parent().parent().parent();
 	
-	$(document).on('click','.edit-cancle',function(){
-		editcontent.css("display","block");
-		editcontent.siblings().first().css("display","none");
-	});
+	 editcontent.css("display","none");
+	 editcontent.siblings().first().css("display","block");
+ });
+ $(document).on('click','.edit-cancle',function(){
 	
-	$(document).on('click','.edit-emoticon',function(){
-		if( $(this).parent().siblings().first().next().next().css('display') == "none"){
-			$(this).parent().siblings().first().next().next().css('display',"block"); 
-		}else{	 
-			$(this).parent().siblings().first().next().next().css('display',"none"); 
+	 editcontent.css("display","block");
+	 editcontent.siblings().first().css("display","none");
+
+	 
+ });
+ $(document).on('click','.edit-emoticon',function(){
+	
+	 if( $(this).parent().siblings().first().next().next().css('display') == "none"){
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"block"); 
+		 
+	 }else{
+		 
+		 $(this).parent().siblings().first().next().next().css('display',"none"); 
+	 }
+	 
+	 
+ });
+ 
+ 
+ $(".edit-Btn").click(function(){
+
+	 
+ $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
+ var editContent =  $(this).parent().siblings().first().next().val();
+ var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
+
+ boardSeq
+ $.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
 		}
-	});
-
-	$(".edit-Btn").click(function(){ 
-		$(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
-		var editContent =  $(this).parent().siblings().first().next().val();
-		var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
 		
-		$.ajax({
-			type : 'post',
-			url : 'board/editBoard',
-			cache : false,
-			data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
-			success : function(data) {
-				if(data.result >= 1){
-					alert("수정완료");
-					location.reload();
-				}
-			},
-			error : function() {
-				alert('indexlogged : Error while request..');
-			}
-		});
-	});
-
-	//modal 수정
-	$(document).on("click",".modal-Edit",function(){
-		$(".modal-EditTextarea").empty();
-		$(this).parent().parent().css("display","none");
-		$(this).parent().parent().siblings().first().css("display","block"); 
-		$(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").html());
-	});
-	
-	//modal 수정취소
-	$(document).on("click",".modaleditCancleBtn",function(){
-		$(".modal-EditTextarea").empty();
-		$(this).parent().css("display","none");
-		$(this).parent().siblings().first().css("display","block"); 
-	});
-	
-	//modal 이모티콘
-	$(document).on("click",".modaleditEmoticon",function(){
-		$("#modalemoticon").toggle("display");
-	});
- 
-	//modal 수정
-	$(document).on("click",".modaleditBtn",function(){
-		$(this).siblings().first().next().val( $(this).siblings().first().html());
-		var editContent =$(this).siblings().first().next().val();
 		
-		$.ajax({
-			type : 'post',
-			url : 'board/editBoard',
-			cache : false,
-			data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
-			success : function(data) {
-				if(data.result >= 1){
-					alert("수정완료");
-					location.reload();
-				}
-			},
-			error : function() {
-				alert('indexlogged : Error while request..');
-			}
-		});
-	});
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
 	
-	$(document).on('click', '.modalShare', function(){
-		alert($(this).find("input[type='hidden']").val());
+	
+	 
 	});
  
  
-	//submit
+ 
+ 
+ 
+ //modal 수정
+ $(document).on("click",".modal-Edit",function(){
+	 $(".modal-EditTextarea").empty();
+	 $(this).parent().parent().css("display","none");
+	 
+	 $(this).parent().parent().siblings().first().css("display","block"); 
+	 $(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").html());
+/*	$(this).parent().parent().siblings().first().children().append($(this).parent().parent().children().last().text());
+*/	 
+	 
+	 
+ });
+ //modal 수정취소
+ $(document).on("click",".modaleditCancleBtn",function(){
+	 $(".modal-EditTextarea").empty();
+	 $(this).parent().css("display","none");
+	 $(this).parent().siblings().first().css("display","block"); 
+ });
+//modal 이모티콘
+ $(document).on("click",".modaleditEmoticon",function(){
+	
+	 $("#modalemoticon").toggle("display");
+	 
+	 
+	 
+ });
+ 
+//modal 수정
+ $(document).on("click",".modaleditBtn",function(){
+	 
+
+	 $(this).siblings().first().next().val( $(this).siblings().first().html());
+	 var editContent =$(this).siblings().first().next().val();
+ 
+ $.ajax({
+	type : 'post',
+	url : 'board/editBoard',
+	cache : false,
+	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	success : function(data) {
+	
+		if(data.result >= 1){
+			
+			alert("수정완료");
+			location.reload();
+		}
+		
+		
+	},
+	error : function() {
+		alert('indexlogged : Error while request..');
+	}
+});
+	
+	
+	 
+	});
+ 
+ 
+//submit
 	$("#hitstoryWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
 		$("#hitstoryForm").submit();
@@ -745,7 +919,7 @@ $(document).ready(function(){
 		/*$("#diaryForm").submit();*/
 		alert($("#content").val());
 	});
-
+	
 	
 //*************************************************************************************************
 //*************************************************************************************************
