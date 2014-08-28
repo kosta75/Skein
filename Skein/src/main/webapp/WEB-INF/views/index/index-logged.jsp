@@ -299,6 +299,9 @@
 							</ul>
 						</div>
 						
+						<div>
+						</div>
+						
 						<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 250px; /* height: 300px; */ display: none; right: -254px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
 							<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}" class="share-input">
 							<b>공 유 하 기</b>
@@ -318,6 +321,35 @@
 									<!-- <a id="share-ALL-choice-btn">전체선택</a> -->
 									<a id="share-ALL-clear-btn" >전체해제</a>
 								</c:if>
+							</div>
+						</div>
+						
+						<div class="group-item-user-info-container">
+								<div class="group-item-user-profile-image-wrapper">
+									<img
+										src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+								</div>
+								<div class="group-item-user-info-wrapper">
+									<a
+										href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
+									<span class="group-item-write-date">${groupItem.writeDate}</span>
+								</div>
+							</div>
+							<div class="group-item-content-wrapper">
+								<div>
+									<c:if test="${groupItem.fileName != null}">
+										<div id="modal-launcher" data-boardSeq="${groupItem.boardSeq}">
+											<div id="imghover">
+												<input type="hidden" value="${groupItem.groupSeq}"
+													id="boardSeq${groupItem.boardSeq}"> <img
+													id="imghover${groupItem.boardSeq}"
+													src="${pageContext.request.contextPath}/resources/upload/${groupItem.fileName}"
+													style="width: 100%; height: 250px;">
+											</div>
+										</div>
+									</c:if>
+								</div>
+								<div>${groupItem.content}</div>
 							</div>
 						</div>
 
