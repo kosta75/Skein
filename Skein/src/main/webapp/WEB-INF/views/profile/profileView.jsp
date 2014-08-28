@@ -116,6 +116,7 @@ birthdayPublic
 									</select>
 									<input type="button" value="저장" class="profile_editBtn profileImage">
 									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
+									<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 								</div>
 							</div>
 						</div>
@@ -170,6 +171,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn statusComment">
 								<input type="button" value="삭제" class="profile_deleteBtn statusComment">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -220,6 +222,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn openEmail">
 								<input type="button" value="삭제" class="profile_deleteBtn openEmail">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -251,6 +254,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn phoneNumber">
 								<input type="button" value="삭제" class="profile_deleteBtn phoneNumber">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -313,6 +317,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn address">
 								<input type="button" value="삭제" class="profile_deleteBtn address">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -344,6 +349,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn language">
 								<input type="button" value="삭제" class="profile_deleteBtn language">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -375,6 +381,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn politics">
 								<input type="button" value="삭제" class="profile_deleteBtn politics">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -406,6 +413,7 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn religion">
 								<input type="button" value="삭제" class="profile_deleteBtn religion">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
@@ -413,7 +421,7 @@ birthdayPublic
 				<!-- right 끝 -->
 			</div>
 			<input type="hidden" name="contextPath" value="${pageContext.request.contextPath }"/>
-			<input type="hidden" name="email" value="${email }" />
+			<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email }" />
 			<input type="hidden" name="profileImagePublic" value="${profileImagePublic }" />
 			<input type="hidden" name="statusCommentPublic" value="${statusCommentPublic }" />
 			<input type="hidden" name="openEmailPublic" value="${openEmailPublic }" />
