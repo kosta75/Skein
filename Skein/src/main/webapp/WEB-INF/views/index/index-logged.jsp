@@ -200,14 +200,14 @@
 
 
 			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
-			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 340px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
+			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 330px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
 				<img id="share-detail-preview-imgtag" src=""	style="width: 100%; height: 100%">
 			</div>
 
 			<!-- 게시물 출력 부분 Start -->
 			<div id="boardListContainer">
 				<c:forEach var="groupItem" items="${groupList}">
-					<div class="group-item-container">
+					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 						<div class="editDiv" style="margin: auto; display: none;">
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
 								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq }" />

@@ -22,18 +22,18 @@ $(document).ready(function() {
 	$('#jqDock').jqDock(jqDockOpts);
 	*/
 
-	$('.dock-item').click(function(){
+	/*$('.dock-item').click(function(){
 		var alramSeq = $(this).find('input').val();
 		console.log(alramSeq);
 		alert(alramSeq);
 
 		$.ajax({
 			type : 'get',
-			url : 'notification/list',
+			url : 'notification/listsort',
 			cache : false,
 			data : 'alramSeq=' + alramSeq,
 			success : function(data) {
-				alert(aa);
+				alert(data);
 				
 				
 			},
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		});
 
 		return false;
-	});
+	});*/
 	
 	$(document).on('click',"#alram-checkbox-all", function() {
 		console.log("click1");
@@ -57,11 +57,11 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$(document).on('mouseover',".alram-page-list-div", function() {
+	$(document).on('mouseover',".notification-list-div", function() {
 		//console.log(aaa);
 		$(this).css("background-color", "blanchedalmond");
 	});
-	$(document).on('mouseout',".alram-page-list-div", function(){
+	$(document).on('mouseout',".notification-list-div", function(){
 		$(this).css("background-color", "white");
 	});
 });

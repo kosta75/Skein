@@ -20,11 +20,11 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 		<p>
 		<div id="dock">
 				<div class="dock-container" style=" left: 503px; width: 400px; ">
-					<a class="dock-item" href="#" style="width: 50px; left: 0px;"><span style="display: none;"></span><input type="hidden" value="1"><img data-dataSeq="1" src="${pageContext.request.contextPath}/resources/media/image/dock/all.gif" alt="home"></a> 
-					<a class="dock-item" href="#" style="width: 50px; left: 50px;"><span style="display: none;">Notice</span><input type="hidden" value="2"><img data-dataSeq="2" src="${pageContext.request.contextPath}/resources/media/image/dock/notice.gif" alt="contact"></a> 
-					<a class="dock-item" href="#" style="width: 50px; left: 100px;"><span style="display: none;">Friend</span><input type="hidden" value="3"><img data-dataSeq="3" src="${pageContext.request.contextPath}/resources/media/image/dock/friend.gif" alt="portfolio"></a> 
-					<a class="dock-item" href="#" style="width: 50px; left: 150px;"><span style="display: none;">Board</span><input type="hidden" value="4"><img data-dataSeq="4" src="${pageContext.request.contextPath}/resources/media/image/dock/board.gif" alt="music"></a> 
-					<a class="dock-item" href="#" style="width: 50px; left: 200px;"><span style="display: none;">Reply</span><input type="hidden" value="5"><img data-dataSeq="5" src="${pageContext.request.contextPath}/resources/media/image/dock/reply.gif" alt="video"></a> 
+					<a class="dock-item" href="${pageContext.request.contextPath}/notification/listsort?alramSeq=1" style="width: 50px; left: 0px;"><span style="display: none;"></span><input type="hidden" value="1"><img data-dataSeq="1" src="${pageContext.request.contextPath}/resources/media/image/dock/all.gif" alt="home"></a> 
+					<a class="dock-item" href="${pageContext.request.contextPath}/notification/listsort?alramSeq=2" style="width: 50px; left: 50px;"><span style="display: none;">Notice</span><input type="hidden" value="2"><img data-dataSeq="2" src="${pageContext.request.contextPath}/resources/media/image/dock/notice.gif" alt="contact"></a> 
+					<a class="dock-item" href="${pageContext.request.contextPath}/notification/listsort?alramSeq=3" style="width: 50px; left: 100px;"><span style="display: none;">Friend</span><input type="hidden" value="3"><img data-dataSeq="3" src="${pageContext.request.contextPath}/resources/media/image/dock/friend.gif" alt="portfolio"></a> 
+					<a class="dock-item" href="${pageContext.request.contextPath}/notification/listsort?alramSeq=4" style="width: 50px; left: 150px;"><span style="display: none;">Board</span><input type="hidden" value="4"><img data-dataSeq="4" src="${pageContext.request.contextPath}/resources/media/image/dock/board.gif" alt="music"></a> 
+					<a class="dock-item" href="${pageContext.request.contextPath}/notification/listsort?alramSeq=5" style="width: 50px; left: 200px;"><span style="display: none;">Reply</span><input type="hidden" value="5"><img data-dataSeq="5" src="${pageContext.request.contextPath}/resources/media/image/dock/reply.gif" alt="video"></a> 
 				</div><!-- end div .dock-container -->
 			</div>
 			
@@ -44,82 +44,57 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 <!--/////////////////성실이 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 			<c:forEach var="notificationList" items="${notificationList}">
 			<fmt:formatDate value="${notificationList.createDate}" pattern="YY년MM월dd일" var="day" />
-				<div style="border-bottom: solid 1px blue ; clear:both;height:50px; ">
+				<div class="notification-list-div" style="border-bottom: solid 1px blue ; clear:both;/* height:50px; */ ">
 					<input type="checkbox" name="alram-check"style="float: left;">
 						<div style="float: left;">
 							<c:choose>
 								<c:when test="${notificationList.notificationCode == 1}">
-									[공지]${notificationList.notificationSeq} 
+									[공지]
 									${notificationList.content}
 								</c:when>
 								<c:when test="${notificationList.notificationCode == 2}">
-									<div  style="float: left;">
+									<!-- <div  style="float: left;"> -->
 									[친구 신청]
-									${notificationList.notificationSeq} 
-									 
 									${notificationList.fullName}(${notificationList.friendEmail}) 님이 친구신청을 하셨습니다.
-									
-									</div>
-									<%-- <div style="float: left;"class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-friendemail="${notificationList.friendEmail}">
-									친구수락</div> --%>
 								</c:when>
 								<c:when test="${notificationList.notificationCode == 3}">
 									<div  style="float: left;">
 									[친구신청수락]
-									${notificationList.notificationSeq} 
-									${notificationList.friendEmail} 
-									${notificationList.fullName} 님이 친구신청을 수락 하셨습니다.
+									${notificationList.fullName}(${notificationList.friendEmail} )님이 친구신청을 수락 하셨습니다.
 									</div>
-									
 								</c:when>
 								<c:when test="${notificationList.notificationCode == 4}">
 									[공유신청]
-									${notificationList.notificationSeq} 
-									 
 									${notificationList.fullName} 님이 ${notificationList.boardSeq}번 게시물 공유 신청을 하셨습니다.
 									<div style="float: left;"class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-friendemail="${notificationList.friendEmail}">
 									공유 수락</div>
 								</c:when>
 								<c:when test="${notificationList.notificationCode == 5}">
 									[공유신청수락]
-									${notificationList.notificationSeq} 
-									
 									${notificationList.fullName} 님이 ${notificationList.boardSeq}번 게시물  공유신청을 수락 하셧습니다.
 								</c:when>
 								<c:when test="${notificationList.notificationCode == 6}">
-									[댓글]
-									${notificationList.notificationSeq} 
-									${notificationList.boardSeq}번 게시물에	${notificationList.replySeq} 번 댓글이 달렸습니다.
-									
+									[댓글]			
+											${notificationList.boardSeq} 번 게시물에	${notificationList.replySeq} 번 댓글이 달렸습니다.${notificationList.boardSeq} 
 								</c:when>
 							</c:choose>
-				
-						<%-- ${notificationList.notificationCode}  --%>
-
 					</div>
-
 					<div style="float: right;">${day}</div>
 				<c:choose>
 					<c:when test="${notificationList.notificationCode == 2 }">
-						
-						
 						<div style="clear:both;float: right; margin-right: 10px;">
 						<input class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-uri="${notificationList.personalURI}" type="button" value="수락">
 						<input type="button" value="거절">
 						</div>
 					</c:when>
 					<c:when test="${notificationList.notificationCode == 4 }">
-					
-					
 						<div style="clear:both;float: right; margin-right: 10px;"class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-friendemail="${notificationList.friendEmail}">
 						<input type="button" value="수락">
 						<input type="button" value="거절">
 						</div>
 					</c:when>
 				</c:choose>
-					
 			</div>
-
 		</c:forEach>
 
 <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////  -->

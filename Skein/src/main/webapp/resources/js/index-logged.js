@@ -60,8 +60,14 @@ $(document).ready(function(){
 	                	//console.log(event.point.text);
 	                	var groupSeq = event.point.groupSeq;
 	                	var target_id = 'groupItem[' + groupSeq + ']';
-	                	//$('body, html').css('scrollTop', $(target_id).offset().top);
-	                	var obj = $(target_id);
+	                	if($('#'+target_id) != null){
+	                		console.log(target_id);
+	                		self.location.hash = target_id;
+	                	}else{
+	                		window.scrollTo(0, jQuery(window).height());
+	                	}
+	                	
+	                	/*var obj = $(target_id);
 	                	var posY = 0;
 
 	                	try{
@@ -71,7 +77,7 @@ $(document).ready(function(){
 	                		posY = jQuery(window).height();
 	                	}
 	                		                	
-	                	window.scrollTo(0, posY);
+	                	window.scrollTo(0, posY);*/
 	                }
 	            }
             }]
@@ -925,7 +931,7 @@ function lastPostFunc(pictureCount){
 	//*************************************************************************************************
 	//*************************************************************************************************
 		//공유하기 버튼 클릭시 공유목록 출력!
-		$(document).on('click', '.icon-box', function(){
+		$(document).on('click', '.share-btn', function(){
 
 			var parents = $(this).parents('.group-item-wrapper');
 
