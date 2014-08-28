@@ -707,9 +707,9 @@ INSERT INTO NotificationCodes VALUES(6, '댓글');
 
 
 -----------------------------------------------------------------------------------------------
--- 13. Notifications(사용자 알림)
+-- 14. Notifications(사용자 알림)
 -----------------------------------------------------------------------------------------------
--- 13.1 Notifications(사용자 알림) 테이블 생성
+-- 14.1 Notifications(사용자 알림) 테이블 생성
 /* 사용자알림 */
 CREATE TABLE Notifications (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
@@ -768,9 +768,9 @@ ALTER TABLE Notifications
 
 
 -----------------------------------------------------------------------------------------------
--- 14. Friendship(친구)
+-- 15. Friendship(친구)
 -----------------------------------------------------------------------------------------------
--- 14.1 Friendship(친구) 테이블 생성
+-- 15.1 Friendship(친구) 테이블 생성
 /* 친구 */
 CREATE TABLE Friendship (
 	Email VARCHAR2(127) NOT NULL, /* 내이메일 */
@@ -822,9 +822,9 @@ ALTER TABLE Friendship
 
 
 -----------------------------------------------------------------------------------------------
--- 15. FriendshipNotification(친구알림)
+-- 16. FriendshipNotification(친구알림)
 -----------------------------------------------------------------------------------------------
--- 15.1 FriendshipNotification(친구알림) 테이블 생성
+-- 16.1 FriendshipNotification(친구알림) 테이블 생성
 /* 친구알림 */
 CREATE TABLE FriendshipNotification (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
@@ -888,9 +888,9 @@ ALTER TABLE FriendshipNotification
 
 
 -----------------------------------------------------------------------------------------------
--- 16. Reply(댓글)
+-- 17. Reply(댓글)
 -----------------------------------------------------------------------------------------------
--- 16.1 Reply(댓글) 테이블 삭제 및 생성
+-- 17.1 Reply(댓글) 테이블 생성
 /* 댓글 */
 CREATE TABLE Reply (
 	ReplySeq NUMBER NOT NULL, /* 댓글인덱스 */
@@ -951,9 +951,9 @@ ALTER TABLE Reply
 
 
 -----------------------------------------------------------------------------------------------
--- 17. ReplyNotification(댓글알림)
+-- 18. ReplyNotification(댓글알림)
 -----------------------------------------------------------------------------------------------
--- 17.1 ReplyNotification(댓글알림) 테이블 삭제 및 생성
+-- 18.1 ReplyNotification(댓글알림) 테이블 생성
 /* 댓글알림 */
 CREATE TABLE ReplyNotification (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
@@ -992,9 +992,9 @@ ALTER TABLE ReplyNotification
 
 
 -----------------------------------------------------------------------------------------------
--- 18. ShareNotification(공유알림)
+-- 19. ShareNotification(공유알림)
 -----------------------------------------------------------------------------------------------
--- 18.1 ShareNotification(공유알림) 테이블 생성
+-- 19.1 ShareNotification(공유알림) 테이블 생성
 /* 공유알림 */
 CREATE TABLE ShareNotification (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
