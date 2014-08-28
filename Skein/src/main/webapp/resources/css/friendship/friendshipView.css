@@ -15,4 +15,4 @@
 .friend-item-info-container{margin-left:130px;}
 .friend-info-wrapper{font-family:'맑은 고딕';font-size:14px;}
 
-.unfriend-button{display:none;position:absolute;right:10px;top:10px;width:40px;height:40px;border:1px solid #f00;}
+.unfriend-button{display:none;position:absolute;right:10px;top:10px;width:40px;height:40px;border:1px solid #f00;cursor:pointer;}

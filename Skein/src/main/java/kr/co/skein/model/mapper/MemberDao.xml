@@ -71,19 +71,23 @@
 	<!-- 친구 검색 -->
 	<!--  WHERE fullName LIKE '${searchValue}%' -->
 	<select id="searchMembers" resultType="kr.co.skein.model.vo.SearchMemberCommand">
-		
-		SELECT m.fullName, m.personalURI, m.email, p.profileInfo, NVL(f.friendshipConfirm, 3) AS friendshipConfirm
+		SELECT m.fullName, m.personalURI, m.email, p.profileInfo
 			<if test="ignoreEmailValue != null">
 			,
-				CASE
-			    WHEN m.email IN (SELECT friendemail FROM friendship WHERE email = #{ignoreEmailValue}) THEN 1
-			    ELSE 0
-			    END AS isFriend
+			CASE
+				WHEN m.email IN (SELECT email FROM FriendshipNotification WHERE friendEmail = #{ignoreEmailValue} AND friendshipConfirm = 0) THEN 0
+				WHEN m.email IN (SELECT email FROM FriendshipNotification WHERE friendEmail = #{ignoreEmailValue} AND friendshipConfirm = 1) THEN 1
+				WHEN m.email IN (SELECT friendEmail FROM FriendshipNotification WHERE email = #{ignoreEmailValue} AND friendshipConfirm = 0) THEN 2
+				WHEN m.email IN (SELECT friendEmail FROM FriendshipNotification WHERE email = #{ignoreEmailValue} AND friendshipConfirm = 1) THEN 3
+			ELSE 4
+			END AS friendshipConfirm,
+			CASE
+				WHEN m.email IN (SELECT friendEmail FROM Friendship WHERE email = #{ignoreEmailValue}) THEN 1
+			ELSE 0
+			END AS isFriend
 			</if>
-		FROM members m 
-		LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode FROM profiles WHERE profilecode = 2) p 
+		FROM MEMBERS m LEFT OUTER JOIN (SELECT email, profileInfo FROM Profiles WHERE profileCode = 2) p
 		ON m.email = p.email
-		LEFT OUTER JOIN FriendshipNotification f ON m.email = f.email
 		<where>
 			<if test="searchNameValue != null">
 				 m.fullName LIKE '%${searchNameValue}%'
@@ -91,9 +95,7 @@
 			<if test="ignoreEmailValue != null">
 				AND m.email != #{ignoreEmailValue}
 			</if>
-			 
 		</where>
-		
 	</select>
 	
 	<!-- 고유주소로 사용자 이메일 조회하기 -->
@@ -107,6 +109,17 @@
  		SELECT m.email, m.personalURI, m.colorTheme, m.birthDay, m.fullName, m.lastName, m.firstName, p.profileInfo
 		FROM Members m LEFT OUTER JOIN (SELECT ProfileInfo, email FROM Profiles 
 		WHERE email = #{email} AND profilecode = 2) p ON m.email = p.email WHERE m.email = #{email} 
+	</select>
+	
+	
+	<!-- 사용자 존재 여부 확인 by Email -->
+	<select id="hasMemberByEmail" resultType="Integer">
+		SELECT COUNT(email) FROM MEMBERS WHERE email = #{email}
+	</select>
+	
+	<!-- 사용자 존재 여부 확인 by PersonalURI -->
+	<select id="hasMemberByPersonalURI" resultType="Integer">
+		SELECT COUNT(PersonalURI) FROM MEMBERS WHERE personalURI = #{personalURI}
 	</select>
 	
 	

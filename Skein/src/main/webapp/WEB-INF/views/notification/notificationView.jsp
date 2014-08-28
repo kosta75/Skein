@@ -3,6 +3,7 @@
 <section class="content-container">
 	<div class="notification-content-wrapper">
 	
+		
 		<c:forEach var="notifList" items="${notificationList}">
 			
 			<c:choose>
@@ -15,7 +16,7 @@
 						친구 신청 <br />
 						${notifList.notificationSeq} <br />
 						${notifList.friendEmail} <br />
-						<div class="friendship-approved" data-notificationseq="${notifList.notificationSeq}" data-friendemail="${notifList.friendEmail}">친구 수락</div>
+						<div class="friendship-approved" data-uri="${notifList.personalURI}" data-notificationseq="${notifList.notificationSeq}">친구 수락</div>
 					</div>
 				</c:when>
 				<c:when test="${notifList.notificationCode == 4}">

@@ -43,6 +43,7 @@
 
 		<!-- 권한별 URL Pattern  -->
 		<security:intercept-url pattern="/board/*" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/colorTheme/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/notification/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/friendship/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/photo/*" access="hasRole('ROLE_USER')" />

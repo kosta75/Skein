@@ -1,8 +1,11 @@
 $(document).ready(function() {
 	
+	var contextPath = "//192.168.7.127:8080";
+	var rootPath = "/skein";
+	
 	//알림 목록 읽기
 	function readNotificationList(){
-		var contextURI = "//192.168.7.127:8080/skein/notification/notificationCountList";
+		var contextURI = contextPath + rootPath + "/notification/notificationCountList";
 		//$(".notification-list").empty();
 		$.ajax({
 			type : 'POST',
@@ -91,7 +94,7 @@ $(document).ready(function() {
 		color = $(this).css("background-color");
 		var obj = $(this);
 		var colorTheme = $(this).context.className;
-		var urlText = "//localhost:8080/skein/member/colorTheme";
+		var urlText = contextPath + rootPath + "/colorTheme";
 		$.ajax({
 			type : 'post',
 			url : urlText,

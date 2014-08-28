@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<c:forEach var="profiles" items="${memberProfile.profiles}">
+<c:forEach var="profiles" items="${memberProfile}">
 	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
 		<c:set var="profileImagePublic" value="${profiles.publicLevelCode}" />
@@ -80,12 +80,12 @@ birthdayPublic
 						<b>프로필사진</b>2
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
-								<c:if test="${empty profileImage }">
+								<c:if test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == 'default-profile-image.png'}">
 									<font> 프로필사진을 등록해보세요.</font>
 								</c:if>
-								<div class="informdata profileImage"><c:if test="${!empty profileImage }">
-									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${profileImage }">
-								</c:if></div>
+								<div class="informdata profileImage">									
+									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+								</div>
 								<div class="inform_button profileImage">
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
 									<div class='has-sub' >
@@ -124,7 +124,7 @@ birthdayPublic
 						<b>생일</b>
 						<div class="inform_databox birthday">
 							<div class="clearfix">
-								<div class="informdata birthday">${memberProfile.birthday }</div>
+								<div class="informdata birthday">${sessionScope.BASE_MEMBER_INFO.birthday}</div>
 								<div class="inform_button birthday">
 									<input type="button" value="공개범위">
 									<div class='has-sub' >
@@ -174,21 +174,21 @@ birthdayPublic
 						</div>
 					</div>
 					
-					<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == personalURI}">	
-						<div class="inform_elem status">
-							<b>계정 설정</b>
-							<div class="inform_status">
-								<div>
-									<a href="${pageContext.request.contextPath}/account/modifypwd"> 비빌번호변경 </a><br>
-								</div>
-								<div>
-									<a href="${pageContext.request.contextPath}/account/modifydomrant"> 휴면계정신청 </a> || 
-									<a href="${pageContext.request.contextPath}/account/modifydropout"> 탈퇴 </a> ||
-									<a href="${pageContext.request.contextPath}/account/modifylockout"> 계정폐쇄 </a>
-								</div>
+					
+					<div class="inform_elem status">
+						<b>계정 설정</b>
+						<div class="inform_status">
+							<div>
+								<a href="${pageContext.request.contextPath}/account/modifypwd"> 비빌번호변경 </a><br>
+							</div>
+							<div>
+								<a href="${pageContext.request.contextPath}/account/modifydomrant"> 휴면계정신청 </a> || 
+								<a href="${pageContext.request.contextPath}/account/modifydropout"> 탈퇴 </a> ||
+								<a href="${pageContext.request.contextPath}/account/modifylockout"> 계정폐쇄 </a>
 							</div>
 						</div>
-					</c:if>
+					</div>
+					
 				</div>
 				<div class="content_inner">
 					<!-- 오른쪽 -->
@@ -431,9 +431,5 @@ birthdayPublic
 	
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
-<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	<c:if test="${sessionScope.BASE_MEMBER_INFO.personalURI == requestPersonalURI}">
-		<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>
-	</c:if>
-</se:authorize>
+<script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>

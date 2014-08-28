@@ -43,6 +43,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		//request.getSession().setAttribute("SPRING_SECURITY_LAST_EXCEPTION", auth.getMessage());
 		
+		int errorCode = 0;
+		
 		try {
 			List<Member> list = memberDao.getMembers(param);
 			if(list.size() > 0){
@@ -72,21 +74,25 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 								
 								member.setFailedPasswordAttemptCount(member.getFailedPasswordAttemptCount() + 1);
 								memberDao.updateMemberAccount(member);
-								request.setAttribute("LOGIN_ERROR_CODE", 52);
+								errorCode = 52;
+								request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 								request.setAttribute("failedPasswordAttempCount", member.getFailedPasswordAttemptCount());
 							}else{
 								System.out.println(auth.getMessage());
 								if(member.getIsApproved() != 1){
 									System.out.println("INFO: Skein-U423 - 인증과정이 완료되지 않은 계정입니다.");
 									request.setAttribute("personalURI", memberDao.getPersonalURI(request.getParameter("email")));
-									request.setAttribute("LOGIN_ERROR_CODE", 53);
+									errorCode = 53;
+									request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 								}else{
 									System.out.println("INFO: Skein-U423 - 알 수 없는 에러");
-									request.setAttribute("LOGIN_ERROR_CODE", 99);
+									errorCode = 99;
+									request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 								}
 							}
 				        } else {
-				        	request.setAttribute("LOGIN_ERROR_CODE", 88);
+				        	errorCode = 52;
+				        	request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 				        	request.setAttribute("failedPasswordAttempCount", member.getFailedPasswordAttemptCount());
 				        }
 			        }else{
@@ -97,17 +103,20 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 							
 							member.setFailedPasswordAttemptCount(member.getFailedPasswordAttemptCount() + 1);
 							memberDao.updateMemberAccount(member);
-							request.setAttribute("LOGIN_ERROR_CODE", 52);
+							errorCode = 52;
+							request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 							request.setAttribute("failedPasswordAttempCount", member.getFailedPasswordAttemptCount());
 						}else{
 							System.out.println(auth.getMessage());
 							if(member.getIsApproved() != 1){
 								System.out.println("INFO: Skein-U423 - 인증과정이 완료되지 않은 계정입니다.");
 								request.setAttribute("personalURI", memberDao.getPersonalURI(request.getParameter("email")));
-								request.setAttribute("LOGIN_ERROR_CODE", 53);
+								errorCode = 53;
+								request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 							}else{
 								System.out.println("INFO: Skein-U423 - 알 수 없는 에러");
-								request.setAttribute("LOGIN_ERROR_CODE", 99);
+								errorCode = 99;
+								request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 							}
 						}
 			        }
@@ -119,17 +128,20 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 						
 						member.setFailedPasswordAttemptCount(member.getFailedPasswordAttemptCount() + 1);
 						memberDao.updateMemberAccount(member);
-						request.setAttribute("LOGIN_ERROR_CODE", 52);
+						errorCode = 52;
+						request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 						request.setAttribute("failedPasswordAttempCount", member.getFailedPasswordAttemptCount());
 					}else{
 						System.out.println(auth.getMessage());
 						if(member.getIsApproved() != 1){
 							System.out.println("INFO: Skein-U423 - 인증과정이 완료되지 않은 계정입니다.");
 							request.setAttribute("personalURI", memberDao.getPersonalURI(request.getParameter("email")));
-							request.setAttribute("LOGIN_ERROR_CODE", 53);
+							errorCode = 53;
+							request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 						}else{
 							System.out.println("INFO: Skein-U423 - 알 수 없는 에러");
-							request.setAttribute("LOGIN_ERROR_CODE", 99);
+							errorCode = 99;
+							request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 						}
 					}
 				}
@@ -137,7 +149,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 				
 			}else{
 				System.out.println("INFO: Skein-U423 - 존재하지 않는 아이디입니다.");
-				request.setAttribute("LOGIN_ERROR_CODE", 51);
+				errorCode = 51;
+				request.setAttribute("LOGIN_ERROR_CODE", errorCode);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -152,5 +165,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		RequestDispatcher ds = request.getRequestDispatcher("/joinus/login");
 		ds.forward(request, response);
+		
+		//response.sendRedirect("/skein/joinus/login?LOGIN_ERROR_CODE=" + errorCode);
 	}
 }

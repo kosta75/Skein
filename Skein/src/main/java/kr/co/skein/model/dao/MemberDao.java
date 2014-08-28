@@ -43,5 +43,12 @@ public interface MemberDao {
 	
 	//사용자
 	public BaseMemberInfo getPublicMember(String email) throws ClassNotFoundException, SQLException;
+	
+	
+	//사용자 존재 여부 확인 by Email
+	public int hasMemberByEmail(String email) throws ClassNotFoundException, SQLException;
+	
+	//사용자 존재 여부 확인 by personalURI
+	public int hasMemberByPersonalURI(String personalURI) throws ClassNotFoundException, SQLException;
 		
 }

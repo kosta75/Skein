@@ -1,7 +1,6 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,13 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.MemberDao;
-import kr.co.skein.model.vo.Member;
+import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.SearchMemberCommand;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,27 +45,14 @@ public class SearchController {
 		parameters.put("searchNameValue", fullName);
 		
 		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
-			System.out.println("INFO : Skein-P102 - 로그인한 사용자 처리");
-			SecurityContextImpl sci = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-			UserDetails user = (UserDetails) sci.getAuthentication().getPrincipal();
-			String userName = user.getUsername();
-			
-			parameters.put("ignoreEmailValue", userName);
-			
-			Member member = memberDao.getMemberInfo(user.getUsername());
-			String colorTheme = memberDao.selectColorTheme(user.getUsername());
-
-			if (colorTheme == null || colorTheme.equals("")) {
-				model.addAttribute("colorTheme", "blue");
-			} else {
-				model.addAttribute("colorTheme", " " + colorTheme);
-			}
+			BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
+			parameters.put("ignoreEmailValue", baseMemberInfo.getEmail());
 		}
 
-		List<SearchMemberCommand> list = memberDao.searchMembers(parameters);
-		System.out.println("INFO : Skein-M006 - 검색 결과, " + list.size());
+		List<SearchMemberCommand> friendshipList = memberDao.searchMembers(parameters);
+		System.out.println("INFO : Skein-M006 - 검색 결과, " + friendshipList.size());
 		
-		model.addAttribute("list", list);
+		model.addAttribute("friendshipList", friendshipList);
 		return "search.searchMembers";
 	}
 }

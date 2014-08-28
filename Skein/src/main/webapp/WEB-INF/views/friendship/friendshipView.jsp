@@ -6,22 +6,28 @@
 <section class="content-container">
 	<div class="friendship-content-wrapper">
 		<div id="friendlist">
-		<c:forEach var="list" items="${list}">
+		<c:forEach var="friendshipList" items="${friendshipList}">
 			<div class="friend-item-container">
 				<div class="friend-image-wrapper">
-					<img class="" src="${pageContext.request.contextPath}/resources/media/image/3.jpg">
+					<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileImageFileName}">
 				</div>
 				<div class="friend-item-info-container">
 					<div class="friend-info-wrapper">
 						<div>
-							<p>${list.email}</p>
+							<p><a href="${pageContext.request.contextPath}/${list.personaluri}">${friendshipList.fullname}</a></p>
 						</div>
+						
+						<c:if test="${friendshipList.publicEmail != null}">
+						<c:if test="${friendshipList.publicLevelCodeToEmail != null && friendshipList.publicLevelCodeToEmail > 1}">
 						<div>
-							<p>${list.fullname }</p>
-						</div>						
+							<p>${friendshipList.email}</p>
+						</div>
+						</c:if>	
+						</c:if>
+												
 					</div>		
 				</div>
-				<div class="unfriend-button" data-uri="${list.personaluri}" data-name="${list.fullname}"></div>
+				<div class="unfriend-button" data-uri="${friendshipList.personaluri}" data-name="${list.fullname}"></div>
 			</div>  
 		</c:forEach>
 		</div>

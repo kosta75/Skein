@@ -2,21 +2,18 @@ package kr.co.skein.model.vo;
 
 
 public class FriendshipListCommand {
-	
-	/*m.email , m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, p.PROFILECODE*/
-	
-	
-	private String email;
-	/*private String friendEmail;*/
+
+	private String friendEmail;
 	private String fullname;
 	private String birthday;
 	private String personaluri;
-	private String profilecode;
-	public String getEmail() {
-		return email;
+	private String profileImageFileName;
+	private String publicEmail;
+	public String getFriendEmail() {
+		return friendEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setFriendEmail(String friendEmail) {
+		this.friendEmail = friendEmail;
 	}
 	public String getFullname() {
 		return fullname;
@@ -36,15 +33,17 @@ public class FriendshipListCommand {
 	public void setPersonaluri(String personaluri) {
 		this.personaluri = personaluri;
 	}
-	public String getProfilecode() {
-		return profilecode;
+	public String getProfileImageFileName() {
+		return profileImageFileName;
 	}
-	public void setProfilecode(String profilecode) {
-		this.profilecode = profilecode;
+	public void setProfileImageFileName(String profileImageFileName) {
+		this.profileImageFileName = profileImageFileName;
 	}
-	
-	
-	
-	
-	
+	public String getPublicEmail() {
+		return publicEmail;
+	}
+	public void setPublicEmail(String publicEmail) {
+		this.publicEmail = publicEmail;
+	}
+
 }

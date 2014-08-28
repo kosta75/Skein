@@ -51,7 +51,8 @@
 					<div class="group-item-reply-write-form-container">
 						<div class="image-icon reply-icon">댓글</div>
 						<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
-						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />						
+						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />
+						<div class="reply-message"></div>						
 					</div>
 
 					<div class="group-item-reply-section">

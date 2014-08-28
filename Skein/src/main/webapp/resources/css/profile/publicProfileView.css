@@ -43,7 +43,9 @@
 .group-item-reply-write-form-container input{border:1px solid #ccc;padding:4px 2px;width:80%;}
 
 .image-icon{text-indent:-10000px;background-repeat:no-repeat}
-.reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../media/image/mention1.png");background-size:55%;background-position:center}
+.reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../../media/image/mention1.png");background-size:55%;background-position:center}
+.reply-message{float:right;border:1px solid #f00;width:135px;height:24px;margin-top:2px;margin-right:4px;background:#f00;}
+
 
 
 .group-item-reply-secition ul li{margin-top:1px;}

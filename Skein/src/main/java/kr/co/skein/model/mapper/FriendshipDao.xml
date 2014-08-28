@@ -12,18 +12,18 @@
 	
 	<!--친구 목록 페이지 -->
 	<select id="getFriendList" resultType="kr.co.skein.model.vo.FriendshipListCommand">
-		      
 		SELECT * FROM 
 		(
-			SELECT ROWNUM r , s.* FROM 
-		(
-		SELECT m.email , m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, p.PROFILECODE
-		FROM members m 
-		JOIN friendship f ON m.email = f.friendemail
-		left OUTER JOIN profiles p ON p.email =f.friendemail
-		WHERE f.email=#{param1} ORDER BY email asc
-		) s
-		)WHERE r BETWEEN #{param2} AND #{param3}
+			SELECT ROWNUM r , s.* FROM
+			(
+				SELECT f.friendEmail, m.personalURI, m.fullName, NVL(p.profileInfo,'default-profile-image.png') AS profileImageFileName, p2.profileInfo AS publicEmail, p2.publicLevelCode AS publicLevelCodeToEmail
+				FROM Friendship f JOIN Members m ON f.friendEmail = m.email
+				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 2) p ON f.friendEmail = p.email
+				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 3) p2 ON f.friendEmail = p.email
+				WHERE f.email = #{param1} ORDER BY m.FullName ASC 
+			) s
+		)
+		WHERE r BETWEEN #{param2} AND #{param3}
     </select>
     
     <!-- 친구 삭제 -->

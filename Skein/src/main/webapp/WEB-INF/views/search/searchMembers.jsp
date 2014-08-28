@@ -1,41 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
-<se:authentication property="name" var="LoginUser" />
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+
 <section class="content-container">
 	<div class="search-content-wrapper">
 		
-			<c:forEach var="list" items="${list}">
+			<c:forEach var="friendshipList" items="${friendshipList}">
 				<div class="search-detail-info" >
 					
 						<div>
-							<c:if test="${list.profileInfo == null}">
+							<c:if test="${friendshipList.profileInfo == null}">
 								<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/media/image/default.jpg" >
 							</c:if>
 							<c:if test="">
-							 	<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/media/image/${list.profileInfo}.jpg" >
+							 	<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/media/image/${friendshipList.profileInfo}.jpg" >
 							 </c:if> 
 							<p>
-							${list.profileInfo}
-								<a href="${pageContext.request.contextPath}/${list.personalURI}">${list.fullName}</a>(${list.personalURI})
+							${friendshipList.profileInfo}
+								<a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a>(${friendshipList.personalURI})
 							</p>
 							<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 								<c:choose>
-									<c:when test="${list.isFriend != 1}">
-										<c:choose>
-											
-											<c:when test="${list.friendshipConfirm == 0}">
-												<span class="wait-friendship" data-uri="${list.personalURI}">친구 신청 대기중</span>
-											</c:when>
-											<c:otherwise>
-												<span class="addFriends" data-uri="${list.personalURI}">친구신청</span>
-											</c:otherwise>
-										</c:choose>
+									<c:when test="${friendshipList.friendshipConfirm == 0}">
+										<c:if test="${friendshipList.isFriend == 0}">
+											<span class="wait-friendship" data-uri="${friendshipList.personalURI}">친구 수락 대기중</span>
+										</c:if>
+									</c:when>
+									<c:when test="${friendshipList.friendshipConfirm == 1}">
+										<c:if test="${friendshipList.isFriend == 1}">
+											<span class="delete-friendship" data-uri="${friendshipList.personalURI}">친구끊기</span>
+										</c:if>
+									</c:when>
+									<c:when test="${friendshipList.friendshipConfirm == 2}">
+										<c:if test="${friendshipList.isFriend == 0}">
+											<span><a href="${pageContext.request.contextPath}/notification/">친구 신청 알림 확인</a></span>
+										</c:if>
+									</c:when>
+									<c:when test="${friendshipList.friendshipConfirm == 3}">
+										<c:if test="${friendshipList.isFriend == 1}">
+											<span><a href="${pageContext.request.contextPath}/notification/">친구 신청 알림 확인</a></span>
+										</c:if>
 									</c:when>
 									<c:otherwise>
-										<span>Text</span>
+										<c:if test="${friendshipList.isFriend == 0}">
+											<span class="add-friendship" data-uri="${friendshipList.personalURI}">친구신청</span>
+										</c:if>
 									</c:otherwise>
 								</c:choose>
 							</se:authorize>

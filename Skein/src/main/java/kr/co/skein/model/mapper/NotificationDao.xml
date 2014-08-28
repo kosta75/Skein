@@ -71,11 +71,12 @@
 	
 	<!-- 사용자 모든 알림 조회 -->
 	<select id="getNotificationAllList" resultType="kr.co.skein.model.vo.NotificationAllCommand">
-		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm, r.replySeq, s.BoardSeq
+		SELECT n.NotificationSeq, n.Email, m.personalURI, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm, r.replySeq, s.BoardSeq
 		FROM NOTIFICATIONS n 
 		LEFT OUTER JOIN FRIENDSHIPNOTIFICATION f ON n.notificationSeq = f.notificationSeq
 		LEFT OUTER JOIN ReplyNotification r ON n.notificationSeq = r.notificationSeq
 		LEFT OUTER JOIN SHARENOTIFICATION s ON n.notificationSeq = s.notificationSeq
+		JOIN MEMBERS m ON m.email = f.friendEmail
 		WHERE n.email = #{email} AND n.isRead = 0 ORDER BY n.notificationCode ASC, n.notificationSeq DESC
 	</select>
 	
@@ -86,7 +87,7 @@
 		WHERE n.notificationSeq = #{notificationSeq}	
 	</select>
 	
-	<select id="getFriendshipNotificationByFriendEmail" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
+	<select id="getFriendshipNotificationBoth" resultType="kr.co.skein.model.vo.FriendshipNotificationCommand">
 		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
 		FROM Notifications n JOIN FriendshipNotification f ON n.notificationSeq = f.notificationSeq
 		WHERE (n.email = #{param1} AND f.friendEmail = #{param2}) OR (n.email = #{param2} AND f.friendEmail = #{param1}) 	

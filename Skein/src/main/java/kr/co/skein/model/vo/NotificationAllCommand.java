@@ -16,6 +16,18 @@ public class NotificationAllCommand {
 	private String boardSeq;
 	
 	private String replySeq;
+	
+	private String personalURI;
+	
+	
+
+	public String getPersonalURI() {
+		return personalURI;
+	}
+
+	public void setPersonalURI(String personalURI) {
+		this.personalURI = personalURI;
+	}
 
 	public String getNotificationSeq() {
 		return notificationSeq;

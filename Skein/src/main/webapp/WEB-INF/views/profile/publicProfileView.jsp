@@ -60,6 +60,7 @@
 							<input class="modalreplyWrite"type="text" style="width:200%; height: 20px;" >
 						</div>
 						
+						
 						<!-- <div style="float: left;padding-top:10px;">
 							<div >
 							
@@ -98,6 +99,8 @@
 				<c:forEach var="groupItem" items="${boardGroupList}">
 				<div class="group-item-container">
 					<div class="group-item-wrapper">
+						
+						<c:if test="${PROFILE_RESPONSE_CODE == 99}">
 						<div class="group-item-controller-container">
 							<ul>
 								<li><div class="icon-box group-item-edit" title="수정">수정</div></li>
@@ -114,6 +117,7 @@
 								</li>
 							</ul>
 						</div>
+						</c:if>
 
 						<div class="group-item-user-info-container">
 							<div class="group-item-user-profile-image-wrapper">
@@ -145,7 +149,8 @@
 					<div class="group-item-reply-write-form-container">
 						<div class="image-icon reply-icon">댓글</div>
 						<input type="hidden" id="boardSeq" name="boardSeq" value="${groupItem.boardSeq}"/>
-						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />						
+						<input type="text" id="boardSeq" class="replyWrite" name="replyWrite" />
+						<div class="reply-message"></div>						
 					</div>
 					</c:if>
 

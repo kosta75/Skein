@@ -47,7 +47,7 @@ public class NotificationController {
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 			List<NotificationCountCommand> list = notificationDao.getNotifications(baseMemberInfo.getEmail());
 			//List<FriendshipNotificationCommand> friendshipNotificationCommands = notificationDao.getFriendshipNotification(baseMemberInfo.getEmail());
-			System.out.println("INFO : Skein-F100 - 알림 목록 읽기");
+			//System.out.println("INFO : Skein-F100 - 알림 목록 읽기");
 			
 			//model.addAttribute("notificationList", friendshipNotificationCommands);
 			model.addAttribute("notificationList", list);
@@ -63,7 +63,7 @@ public class NotificationController {
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 			List<NotificationCountCommand> list = notificationDao.getNotifications(baseMemberInfo.getEmail());
 			//List<FriendshipNotificationCommand> friendshipNotificationCommands = notificationDao.getFriendshipNotification(baseMemberInfo.getEmail());
-			System.out.println("INFO : Skein-F100 - 알림 목록 읽기");
+			//System.out.println("INFO : Skein-F100 - 알림 목록 읽기");
 			
 			//model.addAttribute("notificationList", friendshipNotificationCommands);
 			model.addAttribute("notificationList", list);

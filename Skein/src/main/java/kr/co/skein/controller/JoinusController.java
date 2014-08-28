@@ -34,6 +34,7 @@ public class JoinusController {
 	//로그인 페이지
 	@RequestMapping("/login")
 	public String login(){
+		System.out.println("INFO : Skein-W123 - 로그인 컨트롤러 실행!");
 		return "joinus.login";
 	}
 	
