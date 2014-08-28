@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-@CHARSET "UTF-8";
 .wrap_wrap{
 	margin: 0 auto;
 	width: 700px;
@@ -10,13 +9,6 @@
 	float: left;
 	margin: 50px 20px;
 	width:300px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #ccc;
-	font-size: 13px;
-}
-.full_wrap {
-	margin: 50px auto;
-	width: 640px;
 	-webkit-border-radius: 4px;
 	border: 1px solid #ccc;
 	font-size: 13px;
@@ -56,12 +48,12 @@ min-width: 80px;
 .fail_login{
 	background-color: #F0F6FC;
 	border: 1px solid #dd3c10;
-	padding: 10px;
+	padding: 0 10px;
 	margin-bottom:20px;
 }
 
 .help_fail{
-	padding-bottom: 10px;
+	padding-top: 10px;
 	font-size: 15px;
 	font-weight: bold;
 }
@@ -74,4 +66,21 @@ min-width: 80px;
 text-align: center;
 background-color: #f2f2f2;
 border-top: 1px solid #ccc;
+}
+
+#search_result{
+	clear:both;
+	width:640px;
+	text-align:center;
+	background-color: blanchedalmond;
+	border: 2px solid #dd3c10;
+	padding: 10px;
+	margin: 70px 10px;
+}
+
+#search_result .button_container{
+	background-color: inherit;
+	border-top: 1px solid #ccc;
+	margin-bottom: -10px;
+	margin-top: 10px;
 }

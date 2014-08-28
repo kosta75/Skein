@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="wrap_wrap">
+	<c:if test="${empty noResult && empty emails && empty noResultPwd && empty email && empty result }">
 	<div class="form_wrap">
 		<form id="helpId" action="id" method="post">
 			<div class="help_subject_container">
@@ -41,29 +42,24 @@
 			</div>
 		</form>
 	</div>
-	
+	</c:if>
+	<c:if test="${!empty noResult || !empty emails || !empty noResultPwd || !empty email || !empty result }">
 	<div id="search_result" >
-	<input type="hidden" value="${noResult }" id="noResult">
-	<input type="hidden" value="${noResultPwd }" id="noResultPwd">
-	<input type="hidden" value="${emails.size() }" id="emails">
-	<input type="hidden" value="${email }" id="email">
-	<input type="hidden" value="${result }" id="result">
-	
 		<c:if test="${noResult == 'y' }">
 			검색 결과가 없습니다.<br>
-			<a href="javascript:history.back()">돌아가기</a>
+			<a href="javascript:location='refind'">돌아가기</a>
 		</c:if>
 		<c:if test="${!empty emails  }">
 			email 목록<br>
 			<c:forEach items="${emails}" var="email">
 				${email }<br>
 			</c:forEach>
-			<a href="javascript:history.back()">돌아가기</a>
+			<a href="javascript:location='refind'">돌아가기</a>
 		</c:if>
 		
 		<c:if test="${noResultPwd == 'y' }">
 			검색 결과가 없습니다.<br>
-			<a href="javascript:history.back()">돌아가기</a>
+			<a href="javascript:location='refind'">돌아가기</a>
 		</c:if>
 		<c:if test="${!empty email  }">
 			[email]  ${email } 로 임시 비밀번호를 전송하시겠습니까?
@@ -81,7 +77,7 @@
 			<a href="javascript:history.back()">돌아가기</a>
 		</c:if>
 	</div>
-	
+	</c:if>
 	
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/account.js"></script>

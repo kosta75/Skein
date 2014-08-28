@@ -10,3 +10,34 @@
 #list{width:98%;height:100%;background:#fff;border:1px solid;border-color:#C5C8CF;padding:2px;}
 #list div{padding:10px;}
 #side{height:100%;list-style-image:url('../../resources/media/image/sidebar.png');font-size:20px;	text-align:left;font-weight:bold;vertical-align:top;}
+
+
+.informbox {
+	position: relative;
+	width: 100%;
+	background: #fff;
+	border: 1px solid #d3d6db;
+	-webkit-border-radius: 3px;
+	margin: 10px auto;
+	margin-bottom: 40px;	
+	overflow: hidden;
+}
+
+.informbox_content:after {
+	clear:both;
+}
+
+.informbox_header {
+	padding: 12px;
+	border-bottom: 1px solid #d3d6db;
+	background: #f6f7f8;
+	font-size: 20px;
+	vertical-align: bottom;
+}
+.informbox_header img {
+	margin-right: 10px;
+}
+.informbox_content {
+	hight: 525px;
+	background-color: white;
+}

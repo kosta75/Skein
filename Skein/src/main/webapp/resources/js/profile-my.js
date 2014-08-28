@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	
 	// 수정form 저장
 	$(".inform_edit").not(".profileImage").on("click",".profile_editBtn",function(){
 		profileInfo = $(this).parent().find("input[name=profileInfo]").val();
@@ -89,6 +88,7 @@ $(document).ready(function() {
 				$("input:hidden[name=" + profileName + "Public]").val('');
 				$(".informdata."+profileName).html('');
 				deletebtn.parent().css("display", "none").siblings().css("display", "block");
+				deletebtn.parent().find("input[name=profileInfo]").val('');
 			},
 			error : function() {
 				alert('Error');
@@ -99,7 +99,10 @@ $(document).ready(function() {
 	});
 	
 	
-	
+	//수정 form 닫기
+	$(".profilecloseBtn").click(function(){
+		$(this).parent().css("display", "none").siblings().css("display", "block");
+	});
 	
 	
 	//마우스오버시 버튼보이기

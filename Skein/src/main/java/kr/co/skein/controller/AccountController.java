@@ -261,7 +261,7 @@ public class AccountController {
 	@RequestMapping("/account/modifypwd")
 	public String modifyPassword(){
 		System.out.println("왜 안와");
-		return "account.modifypwd";
+		return "account.modifyPwd";
 	}
 	
 	@RequestMapping(value="/account/update", method=RequestMethod.POST)
