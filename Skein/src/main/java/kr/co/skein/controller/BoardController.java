@@ -251,9 +251,11 @@ public class BoardController {
 
 	//게시물 공유하기 
 	@RequestMapping(value ="/shareView", method = RequestMethod.POST)
-	public View Boardshare(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+	public View Boardshare(@RequestParam("groupSeq") int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		System.out.println(groupSeq);
 		List<BoardShareDetailView> boardshare = boardDao.getBoardShareDetailView(groupSeq);
+		System.out.println(boardshare.size());
 		model.addAttribute("boardshare", boardshare);
 		return jsonView;
 	}

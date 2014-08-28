@@ -262,6 +262,7 @@
 								<div style="clear: both;">
 									<a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
 									<c:if test="${groupItem.groupCount >= 2}">
+										<a id="share-ALL-choice-btn">전체선택</a>
 										<a id="share-ALL-clear-btn">전체해제</a>
 									</c:if>
 								</div>
