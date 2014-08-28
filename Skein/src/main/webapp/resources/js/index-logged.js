@@ -285,6 +285,7 @@ $(document).ready(function(){
 	});*/
 
 	$(document).on('click',".imgBtn", function(){
+		$("#modalemoticon").css("display","none");
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
 		var j = $(this).find("input").val();
@@ -336,7 +337,7 @@ $(document).ready(function(){
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
 					$(".modal-content-view").css("display","block");
-					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView[0].fullname + "<br>"
+					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView[0].fullname + "<br>"
 							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
 
 					detail = data.detailView.length;
@@ -383,10 +384,12 @@ $(document).ready(function(){
 			$("html").css("overflow-y", "auto");
 			$("#modal-detile-view").remove();
 			$(".imgBtn").remove();
+			$(".modalViewinfo").remove();
 			$(".modalViewcontent").remove();
 			$(".replyList").empty();
 			 $("#modal-EditTextarea").empty();
 			 $("#modaleditcontent").val('');
+			 $("#modalemoticon").css("display","none");
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -508,10 +511,17 @@ $(document).ready(function(){
 		$(this).parent().siblings().first().append($(this).clone());
 		
 	});
-
+	//모달 수정 이모티콘 추가
+	
+	$(document).on("click",".modal-edit-emoticon",function(){
+		
+		$(this).parent().siblings().first().children().first().append($(this).clone());
+		
+	});
 	
 	//모달 댓글 리스트 출력
 	$(document).on('click',".imgBtn", function(){
+		
 		$(".replyList").empty();
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
@@ -533,21 +543,16 @@ $(document).ready(function(){
 			success : function(data) {
 				$(".modalcontent").empty();
 				$(".modal-content-view").css("display","block");
-				$(".modalcontent").append("	<div style='float: right'>" +
+				$(".modalcontent").append(
+				"<div style='float: right'>" +
 				"<div class='modal-Edit'style='float: left;margin-right: 10px'>수정</div>"	
 				+"<div class='modal-Delete'style='float: left;margin-right: 10px'>삭제</div>"		
 				+"</div>"
 				+"<div class='modal-user-profile-image' style='float: left;'>"
 				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
 				+"</div>"
-				+"<div style='width:100%;height:50px;' class='modalViewcontent'>"+ data.detailView.fullname + "<br>"
+				+"<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView.fullname + "<br>"
 						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView.content + "</div>");
-	
-			
-				
-				
-				
-				
 				$.ajax({
 					type : 'post',
 					url : 'reply/select',
@@ -841,12 +846,27 @@ function lastPostFunc(pictureCount){
  
  //modal 수정
  $(document).on("click",".modal-Edit",function(){
-	 
+	 $(".modal-EditTextarea").empty();
 	 $(this).parent().parent().css("display","none");
 	 
 	 $(this).parent().parent().siblings().first().css("display","block"); 
+	 $(this).parent().parent().siblings().first().children().first().html( $(".modalViewcontent").text());
 /*	$(this).parent().parent().siblings().first().children().append($(this).parent().parent().children().last().text());
 */	 
+	 
+	 
+ });
+ //modal 수정취소
+ $(document).on("click",".modaleditCancleBtn",function(){
+	 $(".modal-EditTextarea").empty();
+	 $(this).parent().css("display","none");
+	 $(this).parent().siblings().first().css("display","block"); 
+ });
+//modal 이모티콘
+ $(document).on("click",".modaleditEmoticon",function(){
+	
+	 $("#modalemoticon").toggle("display");
+	 
 	 
 	 
  });

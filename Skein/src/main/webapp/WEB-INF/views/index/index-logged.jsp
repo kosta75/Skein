@@ -40,12 +40,14 @@
 					<div style="float: left;  padding-top: 15px;width: 200px;">
 						<div class="modal-content-area">
 						<div class="modal-edit-Div" style="margin:auto;display:none;">
-						<div id="modal-EditTextarea" contenteditable="true" style="width:360px" ></div>
+						<div id="modal-EditTextarea" contenteditable="true"></div>
 						<input type='hidden' name="modaleditcontent" id="modaleditcontent"  />
-							<div  style="float: right;">취소</div>
+							
+						<div class="modaleditEmoticon" style="float: right;">이모티콘</div>
+							<div  class="modaleditCancleBtn"style="float: right;margin-right: 10px">취소</div>
 							<div class="modaleditBtn"style="float: right;margin-right: 10px">수정</div>
-					
-						
+								
+							
 						</div>
 						
 						
@@ -62,6 +64,11 @@
 							</div>
 							
 							<!--작성자 이름 날짜 내용 출력  -->
+						</div>
+						<div id="modalemoticon">
+						<c:forEach var="i" begin="1" end="16" step="1">
+							<img class="modal-edit-emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
+						</c:forEach>
 						</div>
 						</div>
 					</div>
