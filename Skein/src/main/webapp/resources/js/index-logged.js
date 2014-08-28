@@ -338,7 +338,7 @@ $(document).ready(function(){
 				success : function(data) {
 					$(".modal-content-view").css("display","block");
 					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView[0].content + "</div>");
+							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
 
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
@@ -499,7 +499,11 @@ $(document).ready(function(){
 
 	//이모티콘 추가
 	$(".emoticon").click(function(){
-		$("#writeTextarea").append($(this).clone());	
+		
+		
+		
+		alert();
+		$("#writeTextarea").append("<img class='emoticonImg' src="+$(this).attr("src")+">");	
 		$("#writeTextarea").focus();
 	
 	});
@@ -508,14 +512,13 @@ $(document).ready(function(){
 	$(document).on("click",".edit-emoticon-icon",function(){
 		
 		
-		$(this).parent().siblings().first().append($(this).clone());
+		$(this).parent().siblings().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
 		
 	});
 	//모달 수정 이모티콘 추가
-	
 	$(document).on("click",".modal-edit-emoticon",function(){
 		
-		$(this).parent().siblings().first().children().first().append($(this).clone());
+		$(this).parent().siblings().first().children().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
 		
 	});
 	
@@ -552,7 +555,7 @@ $(document).ready(function(){
 				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
 				+"</div>"
 				+"<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView.fullname + "<br>"
-						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'>" + data.detailView.content + "</div>");
+						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"  + data.detailView.content + "</div></div>");
 				$.ajax({
 					type : 'post',
 					url : 'reply/select',

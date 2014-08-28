@@ -140,7 +140,7 @@
 					<li><a href="#diaryWriteTabs">다이어리</a></li>
 					<li><a href="#historyWriteTabs">개인기록</a></li>
 				</ul>
-		 	<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
+		 <%-- 	<div id="diaryWriteTabs"><div style="float: right;">${today}</div>
 					<div id="diaryWriteForm" style="clear: both;">
 					<form id="diaryForm" method="post" enctype="multipart/form-data">
 					
@@ -181,8 +181,8 @@
 							</div></div>
 						</div>
 					</form> 
-				</div>
 				</div> 
+				</div> --%>
 				<div id="historyWriteTabs">
 					<div id="historyWriteForm">
 					<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
@@ -192,7 +192,7 @@
 							<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
 							<div id="writeTextarea" contenteditable="true"></div>
 						</div>
-						<input type='hidden' name="historycontent" id="content" />
+						<input type='hidden' name="content" id="content" />
 						<input type="hidden" name="email" value="${LoginUser}" />
 						<!--이미지  -->
 						<div id="historyImg" class="offset2 arrow_box">
