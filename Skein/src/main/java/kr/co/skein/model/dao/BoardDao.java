@@ -55,6 +55,7 @@ public interface BoardDao {
 	//
 	public List<BoardGroup> getMemberBoardGroup(Map<String, String> param) throws ClassNotFoundException, SQLException;
 	
-	
+	//알림(게시물번호로 내용 얻어오기)
+	public List<BoardCommand> getBoardsInfo(String boardSeq)throws ClassNotFoundException, SQLException;
 		
 }

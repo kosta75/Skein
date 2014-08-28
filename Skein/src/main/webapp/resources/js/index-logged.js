@@ -658,7 +658,7 @@ function lastPostFunc(pictureCount){
 						for (var j=0; j<boardsharedetail; j++) {
 							parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
 																	+ "<div style='float:left;margin-top:10px'>" 
-																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+j+"></div>" 
+																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+"></div>" 
 																	+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
 																		+ "<input type='hidden' value='"+j+"'>"
 																	+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
@@ -694,7 +694,7 @@ function lastPostFunc(pictureCount){
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	//사용자가 선택한 공유 목록 가져오기 (수정중........................)
 	$(document).on('click','#share-confirm-btn',function(){
-		//alert("확인 버튼");
+		/*alert("확인 버튼");*/
 		var ret = get_chked_values();
 		alert(ret);
 		

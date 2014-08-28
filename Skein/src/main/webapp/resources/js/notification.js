@@ -23,7 +23,7 @@ $(document).ready(function() {
 		var alramSeq = $(this).find('input').val();
 		console.log(alramSeq);
 		alert(alramSeq);
-/*
+
 		$.ajax({
 			type : 'get',
 			url : 'notification/list',
@@ -38,8 +38,8 @@ $(document).ready(function() {
 				alert('indexlogged notification 35 : Error while request..');
 			}
 		});
-*/
-		//return false;
+
+		return false;
 	});
 	
 	$(document).on('click',"#alram-checkbox-all", function() {

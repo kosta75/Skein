@@ -1,16 +1,20 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
+import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.NotificationAllCommand;
@@ -55,7 +59,7 @@ public class NotificationController {
 		return jsonView;
 	}
 	
-	
+	/*
 	@RequestMapping(value = "/notificationGroupList", method=RequestMethod.POST)
 	public View getNotificationGroupList(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		BaseMemberInfo baseMemberInfo = null;
@@ -63,24 +67,68 @@ public class NotificationController {
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 			List<NotificationCountCommand> list = notificationDao.getNotifications(baseMemberInfo.getEmail());
 			//List<FriendshipNotificationCommand> friendshipNotificationCommands = notificationDao.getFriendshipNotification(baseMemberInfo.getEmail());
-			System.out.println("INFO : Skein-F100 - 알림 목록 읽기");
 			
 			//model.addAttribute("notificationList", friendshipNotificationCommands);
 			model.addAttribute("notificationList", list);
 		}
 		return jsonView;
 	}
-	
+	*/
 		
 	//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String viewNotificationList(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
-		
 		BaseMemberInfo baseMemberInfo = null;
 		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
 			List<NotificationAllCommand> list = notificationDao.getNotificationAllList(baseMemberInfo.getEmail());
-			model.addAttribute("notificationList", list);
+			
+			for(int i = 0; i < list.size(); i++){
+				if(list.get(i).getNotificationCode() == 1){
+					//공지사항
+					//[공지사항] 새로운 업데이트가 있습니다.
+				BoardDao boardDao =  sqlSession.getMapper(BoardDao.class);
+				List<BoardCommand> addList =boardDao.getBoardsInfo(list.get(i).getBoardSeq());
+					list.get(i).setContent(addList.get(i).getContent());
+					
+				}else if(list.get(i).getNotificationCode() == 2){
+					//친구신청
+					//[친구신청] 상대방아이디(이름??)  가   친구 신청을 하셧습니다.
+				MemberDao memberdao = sqlSession.getMapper(MemberDao.class);	
+				Member m =  memberdao.getMemberInfo(list.get(i).getFriendEmail());
+				list.get(i).setFullName(m.getFullName());
+				
+				}else if(list.get(i).getNotificationCode() == 3){
+					//친구신청수락
+					//[친구신청수락] 상대방 아이디  가 친구 신청을 허락 하셧습니다.
+					MemberDao memberdao = sqlSession.getMapper(MemberDao.class);	
+					Member m =  memberdao.getMemberInfo(list.get(i).getFriendEmail());
+					list.get(i).setFullName(m.getFullName());
+					
+				}else if(list.get(i).getNotificationCode() == 4){
+					//공유신청
+					//[공유신청] 상대방 아이디 공유신청을 하였습니다. 
+					MemberDao memberdao = sqlSession.getMapper(MemberDao.class);	
+					Member m =  memberdao.getMemberInfo(list.get(i).getFriendEmail());
+					list.get(i).setFullName(m.getFullName());
+					
+				}else if(list.get(i).getNotificationCode() == 5){
+					//공유신청수락
+					//[공유신청수락] 상대방 아이디  공유신청을 수락 하셧습니다.
+					MemberDao memberdao = sqlSession.getMapper(MemberDao.class);	
+					Member m =  memberdao.getMemberInfo(list.get(i).getFriendEmail());
+					list.get(i).setFullName(m.getFullName());
+					
+				}else if(list.get(i).getNotificationCode() == 6){
+					//댓글
+					//[댓글] 어떤 게시물에 누가  댓글을 달았습니다??
+					//[댓글] 어떤 게시물에 댓글이 달렸습니다.??
+				}else {
+					//없음
+					System.out.println("다른게 있을까??");
+				}
+			}
+			model.addAttribute("notificationList", list);	
 		}
 		return "notification.notificationView";
 	}

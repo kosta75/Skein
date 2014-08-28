@@ -232,6 +232,12 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 		WHERE r BETWEEN #{startNum} AND #{endNum}
 		ORDER BY GROUPSTARTDATE ASC
 	</select>
+	
+	<!-- 알림페이지 게시물정보 -->
+	<select id="getBoardsInfo" resultType="kr.co.skein.model.vo.BoardCommand">
+		  SELECT * FROM board WHERE boardseq=${boardSeq}
+	</select>
+
    
    
 </mapper>
