@@ -99,7 +99,10 @@ $(document).ready(function() {
 	});
 	
 	
-	
+	//수정 form 닫기
+	$(".profilecloseBtn").click(function(){
+		$(this).parent().css("display", "none").siblings().css("display", "block");
+	});
 	
 	
 	//마우스오버시 버튼보이기
