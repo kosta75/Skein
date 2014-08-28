@@ -259,6 +259,11 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
    </delete>
    
    
+   <select id="detailViewBoardSeq" resultType="kr.co.skein.model.vo.BoardDetailView">
+		select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
+		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.BOARDSEQ = #{boardSeq}
+	</select>
+   
    <!--게시물 수정  -->
    <update id="editBoard">
    
