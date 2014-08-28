@@ -106,7 +106,7 @@
 
 .has-sub ul {
 	list-style: none;
-	min-width: 100%;
+	width:134px;
 	padding: 3px 0 4px;
 	overflow-y: auto;
 	

@@ -152,5 +152,13 @@ $(document).ready(function() {
 	        event.preventDefault();
 	        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
 	});
+	 
+	 
+	 $("#menu2 .arrowunderline li").hover(function(){
+		 $(this).find("a").css("color", $("#menu2").css("background-color"));},
+		 function(){
+			 $(this).find("a").css("color", "");
+		 
+	 });
 
 });

@@ -7,14 +7,17 @@ $(document).ready(function() {
 		if(password == ''){
 			$(".alertblock").html('');
 			$("#currentpwdblock").html("비밀번호를 입력해주세요.").css("color", "red");
+			$("#currentpwd").focus();
 			return;
 		}else if(newpwd == ''){
 			$(".alertblock").html('');
 			$("#newpwdblock").html("새 비밀번호를 입력해주세요.").css("color", "red");
+			$("#newpwd").focus();
 			return;
 		}else if(checkpwd == ''){
 			$(".alertblock").html('');
 			$("#checkpwdblock").html("비밀번호 확인을 입력해주세요.").css("color", "red");
+			$("#checkpwd").focus();
 			return;
 		}else if(newpwd != checkpwd){
 			$(".alertblock").html('');
@@ -28,8 +31,9 @@ $(document).ready(function() {
 			success : function(data) {
 				
 				if (data.result == "pwdERROR") {
-					$(".alertblock").html();
+					$(".alertblock").html('');
 					$("#currentpwdblock").html("비밀번호가 다릅니다.").css("color", "red");
+					$("#currentpwd").focus();
 				} else if(data.result == "updatefail"){
 					alert("비밀번호 변경을 실패했습니다.");
 				} else if(data.result == "success"){
