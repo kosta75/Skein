@@ -315,7 +315,7 @@ $(document).ready(function(){
 	
 	
 	var boardSeq = 0;
-	
+	var fullname =$(".replyWrite").data("fullname");
 	// modal- 기능 구현
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
@@ -341,7 +341,7 @@ $(document).ready(function(){
 							+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
 							+ data.detailView[0].fullname + "<br>"
 							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
-
+						
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
 					
@@ -364,7 +364,7 @@ $(document).ready(function(){
 								/*alert(data.replylist[j].replyContent);	
 								*/
 								
-			$(".replyList").append("<div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
+			$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[j].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
 							}
 						
 						
@@ -570,7 +570,7 @@ $(document).ready(function(){
 							
 							
 							
-							$(".replyList").append("<div class='replymodalList modal-bubble' >"+data.replylist[j].replyContent+"</div>");
+							$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[j].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
 											
 						}
 					
@@ -617,7 +617,7 @@ $(document).ready(function(){
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-				$(".replyList").append("<div class='replymodalList modal-bubble'>"+replyContent+"</div>");
+				$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+fullname+"</div><div class='replymodalList modal-bubble'>"+replyContent+"</div>");
 				
 				
 				},
@@ -641,16 +641,31 @@ $(document).ready(function(){
 		 //var reply = $(".group-item-reply-secition ul");
 		 var reply = $(this).parent().siblings().next().next().next().find("ul");
 		 console.log(reply);
-			
+		 $(this).val('');
 		$.ajax({
 			type : 'post',
 			url : 'reply/insert',
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent ,
 			success : function(data) {
-				reply.append("<li><div class='group-item-reply-container'>" +
+				reply.append(
+
+						"<li><div class='group-item-reply-container'>"
+						+"<div class='group-item-reply-info-container'>"
+						+"<div class='group-item-reply-profile-image'>"
+						+"<a href='${pageContext.request.contextPath}/'>"	
+					    +"<img src='${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png' alt='"+fullname+"' title='"+fullname+"' />"
+					    +"<span>"+fullname+"</span></a>"
+						+"</div>"
+						+"<div>"+fullname+"</div>"
+						+"</div>"	
+						+"<div class='group-item-reply-content-container bubble'>"
+						+replyContent+"</div>"
+						+"</div>"	
+					
 						
-						"<div class='group-item-reply-content-container bubble'>"+replyContent+"</div></div></li>");	
+				
+				);	
 				
 			},
 			error : function() {

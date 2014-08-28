@@ -72,7 +72,7 @@
 
 						<div id="reply" style="clear: both; background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
 							<div style="float: left; padding: 5px; padding-left: 10px;">
-								<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="width: 40px; height: 40px;">
+								<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg" style="border-radius:100px;width: 40px; height: 40px;">
 							</div>
 							<div class="replyWriteForm" style="float: left; padding-top: 10px;">
 								<input class="modalreplyWrite" type="text" 	style="width: 310px; height: 20px;">
@@ -291,7 +291,7 @@
 							<div class="image-icon reply-icon">댓글</div>
 							<input type="hidden" id="boardSeq" name="boardSeq"
 								value="${groupItem.boardSeq}" /> <input type="text"
-								id="boardSeq" class="replyWrite" name="replyWrite" />
+								id="boardSeq" class="replyWrite" name="replyWrite" data-fullname="${sessionScope.BASE_MEMBER_INFO.fullName }" />
 						</div>
 
 						<div class="group-item-reply-section">
@@ -305,6 +305,7 @@
 														src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a>
 												</div>
+												<div>${replyItem.fullName}</div>
 											</div>
 											<div class="group-item-reply-content-container bubble">
 												${replyItem.replyContent}</div>
