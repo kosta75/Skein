@@ -430,12 +430,12 @@ $(document).ready(function(){
 	
 	//수정이모티콘 추가
 	$(document).on("click",".edit-emoticon-icon",function(){		
-		$(this).parent().siblings().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
+		$(this).parent().siblings().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
 	});
 	
 	//모달 수정 이모티콘 추가
 	$(document).on("click",".modal-edit-emoticon",function(){
-		$(this).parent().siblings().first().children().first().append("<img class='.emoticonImg' src="+$(this).attr("src")+">");
+		$(this).parent().siblings().first().children().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
 	});
 	
 	//모달 댓글 리스트 출력
@@ -521,7 +521,7 @@ $(document).ready(function(){
 			var replyContent = $(this).val();
 		
 			//var reply = $(".group-item-reply-secition ul");
-			var reply = $(this).parent().siblings().eq(1).find("ul");
+			var reply = $(this).parent().siblings().next().next().next().find("ul");
 			console.log(reply);
 			
 			$.ajax({
