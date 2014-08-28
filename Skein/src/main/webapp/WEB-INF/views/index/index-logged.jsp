@@ -9,7 +9,7 @@
 <fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
 
 <se:authentication property="name" var="LoginUser" />
-<section class="content-container">
+<section class="content-container" >
 	<div id="modal-background"></div>
 	<div id="modal-content">
 		<div id="modal-content-view" class="modal-content-view">
@@ -114,7 +114,7 @@
 
 	<div class="main-content-wrapper">
 		<!-- 메인 화면 가운데 부분 -->
-		<div class="content-center-wrapper">
+		<div class="content-center-wrapper" >
 			<div id="boardListTimelineContainer"></div>
 			<div id="writeTabs">
 				<ul>
