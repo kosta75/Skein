@@ -103,8 +103,8 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 					<c:when test="${notificationList.notificationCode == 2 }">
 						
 						
-						<div style="clear:both;float: right; margin-right: 10px;"class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-friendemail="${notificationList.friendEmail}">
-						<input type="button" value="수락">
+						<div style="clear:both;float: right; margin-right: 10px;">
+						<input class="friendship-approved" data-notificationseq="${notificationList.notificationSeq}" data-uri="${notificationList.personalURI}" type="button" value="수락">
 						<input type="button" value="거절">
 						</div>
 					</c:when>

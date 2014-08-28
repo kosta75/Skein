@@ -50,7 +50,7 @@
 	<!--6. 사용자 게시물 상세 조회  -->
 	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">
 		select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
-		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq}
+		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.groupseq = #{groupSeq} ORDER BY b.groupSeq DESC, b.boardSeq DESC
 	</select>
 	
 	
@@ -145,7 +145,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 	
 	<select id="detailViewBoardSeq" resultType="kr.co.skein.model.vo.BoardDetailView">
 		select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq
-		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.BOARDSEQ = #{boardSeq} ORDER BY GroupSeq DESC, boardSeq DESC
+		from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email where  b.BOARDSEQ = #{boardSeq}
 	</select>
 	
 	

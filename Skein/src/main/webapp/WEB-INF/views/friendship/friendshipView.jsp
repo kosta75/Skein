@@ -14,7 +14,7 @@
 				<div class="friend-item-info-container">
 					<div class="friend-info-wrapper">
 						<div>
-							<p><a href="${pageContext.request.contextPath}/${list.personaluri}">${friendshipList.fullname}</a></p>
+							<p><a href="${pageContext.request.contextPath}/${friendshipList.personaluri}">${friendshipList.fullname}</a></p>
 						</div>
 						
 						<c:if test="${friendshipList.publicEmail != null}">

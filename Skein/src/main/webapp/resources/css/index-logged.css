@@ -18,7 +18,7 @@
 #writeTabs{margin-bottom:10px;}
 #writeTabs ul{margin:0px;}
 #historyWriteForm{position:relative;}
-#writeTextarea{padding:5px;border:1px solid #dcdcdc;font-size:12px;height:140px;}
+#writeTextarea{padding:5px;border:1px solid #dcdcdc;font-size:12px;height:140px;overflow-y:scroll;}
 #dropzone{height:150px;position:relative;}
 #dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
 #dropzone .placeholder{position:absolute;color:#aaa;left:5px;top:5px;font-size:12px;}
@@ -62,7 +62,7 @@
 .group-item-write-date{font-family:'맑은 고딕';font-size:12px;}
 
 /* 게시물의 내용 */
-.group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;}
+.group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;overflow-y:scroll;overflow:hidden;word-wrap:break-word;}
 
 
 /* 게시물 댓글 */

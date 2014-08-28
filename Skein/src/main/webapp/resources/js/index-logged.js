@@ -392,6 +392,7 @@ $(document).ready(function(){
 			 $("#modal-EditTextarea").empty();
 			 $("#modaleditcontent").val('');
 			 $("#modalemoticon").css("display","none");
+			 $(".modalcontent").empty();
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	

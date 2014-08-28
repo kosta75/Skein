@@ -7,7 +7,7 @@ $(document).ready(function() {
 			alert("이름을 입력해주세요");
 		}else if($("#helpPwdBirthday").val() == ""){ 
 			alert("생년월일을 입력해주세요");
-		}else if($("#helpPwdBirthday").val().length > 8 ){ 
+		}else if($("#helpPwdBirthday").val().length > 10 ){ 
 			alert("날짜형식이 잘못되었습니다. ex) 1991-01-05");
 		}else{
 			$("#helpPwd").submit();
@@ -18,7 +18,7 @@ $(document).ready(function() {
 			alert("이름을 입력해주세요");
 		}else if($("#helpIdBirthday").val() == ""){ 
 			alert("생년월일을 입력해주세요");
-		}else if($("#helpPwdBirthday").val().length > 8 ){ 
+		}else if($("#helpIdBirthday").val().length > 10 ){ 
 			alert("날짜형식이 잘못되었습니다. ex) 1991-01-05");
 		}else{
 			$("#helpId").submit();
