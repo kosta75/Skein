@@ -9,7 +9,7 @@
 <fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
 
 <se:authentication property="name" var="LoginUser" />
-<section class="content-container">
+<section class="content-container" >
 	<div id="modal-background"></div>
 	<div id="modal-content">
 		<div id="modal-content-view" class="modal-content-view">
@@ -114,7 +114,7 @@
 
 	<div class="main-content-wrapper">
 		<!-- 메인 화면 가운데 부분 -->
-		<div class="content-center-wrapper">
+		<div class="content-center-wrapper" >
 			<div id="boardListTimelineContainer"></div>
 			<div id="writeTabs">
 				<ul>
@@ -286,8 +286,8 @@
 								<div>${groupItem.content}</div>
 							</div>
 						</div>
-
-						<div class="group-item-reply-write-form-container">
+				
+					<div class="group-item-reply-write-form-container">
 							<div class="image-icon reply-icon">댓글</div>
 							<input type="hidden" id="boardSeq" name="boardSeq"
 								value="${groupItem.boardSeq}" /> <input type="text"
@@ -311,9 +311,18 @@
 												${replyItem.replyContent}</div>
 										</div>
 									</li>
+									
+									
 								</c:forEach>
+								<li>
+								<c:if test="${groupItem.replyCount >5}">
+										<div class="reply-more-btn" data-boardSeq="${groupItem.boardSeq}">${groupItem.replyCount -5 }개의 댓글이 더 존재 합니다</div>
+									
+									</c:if>
+									</li>
 							</ul>
 						</div>
+							
 					</div>
 				</c:forEach>
 			</div>

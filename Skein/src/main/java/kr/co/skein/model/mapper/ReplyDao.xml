@@ -13,6 +13,11 @@
 	
 	
 	<select id="selectReply" resultType="kr.co.skein.model.vo.Reply">
-		SELECT r.replyseq,r.boardseq,r.email,r.replycontent,m.fullname FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{boardSeq} ORDER BY r.replySeq asc
+			 SELECT * FROM (
+     SELECT ROWNUM r  ,s.* from(SELECT r.replyseq,r.boardseq,r.email,r.replycontent,m.fullname FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{param1} ORDER BY r.replySeq desc)s 
+     ) WHERE r BETWEEN #{param2} AND #{param3}
+	</select>
+	<select id="countReply" resultType="Integer">
+		SELECT COUNT( * )-#{param1} FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{param2}
 	</select>
 </mapper>

@@ -10,6 +10,13 @@ public class BoardGroup {
 	b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
 	h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
 	me.FILENAME, me.FILESIZE, me.EXTENSION*/
+	private int replyCount;
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 	private int rownum; 
 	public int getRownum() {
 		return rownum;

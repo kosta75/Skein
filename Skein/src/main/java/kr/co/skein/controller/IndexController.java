@@ -51,7 +51,9 @@ public class IndexController {
 				//페이징 처리를 위한 기본 값
 				int startNum = 1;
 				int endNum = 2;
-				
+				int replyStartNum=1;
+				int replyEndNum=5;
+				int replyCountNum =0;
 				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 				
 				//그룹별로 글을 조회하되 각 그룹의 가장 최신글 1개만 그룹으로 조회한다.
@@ -60,7 +62,10 @@ public class IndexController {
 			    //답글은 각각의 글의 답글을 조회해서 리스트로 담아준다.
 				ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 				for(int i=0;i<listSource.size();i++){
-					listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+					listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
+					listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
+					
+					System.out.println(listSource.get(i).getBoardSeq());
 				}
 				
 				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
@@ -81,13 +86,17 @@ public class IndexController {
 			
             int startNum = pictureCount+1;
             int endNum = startNum+1;
-            
+            int replyStartNum=1;
+			int replyEndNum=5;
+			int replyCountNum =0;
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 			List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(baseMemberInfo.getEmail(),startNum,endNum);
 		    
 			ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 			for(int i=0;i<listSource.size();i++){
-				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
+				listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
+				
 			}
 
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 더보기 조회 결과, groupListSize=" + listSource.size());		
