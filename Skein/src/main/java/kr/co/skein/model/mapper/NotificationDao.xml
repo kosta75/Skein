@@ -143,4 +143,10 @@ SELECT n.NotificationSeq, n.Email, m.personalURI, n.IsRead, n.CreateDate, n.Noti
 		DELETE FROM Notifications WHERE NotificationSeq = #{param1}
 	</delete>
 	
+	<update id="allNotificationRead" parameterType="String">
+		UPDATE Notifications
+		SET isRead = 1
+		WHERE email = {#email}
+	</update>
+	
 </mapper>

@@ -44,4 +44,7 @@ public interface NotificationDao {
 	//사용자 알림 삭제
 	public int deleteNotification(int notificationSeq) throws ClassNotFoundException, SQLException;
 	
+	//모든 알림 읽음
+	public int allNotificationRead(String email) throws ClassNotFoundException, SQLException;
+	
 }

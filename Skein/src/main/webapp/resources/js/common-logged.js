@@ -69,6 +69,18 @@ $(document).ready(function() {
 	//알림 목록 읽기
 	readNotificationList();
 	
+	$(".confirm-btn").on('click', function(){
+		var contextURI = contextPath + rootPath + "/notification/notificationAllRead";
+		$.ajax({
+			type : 'post',
+			url : contextURI,
+			success : function(){
+				location.reload();
+			}
+			
+		});
+	});
+	
 	///////////////색깔변경////////////////
 	var color = $(".header-container").css("background-color");
 	var colorBarClicked = false;

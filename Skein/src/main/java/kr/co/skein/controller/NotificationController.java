@@ -76,6 +76,17 @@ public class NotificationController {
 		return jsonView;
 	}
 	
+	//알림 모두 읽음
+	@RequestMapping(value="/notificationAllRead", method=RequestMethod.POST)
+	public View setAllRead(Model model, HttpSession session) throws ClassNotFoundException, SQLException{
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+			notificationDao.allNotificationRead(baseMemberInfo.getEmail());
+		}
+		return jsonView;
+	}
+	
 		
 	//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)

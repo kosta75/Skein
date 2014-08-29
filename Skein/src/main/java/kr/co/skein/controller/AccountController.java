@@ -245,7 +245,7 @@ public class AccountController {
 		String from = "univcss@gmail.com";
 		String to = member.getEmail();
 		String subject = "Sil - 임시 비밀번호 발급!";
-		String formUrl = "tempPassword.jsp";
+		String formUrl = "tempPassword.html";
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("password", password);
 		map.put("member", member);
