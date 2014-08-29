@@ -21,7 +21,7 @@
 .user-profile-info-container{float:left;width:150px;height:inherit;}
 .user-profile-info-container div{float:left;}
 .user-profile-image{margin-top:7px;margin-right:10px;}
-.user-profile-image img{width:40px;height:40px;border-radius:100px;background:#fff;}
+.user-profile-image img{width:40px;height:40px;border-radius:100px;background:#fff;margin-left:-35px;}
 .user-profile-uri{height:inherit;line-height:55px;}
 .user-profile-uri a{font-family:arial;font-size:15px;font-weight:bold;}
 
@@ -74,9 +74,16 @@ ul.arrowunderline li:hover {background: #f6f7f8;'}
 
 /* --------------------------- 로그인 됐을 때 사용자 정보 섹션에 적용되는 CSS --------------------------- */
 /* 왼쪽 사용자 정보 */
-#subUserProfileContainer{width:180px;position:absolute;left:0px;z-index:10}
+#subUserProfileContainer{
+	width: 180px;
+	position: absolute;
+	left: 0px;
+	z-index: 10;
+	top: 75px;
+}
+
 .sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
-.sub-user-profile-wrapper{height:180px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
+.sub-user-profile-wrapper{height:140px;background:#fff;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
 .sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
 .sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;background:#fff;}
 .sub-user-profile-name{margin-left:100px;padding:12px 0px;font-size:14px;}

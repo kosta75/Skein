@@ -9,7 +9,14 @@
 <fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
 
 <se:authentication property="name" var="LoginUser" />
-<section class="content-container" >
+
+<section class="content-container">
+
+<!-- SCM Music Player http://scmplayer.net -->
+<script type="text/javascript" src="http://scmplayer.net/script.js" 
+data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'shuffle':false,'repeat':1,'placement':'t','showplaylist':false,'playlist':[{'title':'%uADF8 %uC911%uC5D0 %uADF8%uB300%uB97C %uB9CC%uB098- %uC774%uC120%uD76C','url':'http://www.youtube.com/watch?v=IAyMtl9FRHI'},{'title':'%uB108%uB97C %uC0AC%uB791%uD574 - %uC724%uBBF8%uB798','url':'http://www.youtube.com/watch?v=CxiWHe-waAM'}]}" ></script>
+<!-- SCM Music Player script end -->
+
 	<div id="modal-background"></div>
 	<div id="modal-content">
 		<div id="modal-content-view" class="modal-content-view">
