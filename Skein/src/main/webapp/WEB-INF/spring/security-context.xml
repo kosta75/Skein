@@ -22,7 +22,7 @@
 			(invalid-session-url​이 있을경우 invalid-session-url​로 이동)) -->
 			<!-- 만약 두번째 인증을 거부하게 하고 싶은 경우 
 				concurrency-control에​ error-if-maximum-exceeded="true"속성을 지정 -->
-			<security:concurrency-control max-sessions="1" expired-url="/joinus/login?error=expired" />
+			<security:concurrency-control max-sessions="1" expired-url="/?error=copyid" />
 		</security:session-management>
 			
 		

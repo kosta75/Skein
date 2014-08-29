@@ -147,7 +147,8 @@
 							</div>
 							<!--위치정보  -->
 							<div id="historymap" style="display: none;">
-								<input type="text" id="historyplace" name="historyplace">
+							<div id="historyplace" contenteditable="true"></div>
+								<input type="hidden" id="historyhiddenplace" name="historyhiddenplace">
 							</div>
 							<!--이모티콘  -->
 							<div id="historyemoticon">

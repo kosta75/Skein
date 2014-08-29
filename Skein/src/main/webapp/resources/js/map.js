@@ -130,7 +130,7 @@ function weatherAjax(latitude,longitude){
 			
 			var location = parsed_json.location;
 			//var location_s; = "<p>국가명:  "+ location.country_name+ "</p>";
-			var location_s = "<p>도시명:  "+ location.city+"</p>";
+			var location_s = "<p id='city'>도시명:  "+ location.city+"</p>";
 			$("#locationinfo").append(location_s);
 			
 		

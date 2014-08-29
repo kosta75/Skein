@@ -18,7 +18,7 @@
 #writeTabs{margin-bottom:10px;}
 #writeTabs ul{margin:0px;}
 #historyWriteForm{position:relative;}
-#writeTextarea{padding:5px;border:1px solid #dcdcdc;font-size:12px;height:140px;overflow-y:scroll;}
+#writeTextarea{padding:5px;border:1px solid #dcdcdc;font-size:12px;height:140px;overflow-y:auto;}
 #dropzone{height:150px;position:relative;}
 #dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
 #dropzone .placeholder{position:absolute;color:#aaa;left:5px;top:5px;font-size:12px;}

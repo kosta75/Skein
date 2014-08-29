@@ -119,7 +119,7 @@ ERROR_CODE
 	<c:when test="${LOGIN_ERROR_CODE == 53}">
 		<div class="full_wrap">
 			<div class="help_subject_container">
-				<b>로그인 실패</b>
+				<b>인증 필요</b>
 			</div>
 			<div class="help_container">
 				<div class="fail_login">
@@ -141,6 +141,26 @@ ERROR_CODE
 		<p>계정인증코드를 받지 못하셨으면 링크를 클릭하여 인증 메일을 다시 보내실 수 있습니다.<a href="${pageContext.request.contextPath}/${personalURI}/account/certification/mailsend">인증메일</a></p>
 		${param.email} <br />
 		${personalURI} --%>
+	</c:when>
+	<c:when test="${LOGIN_ERROR_CODE == 700}">
+		<div class="full_wrap">
+			<div class="help_subject_container">
+				<b>로그인 실패</b>
+			</div>
+			<div class="help_container">
+				<div class="fail_login">
+					<div class="help_fail">동일 아이디 접속</div>
+					<div>
+						<p>다른 IP에서 접속하였습니다. </p>
+						<p>보안이 의심되면 비밀번호를 변경하세요.</p>
+					</div>
+				</div>
+				<!-- <div id="buttons">
+					<strong class="reg_link"><a href="#">Sil에 가입하기</a></strong>
+					<a href="#"  class="reset_link">로그인	정보를 잊으셨나요?</a>
+				</div> -->
+			</div>
+		</div>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>

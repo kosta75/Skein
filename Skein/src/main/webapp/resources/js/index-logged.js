@@ -466,9 +466,21 @@ $(document).ready(function(){
 		$("#historyDate").css("display","none");
 		$("#historymap").css("display","block");
 		$("#historyemoticon").css("display","none");
-		
+		if(	$("#historyplace").text($("#city").text()) ==null || 	$("#historyplace").text($("#city").text()) ==''){
+			
+			$("#historyplace").text($("#city").text());
+			$("#historyhiddenplace").val($("#historyplace").text($("#city").text()));
+	
+			
+		}
 		}
 		});
+		//input 선택시 도시명 삭제 
+		$("#historyplace").click(function(){
+			$("#historyplace").text('');
+		});
+		
+	
 
 	
 	
@@ -1014,39 +1026,43 @@ function lastPostFunc(pictureCount){
 	 
  });
  
- 
- $(".edit-Btn").click(function(){
-
+ $(document).on("click",".edit-Btn",function(){
 	 
- $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
- var editContent =  $(this).parent().siblings().first().next().val();
- var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
+	 $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
+	 var editContent =  $(this).parent().siblings().first().next().val();
+	 var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
 
- boardSeq
- $.ajax({
-	type : 'post',
-	url : 'board/editBoard',
-	cache : false,
-	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
-	success : function(data) {
-	
-		if(data.result >= 1){
+	 boardSeq
+	 $.ajax({
+		type : 'post',
+		url : 'board/editBoard',
+		cache : false,
+		data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+		success : function(data) {
+		
+			if(data.result >= 1){
+				
+				alert("수정완료");
+				location.reload();
+			}
 			
-			alert("수정완료");
-			location.reload();
+			
+		},
+		error : function() {
+			alert('indexlogged : Error while request..');
 		}
-		
-		
-	},
-	error : function() {
-		alert('indexlogged : Error while request..');
-	}
-});
-	
-	
-	 
 	});
- 
+		
+			 
+	 
+	 
+	 
+	 
+ });
+
+
+	 
+	
  
  
  
@@ -1115,6 +1131,8 @@ function lastPostFunc(pictureCount){
 //submit
 	$("#hitstoryWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
+		$("#historyhiddenplace").val($("#historyplace").text());
+		alert($("#historyhiddenplace").val());
 		$("#hitstoryForm").submit();
 	});
 	
