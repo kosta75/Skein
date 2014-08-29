@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	var contextPath = "//192.168.7.127:8080";
+	var contextPath = "//localhost:8080";
 	var rootPath = "/skein";
 	
 	//알림 목록 읽기

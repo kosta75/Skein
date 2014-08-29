@@ -119,11 +119,11 @@ function weatherAjax(latitude,longitude){
 			var observ = parsed_json.current_observation;
 			
 			
-			var weather_s = "<div><p><img  src='"+observ.icon_url+"'/></p></div>";
+			var weather_s = "<div align='center'><p><img  src='"+observ.icon_url+"'/></p></div>";
 			
 			weather_s += "<p>날씨 :        "+ observ.weather + "</p>";
 			weather_s += "<p>온도 :        "+ observ.temp_c + "ºC</p>";
-			weather_s += "<p>아이콘 : " + observ.icon+ "</p>";
+			//weather_s += "<p>아이콘 : " + observ.icon+ "</p>";
 			weather_s += "<p id='updateDate'>"+observ.observation_time+ "</p>";
 			
 			$("#locationinfo").append(weather_s);		
@@ -183,14 +183,17 @@ cloudy
 			alert('에러 :error while request..'	);
 		}
 	});
+	
 }
+//구글 맵 보여주는 코드
+/*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false">
+</script> 
+<script type="text/javascript"> 
+function mapInit(latitude, longitude) { var opt = {
+	zoom : 15, center : new google.maps.LatLng(latitude, longitude), mapTypeId :
+	google.maps.MapTypeId.ROADMAP }; var map = new google.maps.Map(
+	document.getElementById('map_canvas'), opt); };*/
+	
 
-	// 구글 맵 보여주는 코드
-/*
-  <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> <script
-  type="text/javascript"> function mapInit(latitude, longitude) { var opt = {
-  zoom : 15, center : new google.maps.LatLng(latitude, longitude), mapTypeId :
-  google.maps.MapTypeId.ROADMAP }; var map = new google.maps.Map(
-  document.getElementById('map_canvas'), opt); };
- */		
+	
+ 	
