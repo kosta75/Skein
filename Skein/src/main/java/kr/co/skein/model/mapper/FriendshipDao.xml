@@ -33,7 +33,7 @@
     
     <!-- 친구 여부 확인 -->
     <select id="isFriend" parameterType="String" resultType="Integer">
-    	SELECT COUNT(*) FROM Friendship WHERE email=#{param1} AND friendEmail=#{param2}
+    	SELECT COUNT(*) FROM Friendship WHERE (email=#{param1} AND friendEmail=#{param2}) OR (email=#{param2} AND friendEmail=#{param1})
     </select>
     
 	

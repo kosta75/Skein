@@ -114,7 +114,17 @@ public class JoinusController {
 				profileCommand.setProfileInfo(sdf.format(member.getBirthday()));
 				
 				profileDao.insertProfile(profileCommand);
-				emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "신규 계정 인증 메일!", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+				
+				String from = "univcss@gmail.com";
+				String to = member.getEmail();
+				String subject = "Sil - 신규 계정 인증 메일!";
+				String formUrl = "newMemberCertification.jsp";
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("certificationText", member.getCertificationText());
+				map.put("certificationURL", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+				
+				emailSender.SendEmail(from, to, subject, map, formUrl);
+				
 			}else{
 				System.out.println("INFO : Skein-U004 - 신규계정등록에 실패하였습니다.");
 			}
@@ -135,7 +145,19 @@ public class JoinusController {
 				int result = memberDao.updateMemberAccount(member);
 				if(result > 0){
 					System.out.println("INFO : Skein-U005 - 계정 재등록에 성공하였습니다.");
-					emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
+					
+					
+					String from = "univcss@gmail.com";
+					String to = member.getEmail();
+					String subject = "Sil - 재등록 인증 메일!";
+					String formUrl = "newMemberCertification.jsp";
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("certificationText", member.getCertificationText());
+					map.put("certificationURL", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
+					
+					emailSender.SendEmail(from, to, subject, map, formUrl);
+					
+					//emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 				}else{
 					System.out.println("INFO : Skein-U006 - 계정 재등록에 실패하였습니다.");
 				}

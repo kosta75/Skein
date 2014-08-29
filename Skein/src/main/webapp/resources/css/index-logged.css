@@ -287,7 +287,8 @@ outline:  1px silver dashed;
 	
 }
 .detailContent{
-	max-height: 150px;
+	max-height:150px;
+	height:150px;
 	overflow-y:auto; 
 	
 }

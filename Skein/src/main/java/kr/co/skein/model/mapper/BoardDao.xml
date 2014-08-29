@@ -212,7 +212,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 							<choose>
 								<when test="isFriend != null">
 									<choose>
-										<when test="isFriend = true">
+										<when test="isFriend == 'true'">
 											AND publicLevelCode IN (2, 3, 4, 5)
 										</when>
 										<otherwise>

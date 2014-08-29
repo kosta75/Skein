@@ -98,22 +98,27 @@ birthdayPublic
 								   </div>
 								</div>
 								<div class="inform_edit profileImage">
-									<input type="hidden" name="profileImage" value="2">
+									
 									<!-- 이미지 -->
 									<div id="profileImageUp" class="offset2 arrow_box">
 									</div>
 									<!-- 프로필사진dropzone -->
 									<form id="profileImageForm" method="post" enctype="multipart/form-data">
+										<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email}" />
+										<input type="hidden" name="profileCode" value="2" />
+										
 										<div class="dropzone profileImage">
+											<div id="file-list"></div>
 											<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
 										</div>
-									</form>
-									<select name="publicLevelCode">
+										<select name="publicLevelCode">
 										<option value="5">전체공개</option>
 										<option value="4">Sil사용자공개</option>
 										<option value="3">친구공개</option>
 										<option value="1">나만보기</option>
 									</select>
+									</form>
+									
 									<input type="button" value="저장" class="profile_editBtn profileImage">
 									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
 									<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
@@ -438,6 +443,6 @@ birthdayPublic
 
 	
 </section>
-<script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/profile-my.js"></script>

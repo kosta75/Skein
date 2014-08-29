@@ -162,13 +162,33 @@ $(document).ready(function() {
 	
 	//프로필사진 설정 Start //////////////////////////////////////////////////////////////////////////
 
-	$(".dropzone.profileImage").fileReaderJS(opts);
-	$("body").fileClipboard(opts);
+	//프로필 이미지 수정
+	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
+	var filelist = document.getElementById("file-list");
+	//var multiFiles = new Array();
+	var multiFiles;
+
+	function groupTemplate(groupID, files) {
+		var html = [];
+		multiFiles = new Array();
+
+		var file = files[0];
+		multiFiles.push(file);
+		var id = "group_" + groupID + "_file_" + file.extra.fileID;
+		html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"	+ groupID + "' class='image-item'><div class='delete-button'></div></div>");
+		console.log("프로필 사진을 하나만 등록 할 수 있다!");
+		return html.join('');
+	}
+
 	var opts = {
 		on : {
 			load : function(e, file) {
-				var fileDiv = $("#profileImageUp")
+				var fileDiv = $("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)
+				fileDiv.addClass("done");
+				console.log("start");
 
+				var ms = file.extra.ended - file.extra.started;
+				//fileDiv.find(".time-to-load").text(ms);
 				if (file.type.match(/image/)) {
 					// Create a thumbnail and add it to the output if it is an image
 					console.log("이미지 업로드 했음");
@@ -183,11 +203,75 @@ $(document).ready(function() {
 				}
 			},
 			error : function(e, file) {
-				alert("파일올려줘");
+				$("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)	.addClass("error");
+			},
+			groupstart : function(group) {
+				$(filelist).empty();
+				$(filelist).append(groupTemplate(group.groupID,group.files));
+
+			},
+			groupend : function(group) {
+				console.log("groupEnd");
+				/*$("#group_" + group.groupID).append(	"<div style='display:none;'>(Time to load: "	+ (group.ended - group.started)	+ "ms)</div>");*/
+				console.log(multiFiles);
 			}
 		}
 	};
-	$(".profile_editBtn.profileImage") .click(	function(event) {
+
+	$(".dropzone").fileReaderJS(opts);
+	$(".profile_editBtn").on('click', function(){
+		$("#profileImageForm").submit();
+	});
+
+	$("#profileImageForm").submit(function(event){
+		event.preventDefault();
+		console.log("INFO : Skein-T543 - HistoryForm Submit 처리");
+		var data = new FormData();
+		
+		//사용자가 올린 파일을 FormData에 등록한다.
+		$.each(multiFiles, function(count, file) {
+			console.log(count);
+			data.append("files[" + count + "]", file);
+		});
+		
+		console.log("INFO : Skein-T543 - Serialize된 Form Data");
+		
+		//Form Data를 serialize 한다.
+		var historyForm = $(this).serializeArray();
+		$.each(historyForm, function(i, field) {
+			console.log("[name : " + field.name	+ ", value : "	+ field.value + "]");
+			data.append(field.name, field.value);
+		});
+		
+		$.ajax({
+			url : 'profile/update',
+			type : "post",
+			dataType : "JSON",
+			data : data,
+			// cache: false,
+			processData : false,
+			contentType : false,
+			success : function(data, textStatus, jqXHR) {
+				var msg = data.result;
+
+				if (data.result == 'success') {
+					location.reload();
+				} else if (data.result == 'not file') {
+					alert("이미지 업로드 안했음요");
+					location.reload();
+				}
+			},
+			error : function(jqXHR,
+					textStatus,
+					errorThrown) {
+
+			}
+		});
+		return false;
+	});
+	//파일업로드 설정 End //////////////////////////////////////////////////////////////////////////
+	
+	/*$(".profile_editBtn.profileImage") .click(	function(event) {
 		event.preventDefault();
 		var file =  document.getElementById("profileImageUp");
 		var email = $("input:hidden[name=email]").val();
@@ -198,9 +282,6 @@ $(document).ready(function() {
 			url : 'profile/',
 			type : "post",
 			data : data,
-			/*// cache: false,
-			processData : false,
-			contentType : false,*/
 			success : function(data) {
 				alert("정보가 수정되었습니다!");
 				var profileName = $("input:hidden[value=2]").attr("name");
@@ -213,7 +294,7 @@ $(document).ready(function() {
 			}
 		});
 		return false;
-	});
+	});*/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////프로필사진 업데이트 ㅡㅡ하 
 	
 	
@@ -237,6 +318,10 @@ function publicBtn(publicbtn){
 	}else if(publicCode == 5){
 		publicbtn.parent().find("a.publicbtn.public").addClass("checked");
 	}
+	
+	
+	
+	
 	
 
 }

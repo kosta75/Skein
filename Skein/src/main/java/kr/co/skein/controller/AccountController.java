@@ -241,8 +241,17 @@ public class AccountController {
 		}
 		String password = buffer.toString();
 		
-		emailSender.SendEmail("univcss@gmail.com", member.getEmail(),
-				"[Sil] 임시 비밀번호!", password + "<br>비밀번호를 바로 변경하시기 바랍니다.");
+		
+		String from = "univcss@gmail.com";
+		String to = member.getEmail();
+		String subject = "Sil - 임시 비밀번호 발급!";
+		String formUrl = "tempPassword.jsp";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("password", password);
+		map.put("member", member);
+		
+		emailSender.SendEmail(from, to, subject, map, formUrl);
+				
 		member.setPassword(new PasswordEncryptor().getEncryptSource(password));
 
 		int result = accountDao.updateAccountPassword(member);

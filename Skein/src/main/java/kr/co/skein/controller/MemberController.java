@@ -79,7 +79,7 @@ public class MemberController {
 						param.put("email", email);
 						param.put("personalURI", personalURI);
 						
-						if(isFriend > 0){
+						if(isFriend > 1){
 							param.put("isFriend", "true");
 						}else{
 							param.put("isFriend", "false");

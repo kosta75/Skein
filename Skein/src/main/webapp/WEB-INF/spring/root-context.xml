@@ -81,6 +81,11 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- velocity 빈 환경설정 -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    	<property name="resourceLoaderPath" value="WEB-INF/views/emailTemplate" />
+ 	</bean>
 	<!-- SMTP 메일 Sender 설정 End -->
 	
 	<!-- 기타 공통 사항 설정 Start -->

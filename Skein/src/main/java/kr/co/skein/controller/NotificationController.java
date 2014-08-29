@@ -184,7 +184,7 @@ public class NotificationController {
 		return jsonView;
 	}
 	
-	////알림 정렬 하기 
+	//알림 정렬 하기 
 	@RequestMapping(value = "/listsort", method=RequestMethod.GET)
 	public String viewNotificationListSort(@RequestParam("alramSeq") String alramSeq, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		

@@ -53,6 +53,8 @@ public class IndexController {
 				int endNum = 2;
 				
 				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+				
+				//그룹별로 글을 조회하되 각 그룹의 가장 최신글 1개만 그룹으로 조회한다.
 				List<BoardGroup> listSource = boardDao.getPartOfBoardGroup(baseMemberInfo.getEmail(),startNum,endNum);
 			    			
 			    //답글은 각각의 글의 답글을 조회해서 리스트로 담아준다.
@@ -62,13 +64,7 @@ public class IndexController {
 				}
 				
 				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
-				
 				model.addAttribute("groupList", listSource);
-
-				NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
-				List<NotificationCountCommand> notificationList = notificationDao.getNotifications(baseMemberInfo.getEmail());
-
-				model.addAttribute("notificationList", notificationList);
 			}
 		}
 		return "index";
