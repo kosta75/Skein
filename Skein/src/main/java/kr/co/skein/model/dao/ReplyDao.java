@@ -12,5 +12,7 @@ public interface ReplyDao {
 	public int insertReply(Reply reply) throws ClassNotFoundException, SQLException;
 	
 	//댓글 조회
-	public List<Reply> selectReply(String boardSeq) throws ClassNotFoundException, SQLException;
+	public List<Reply> selectReply(String boardSeq,int replyStartNum,int replyEndNum) throws ClassNotFoundException, SQLException;
+	//댓글 카운트
+	public int countReply(int replyCountNum,String boardSeq) throws ClassNotFoundException, SQLException;
 }

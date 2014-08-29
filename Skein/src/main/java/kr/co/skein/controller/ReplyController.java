@@ -87,24 +87,42 @@ public class ReplyController {
 	
 	//댓글 조회 
 	@RequestMapping(value="/select", method=RequestMethod.POST)
-	public View replyList(String boardSeq,Model model) throws ClassNotFoundException, SQLException{
-		System.out.println("modal reply start");
-		ReplyDao replydao =sqlSession.getMapper(ReplyDao.class);
-		System.out.println(boardSeq);
-
-		List<Reply> replylist =replydao.selectReply(boardSeq);
-		System.out.println(replylist.size());
-		for(int i =0;i<replylist.size();i++){
+	public View replyList(String boardSeq,Model model,int Count) throws ClassNotFoundException, SQLException{
+		int replyStartNum;
+		int replyEndNum;
+		if(Count >0){
+			replyStartNum =  Count+1;
+			replyEndNum = replyStartNum+5;
 			
-			System.out.println("modal ="+replylist.get(i).getFullName());
-			
+		}else{
+			replyStartNum =1;
+			replyEndNum = 5;
 		}
+		
+		ReplyDao replydao =sqlSession.getMapper(ReplyDao.class);
+		List<Reply> replylist =replydao.selectReply(boardSeq,replyStartNum,replyEndNum);
 		model.addAttribute("replylist",replylist );
 		
-		
-	
+		for(int i=0; i<replylist.size();i++){
+			
+			System.out.println(replylist.get(i).getReplyContent());
+		}
 		return jsonView;
 	}
 	
+	
+	
+	
+	
+	@RequestMapping(value="/replyCountSelect", method=RequestMethod.POST)
+	public View replyList(int Count,String boardSeq,Model model) throws ClassNotFoundException, SQLException{
+		
+		int replyCount = Count+5;
+		ReplyDao replydao =sqlSession.getMapper(ReplyDao.class);
+		int count = replydao.countReply(replyCount, boardSeq);
+		model.addAttribute("count",count );
+	
+		return jsonView;
+	}
 	
 }

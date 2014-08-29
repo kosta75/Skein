@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:forEach var="groupItem" items="${groupList}">
+				<c:forEach var="groupItem" items="${groupList}">
 					<div class="group-item-container">
 						<div class="editDiv" style="margin: auto; display: none;">
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
@@ -80,12 +80,12 @@
 								<div>${groupItem.content}</div>
 							</div>
 						</div>
-
-						<div class="group-item-reply-write-form-container">
+				
+					<div class="group-item-reply-write-form-container">
 							<div class="image-icon reply-icon">댓글</div>
 							<input type="hidden" id="boardSeq" name="boardSeq"
 								value="${groupItem.boardSeq}" /> <input type="text"
-								id="boardSeq" class="replyWrite" name="replyWrite" />
+								id="boardSeq" class="replyWrite" name="replyWrite" data-fullname="${sessionScope.BASE_MEMBER_INFO.fullName }" />
 						</div>
 
 						<div class="group-item-reply-section">
@@ -105,8 +105,17 @@
 												${replyItem.replyContent}</div>
 										</div>
 									</li>
+									
+									
 								</c:forEach>
+								<li>
+								<c:if test="${groupItem.replyCount >5}">
+										<div class="reply-more-btn" data-boardSeq="${groupItem.boardSeq}">${groupItem.replyCount -5 }개의 댓글이 더 존재 합니다</div>
+									
+									</c:if>
+									</li>
 							</ul>
 						</div>
+							
 					</div>
 				</c:forEach>

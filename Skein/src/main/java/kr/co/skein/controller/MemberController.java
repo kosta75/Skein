@@ -88,8 +88,10 @@ public class MemberController {
 						List<BoardGroup> listSource = boardDao.getMemberBoardGroup(param);
 						System.out.println("INFO : Skein-R123 - 조회된 게시물, size=" + listSource.size());
 						ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
+						int replyStartNum=1;
+						int replyEndNum=5;
 						for(int i=0;i<listSource.size();i++){
-							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq()));
+							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 						}
 						
 						BaseMemberInfo publicMember = memberDao.getPublicMember(email);

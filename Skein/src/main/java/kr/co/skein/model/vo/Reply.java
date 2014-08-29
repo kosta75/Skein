@@ -1,7 +1,13 @@
 package kr.co.skein.model.vo;
 
 public class Reply extends Member {
-	
+	private int rownum;
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	private String replySeq;
 	private String boardSeq;
 	private String email;
