@@ -320,7 +320,7 @@ $(document).ready(function(){
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
 		boardSeq = $(this).data("boardseq");
-	
+		$(".modal-Edit").css("display","block");
 	    $(".modal-edit-Div").css("display","none");
 	    $(".modalcontent").css("display","block");
 		$(".modalShare").find("input").val(groupSeq);
@@ -413,7 +413,7 @@ $(document).ready(function(){
 			 $("#modal-EditTextarea").empty();
 			 $("#modaleditcontent").val('');
 			 $("#modalemoticon").css("display","none");
-			 $(".modalcontent").empty();
+			
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -584,7 +584,7 @@ $(document).ready(function(){
 					type : 'post',
 					url : 'reply/select',
 					cache : false,
-					data : 'boardSeq=' + boardSeq,
+					data : 'Count=0&boardSeq=' + boardSeq,
 					success : function(data) {
 						
 						for(var j =0;j<data.replylist.length;j++){
@@ -594,7 +594,21 @@ $(document).ready(function(){
 							$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[j].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
 											
 						}
-					
+						$.ajax({
+				  	  		   type:'post',
+				  	  	       url:"reply/replyCountSelect",
+				  	  	       data:"Count=0&boardSeq=" + boardSeq,
+				  	  	       success : function(data) {
+				  	  	    	 
+				  	  	    	   if(data.count>1){
+				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>"+data.count+"개의 댓글이 존재 합니다</div>");  
+				  	  	     	   	 
+				  	  	    	   }
+				  	  	       }, error: function(){
+				  	  	          alert('댓글 더보기 error :error while request..'   );
+				  	  	       }
+				  	  			
+				  	  		});
 					
 					},
 					error : function() {
@@ -628,7 +642,7 @@ $(document).ready(function(){
 	$(document).on('keydown',".modalreplyWrite",function(e){
 		if (e.keyCode === 13) {
 		
-			
+			replywrite = $(this);
 		 var replyContent =  $(this).val();
 		
 		if( $(this).val() != null &&  $(this).val() != ''){		
@@ -638,9 +652,9 @@ $(document).ready(function(){
 			cache : false,
 			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
 			success : function(data) {
-				$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+fullname+"</div><div class='replymodalList modal-bubble'>"+replyContent+"</div>");
+				$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+fullname+"</div><div class='replymodalList modal-bubble'>"+replyContent+"</div>");
 				
-				
+				replywrite.val('');
 				},
 			error : function() {
 				alert('indexlogged 354 : Error while request..');
@@ -650,7 +664,7 @@ $(document).ready(function(){
 		}else{
 			
 			
-			alert("댓글을 입력해 주세요");
+			
 				$(this).focus();
 		}
 });
