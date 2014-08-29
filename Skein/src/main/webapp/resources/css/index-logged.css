@@ -66,9 +66,17 @@
 
 
 /* 게시물 댓글 */
+
+
 .group-item-reply-write-form-container{clear:both;  background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}
 .group-item-reply-write-form-container input{border:1px solid #ccc;padding:4px 2px;width:80%;}
-
+.reply-more-btn{text-align: center;
+background: rgb(0, 180, 219);
+margin-top: 10px;
+height: 20px;
+padding: 10px;
+color: #fff;
+font-weight: bold;}
 .image-icon{text-indent:-10000px;background-repeat:no-repeat}
 .reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../media/image/mention1.png");background-size:55%;background-position:center}
 .reply-message{float:right;border:1px solid #ccc;width:75px;height:24px;margin-top:2px;margin-right:4px;background:#f00;}

@@ -383,7 +383,7 @@ $(document).ready(function(){
 					  	  	       success : function(data) {
 					  	  	    	 
 					  	  	    	   if(data.count>1){
-					  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>"+data.count+"개의 댓글이 존재 합니다</div>");  
+					  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
 					  	  	     	   	 
 					  	  	    	   }
 					  	  	       }, error: function(){
@@ -619,7 +619,7 @@ $(document).ready(function(){
 				  	  	       success : function(data) {
 				  	  	    	 
 				  	  	    	   if(data.count>1){
-				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>"+data.count+"개의 댓글이 존재 합니다</div>");  
+				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
 				  	  	     	   	 
 				  	  	    	   }
 				  	  	       }, error: function(){
@@ -823,7 +823,7 @@ $(document).on("click",".reply-more-btn",function(){
     	  	    	   if(data.count>1){
     	  	    		  
     	  	    		 reply.append(
-    	  	    		"<li><div class='reply-more-btn' data-boardSeq="+boardSeq+">"+data.count+"개의 댓글이 더존재 합니다</div></li>"	 
+    	  	    		"<li><div class='reply-more-btn' data-boardSeq="+boardSeq+">더보기("+data.count+")</div></li>"	 
     	  	    		 
     	  	    		 );   
     	  	    		   
@@ -875,7 +875,7 @@ $(document).on("click",".modal-reply-more-btn",function(){
   	  	       success : function(data) {
   	  	    	 
   	  	    	   if(data.count>1){
-  	  	    		  reply.append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>"+data.count+"개의 댓글이 존재 합니다</div>");  
+  	  	    		  reply.append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
   	  	     	   	 
   	  	    	   }
   	  	       }, error: function(){
@@ -928,6 +928,16 @@ function lastPostFunc(pictureCount){
      
        lastPostFunc(pictureCount); 
     }      
+ });
+ //댓글 숨김 
+ 
+ $(document).on("click",".reply-show-hide-btn",function(){
+	if( $(this).parent().siblings().next().next().next().css("display") == "none"){
+	 $(this).parent().siblings().next().next().next().show("slide", {direction : "up"});	
+	}else{
+	 $(this).parent().siblings().next().next().next().hide("slide", {direction : "up"});
+	}
+	 
  });
  
  //삭제
@@ -1089,9 +1099,12 @@ function lastPostFunc(pictureCount){
  });
 //modal 이모티콘
  $(document).on("click",".modaleditEmoticon",function(){
+	if($("#modalemoticon").css("display") == "none"){
+	 $("#modalemoticon").show("slide",{direction : "left"});
+	}else{
+		$("#modalemoticon").hide("slide",{direction : "left"});
+	}
 	
-	 $("#modalemoticon").toggle("display");
-	 
 	 
 	 
  });
