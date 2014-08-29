@@ -19,6 +19,7 @@ import kr.co.skein.util.PasswordEncryptor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,7 +130,7 @@ public class AccountController {
 							member.setIsDomranted(0);
 							member.setIsApproved(1);
 							memberDao.updateMemberAccount(member);
-							
+							memberDao.updateMemberAuthority("ROLE_USER", member.getEmail());
 							model.addAttribute("certificationResult", 2); //certificationResult : 2, 계정 휴면 해제 승인 
 							return "profile.accountSetting";
 						}else{
@@ -147,6 +148,7 @@ public class AccountController {
 						
 						model.addAttribute("certificationResult", 3); //certificationResult : 3, 계정 재등록 승인
 						model.addAttribute("member", member);
+						memberDao.updateMemberAuthority("ROLE_USER", member.getEmail());
 						return "board.restoreProcess";
 						/*member.setIsDropedOut(0);
 						member.setIsDomranted(0);
@@ -352,6 +354,7 @@ public class AccountController {
 			member.setIsDropedOut(1);
 			int result = memberDao.updateMemberAccount(member);
 			if(result == 1){
+				memberDao.updateMemberAuthority("ROLE_RESTRICTED", member.getEmail());
 				model.addAttribute("result", "success");
 			}
 		}else{
@@ -362,6 +365,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/account/modifylockout", method=RequestMethod.POST)
+	@Transactional
 	public View modifyLockout(Member member,Model model) throws Exception{
 		AccountDao accountDao = sqlSession.getMapper(AccountDao.class);
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -373,6 +377,7 @@ public class AccountController {
 			member.setIsLockedOut(1);
 			int result = memberDao.updateMemberAccount(member);
 			if(result == 1){
+				memberDao.deleteMemberAuthority(member.getEmail());
 				model.addAttribute("result", "success");
 			}
 		}else{

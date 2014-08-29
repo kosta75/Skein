@@ -18,6 +18,8 @@ $(document).ready(function(){
 		    				alert('회원 가입에 실패했습니다.');
 		    			}else if(obj == 2){
 		    				alert('이미 등록된 회원입니다.');
+		    			}else if(obj == 3){
+		    				alert('영구 정지된 계정으로 회원가입을 할 수 없습니다.');
 		    			}
 		    		}
 		    	}

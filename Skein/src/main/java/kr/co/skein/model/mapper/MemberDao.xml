@@ -122,5 +122,15 @@
 		SELECT COUNT(PersonalURI) FROM MEMBERS WHERE personalURI = #{personalURI}
 	</select>
 	
+	<!-- 사용자 권한 삭제 -->
+	<delete id="deleteMemberAuthority" parameterType="String">
+		DELETE FROM AUTHORITIES WHERE email = #{email}
+	</delete>
+	
+	<!-- 사용자 권한 변경 -->
+	<update id="updateMemberAuthority" parameterType="String">
+		UPDATE Authorities SET Authority = #{param1} WHERE email = #{param2}
+	</update>
+	
 	
 </mapper>

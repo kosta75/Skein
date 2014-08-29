@@ -50,5 +50,10 @@ public interface MemberDao {
 	
 	//사용자 존재 여부 확인 by personalURI
 	public int hasMemberByPersonalURI(String personalURI) throws ClassNotFoundException, SQLException;
+	
+	
+	public int deleteMemberAuthority(String email) throws ClassNotFoundException, SQLException;
+	
+	public int updateMemberAuthority(String authoritiy, String email) throws ClassNotFoundException, SQLException;
 		
 }

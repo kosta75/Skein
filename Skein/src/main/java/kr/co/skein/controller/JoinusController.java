@@ -169,7 +169,12 @@ public class JoinusController {
 					model.addAttribute("JOIN_MESSAGE", 0);
 				}
 			}else{
-				model.addAttribute("JOIN_MESSAGE", 2);
+				if(member.getIsLockedOut() != 0){
+					model.addAttribute("JOIN_MESSAGE", 2);
+				}else{
+					model.addAttribute("JOIN_MESSAGE", 3);
+				}
+				
 			}
 		}
 		System.out.println("INFO : Skein-U007 - 회원가입 처리 진행을 종료합니다.");

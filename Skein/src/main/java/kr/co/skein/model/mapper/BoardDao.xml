@@ -264,4 +264,6 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
    
    UPDATE board SET  CONTENT = #{param1} WHERE BOARDSEQ = #{param2}
    </update>
+   
+   
 </mapper>
