@@ -64,8 +64,8 @@
 		<c:if test="${!empty email  }">
 			[email]  ${email } 로 임시 비밀번호를 전송하시겠습니까?
 			<div class="button_container">
-			<form action="pwdUpdate" method="post">
-			<input type="hidden" name="email" value="${email }">
+			<form action="pwdUpdate" method="post" >
+				<input type="hidden" name="email" value="${email }">
 				<input type="submit" value="확인" class="submitBtn">
 				<input type="button" value="취소" class="resetBtn" onclick="location='refind'">
 			</form>
@@ -74,7 +74,7 @@
 		
 		<c:if test="${!empty result  }">
 			임시비밀번호가 전송되었습니다.<br>
-			<a href="javascript:history.back()">돌아가기</a>
+			<a href="${pageContext.request.contextPath}">로그인하기</a>
 		</c:if>
 	</div>
 	</c:if>
