@@ -77,7 +77,7 @@ birthdayPublic
 				<div class="content_inner">
 					<!-- 왼쪽 -->
 					<div class="inform_elem">
-						<b>프로필사진</b>2
+						<b>프로필사진</b>
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
 								<c:if test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == 'default-profile-image.png'}">
@@ -144,7 +144,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>상태글</b>5
+						<b>상태글</b>
 						<div class="inform_databox statusComment">
 							<div class="clearfix">
 								<div class="informdata statusComment">${statusComment }</div>
@@ -195,7 +195,7 @@ birthdayPublic
 				<div class="content_inner">
 					<!-- 오른쪽 -->
 					<div class="inform_elem">
-						<b>공개이메일</b>3
+						<b>공개이메일</b>
 						<div class="inform_databox openEmail">
 							<div class="clearfix">
 								<div class="informdata openEmail">${openEmail }</div>
@@ -227,7 +227,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>휴대폰번호</b>4
+						<b>휴대폰번호</b>
 						<div class="inform_databox phoneNumber">
 							<div class="clearfix">
 								<div class="informdata phoneNumber">${phoneNumber }</div>
@@ -259,7 +259,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>블로그</b>9
+						<b>블로그</b>
 						<div class="inform_databox blog">
 							<div class="clearfix">
 								<div class="informdata blog">${blog }</div>
@@ -286,11 +286,12 @@ birthdayPublic
 								</select>
 								<input type="button" value="저장" class="profile_editBtn blog">
 								<input type="button" value="삭제" class="profile_deleteBtn blog">
+								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>사는곳</b>1
+						<b>사는곳</b>
 						<div class="inform_databox address">
 							<div class="clearfix">
 								<div class="informdata address">${address }</div>
@@ -322,7 +323,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>언어</b>8
+						<b>언어</b>
 						<div class="inform_databox language">
 							<div class="clearfix">
 								<div class="informdata language">${language }</div>
@@ -354,7 +355,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>정치성향</b>7
+						<b>정치성향</b>
 						<div class="inform_databox politics">
 							<div class="clearfix">
 								<div class="informdata politics">${politics }</div>
@@ -386,7 +387,7 @@ birthdayPublic
 						</div>
 					</div>
 					<div class="inform_elem">
-						<b>종교</b>6
+						<b>종교</b>
 						<div class="inform_databox religion">
 							<div class="clearfix">
 								<div class="informdata religion">${religion }</div>
