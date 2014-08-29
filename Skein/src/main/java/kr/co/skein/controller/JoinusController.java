@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
@@ -12,14 +11,15 @@ import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.ProfileCommand;
 import kr.co.skein.util.CertificationTextGenerator;
 import kr.co.skein.util.PasswordEncryptor;
-import oracle.jdbc.driver.DMSFactory;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 @Controller
 @RequestMapping("/joinus/*")
@@ -27,6 +27,9 @@ public class JoinusController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private View jsonView;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -47,7 +50,7 @@ public class JoinusController {
 	//사용자 등록 처리
 	@RequestMapping(value="/registerMember", method=RequestMethod.POST)
 	@Transactional
-	public String registerMember(Member member) throws Exception{
+	public View registerMember(Member member, Model model) throws Exception{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("INFO : Skein-P001 - 회원등록처리 시작");
 		//1. form 유효성 검사
@@ -118,15 +121,17 @@ public class JoinusController {
 				String from = "univcss@gmail.com";
 				String to = member.getEmail();
 				String subject = "Sil - 신규 계정 인증 메일!";
-				String formUrl = "newMemberCertification.jsp";
+				String formUrl = "emailJoinus.html";
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("certificationText", member.getCertificationText());
 				map.put("certificationURL", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
 				
 				emailSender.SendEmail(from, to, subject, map, formUrl);
+				model.addAttribute("JOIN_MESSAGE", 0);
 				
 			}else{
 				System.out.println("INFO : Skein-U004 - 신규계정등록에 실패하였습니다.");
+				model.addAttribute("JOIN_MESSAGE", 1);
 			}
 		}else{
 			System.out.println("INFO : Skein-U002 - 이미 등록된 계정입니다.");
@@ -150,21 +155,27 @@ public class JoinusController {
 					String from = "univcss@gmail.com";
 					String to = member.getEmail();
 					String subject = "Sil - 재등록 인증 메일!";
-					String formUrl = "newMemberCertification.jsp";
+					String formUrl = "emailReapp.html";
 					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("certificationText", member.getCertificationText());
 					map.put("certificationURL", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 					
 					emailSender.SendEmail(from, to, subject, map, formUrl);
+					model.addAttribute("JOIN_MESSAGE", 0);
 					
 					//emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 				}else{
 					System.out.println("INFO : Skein-U006 - 계정 재등록에 실패하였습니다.");
+					model.addAttribute("JOIN_MESSAGE", 0);
 				}
+			}else{
+				model.addAttribute("JOIN_MESSAGE", 2);
 			}
 		}
 		System.out.println("INFO : Skein-U007 - 회원가입 처리 진행을 종료합니다.");
 		
-		return "redirect:/";
+		
+		
+		return jsonView;
 	}
 }

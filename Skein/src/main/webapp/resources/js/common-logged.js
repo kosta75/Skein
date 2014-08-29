@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	var contextPath = "//192.168.7.150:8080";
+	var contextPath = "//192.168.7.127:8080";
 	var rootPath = "/skein";
 	
 	//알림 목록 읽기
@@ -70,6 +70,7 @@ $(document).ready(function() {
 	readNotificationList();
 	
 	$(".confirm-btn").on('click', function(){
+		console.log("dd");
 		var contextURI = contextPath + rootPath + "/notification/notificationAllRead";
 		$.ajax({
 			type : 'post',

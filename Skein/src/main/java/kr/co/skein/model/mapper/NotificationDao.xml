@@ -146,7 +146,7 @@ SELECT n.NotificationSeq, n.Email, m.personalURI, n.IsRead, n.CreateDate, n.Noti
 	<update id="allNotificationRead" parameterType="String">
 		UPDATE Notifications
 		SET isRead = 1
-		WHERE email = {#email}
+		WHERE email = #{email}
 	</update>
 	
 </mapper>
