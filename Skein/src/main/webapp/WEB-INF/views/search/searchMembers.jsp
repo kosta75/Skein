@@ -9,14 +9,16 @@
 				<div class="search-detail-info" >
 					
 						<div>
-							<c:if test="${friendshipList.profileInfo == null}">
-								<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/media/image/default.jpg" >
-							</c:if>
-							<c:if test="">
-							 	<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/media/image/${friendshipList.profileInfo}.jpg" >
-							 </c:if> 
+							<c:choose>
+								<c:when test="${friendshipList.profileInfo == null}">
+									<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png">
+								</c:when>
+								<c:otherwise>
+									<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileInfo}">
+								</c:otherwise>
+							</c:choose> 
 							<p>
-							${friendshipList.profileInfo}
+							
 								<a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a>(${friendshipList.personalURI})
 							</p>
 							<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">

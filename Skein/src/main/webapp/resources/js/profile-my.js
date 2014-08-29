@@ -110,7 +110,7 @@ $(document).ready(function() {
 		if($(this).find("div.inform_edit").css("display") == "none"){
 			$(this).find("div.inform_button input[value=공개범위]").css("display", "");
 			$(this).find("div.inform_button").css("display", "block");
-			if($(this).find("div.informdata").html() == ""){
+			if($(this).find("div.informdata").html().trim() == ""){
 				$(this).find("div.inform_button input[value=수정]").siblings().css("display", "none");
 			}else{
 			}

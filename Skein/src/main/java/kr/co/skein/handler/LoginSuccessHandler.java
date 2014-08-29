@@ -74,12 +74,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 				baseMemberInfo.setLastName(member.getLastName());
 				baseMemberInfo.setFirstName(member.getFirstName());
 				
-				String profileImageFileName = null;
-				if((profileImageFileName = profileDao.getMemberProfileByProfileCode(member.getPersonalURI(), 2)) != null){
-					baseMemberInfo.setProfileImageFileName(profileImageFileName);
-				}else{
-					baseMemberInfo.setProfileImageFileName("default-profile-image.png");
-				}
+				
 								
 				session.setAttribute("BASE_MEMBER_INFO", baseMemberInfo);
 			}

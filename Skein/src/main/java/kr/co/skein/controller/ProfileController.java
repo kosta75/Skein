@@ -53,6 +53,7 @@ public class ProfileController {
 			BaseMemberInfo baseMemberInfo = null;
 			if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
 				baseMemberInfo.setProfileImageFileName(fileNames);
+				model.addAttribute("result","success");
 			}
 		}
 		

@@ -78,7 +78,7 @@ $(document).ready(function() {
 	
 	$(".confirm-btn").on('click', function(){
 		console.log("dd");
-		var contextURI = contextPath + rootPath + "/notification/notificationAllRead";
+		var contextURI = contextPath + "/notification/notificationAllRead";
 		$.ajax({
 			type : 'post',
 			url : contextURI,
@@ -180,5 +180,7 @@ $(document).ready(function() {
 			 $(this).find("a").css("color", "");
 		 
 	 });
+	 
+	
 
 });

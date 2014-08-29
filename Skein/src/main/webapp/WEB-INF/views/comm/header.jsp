@@ -39,7 +39,14 @@
 		<div class="info-nav-wrapper">
 			<div class="user-profile-info-container">
 				<div class="user-profile-image">
-					<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+					<c:choose>
+						<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
+							<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" />
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="user-profile-uri">
 					<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.personalURI}</a>

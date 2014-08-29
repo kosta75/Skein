@@ -3,6 +3,12 @@
 #modal-content{display:none; border-radius:6px;}
 .modalcontent{width:380px;}
 
+.public-profile-content-container{position:relative;padding-top:30px;}
+.main-content-wrapper{width:630px;}
+
+/* 사용자 정보 */
+.public-profile-info-container{position:absolute;width:310px;background:#fff;height:500px;right:0px;border:1px solid #ccc;border-radius:5px;}
+
 
 /* 게시물(하나) 감싸는 컨테이너 */
 .group-item-container{position:relative;margin-bottom:20px;background:#fff;border-radius:5px;border:1px solid #ccc;padding:10px}
@@ -36,7 +42,7 @@
 
 /* 게시물의 내용 */
 .group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;}
-
+#modal-launcher img{max-width:598px;height:auto;}
 
 /* 게시물 댓글 */
 .group-item-reply-write-form-container{background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}
@@ -44,7 +50,7 @@
 
 .image-icon{text-indent:-10000px;background-repeat:no-repeat}
 .reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../../media/image/mention1.png");background-size:55%;background-position:center}
-.reply-message{float:right;border:1px solid #f00;width:135px;height:24px;margin-top:2px;margin-right:4px;background:#f00;}
+.reply-message{float:right;border:1px solid #f00;width:65px;height:24px;margin-top:2px;margin-right:4px;background:#f00;}
 
 
 

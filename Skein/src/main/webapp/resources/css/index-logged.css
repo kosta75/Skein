@@ -63,7 +63,7 @@
 
 /* 게시물의 내용 */
 .group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;overflow-y:scroll;overflow:hidden;word-wrap:break-word;}
-
+#modal-launcher img{max-width:598px;height:auto;}
 
 /* 게시물 댓글 */
 .group-item-reply-write-form-container{clear:both;  background:#ddd;padding:2px 0px;border-radius:3px 3px 0px 0px;margin-bottom:1px;}

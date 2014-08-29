@@ -88,7 +88,7 @@ public class NotificationController {
 	}
 	
 		
-	//알림 페이지 첫 진입점
+	/*//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String viewNotificationList(HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
@@ -149,7 +149,7 @@ public class NotificationController {
 			System.out.println("INFO : Skein-F252 - 조회한 알림 게시물, size=" +  list.size());
 		}
 		return "notification.notificationView";
-	}
+	}*/
 	
 	//친구 신청 알림 추가 메서드
 	@RequestMapping("/addFriendsNotification/{personalURI}")
@@ -196,8 +196,8 @@ public class NotificationController {
 	}
 	
 	//알림 정렬 하기 
-	@RequestMapping(value = "/listsort", method=RequestMethod.GET)
-	public String viewNotificationListSort(@RequestParam("alramSeq") String alramSeq, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+	@RequestMapping(value = "/", method=RequestMethod.GET)
+	public String viewNotificationListSort(@RequestParam(value="alramSeq", defaultValue="1") String alramSeq, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		
 		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
 		

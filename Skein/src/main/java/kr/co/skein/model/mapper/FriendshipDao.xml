@@ -16,7 +16,7 @@
 		(
 			SELECT ROWNUM r , s.* FROM
 			(
-				SELECT f.friendEmail, m.personalURI, m.fullName, NVL(p.profileInfo,'default-profile-image.png') AS profileImageFileName, p2.profileInfo AS publicEmail, p2.publicLevelCode AS publicLevelCodeToEmail
+				SELECT f.friendEmail, m.personalURI, m.fullName, p.profileInfo AS profileImageFileName, p2.profileInfo AS publicEmail, p2.publicLevelCode AS publicLevelCodeToEmail
 				FROM Friendship f JOIN Members m ON f.friendEmail = m.email
 				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 2) p ON f.friendEmail = p.email
 				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 3) p2 ON f.friendEmail = p.email

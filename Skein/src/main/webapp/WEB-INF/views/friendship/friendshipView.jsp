@@ -9,7 +9,14 @@
 		<c:forEach var="friendshipList" items="${friendshipList}">
 			<div class="friend-item-container">
 				<div class="friend-image-wrapper">
-					<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileImageFileName}">
+					<c:choose>
+						<c:when test="${friendshipList.profileImageFileName == null}">
+							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png">
+						</c:when>
+						<c:otherwise>
+							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileImageFileName}">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="friend-item-info-container">
 					<div class="friend-info-wrapper">

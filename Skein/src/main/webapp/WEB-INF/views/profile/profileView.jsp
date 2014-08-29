@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:forEach var="profiles" items="${memberProfile}">
 	<c:if test="${profiles.profileCode == 2 }">
 		<c:set var="profileImage" value="${profiles.profileInfo}" />
@@ -80,11 +81,15 @@ birthdayPublic
 						<b>프로필사진</b>
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
-								<c:if test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == 'default-profile-image.png'}">
-									<font> 프로필사진을 등록해보세요.</font>
-								</c:if>
-								<div class="informdata profileImage">									
-									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+								<font> 프로필사진을 등록해보세요.</font>
+								<div class="informdata profileImage">
+									<c:choose>
+										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="inform_button profileImage">
 									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
@@ -130,7 +135,8 @@ birthdayPublic
 						<b>생일</b>
 						<div class="inform_databox birthday">
 							<div class="clearfix">
-								<div class="informdata birthday">${sessionScope.BASE_MEMBER_INFO.birthday}</div>
+								<fmt:formatDate value="${sessionScope.BASE_MEMBER_INFO.birthday}" pattern="YYYY년 MM월 dd일" var="birthday" />
+								<div class="informdata birthday">${birthday}</div>
 								<div class="inform_button birthday">
 									<input type="button" value="공개범위">
 									<div class='has-sub' >

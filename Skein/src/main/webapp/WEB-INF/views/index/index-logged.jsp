@@ -122,7 +122,10 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 	<div class="main-content-wrapper">
 		<!-- 메인 화면 가운데 부분 -->
 		<div class="content-center-wrapper" >
-			<div id="boardListTimelineContainer"></div>
+			<c:if test="${groupList.size() > 0}">
+				<div id="boardListTimelineContainer"></div>
+			</c:if>
+			
 			<div id="writeTabs">
 				<ul>
 					<li><a href="#diaryWriteTabs">다이어리</a></li>
@@ -286,7 +289,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 													id="boardSeq${groupItem.boardSeq}"> <img
 													id="imghover${groupItem.boardSeq}"
 													src="${pageContext.request.contextPath}/resources/upload/${groupItem.fileName}"
-													style="width: 100%; height: 250px;">
+													>
 											</div>
 										</div>
 									</c:if>
