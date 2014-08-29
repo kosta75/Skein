@@ -120,7 +120,7 @@ margin: auto;
 {
 position: relative;
 width: 94%;
-height: 30px;
+min-height: 30px;
 padding: 15px;
 background: #FFFFFF;
 -webkit-border-radius: 7px;

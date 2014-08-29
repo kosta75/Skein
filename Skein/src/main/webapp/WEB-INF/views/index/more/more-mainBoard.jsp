@@ -56,7 +56,14 @@
 
 							<div class="group-item-user-info-container">
 								<div class="group-item-user-profile-image-wrapper">
-									<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+									<c:choose>
+										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" />
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
@@ -72,7 +79,7 @@
 													id="boardSeq${groupItem.boardSeq}"> <img
 													id="imghover${groupItem.boardSeq}"
 													src="${pageContext.request.contextPath}/resources/upload/${groupItem.fileName}"
-													style="width: 100%; height: 250px;">
+													>
 											</div>
 										</div>
 									</c:if>

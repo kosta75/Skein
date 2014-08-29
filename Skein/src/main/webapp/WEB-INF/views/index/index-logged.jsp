@@ -221,7 +221,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 						<div class="editDiv" style="margin: auto; display: none;">
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
-								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq }" />
+								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq}" />
 							<!--이모티콘  -->
 							<div class="editemoticon" style="display: none;">
 								<c:forEach var="i" begin="1" end="16" step="1">
@@ -273,7 +273,14 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 
 							<div class="group-item-user-info-container">
 								<div class="group-item-user-profile-image-wrapper">
-									<img src="${pageContext.request.contextPath}/resources/media/image/20100107221109605_2R2EJLGPV_raw.jpg">
+									<c:choose>
+										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" />
+										</c:when>
+										<c:otherwise>
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
