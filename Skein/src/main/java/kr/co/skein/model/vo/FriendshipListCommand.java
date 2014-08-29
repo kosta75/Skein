@@ -1,14 +1,24 @@
 package kr.co.skein.model.vo;
 
+import java.util.Date;
+
 
 public class FriendshipListCommand {
 
+	private String email;
 	private String friendEmail;
 	private String fullname;
-	private String birthday;
+	private Date birthday;
 	private String personaluri;
 	private String profileImageFileName;
 	private String publicEmail;
+	private int publicLevelCodeToEmail;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getFriendEmail() {
 		return friendEmail;
 	}
@@ -21,10 +31,10 @@ public class FriendshipListCommand {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 	public String getPersonaluri() {
@@ -45,5 +55,10 @@ public class FriendshipListCommand {
 	public void setPublicEmail(String publicEmail) {
 		this.publicEmail = publicEmail;
 	}
-
+	public int getPublicLevelCodeToEmail() {
+		return publicLevelCodeToEmail;
+	}
+	public void setPublicLevelCodeToEmail(int publicLevelCodeToEmail) {
+		this.publicLevelCodeToEmail = publicLevelCodeToEmail;
+	}
 }

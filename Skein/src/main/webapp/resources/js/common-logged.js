@@ -1,11 +1,18 @@
 $(document).ready(function() {
 	
-	var contextPath = "//localhost:8080";
+	function getContextPath(){
+	    var offset=location.href.indexOf(location.host)+location.host.length;
+	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+	    return ctxPath;
+	}
+	
+	//var contextPath = "//localhost:8080";
+	var contextPath = getContextPath();
 	var rootPath = "/skein";
 	
 	//알림 목록 읽기
 	function readNotificationList(){
-		var contextURI = contextPath + rootPath + "/notification/notificationCountList";
+		var contextURI = contextPath + "/notification/notificationCountList";
 		//$(".notification-list").empty();
 		$.ajax({
 			type : 'POST',
@@ -107,7 +114,7 @@ $(document).ready(function() {
 		color = $(this).css("background-color");
 		var obj = $(this);
 		var colorTheme = $(this).context.className;
-		var urlText = contextPath + rootPath + "/colorTheme";
+		var urlText = contextPath + "/colorTheme";
 		$.ajax({
 			type : 'post',
 			url : urlText,
