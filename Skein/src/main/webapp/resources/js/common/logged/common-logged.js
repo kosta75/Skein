@@ -49,8 +49,9 @@ function countOfUnCheckNotificationList(){
 				}
 			}
 		},
-		error : function() {
-			alert('알림 목록을 요청하는 동안 오류가 발생했습니다.(ERROR CODE : N0001');
+		error : function(data) {
+			clearInterval(runningCheckNotification);
+			alert("알림 목록을 요청하는 동안 오류가 발생했습니다.(ERROR CODE : N0001)");
 		}
 	});
 }
@@ -59,7 +60,7 @@ $(document).ready(function(){
 	
 	//알림 목록 읽기
 	countOfUnCheckNotificationList();
-	setInterval("countOfUnCheckNotificationList()", 30000);
+	runningCheckNotification = setInterval("countOfUnCheckNotificationList()", 30000);
 
 	//var requestMapping = "/notification/notificationCountList";
 	//var requestContextPath = getContextPath() + requestMapping;
@@ -99,7 +100,32 @@ $(document).ready(function(){
 	});
 	
 	$('#changeBackgroundColor li').on('click', function() {
-		$('#notificationListContainer').toggle("slide", {direction: "up"});
+		var requestMapping = "/colorTheme";
+		var requestContextPath = getContextPath() + requestMapping;
+		
+		colorBarClicked = true;
+		color = $(this).css("background-color");
+		var headerObject = $(this);
+		
+		var colorTheme = $(this).context.className;
+		$.ajax({
+			type : 'POST',
+			url : requestContextPath,
+			data :'colorTheme='+ colorTheme,
+			success : function(data) {
+				alert("사용자 지정색상이 변경되었습니다!");
+				
+				$('.header-container').css("background-color",	$(headerObject).css("background-color"));
+				$('.header-container').css("background-color",	$(headerObject).css("background-color"));
+				$('.sub-user-profile-tip').css("background-color",	$(headerObject).css("background-color"));
+				$('#menu2').css("background-color",	$(headerObject).css("background-color"));
+				$('.icon-box').css("background-color",	$(headerObject).css("background-color"));
+				$('.reply-more-btn').css("background-color",$(headerObject).css("background-color"));			
+			},
+			error : function(data) {
+				alert("사용자 지정색상 변경을 요청하는 동안 오류가 발생했습니다.(ERROR CODE : C0451)");
+			}
+		});
 	});
 	// Bar 색상 변경 End /////////////////////////////////////////
 		
