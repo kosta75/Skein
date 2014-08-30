@@ -11,14 +11,26 @@
 	<meta charset="UTF-8">
 	<title><tiles:getAsString name="title"/></title>
 	
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
+	<!-- Script -->
+	<!-- 공통 -->
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-2.1.1.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/common.js"></script>
+	
+	<!-- 현재 페이지 -->
+	<script src="${pageContext.request.contextPath}/resources/js/index-not-logged.js"></script>
+	
+	<!-- CSS -->
+	<!-- 공통 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/reset.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
+	
+	<!-- 현재페이지 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-not-logged.css" />
 	
-	<script src="//code.jquery.com/jquery-latest.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/index-not-logged.js"></script>
 </head>
 <body>
-<div class="main-section-container">
+<div class="not-logged-main-section-container">
 	<div class="wrapper">
 		<tiles:insertAttribute name="index-not-logged" />
 	</div>
@@ -32,17 +44,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title><tiles:getAsString name="title"/></title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 	
-	<script src="//code.jquery.com/jquery-latest.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
+	<!-- Script -->
+	<!-- 공통 -->
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-2.1.1.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/common.js"></script>
+	
+	<!-- 로그인 공통 -->
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/common-logged.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/aside-logged.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/menu-logged.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/map.js"></script>
+	
+	<!-- 현재 페이지 -->
 	<script src="${pageContext.request.contextPath}/resources/js/index-logged.js"></script>
+	
+	<!-- CSS -->
+	<!-- 공통 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/jquery-ui.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
+	
+	<!-- 로그인 공통 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/common-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/aside-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/menu-logged.css" />
+	
+	<!-- 현재 페이지 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
+	
 </head>
 <body>
 

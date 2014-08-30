@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+/* --------------------------- 로그인 됐을 때 메뉴바에 적용되는 CSS --------------------------- */
+/* 기본메뉴 */
+#subNavigationContainer{height:55px;padding-bottom:20px;}
+ul.arrowunderline {list-style-type:none;margin:0;}
+ul.arrowunderline li {height:55px;float:left;border-right:1px solid #e9eaed;padding:0px 25px;}
+ul.arrowunderline li:first-child {border-left:1px solid #e9eaed;}
+ul.arrowunderline li a{display:block;color:#000;height:51px;line-height:55px;font-family:'맑은 고딕';font-weight:bold;font-size:15px;}
+ul.arrowunderline li:hover {background: #f6f7f8;'}
+
+.sub-menu{height:54px;border-bottom:1px solid #d3d6db;background-color:#fff; }
+.sub-menu2{position:relative;height:54px;width:100%;display:none;z-index:15;left:0;}
+.menu-username{float:left;height:55px;font-weight:bold;font-size:30px;line-height:55px;padding:0px 25px;}
+
+#menu1 .sub-navigation{float:left;}
+#menu2 .sub-navigation{position:absolute;right:0px;}
+
+#menu .menu-username a{color:#000;}
+#menu2 .menu-username a{color:#fff;}
+#menu2 ul.arrowunderline li a{border-bottom:0; color:inherit;}
+#menu2 ul.arrowunderline li:hover {background-color: white; color:black;}
+#menu2 ul.arrowunderline li {border-width:0;color:#fff;}

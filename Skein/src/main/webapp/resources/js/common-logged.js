@@ -1,9 +1,81 @@
-//서비스 contextPath 얻기 start
-function getContextPath(){
-	var offset = location.href.indexOf(location.host)+location.host.length;
-	var contextPath = location.href.substring(offset,location.href.indexOf('/',offset+1));
-	return contextPath;
-}//서비스 contextPath 얻기 end
+
+
+//pageContext.request.contextPath
+
+//알림 목록 읽기
+function countOfUnCheckNotificationList(){
+	var contextPath = getContextPath();
+	var contextURI = contextPath + "/notification/notificationCountList";
+	//$(".notification-list").empty();
+	$.ajax({
+		type : 'POST',
+		url : contextURI,
+		dataType : 'JSON',
+		/*data : "fullName=" + $("#search .textbox").val(),*/
+		success : function(data) {
+			var obj = data.notificationList;
+			var totalCount = 0;
+			var notificationText = "";
+			//console.log(obj);
+			
+			$.each(obj, function(key, value){
+				var msg = "";
+				/*1	공지사항
+				2	친구신청
+				3	친구신청수락
+				4	공유신청
+				5	공유신청수락
+				6	댓글*/
+				switch (value.notificationCode) {
+				  case 1 : msg = "공지사항";
+					  break;
+				  case 2 : msg = "친구신청";
+					  break;
+				  case 4 : msg = "공유신청";
+					  break;
+				  case 6 : msg = "댓글";
+					  break;
+				}
+				notificationText += "<li>";
+				notificationText +="<div class='notification-info'><span class='notification-code'>"+msg+"</span>";
+				notificationText += "<span class='notification-count'>" + value.groupCount+"</span>개의 알림이 있습니다.</div>";
+				
+				//console.log(value.notificationCode);
+				totalCount += value.groupCount;
+				notificationText += "</li>";
+			});
+			
+			
+			if(totalCount >0){
+				$("#notificationCounter").show();
+				$(".notification-title").show();
+				$(".notification-count-number").text(totalCount);
+				$(".notification-list").append(notificationText);
+			}else{
+				notificationText = "<div class='not-exist'><span>읽지 않은 알림이 없습니다.</span></div>";
+				$("#notificationListContainer").append(notificationText);
+			}
+			
+			
+			
+			
+		},
+		error : function() {
+			alert('Error while request..');
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -15,71 +87,10 @@ $(document).ready(function() {
 	var contextPath = getContextPath();
 	var rootPath = "/skein";
 	
-	//알림 목록 읽기
-	function readNotificationList(){
-		var contextURI = contextPath + "/notification/notificationCountList";
-		//$(".notification-list").empty();
-		$.ajax({
-			type : 'POST',
-			url : contextURI,
-			dataType : 'JSON',
-			/*data : "fullName=" + $("#search .textbox").val(),*/
-			success : function(data) {
-				var obj = data.notificationList;
-				var totalCount = 0;
-				var notificationText = "";
-				//console.log(obj);
-				
-				$.each(obj, function(key, value){
-					var msg = "";
-					/*1	공지사항
-					2	친구신청
-					3	친구신청수락
-					4	공유신청
-					5	공유신청수락
-					6	댓글*/
-					switch (value.notificationCode) {
-					  case 1 : msg = "공지사항";
-						  break;
-					  case 2 : msg = "친구신청";
-						  break;
-					  case 4 : msg = "공유신청";
-						  break;
-					  case 6 : msg = "댓글";
-						  break;
-					}
-					notificationText += "<li>";
-					notificationText +="<div class='notification-info'><span class='notification-code'>"+msg+"</span>";
-					notificationText += "<span class='notification-count'>" + value.groupCount+"</span>개의 알림이 있습니다.</div>";
-					
-					//console.log(value.notificationCode);
-					totalCount += value.groupCount;
-					notificationText += "</li>";
-				});
-				
-				
-				if(totalCount >0){
-					$("#notificationCounter").show();
-					$(".notification-title").show();
-					$(".notification-count-number").text(totalCount);
-					$(".notification-list").append(notificationText);
-				}else{
-					notificationText = "<div class='not-exist'><span>읽지 않은 알림이 없습니다.</span></div>";
-					$("#notificationListContainer").append(notificationText);
-				}
-				
-				
-				
-				
-			},
-			error : function() {
-				alert('Error while request..');
-			}
-		});
-	}
+	
 	
 	//알림 목록 읽기
-	readNotificationList();
+	countOfUnCheckNotificationList();
 	
 	$(".confirm-btn").on('click', function(){
 		console.log("dd");

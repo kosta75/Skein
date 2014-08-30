@@ -348,9 +348,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 		</div>
 	</div>
 </section>
-<script
-	src="${pageContext.request.contextPath}/resources/js/filereader.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
-<script src="//code.highcharts.com/stock/highstock.js"></script>
-<script src="//code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index/filereader.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index/highstock.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/index/exporting.js"></script>
 

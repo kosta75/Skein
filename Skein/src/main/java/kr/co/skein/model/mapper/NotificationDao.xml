@@ -60,7 +60,7 @@
 	
 	<!-- 사용자 알림 조회  -->
 	<select id="getNotifications" resultType="kr.co.skein.model.vo.NotificationCountCommand">
-		SELECT n.NotificationCode, COUNT(*) AS groupCount FROM Notifications n JOIN friendshipnotification f ON n.notificationseq = f.notificationseq WHERE n.email = #{email} AND (n.isRead = 0 OR f.friendshipConfirm = 0) GROUP BY NotificationCode
+		SELECT n.NotificationCode, COUNT(*) AS groupCount FROM Notifications n LEFT OUTER JOIN friendshipnotification f ON n.notificationseq = f.notificationseq WHERE n.email = #{email} AND (n.isRead = 0 OR f.friendshipConfirm = 0) GROUP BY NotificationCode
 		<!-- SELECT NotificationCode, COUNT(*) AS groupCount FROM Notifications WHERE email = #{email} AND isRead = 0 GROUP BY NotificationCode -->
 	</select>
 	

@@ -5,22 +5,43 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title><tiles:getAsString name="title"/></title>
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
-<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	<meta charset="UTF-8">
+	<title><tiles:getAsString name="title"/></title>
+	
+	<!-- Script -->
+	<!-- 공통 -->
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-2.1.1.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/common.js"></script>
+	
+	<!-- 로그인 공통 -->
+	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/common-logged.js"></script>
+	<!-- 로그인 메뉴바, 상태사이드 메뉴 -->
+	<c:if test="${PROFILE_RESPONSE_CODE == 99}">
+	<script src="${pageContext.request.contextPath}/resources/js/common/logged/menu-logged.js"></script>
+	</c:if>
+	</se:authorize>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
-<script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
-<c:if test="${PROFILE_RESPONSE_CODE == 99}">
-<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
-</c:if>
-</se:authorize>
+	<!-- CSS -->
+	<!-- 공통 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/reset.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
+	
+	<!-- 로그인 공통 -->
+	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/common-logged.css" />
+	<!-- 로그인 메뉴바, 상태사이드 메뉴 -->
+	<c:if test="${PROFILE_RESPONSE_CODE == 99}">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/menu-logged.css" />
+	</c:if>
+	</se:authorize>
+	
+	<!-- 현재페이지 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
+
 </head>
+
 <body>
 
 <div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}"">
