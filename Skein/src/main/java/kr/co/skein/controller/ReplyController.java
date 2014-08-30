@@ -115,11 +115,14 @@ public class ReplyController {
 	
 	
 	@RequestMapping(value="/replyCountSelect", method=RequestMethod.POST)
-	public View replyList(int Count,String boardSeq,Model model) throws ClassNotFoundException, SQLException{
+	public View replyList(int Count,String boardSeq,Model model, HttpSession session) throws ClassNotFoundException, SQLException{
 		
 		int replyCount = Count+5;
 		ReplyDao replydao =sqlSession.getMapper(ReplyDao.class);
 		int count = replydao.countReply(replyCount, boardSeq);
+		
+		BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
+		model.addAttribute("baseMemberInfo", baseMemberInfo);
 		model.addAttribute("count",count );
 	
 		return jsonView;

@@ -335,7 +335,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								</c:forEach>
 								<li>
 								<c:if test="${groupItem.replyCount >5}">
-										<div class="reply-more-btn" data-boardSeq="${groupItem.boardSeq}">더보기(${groupItem.replyCount -5 })</div>
+										<div class="reply-more-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}" data-boardSeq="${groupItem.boardSeq}">더보기(${groupItem.replyCount -5 })</div>
 									
 									</c:if>
 									</li>

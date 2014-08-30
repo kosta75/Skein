@@ -99,7 +99,8 @@ public class IndexController {
 				
 			}
 
-			System.out.println("INFO : Skein-I101 - 사용자 게시물 더보기 조회 결과, groupListSize=" + listSource.size());		
+			System.out.println("INFO : Skein-I101 - 사용자 게시물 더보기 조회 결과, groupListSize=" + listSource.size());
+			model.addAttribute("baseMemberInfo", baseMemberInfo);
 			model.addAttribute("groupList", listSource);
 		}
 		return "moreboard";

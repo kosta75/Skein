@@ -107,8 +107,6 @@ PROFILE_RESPONSE_CODE
 						<c:if test="${PROFILE_RESPONSE_CODE == 10}">
 						<div class="group-item-controller-container">
 							<ul>
-								<li><div class="icon-box group-item-edit" title="수정">수정</div></li>
-								<li><div class="icon-box group-item-delete" title="삭제">삭제</div></li>
 								<li>
 									<c:choose>
 										<c:when test="${groupItem.groupCount > 1}">

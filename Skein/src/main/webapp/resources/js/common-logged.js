@@ -1,12 +1,17 @@
+//서비스 contextPath 얻기 start
+function getContextPath(){
+	var offset = location.href.indexOf(location.host)+location.host.length;
+	var contextPath = location.href.substring(offset,location.href.indexOf('/',offset+1));
+	return contextPath;
+}//서비스 contextPath 얻기 end
+
+
+
+
 $(document).ready(function() {
 	
-	function getContextPath(){
-	    var offset=location.href.indexOf(location.host)+location.host.length;
-	    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
-	    return ctxPath;
-	}
+
 	
-	//var contextPath = "//localhost:8080";
 	var contextPath = getContextPath();
 	var rootPath = "/skein";
 	

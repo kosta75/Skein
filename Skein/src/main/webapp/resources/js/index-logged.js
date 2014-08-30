@@ -819,11 +819,11 @@ $(document).on("click",".reply-more-btn",function(){
     	  	       url:"reply/replyCountSelect",
     	  	       data:"Count="+replySize+"&boardSeq=" + boardSeq,
     	  	       success : function(data) {
-    	  	    	 
+    	  	    	 console.log(data);
     	  	    	   if(data.count>1){
     	  	    		  
     	  	    		 reply.append(
-    	  	    		"<li><div class='reply-more-btn' data-boardSeq="+boardSeq+">더보기("+data.count+")</div></li>"	 
+    	  	    		"<li><div class='reply-more-btn "+ data.baseMemberInfo.colorTheme +"' data-boardSeq="+boardSeq+">더보기("+data.count+")</div></li>"	 
     	  	    		 
     	  	    		 );   
     	  	    		   
