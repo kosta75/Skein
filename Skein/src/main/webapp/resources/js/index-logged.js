@@ -1210,7 +1210,7 @@ function lastPostFunc(pictureCount){
 
 			var parents = $(this).parents('.group-item-wrapper');
 
-			parents.find(".share-img-list ").empty();
+			
 			var groupSeq = parents.find(".share-info-div .share-input").val();
 			//alert(groupSeq);
 
@@ -1228,7 +1228,7 @@ function lastPostFunc(pictureCount){
 					data : 'groupSeq=' + groupSeq,
 					success : function(data) {
 						//alert(data);
-						
+						parents.find(".share-img-list ").empty();
 						var boardsharedetail = data.boardshare.length;
 						//alert(boardsharedetail);
 						//console.log(data);
