@@ -40,9 +40,13 @@
 .group-item-controller-container ul li a{display:block;height:20px;}
 .group-item-controller-container ul li:first-child{margin-left:0px;}
 
-.icon-box{width:20px;height:20px;text-indent:-100000px;font-size:1px;padding:0px;cursor:pointer;border:1px solid #f00;}
+.icon-box{width:25px;height:25px;text-indent:-100000px;font-size:1px;padding:0px;cursor:pointer;}
 
-
+.icon-box:HOVER{
+	
+	background: #e4e4e4;
+	
+}
 .group-item-edit, .one-share, .group-share{background-repeat:no-repeat;background-position:center;}
 /* .one-share{background-image:url("../media/image/one-share2.png");}
 .group-share{background-image:url("../media/image/one-share2.png");}
@@ -285,7 +289,7 @@ textarea {
 }
 #modal-EditTextarea, #editTextarea{
 outline:  1px silver dashed;	
-	
+	clear:both;
 	
 }
 .detailContent{

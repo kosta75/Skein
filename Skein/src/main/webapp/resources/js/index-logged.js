@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+var color = $(".content-container").data("color");
 	//게시물 타임라인 설정 Start //////////////////////////////////////////////////////////////////////////
 	Highcharts.setOptions({
 		lang: {
@@ -342,6 +342,8 @@ $(document).ready(function(){
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
+					
+					
 					$(".modal-content-view").css("display","block");
 					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
 							+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
@@ -419,7 +421,7 @@ $(document).ready(function(){
 			 $("#modal-EditTextarea").empty();
 			 $("#modaleditcontent").val('');
 			 $("#modalemoticon").css("display","none");
-			
+			$(".modal-user-profile-image").remove();
 		}
 
 		$("#modal-content, #modal-background").toggleClass("active");	
@@ -541,13 +543,12 @@ $(document).ready(function(){
 
 	//이모티콘 추가
 	$(".emoticon").click(function(){
-		
-		
-		
-		alert();
 		$("#writeTextarea").append("<img class='emoticonImg' src="+$(this).attr("src")+">");	
 		$("#writeTextarea").focus();
-	
+	if($(".placeholder") != null){
+		
+		$(".placeholder").remove();
+	}
 	});
 	//수정이모티콘 추가
 	
@@ -589,9 +590,10 @@ $(document).ready(function(){
 				$(".modalcontent").empty();
 				$(".modal-content-view").css("display","block");
 				$(".modalcontent").append(
-				"<div style='float: right'>" +
-				"<div class='modal-Edit'style='float: left;margin-right: 10px'>수정</div>"	
-				+"<div class='modal-Delete'style='float: left;margin-right: 10px'>삭제</div>"		
+				"<div style='float: right'>" 
+				+"<img class='icon-box modal-Edit "+color+"' src='./resources/media/image/editImg.jpg' style='margin-right:10px;float: left;'>"	
+				+"<img class='icon-box modal-Delete "+color+"' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
+
 				+"</div>"
 				+"<div class='modal-user-profile-image' style='float: left;'>"
 				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
@@ -1041,13 +1043,13 @@ function lastPostFunc(pictureCount){
 	 $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
 	 var editContent =  $(this).parent().siblings().first().next().val();
 	 var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
+	 var publicLevelCode = $(".publicLevelCode").val();
 
-	 boardSeq
 	 $.ajax({
 		type : 'post',
 		url : 'board/editBoard',
 		cache : false,
-		data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+		data :'editContent='+editContent+'&publicLevelCode='+publicLevelCode+'&boardSeq='+boardSeq,
 		success : function(data) {
 		
 			if(data.result >= 1){
@@ -1095,7 +1097,7 @@ function lastPostFunc(pictureCount){
 	 $(".modal-EditTextarea").empty();
 	 $(this).parent().css("display","none");
 	 $(this).parent().siblings().first().next().css("display","block");
-	 $(".modal-edit-emoticon").css("display","none");
+	
  });
 //modal 이모티콘
  $(document).on("click",".modaleditEmoticon",function(){
@@ -1112,21 +1114,27 @@ function lastPostFunc(pictureCount){
 //modal 수정
  $(document).on("click",".modaleditBtn",function(){
 	 
-
+	 	var editContainer = $(this);
 	 $(this).siblings().first().next().val( $(this).siblings().first().html());
 	 var editContent =$(this).siblings().first().next().val();
+ var publicLevelCode = $(".publicLevelCode").val();
  
+
  $.ajax({
 	type : 'post',
 	url : 'board/editBoard',
 	cache : false,
-	data : 'boardSeq='+boardSeq +'&editContent=' + editContent,
+	data : 'editContent='+editContent+'&publicLevelCode='+publicLevelCode+'&boardSeq='+boardSeq,
 	success : function(data) {
 	
 		if(data.result >= 1){
 			
 			alert("수정완료");
-			location.reload();
+			 $(".modal-EditTextarea").empty();
+			 editContainer.parent().css("display","none");
+			 editContainer.parent().siblings().first().next().css("display","block");
+			$(".detailContent").html(editContent);
+			
 		}
 		
 		
@@ -1225,9 +1233,9 @@ function lastPostFunc(pictureCount){
 		//*************************************************************************************************
 		//*************************************************************************************************
 		$(document).on('click','.detailImg',function(){
-			alert($(this).find("img").attr("src"));
+			
 			$("#modal-content-view").css("display","none");
-			$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10' src='"+$(this).find("img").attr("src")+"'></div>");
+			$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10;width: 960px; height: 540px; ' src='"+$(this).find("img").attr("src")+"'></div>");
 		});
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////

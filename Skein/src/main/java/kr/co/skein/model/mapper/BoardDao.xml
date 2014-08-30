@@ -261,8 +261,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
    
    <!--게시물 수정  -->
    <update id="editBoard">
-   
-   UPDATE board SET  CONTENT = #{param1} WHERE BOARDSEQ = #{param2}
+   UPDATE board SET  CONTENT = #{param1},PUBLICLEVELCODE =#{param2} WHERE BOARDSEQ = #{param3}
    </update>
    
    

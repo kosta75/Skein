@@ -4,7 +4,7 @@
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 						<div class="editDiv" style="margin: auto; display: none;">
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
-								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq }" />
+								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq}" />
 							<!--이모티콘  -->
 							<div class="editemoticon" style="display: none;">
 								<c:forEach var="i" begin="1" end="16" step="1">
@@ -21,15 +21,17 @@
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
-									<li><div class="icon-box group-item-edit" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">수정</div></li>
-									<li><div class="icon-box group-item-delete" data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">삭제</div></li>
+								
+								
+								<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
+								<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
 									<li>
 										<c:choose>
 											<c:when test="${groupItem.groupCount > 1}">
-												<div class="icon-box group-share share-btn" title="그룹 공유하기">그룹 공유하기</div>
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-												<div class="icon-box one-share share-btn" title="공유하기">공유하기</div>
+																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>

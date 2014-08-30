@@ -103,12 +103,16 @@ $(document).ready(function() {
 		$('.header-container').css("background-color",	$(this).css("background-color"));
 		$('.sub-user-profile-tip').css("background-color",	$(this).css("background-color"));
 		$('#menu2').css("background-color",	$(this).css("background-color"));
+		$('.icon-box').css("background-color",	$(this).css("background-color"));
+		$('.reply-more-btn').css("background-color",	$(this).css("background-color"));
 	}).on('mouseleave',function(e){
 		if(!colorBarClicked){
 			$('.header-container').css("background-color",	color);
 			$('.header-container').css("background-color",	color);
 			$('.sub-user-profile-tip').css("background-color", color);
 			$('#menu2').css("background-color", color); 
+			$('.icon-box').css("background-color", color);
+			$('.reply-more-btn').css("background-color", color);
 		}else{
 			colorBarClicked = false;
 		}
@@ -131,6 +135,9 @@ $(document).ready(function() {
 				$('.header-container').css("background-color",	$(obj).css("background-color"));
 				$('.sub-user-profile-tip').css("background-color",	$(obj).css("background-color"));
 				$('#menu2').css("background-color",	$(obj).css("background-color"));
+				$('.icon-box').css("background-color",	$(obj).css("background-color"));
+				$('.reply-more-btn').css("background-color",$(obj).css("background-color"));
+			
 			},
 			error : function() {
 				alert('Error while request..');
