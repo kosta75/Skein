@@ -61,7 +61,7 @@ public interface BoardDao {
 	//게시물별 삭제
 	public int boardDelete(int boardSeq)throws ClassNotFoundException, SQLException;
 	//게시물 수정
-	public int editBoard(String editContent,int boardSeq)throws ClassNotFoundException, SQLException;
+	public int editBoard(String editContent,int publicLevelCode,int boardSeq)throws ClassNotFoundException, SQLException;
 
 
 	//게시물 조회

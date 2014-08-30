@@ -10,7 +10,7 @@
 
 <se:authentication property="name" var="LoginUser" />
 
-<section class="content-container">
+<section class="content-container" data-color="${sessionScope.BASE_MEMBER_INFO.colorTheme}">
 
 <!-- SCM Music Player http://scmplayer.net -->
 <!-- <script type="text/javascript" src="http://scmplayer.net/script.js" 
@@ -47,27 +47,39 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 				<div>
 					<div style="float: left; padding-top: 15px; width: 200px;">
 						<div class="modal-content-area">
-							<div class="modal-edit-Div" style="margin: auto; display: none;">
+						
+							<div class="modal-edit-Div" style="margin: auto; display: none;width:360px">
+								
+								
 								<div id="modal-EditTextarea" contenteditable="true"></div>
+									
 								<input type='hidden' name="modaleditcontent" id="modaleditcontent" />
-
-								<div class="modaleditEmoticon" style="float: right;">이모티콘</div>
+								<select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
+											<c:forEach var="publicLevelList" items="${publicLevelList}">
+												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+											</c:forEach>
+										</select>		
+								<div class="modaleditEmoticon" style="clear:both;float: right;">이모티콘</div>
 								<div class="modaleditCancleBtn" style="float: right; margin-right: 10px">취소</div>
 								<div class="modaleditBtn" style="float: right; margin-right: 10px">수정</div>
+							
 							</div>
 							<div id="modalemoticon">
 									<c:forEach var="i" begin="1" end="16" step="1">
 										<img class="modal-edit-emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 									</c:forEach>
 								</div>
+							
 							<div class="modalcontent">
 
 								<div style="float: right">
-									<div class="modal-Edit" style="float: left; margin-right: 10px">수정</div>
-									<div class="modal-Delete" style="float: left; margin-right: 10px">삭제</div>
+									
+								<img class='icon-box modal-Edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="margin-right:10px;float: left;">	
+								<img class='icon-box modal-Delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;">
+
 								<!--작성자 이름 날짜 내용 출력  -->
 								</div>
-								
+							
 							</div>
 						</div>
 					</div>
@@ -219,7 +231,9 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 			<div id="boardListContainer">
 				<c:forEach var="groupItem" items="${groupList}">
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
-						<div class="editDiv" style="margin: auto; display: none;">
+						
+						<div class="editDiv" style="margin: auto; display: none;">														
+							
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
 								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq}" />
 							<!--이모티콘  -->
@@ -228,6 +242,11 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 								</c:forEach>
 							</div>
+							<select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
+											<c:forEach var="publicLevelList" items="${publicLevelList}">
+												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+											</c:forEach>
+										</select>	
 							<div style="clear: both; float: right;">
 								<div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
 								<div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
@@ -238,15 +257,17 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
-									<li><div class="icon-box group-item-edit" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">수정</div></li>
-									<li><div class="icon-box group-item-delete" data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">삭제</div></li>
+								
+								
+								<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
+								<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
 									<li>
 										<c:choose>
 											<c:when test="${groupItem.groupCount > 1}">
-												<div class="icon-box group-share share-btn" title="그룹 공유하기">그룹 공유하기</div>
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-												<div class="icon-box one-share share-btn" title="공유하기">공유하기</div>
+																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>
@@ -285,6 +306,25 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
 									<span class="group-item-write-date">${groupItem.writeDate}</span>
+								</div>
+								<div style="float: right;margin-right:120px;margin-top:5px;">
+								<c:choose >
+								<c:when test="${groupItem.publicLevelCode == 5}">
+									전체공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 4}">
+								사용자공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 3}">
+								친구공개(모두)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 2}">
+								친구공개(공유)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 1}">
+								나만보기
+								</c:when>
+								</c:choose> 
 								</div>
 							</div>
 							<div class="group-item-content-wrapper">

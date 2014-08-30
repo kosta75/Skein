@@ -237,12 +237,12 @@ public class BoardController {
 	}
 	//게시물 수정
 	@RequestMapping(value="/editBoard",method = RequestMethod.POST)
-	public View editBoard(int boardSeq,String editContent,Model model) throws ClassNotFoundException, SQLException{
-		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent);
+	public View editBoard(int boardSeq,int publicLevelCode,String editContent,Model model) throws ClassNotFoundException, SQLException{
+		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent+"/"+"publicLevelCode"+publicLevelCode);
 
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		
-	    int result=boardDao.editBoard(editContent, boardSeq);
+	    int result=boardDao.editBoard(editContent,publicLevelCode,boardSeq);
 		
 		model.addAttribute("result", result);
 		

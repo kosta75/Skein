@@ -66,6 +66,8 @@ public class IndexController {
 					listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
 					
 					System.out.println(listSource.get(i).getBoardSeq());
+					
+					System.out.println("publicLevelCode"+listSource.get(i).getPublicLevelCode());
 				}
 				
 				System.out.println("INFO : Skein-I101 - 사용자 게시물 조회 결과, groupListSize=" + listSource.size());
