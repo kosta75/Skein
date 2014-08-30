@@ -310,6 +310,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 							<input type="hidden" id="boardSeq" name="boardSeq"
 								value="${groupItem.boardSeq}" /> <input type="text"
 								id="boardSeq" class="replyWrite" name="replyWrite" data-fullname="${sessionScope.BASE_MEMBER_INFO.fullName }" />
+								<input class="reply-show-hide-btn" style="width:80px;" type="button" value="숨김/보이기">
 						</div>
 
 						<div class="group-item-reply-section">
@@ -334,7 +335,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								</c:forEach>
 								<li>
 								<c:if test="${groupItem.replyCount >5}">
-										<div class="reply-more-btn" data-boardSeq="${groupItem.boardSeq}">${groupItem.replyCount -5 }개의 댓글이 더 존재 합니다</div>
+										<div class="reply-more-btn" data-boardSeq="${groupItem.boardSeq}">더보기(${groupItem.replyCount -5 })</div>
 									
 									</c:if>
 									</li>
