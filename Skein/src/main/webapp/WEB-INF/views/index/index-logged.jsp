@@ -307,6 +307,25 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
 									<span class="group-item-write-date">${groupItem.writeDate}</span>
 								</div>
+								<div style="float: right;margin-right:120px;margin-top:5px;">
+								<c:choose >
+								<c:when test="${groupItem.publicLevelCode == 5}">
+									전체공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 4}">
+								사용자공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 3}">
+								친구공개(모두)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 2}">
+								친구공개(공유)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 1}">
+								나만보기
+								</c:when>
+								</c:choose> 
+								</div>
 							</div>
 							<div class="group-item-content-wrapper">
 								<div>

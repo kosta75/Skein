@@ -325,6 +325,10 @@ var color = $(".content-container").data("color");
 	// modal- 기능 구현
 	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
 		var groupSeq = $(this).find("input").val();
+		
+		var publicLevel ;
+		
+		
 		boardSeq = $(this).data("boardseq");
 		$(".modal-Edit").css("display","block");
 	    $(".modal-edit-Div").css("display","none");
@@ -342,14 +346,26 @@ var color = $(".content-container").data("color");
 				cache : false,
 				data : 'groupSeq=' + groupSeq,
 				success : function(data) {
-					
+					if(data.detailView[0].publicLevelCode == 5){
+						publicLevel = "전체공개";
+					}else if(data.detailView[0].publicLevelCode == 4){
+						publicLevel = "친구공개(모두)";
+					}else if(data.detailView[0].publicLevelCode == 3){
+						publicLevel = "친구공개(공유)";
+					}else if(data.detailView[0].publicLevelCode == 2){
+						publicLevel = "사용자";
+					}else{
+						publicLevel = "나만보기";
+					}
 					
 					$(".modal-content-view").css("display","block");
 					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
+							+"<div style='float:right;margin-right:25px;margin-top:5px;'>"+publicLevel+"</div>"
 							+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
 							+ data.detailView[0].fullname + "<br>"
 							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
-						
+							
+							
 					detail = data.detailView.length;
 					$("#imglength").val(data.detailView.length);
 					
@@ -385,7 +401,7 @@ var color = $(".content-container").data("color");
 					  	  	       success : function(data) {
 					  	  	    	 
 					  	  	    	   if(data.count>1){
-					  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
+					  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
 					  	  	     	   	 
 					  	  	    	   }
 					  	  	       }, error: function(){
@@ -569,6 +585,7 @@ var color = $(".content-container").data("color");
 	$(document).on('click',".imgBtn", function(){
 		
 		$(".replyList").empty();
+		var publicLevel;
 		var imgBtn = "#imgBtn" + $(this).find("input").val();
 		var detailImg = "#detailImg"	+ $(this).find("input").val();
 		boardSeq = $(this).data("boardseq");
@@ -587,19 +604,36 @@ var color = $(".content-container").data("color");
 			cache : false,
 			data : 'boardSeq=' + boardSeq,
 			success : function(data) {
+				if(data.detailView.publicLevelCode == 5){
+					publicLevel = "전체공개";
+				}else if(data.detailView.publicLevelCode == 4){
+					publicLevel = "친구공개(모두)";
+				}else if(data.detailView.publicLevelCode == 3){
+					publicLevel = "친구공개(공유)";
+				}else if(data.detailView.publicLevelCode == 2){
+					publicLevel = "사용자";
+				}else{
+					publicLevel = "나만보기";
+				}	
+				
 				$(".modalcontent").empty();
 				$(".modal-content-view").css("display","block");
 				$(".modalcontent").append(
-				"<div style='float: right'>" 
-				+"<img class='icon-box modal-Edit "+color+"' src='./resources/media/image/editImg.jpg' style='margin-right:10px;float: left;'>"	
-				+"<img class='icon-box modal-Delete "+color+"' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
-
-				+"</div>"
-				+"<div class='modal-user-profile-image' style='float: left;'>"
-				+"<img src='./resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' />"
-				+"</div>"
-				+"<div style='width:100%;height:50px;' class='modalViewinfo'>"+ data.detailView.fullname + "<br>"
-						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"  + data.detailView.content + "</div></div>");
+						"<div style='float: right'>" 
+						+"<img class='icon-box modal-Edit "+color+"' src='./resources/media/image/editImg.jpg' style='margin-right:10px;float: left;'>"	
+						+"<img class='icon-box modal-Delete "+color+"' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
+						+"</div>"
+						+"<div style='width:100%;height:50px;' class='modalViewinfo'>"
+						+"<div style='float:right;margin-right:25px;margin-top:5px;'>"+publicLevel+"</div>"
+						+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
+						+ data.detailView.fullname + "<br>"
+						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView.content + "</div></div>");		
+						
+						
+						
+						
+						
+			
 				$.ajax({
 					type : 'post',
 					url : 'reply/select',
@@ -621,7 +655,7 @@ var color = $(".content-container").data("color");
 				  	  	       success : function(data) {
 				  	  	    	 
 				  	  	    	   if(data.count>1){
-				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
+				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
 				  	  	     	   	 
 				  	  	    	   }
 				  	  	       }, error: function(){
@@ -1153,8 +1187,13 @@ function lastPostFunc(pictureCount){
 	$("#hitstoryWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
 		$("#historyhiddenplace").val($("#historyplace").text());
-		alert($("#historyhiddenplace").val());
-		$("#hitstoryForm").submit();
+		if($("#content").val() != null && $("#content").val() != ''){
+			$("#hitstoryForm").submit();
+		}else{
+			alert("내용을 입력해주세요 ");
+			$("#writeTextarea").focus();
+		}
+
 	});
 	
 	$("#diaryWriteBtn").click(function(){

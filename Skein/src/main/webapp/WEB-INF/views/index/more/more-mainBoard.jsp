@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-			<c:forEach var="groupItem" items="${groupList}">
+				<c:forEach var="groupItem" items="${groupList}">
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
-						<div class="editDiv" style="margin: auto; display: none;">
+						
+						<div class="editDiv" style="margin: auto; display: none;">														
+							
 							<div id="editTextarea" contenteditable="true">${groupItem.content}</div>
 								<input type='hidden' name="editcontent" id="editcontent"	data-boardSeq="${groupItem.boardSeq}" />
 							<!--이모티콘  -->
@@ -11,6 +13,11 @@
 									<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 								</c:forEach>
 							</div>
+							<select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
+											<c:forEach var="publicLevelList" items="${publicLevelList}">
+												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+											</c:forEach>
+										</select>	
 							<div style="clear: both; float: right;">
 								<div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
 								<div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
@@ -70,6 +77,25 @@
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
 									<span class="group-item-write-date">${groupItem.writeDate}</span>
+								</div>
+								<div style="float: right;margin-right:120px;margin-top:5px;">
+								<c:choose >
+								<c:when test="${groupItem.publicLevelCode == 5}">
+									전체공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 4}">
+								사용자공개
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 3}">
+								친구공개(모두)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 2}">
+								친구공개(공유)
+								</c:when>
+								<c:when test="${groupItem.publicLevelCode == 1}">
+								나만보기
+								</c:when>
+								</c:choose> 
 								</div>
 							</div>
 							<div class="group-item-content-wrapper">
