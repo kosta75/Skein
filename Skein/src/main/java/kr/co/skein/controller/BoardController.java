@@ -78,6 +78,7 @@ public class BoardController {
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
 		model.addAttribute("detailView",boardDetailView);
+		
 		return jsonView;
 	}
 	

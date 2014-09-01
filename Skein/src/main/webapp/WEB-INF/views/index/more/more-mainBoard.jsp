@@ -28,7 +28,23 @@
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
-								
+								<li>
+								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
+									<div class="group-item-public-level-cotroller">
+									<ul>
+									<c:forEach var="publicLevelList" items="${publicLevelList}">
+									<c:choose>
+										<c:when test="${groupItem.publicLevelCode == publicLevelList.publicLevelCode}">
+											<li class="public-level-check ${sessionScope.BASE_MEMBER_INFO.colorTheme}" data-publiclevelcode="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</li>
+										</c:when>
+										<c:otherwise>
+											<li data-publiclevelcode="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</li>
+										</c:otherwise>
+									</c:choose>				
+											</c:forEach>
+											</ul>
+											</div>
+									</li>
 								
 								<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
 								<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
@@ -42,6 +58,7 @@
 											</c:otherwise>
 										</c:choose>
 									</li>
+									
 								</ul>
 							</div>
 
@@ -76,27 +93,10 @@
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
-									<span class="group-item-write-date">${groupItem.writeDate}</span>
+									<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
+									<span class="group-item-write-date">${writeDate}</span>
 								</div>
-								<div style="float: right;margin-right:120px;margin-top:5px;">
-								<c:choose >
-								<c:when test="${groupItem.publicLevelCode == 5}">
-								전체공개
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 4}">
-								사용자공개
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 3}">
-								친구공개(모두)
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 2}">
-								친구공개(공유)
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 1}">
-								나만보기
-								</c:when>
-								</c:choose> 
-								</div>
+
 							</div>
 							<div class="group-item-content-wrapper">
 								<div>
@@ -131,8 +131,8 @@
 										<div class="group-item-reply-container">
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
-													<a href="${pageContext.request.contextPath}/"><img
-														src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
+													<a href="${pageContext.request.contextPath}/">
+													<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a>
 												</div>
 												<div>${replyItem.fullName}</div>

@@ -1,6 +1,13 @@
 package kr.co.skein.model.vo;
 
 public class Reply extends Member {
+	private String profileinfo;
+	public String getProfileinfo() {
+		return profileinfo;
+	}
+	public void setProfileinfo(String profileinfo) {
+		this.profileinfo = profileinfo;
+	}
 	private int rownum;
 	public int getRownum() {
 		return rownum;

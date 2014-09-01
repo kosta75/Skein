@@ -3,6 +3,13 @@ package kr.co.skein.model.vo;
 import java.util.Date;
 
 public class BoardDetailView {
+	private String profileinfo;
+public String getProfileinfo() {
+		return profileinfo;
+	}
+	public void setProfileinfo(String profileinfo) {
+		this.profileinfo = profileinfo;
+	}
 private int boardSeq;
 private int boardKindSeq;
 private String email;
