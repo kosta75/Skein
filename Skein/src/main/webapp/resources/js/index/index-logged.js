@@ -394,14 +394,13 @@ $(document).ready(function(){
 											} else {
 												publicLevel = "나만보기";
 											}
-
 											$(".modal-content-view").css("display","block");
 											$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
 																	+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
 																	+ publicLevel
 																	+ "</div>"
 																	+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
-																	+ profileImg
+																	+ data.detailView[0].profileinfo
 																	+ "' /></div>"
 																	+ data.detailView[0].fullname
 																	+ "<br>"
@@ -443,9 +442,11 @@ $(document).ready(function(){
 																/*
 																 * alert(data.replylist[j].replyContent);
 																 */
-																var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
-																+data.replylist[j].fullName+"</div>"
-													replyContent += "<div class='replymodalList modal-bubble'>"
+																var	replyContent	= "<div style='clear:both;'>" +
+																		"<div style='width:50px;float:left'>" +
+																		"<img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"'>"
+																		+data.replylist[j].fullName+"</div>"
+														replyContent += "<div class='replymodalList modal-bubble'>"
 														replyContent += data.replylist[j].replyContent
 														  if (email == data.replylist[j].email) {
 															replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
@@ -785,8 +786,7 @@ $(document).ready(function(){
 																+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
 																+ publicLevel
 																+ "</div>"
-																+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
-																+ profileImg
+																+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"+ data.detailView.profileinfo
 																+ "' /></div>"
 																+ data.detailView.fullname
 																+ "<br>"
@@ -804,7 +804,7 @@ $(document).ready(function(){
 															data) {
 
 														for (var j = 0; j < data.replylist.length; j++) {
-													var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
+													var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"'>"
 																+data.replylist[j].fullName+"</div>"
 													replyContent += "<div class='replymodalList modal-bubble'>"
 														replyContent += data.replylist[j].replyContent
@@ -895,8 +895,7 @@ $(document).ready(function(){
 													+ replyContent,
 											success : function(
 													data) {
-												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"
-																		+ profileImg
+												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+profileImg
 																		+ "'>"
 																		+ fullname
 																		+ "</div><div class='replymodalList modal-bubble'>"
@@ -1065,7 +1064,7 @@ $(document).ready(function(){
 												replyContent += "<div class='group-item-reply-info-container'>"
 												replyContent += "<div class='group-item-reply-profile-image'>"
 												replyContent += "<a href='${pageContext.request.contextPath}/'>"
-												replyContent += "<img src='./resources/user-profile-image/default-profile-image.png' alt='"
+												replyContent += "<img src='./resources/user-profile-image/"+data.replylist[i].profileinfo+"' alt='"
 														+ data.replylist[i].fullName
 														+ "' title='"
 														+ data.replylist[i].fullName
@@ -1180,7 +1179,7 @@ $(document).on("click",".modal-reply-more-btn",function() {
 									if (data.replylist.length > 0) {
 										for (var i = 0; i < data.replylist.length; i++) {
 											
-											var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
+											var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[i].profileinfo+"'>"
 											+data.replylist[i].fullName+"</div>"
 								replyContent += "<div class='replymodalList modal-bubble'>"
 									replyContent += data.replylist[i].replyContent

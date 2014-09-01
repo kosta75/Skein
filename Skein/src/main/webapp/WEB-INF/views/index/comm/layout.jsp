@@ -67,9 +67,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
 	
 	<!-- 로그인 공통 -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/common-logged.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/aside-logged.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/menu-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/common-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/aside-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/menu-logged.css" />
 	
 	<!-- 현재 페이지 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index/index-logged.css" />
