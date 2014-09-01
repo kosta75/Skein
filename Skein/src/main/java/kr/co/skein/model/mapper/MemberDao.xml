@@ -95,6 +95,7 @@
 			<if test="ignoreEmailValue != null">
 				AND m.email != #{ignoreEmailValue}
 			</if>
+			AND m.isApproved = 1 AND m.isDomranted = 0 AND m.isDropedOut = 0 AND m.isLockedOut = 0
 		</where>
 	</select>
 	

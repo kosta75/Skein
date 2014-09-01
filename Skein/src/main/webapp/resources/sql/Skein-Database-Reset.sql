@@ -311,7 +311,7 @@ ALTER TABLE BoardKind
 		)
 		REFERENCES BoardForm (
 			FormCode
-		);
+		) ON DELETE CASCADE;
 
 -- 5.2 BoardKind(게시판형식코드) 데이터 입력
 INSERT INTO BOARDKIND VALUES(1, '공지사항', 1);
@@ -521,7 +521,7 @@ ALTER TABLE Board
 		)
 		REFERENCES BoardKind (
 			BoardKindSeq
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Board
 	ADD
@@ -541,7 +541,7 @@ ALTER TABLE Board
 		)
 		REFERENCES PublicLevel (
 			PublicLevelCode
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Board
 	ADD
@@ -701,7 +701,7 @@ ALTER TABLE Profiles
 		)
 		REFERENCES ProfileCodes (
 			ProfileCode
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Profiles
 	ADD
@@ -711,7 +711,7 @@ ALTER TABLE Profiles
 		)
 		REFERENCES PublicLevel (
 			PublicLevelCode
-		);
+		) ON DELETE CASCADE;
 
 ALTER TABLE Profiles
 	ADD
@@ -997,7 +997,7 @@ ALTER TABLE Notifications
 		)
 		REFERENCES NotificationCodes (
 			NotificationCode
-		);
+		) ON DELETE CASCADE;
 
 
 
@@ -1075,7 +1075,7 @@ ALTER TABLE Friendship
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 
 
@@ -1172,7 +1172,7 @@ ALTER TABLE FriendshipNotification
 		)
 		REFERENCES Members (
 			Email
-		);
+		) ON DELETE CASCADE;
 
 
 

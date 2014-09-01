@@ -28,6 +28,21 @@ VALUES('test3@skein.com','¿Ã','º“∑Ê','¿Ãº“∑Ê','fed33392d3a48aa149a87a38b875ba4a'
 INSERT INTO AUTHORITIES VALUES('ROLE_USER','test3@skein.com');
 INSERT INTO PROFILES VALUES((SELECT NVL(MAX(profileSeq),0)+1 FROM PROFILES), 10,'1987-03-15', 1, 'test3@skein.com');
 
+INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
+VALUES('gbaus@skein.com','±Ë','»ﬁ∏È','±Ë»ﬁ∏È','fed33392d3a48aa149a87a38b875ba4a','1994-03-15','gbaus',0,0,1,0,SYSDATE, 0,'test');
+INSERT INTO AUTHORITIES VALUES('ROLE_RESTRICTED','gbaus@skein.com');
+INSERT INTO PROFILES VALUES((SELECT NVL(MAX(profileSeq),0)+1 FROM PROFILES), 10,'1994-03-15', 1, 'gbaus@skein.com');
+
+INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
+VALUES('xkfxhl@skein.com','¡§','≈ª≈','¡§≈ª≈','fed33392d3a48aa149a87a38b875ba4a','1991-07-15','xkfxhl',0,0,0,1,SYSDATE, 0,'test');
+INSERT INTO AUTHORITIES VALUES('ROLE_RESTRICTED','xkfxhl@skein.com');
+INSERT INTO PROFILES VALUES((SELECT NVL(MAX(profileSeq),0)+1 FROM PROFILES), 10,'1991-07-15', 1, 'xkfxhl@skein.com');
+
+INSERT INTO MEMBERS(email,lastname,firstname,fullname,PASSWORD,birthday,personalURI,isapproved,islockedout,isdomranted,isdropedout,createdate,failedpasswordattemptcount,certificationtext)
+VALUES('vPtho@skein.com','¿Ã','∆Ûº‚','¿Ã∆Ûº‚','fed33392d3a48aa149a87a38b875ba4a','1989-10-15','vPtho',0,1,0,0,SYSDATE, 0,'test');
+INSERT INTO AUTHORITIES VALUES('ROLE_RESTRICTED','vPtho@skein.com');
+INSERT INTO PROFILES VALUES((SELECT NVL(MAX(profileSeq),0)+1 FROM PROFILES), 10,'1989-10-15', 1, 'vPtho@skein.com');
+
 COMMIT;
 
 

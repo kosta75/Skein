@@ -5,19 +5,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title><tiles:getAsString name="title"/></title>
-<script src="//code.jquery.com/jquery-latest.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-all.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
+	<meta charset="UTF-8">
+	<title><tiles:getAsString name="title"/></title>
+	
+	<!-- Script -->
+	<!-- 공통 -->
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-2.1.1.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/common/common.js"></script>
+	
+	<!-- CSS -->
+	<!-- 공통 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/jquery-ui.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
+	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/common-logged.css" />
+	</se:authorize>
+		
+	<!-- 현재페이지 -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}<tiles:getAsString name="css"/>" />
 
-<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common-logged.css" />
-<script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
-</se:authorize>
 </head>
 <body>
 
@@ -38,7 +46,6 @@
 </div>
 <div class="main-section-container">
 	<div class="wrapper">
-		<tiles:insertAttribute name="menu-logged" />
 		<tiles:insertAttribute name="content" />
 	</div>
 </div>

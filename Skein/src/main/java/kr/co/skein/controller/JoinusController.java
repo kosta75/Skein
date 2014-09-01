@@ -147,6 +147,11 @@ public class JoinusController {
 				//사용자 입력 값 확인
 				member.toString();
 				
+				
+				member.setIsDropedOut(0);
+				member.setIsDomranted(0);
+				member.setIsApproved(0);
+				
 				int result = memberDao.updateMemberAccount(member);
 				if(result > 0){
 					System.out.println("INFO : Skein-U005 - 계정 재등록에 성공하였습니다.");

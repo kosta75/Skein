@@ -24,4 +24,11 @@ public interface ProfileDao {
 	
 	//사용자 프로필 삭제
 	public int deleteProfile(ProfileCommand profileCommand) throws ClassNotFoundException, SQLException;
+	
+	
+	
+	//사용자 프로필 조회
+	//public 
+	
+	
 }

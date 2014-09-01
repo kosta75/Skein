@@ -1,5 +1,7 @@
 package kr.co.skein.controller;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 @Controller
@@ -40,7 +43,7 @@ public class AccountController {
 	
 	//사용자 계정인증 메일 보내기
 	@RequestMapping("/{personalURI}/account/certification/mailsend")
-	public String sendCertificationText(@PathVariable String personalURI) throws ClassNotFoundException, SQLException{
+	public String sendCertificationText(@PathVariable String personalURI, @RequestParam("type") String type) throws ClassNotFoundException, SQLException, FileNotFoundException, URISyntaxException{
 		System.out.println("INFO: Skein-U142 - 계정 인증 메일을 보냅니다. personalURI=" + personalURI);
 		
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -62,6 +65,27 @@ public class AccountController {
 		
 		//3. 수정 내용 반영
 		memberDao.updateMemberAccount(member);
+		
+		//4. 메일 기본 정보 설정
+		String from = "univcss@gmail.com";
+		String to = member.getEmail();
+		String subject = "";
+		String formUrl = "";
+		if(type.equals("a")){
+			subject = "Sil - 신규 계정 인증 메일!";
+			formUrl = "emailJoinus.html";
+		}else{
+			subject = "Sil - 휴면 해제 인증 메일!";
+			formUrl = "emailDomrant.html";
+		}
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("certificationText", member.getCertificationText());
+		map.put("certificationURL", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+		
+		emailSender.SendEmail(from, to, subject, map, formUrl);
+		
 		
 		return "account.certificationSend";
 	}
@@ -114,7 +138,7 @@ public class AccountController {
 								return "account.certificationResult";
 							}else{
 								model.addAttribute("certificationResult", 99); //certificationResult : 99, 인증 실패
-								return "error.incorrectCertification";
+								return "account.certificationResult";
 							}
 						}else{
 							System.out.println("INFO : Skein-P016 - 계정승인여부, isApproved=" + member.getIsApproved());
@@ -132,11 +156,11 @@ public class AccountController {
 							memberDao.updateMemberAccount(member);
 							memberDao.updateMemberAuthority("ROLE_USER", member.getEmail());
 							model.addAttribute("certificationResult", 2); //certificationResult : 2, 계정 휴면 해제 승인 
-							return "profile.accountSetting";
+							return "account.certificationResult";
 						}else{
 							model.addAttribute("certificationResult", 99); //certificationResult : 99, 인증 실패
 							model.addAttribute("member", member);
-							return "error.incorrectCertification";
+							return "account.certificationResult";
 						}
 					}
 				}else{
@@ -149,14 +173,15 @@ public class AccountController {
 						model.addAttribute("certificationResult", 3); //certificationResult : 3, 계정 재등록 승인
 						model.addAttribute("member", member);
 						memberDao.updateMemberAuthority("ROLE_USER", member.getEmail());
-						return "board.restoreProcess";
+						return "account.certificationResult";
+						//return "board.restoreProcess";
 						/*member.setIsDropedOut(0);
 						member.setIsDomranted(0);
 						member.setIsApproved(1);*/
 					}else{
 						model.addAttribute("certificationResult", 99); //certificationResult : 99, 인증 실패
 						model.addAttribute("member", member);
-						return "error.incorrectCertification";
+						return "account.certificationResult";
 					}
 				}
 			}else{
@@ -165,13 +190,13 @@ public class AccountController {
 				System.out.println("INFO : Skein-P011 - 계정인증처리 종료");
 				
 				model.addAttribute("certificationResult", 88); //certificationResult : 99, 폐쇄된 계정 인증 요청
-				return "error.incorrectCertification";
+				return "account.certificationResult";
 			}
 			
 		}else{
 			System.out.println("INFO : Skein-U008 - 올바르지 않은 인증 요청입니다.");
-			model.addAttribute("certificationResult", 90); //certificationResult : 90, 잘못된 인증 요청
-			return "error.incorrectCertification";
+			model.addAttribute("certificationResult", 99); //certificationResult : 90, 잘못된 인증 요청
+			return "account.certificationResult";
 		}
 	}
 	
@@ -332,6 +357,7 @@ public class AccountController {
 		if(dbPassword.equals(currentPassword)){
 			member.setIsApproved(0);
 			member.setIsDomranted(1);
+			member.setCertificationText(CertificationTextGenerator.certificationTextGenerate());
 			int result = memberDao.updateMemberAccount(member);
 			if(result == 1){
 				model.addAttribute("result", "success");

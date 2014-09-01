@@ -13,16 +13,7 @@ $(document).ready(function(){
 			$(sideInfoObjectName).css("margin-top","0px");
 		}
 	});//사이드 메뉴 자동스크롤 End
-
-	$('#sidemenu1').click(function() {
-		$('#sidemenu1').append($('#mon').toggle("display"));
-	});
-	$('#sidemenu2').click(function() {
-		$('#sidemenu2').after($('#mon').toggle("display"));
-	});
-	$('#sidemenu3').click(function() {
-		$('#sidemenu3').after($('#mon').toggle("display"));
-	});		 
+	 
 });
 
 

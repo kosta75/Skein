@@ -5,9 +5,6 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
-
 <se:authentication property="name" var="LoginUser" />
 
 <section class="content-container" data-color="${sessionScope.BASE_MEMBER_INFO.colorTheme}">
@@ -102,34 +99,6 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 			</div>
 		</div>
 	</div>
-
-	<!-- 오른쪽 날짜 선택 부분  -->
-	<div id="dateSelector">
-		<ul id="side">
-			<li id="sidemenu1" style="clear: both; float: left;">2014</li>
-			<li id="sidemenu2" style="clear: both; float: left;">2013</li>
-			<li id="sidemenu3" style="clear: both; float: left;">2012</li>
-			<li id="sidemenu4" style="clear: both; float: left;">그외</li>
-		</ul>
-		<div>
-			<ul id="mon"
-				style="display: none; clear: both; padding-top: 5px; padding-left: 5px;">
-				<li id="12">12월</li>
-				<li id="11">11월</li>
-				<li id="10">10월</li>
-				<li id="9">9월</li>
-				<li id="8">8월</li>
-				<li id="7">7월</li>
-				<li id="6">6월</li>
-				<li id="5">5월</li>
-				<li id="4">4월</li>
-				<li id="3">3월</li>
-				<li id="2">2월</li>
-				<li id="1">1월</li>
-			</ul>
-		</div>
-	</div>
-
 
 	<div class="main-content-wrapper">
 		<!-- 메인 화면 가운데 부분 -->
@@ -257,7 +226,23 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
-								
+								<li>
+								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
+									<div class="group-item-public-level-cotroller">
+									<ul>
+									<c:forEach var="publicLevelList" items="${publicLevelList}">
+									<c:choose>
+										<c:when test="${groupItem.publicLevelCode == publicLevelList.publicLevelCode}">
+											<li class="public-level-check ${sessionScope.BASE_MEMBER_INFO.colorTheme}" data-publiclevelcode="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</li>
+										</c:when>
+										<c:otherwise>
+											<li data-publiclevelcode="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</li>
+										</c:otherwise>
+									</c:choose>				
+											</c:forEach>
+											</ul>
+											</div>
+									</li>
 								
 								<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
 								<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
@@ -271,6 +256,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 											</c:otherwise>
 										</c:choose>
 									</li>
+									
 								</ul>
 							</div>
 
@@ -305,27 +291,10 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
-									<span class="group-item-write-date">${groupItem.writeDate}</span>
+									<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
+									<span class="group-item-write-date">${writeDate}</span>
 								</div>
-								<div style="float: right;margin-right:120px;margin-top:5px;">
-								<c:choose >
-								<c:when test="${groupItem.publicLevelCode == 5}">
-									전체공개
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 4}">
-								사용자공개
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 3}">
-								친구공개(모두)
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 2}">
-								친구공개(공유)
-								</c:when>
-								<c:when test="${groupItem.publicLevelCode == 1}">
-								나만보기
-								</c:when>
-								</c:choose> 
-								</div>
+								
 							</div>
 							<div class="group-item-content-wrapper">
 								<div>

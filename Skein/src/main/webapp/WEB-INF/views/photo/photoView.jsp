@@ -7,28 +7,44 @@
 <section class="content-container">
 	<div class="photo-content-wrapper">
 		<div class="informbox photo">
-			<div class="informbox_header">
+			
+			<c:choose>
+				<c:when test="${photoList.size() > 0}">
+				
+				<div class="informbox_header">
 				<!-- 정보헤더 -->
-				<img
-					src="${pageContext.request.contextPath}/resources/media/image/photos_img.png">사진
-			</div>
-			<div class="informbox_content">
-				<!-- 정보컨텐츠 -->
-				<div class="clearfix">
-					<div id="boardlist-picture">
-						<c:forEach var="list" items="${list}">
-							<c:if test="${list.fileName !=null}">
-								<div class="list-item">
-									<div class="img-list">
-										<img
-											src="${pageContext.request.contextPath}/resources/upload/${list.fileName}" style="width: 155px; height: 155px;">
+					<img src="${pageContext.request.contextPath}/resources/media/image/photos_img.png">사진
+				</div>
+				
+				<div class="informbox_content">
+					<!-- 정보컨텐츠 -->
+					<div class="clearfix">
+						<div id="boardlist-picture">
+							
+							<c:forEach var="list" items="${list}">
+								<c:if test="${list.fileName !=null}">
+									<div class="list-item">
+										<div class="img-list">
+											<img
+												src="${pageContext.request.contextPath}/resources/upload/${list.fileName}" style="width: 155px; height: 155px;">
+										</div>
 									</div>
-								</div>
-							</c:if>
-						</c:forEach>
+								</c:if>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
-			</div>
+				
+				</c:when>
+				<c:otherwise>
+					<div class="informbox_content">
+						새로운 사진을 등록해 보세요
+					</div>
+				</c:otherwise>
+			</c:choose>
+			
+			
+			
 		</div>
 	</div>
 </section>

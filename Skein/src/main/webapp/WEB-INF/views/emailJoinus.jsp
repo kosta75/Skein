@@ -57,7 +57,7 @@ tr {
 							<tr>
 								<td
 									style="height: 61px; background: #F6F8F9; font-size: 12px; color: #666666; font-weight: bold; font-family: dotum; text-align: center; vertical-align: middle">인증링크
-									:<strong
+									<strong
 									style="font-size: 12px; color: #1C9401; font-weight: bold; font-family: dotum">링크붙일곳444483</strong>
 								</td>
 							</tr>

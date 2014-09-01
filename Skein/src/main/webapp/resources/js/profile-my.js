@@ -1,6 +1,128 @@
 $(document).ready(function() {
-	// 수정form 저장
+	//프로필사진 설정 Start //////////////////////////////////////////////////////////////////////////
+
+	//프로필사진 등록 취소
+	$(".profile-image-closeBtn").click(function(){
+		$(this).parent().css("display", "none").siblings().css("display", "block");
+		multiFiles = null;
+		$(".dropzone #file-list").empty();
+		$(".dropzone").append(detachObject);
+	});
+
+	//프로필사진 등록/수정
+	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
+	var filelist = document.getElementById("file-list");
+	var detachObject;
+	var multiFiles;
+
+	function groupTemplate(groupID, files) {
+		detachObject = $(".dropzone .help-message").detach();
+		var html = [];
+		multiFiles = new Array();
+
+		var file = files[0];
+		multiFiles.push(file);
+		var id = "group_" + groupID + "_file_" + file.extra.fileID;
+		html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"	+ groupID + "' class='profile-image-item'><div class='delete-button'></div></div>");
+		console.log("프로필 사진을 하나만 등록 할 수 있다!");
+		return html.join('');
+	}
+
+	var opts = {
+		on : {
+			load : function(e, file) {
+				var fileDiv = $("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)
+				fileDiv.addClass("done");
+
+				var ms = file.extra.ended - file.extra.started;
+				if (file.type.match(/image/)) {
+
+					var img = new Image();
+					img.onload = function() {
+						fileDiv.prepend($(img).clone());
+					};
+					img.src = e.target.result;
+				} else {
+					
+				}
+			},
+			error : function(e, file) {
+				$("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)	.addClass("error");
+			},
+			groupstart : function(group) {
+				$(filelist).empty();
+				$(filelist).append(groupTemplate(group.groupID,group.files));
+
+			},
+			groupend : function(group) {
+				
+			}
+		}
+	};
+
+	$(".dropzone").fileReaderJS(opts);
+	$(".profile-image-edit-button").on('click', function(){
+		$("#profileImageForm").submit();
+	});
+
+	$("#profileImageForm").submit(function(event){
+		var requestMapping = "/profile/profileImageUpdate";
+		var requestContextPath = getContextPath() + requestMapping;
+		
+		event.preventDefault();
+		//console.log("INFO : Skein-T543 - HistoryForm Submit 처리");
+		var data = new FormData();
+		
+		//사용자가 올린 파일을 FormData에 등록한다.
+		$.each(multiFiles, function(count, file) {
+			console.log(count);
+			data.append("files[" + count + "]", file);
+		});
+		
+		//console.log("INFO : Skein-T543 - Serialize된 Form Data");
+		
+		//Form Data를 serialize 한다.
+		var historyForm = $(this).serializeArray();
+		$.each(historyForm, function(i, field) {
+			//console.log("[name : " + field.name	+ ", value : "	+ field.value + "]");
+			data.append(field.name, field.value);
+		});
+		
+		$.ajax({
+			url : requestContextPath,
+			type : 'post',
+			dataType : "JSON",
+			data : data,
+			// cache: false,
+			processData : false,
+			contentType : false,
+			success : function(data, textStatus, jqXHR) {
+				var msg = data.result;
+
+				if (data.result == 'success') {
+					location.reload();
+				} else if (data.result == 'not file') {
+					alert("이미지 업로드 실패");
+					location.reload();
+				}
+			},
+			error : function(jqXHR,
+					textStatus,
+					errorThrown) {
+
+			}
+		});
+		return false;
+	});
+	//프로필사진 설정 End //////////////////////////////////////////////////////////////////////////
+		
+	//프로필 설정(프로필사진 제외) Start
+
+	//프로필 등록/수정
 	$(".inform_edit").not(".profileImage").on("click",".profile_editBtn",function(){
+		var requestMapping = "/profile/profileUpdate";
+		var requestContextPath = getContextPath() + requestMapping;
+		
 		profileInfo = $(this).parent().find("input[name=profileInfo]").val();
 		if( profileInfo == ""){
 			alert("내용을 입력해주세요");
@@ -11,7 +133,7 @@ $(document).ready(function() {
 			email = $("input:hidden[name=email]").val();
 			$.ajax({
 				type : 'post',
-				url : 'profile/update',
+				url : requestContextPath,
 				cache : false,
 				data :'profileInfo='+ profileInfo + '&profileCode='+ profileCode + '&publicLevelCode='+ publicLevelCode + '&email='+ email,
 				success : function(data) {
@@ -32,6 +154,9 @@ $(document).ready(function() {
 	
 	//공개범위selected 저장
 	$(".has-sub .publicbtn").click(function(){
+		var requestMapping = "/profile/profileUpdate";
+		var requestContextPath = getContextPath() + requestMapping;
+		
 		var email = $("input:hidden[name=email]").val();
 		var profileName = $(this).parent().parent().parent().parent().parent().find(".inform_button").attr("class").substring(14);
 		var profileCode = $("input:hidden[name=" + profileName + "]").attr("value");
@@ -53,7 +178,7 @@ $(document).ready(function() {
 			}
 			$.ajax({
 				type : 'post',
-				url : 'profile/update',
+				url : requestContextPath,
 				cache : false,
 				data : 'profileCode='+ profileCode + '&publicLevelCode='+ publicCode + '&email='+ email,
 				success : function(data) {
@@ -103,6 +228,8 @@ $(document).ready(function() {
 	$(".profilecloseBtn").click(function(){
 		$(this).parent().css("display", "none").siblings().css("display", "block");
 	});
+	
+	
 	
 	
 	//마우스오버시 버튼보이기
@@ -160,116 +287,7 @@ $(document).ready(function() {
 	
 	
 	
-	//프로필사진 설정 Start //////////////////////////////////////////////////////////////////////////
-
-	//프로필 이미지 수정
-	//파일업로드 설정 Start //////////////////////////////////////////////////////////////////////////
-	var filelist = document.getElementById("file-list");
-	//var multiFiles = new Array();
-	var multiFiles;
-
-	function groupTemplate(groupID, files) {
-		var html = [];
-		multiFiles = new Array();
-
-		var file = files[0];
-		multiFiles.push(file);
-		var id = "group_" + groupID + "_file_" + file.extra.fileID;
-		html.push("<div id='" + id + "' data-fileid='" + file.extra.fileID + "' data-groupid='"	+ groupID + "' class='image-item'><div class='delete-button'></div></div>");
-		console.log("프로필 사진을 하나만 등록 할 수 있다!");
-		return html.join('');
-	}
-
-	var opts = {
-		on : {
-			load : function(e, file) {
-				var fileDiv = $("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)
-				fileDiv.addClass("done");
-				console.log("start");
-
-				var ms = file.extra.ended - file.extra.started;
-				//fileDiv.find(".time-to-load").text(ms);
-				if (file.type.match(/image/)) {
-					// Create a thumbnail and add it to the output if it is an image
-					console.log("이미지 업로드 했음");
-					var img = new Image();
-					img.onload = function() {
-						//fileDiv.find(".modal").append(img);
-						fileDiv.prepend($(img).clone());
-					};
-					img.src = e.target.result;
-				} else {
-					//fileDiv.find(".modal").append($("<div />").text(e.target.result));
-				}
-			},
-			error : function(e, file) {
-				$("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)	.addClass("error");
-			},
-			groupstart : function(group) {
-				$(filelist).empty();
-				$(filelist).append(groupTemplate(group.groupID,group.files));
-
-			},
-			groupend : function(group) {
-				console.log("groupEnd");
-				/*$("#group_" + group.groupID).append(	"<div style='display:none;'>(Time to load: "	+ (group.ended - group.started)	+ "ms)</div>");*/
-				console.log(multiFiles);
-			}
-		}
-	};
-
-	$(".dropzone").fileReaderJS(opts);
-	$(".profile_editBtn").on('click', function(){
-		$("#profileImageForm").submit();
-	});
-
-	$("#profileImageForm").submit(function(event){
-		event.preventDefault();
-		console.log("INFO : Skein-T543 - HistoryForm Submit 처리");
-		var data = new FormData();
-		
-		//사용자가 올린 파일을 FormData에 등록한다.
-		$.each(multiFiles, function(count, file) {
-			console.log(count);
-			data.append("files[" + count + "]", file);
-		});
-		
-		console.log("INFO : Skein-T543 - Serialize된 Form Data");
-		
-		//Form Data를 serialize 한다.
-		var historyForm = $(this).serializeArray();
-		$.each(historyForm, function(i, field) {
-			console.log("[name : " + field.name	+ ", value : "	+ field.value + "]");
-			data.append(field.name, field.value);
-		});
-		
-		$.ajax({
-			url : 'profile/update',
-			type : "post",
-			dataType : "JSON",
-			data : data,
-			// cache: false,
-			processData : false,
-			contentType : false,
-			success : function(data, textStatus, jqXHR) {
-				var msg = data.result;
-
-				if (data.result == 'success') {
-					location.reload();
-				} else if (data.result == 'not file') {
-					alert("이미지 업로드 안했음요");
-					location.reload();
-				}
-			},
-			error : function(jqXHR,
-					textStatus,
-					errorThrown) {
-
-			}
-		});
-		return false;
-	});
-	//파일업로드 설정 End //////////////////////////////////////////////////////////////////////////
+	
 	
 	/*$(".profile_editBtn.profileImage") .click(	function(event) {
 		event.preventDefault();

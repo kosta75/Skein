@@ -1,5 +1,5 @@
 bind(window, 'load', function() {
-	geolocationInit();
+	//geolocationInit();
 });
 
 

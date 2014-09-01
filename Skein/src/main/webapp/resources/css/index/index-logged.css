@@ -40,13 +40,14 @@
 .group-item-controller-container ul li a{display:block;height:20px;}
 .group-item-controller-container ul li:first-child{margin-left:0px;}
 
+.group-item-public-level-cotroller{display:none;position:absolute;background:#fff;border:1px solid #ccc;top:29px;}
+.group-item-public-level-cotroller ul li{float:none;padding:1px 27px 1px 7px;margin:0px;height:17px;font-size:12px;font-family:'맑은 고딕';cursor:pointer;}
+.group-item-public-level-cotroller ul li:hover{background-color:#ddd;}
+.group-item-public-level-cotroller ul li.public-level-check{background-image:url('../../media/image/one-share2.png');background-repeat:no-repeat;background-position:90px center;}
+
 .icon-box{width:25px;height:25px;text-indent:-100000px;font-size:1px;padding:0px;cursor:pointer;}
 
-.icon-box:HOVER{
-	
-	background: #e4e4e4;
-	
-}
+.icon-box:hover{background:#e4e4e4;}
 .group-item-edit, .one-share, .group-share{background-repeat:no-repeat;background-position:center;}
 /* .one-share{background-image:url("../media/image/one-share2.png");}
 .group-share{background-image:url("../media/image/one-share2.png");}
@@ -76,7 +77,7 @@
 .group-item-reply-write-form-container input{border:1px solid #ccc;padding:4px 2px;width:80%;}
 .reply-more-btn{text-align:center;margin-top:10px;height:20px;padding:10px;color:#fff;font-weight:bold;}
 .image-icon{text-indent:-10000px;background-repeat:no-repeat}
-.reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../media/image/mention1.png");background-size:55%;background-position:center}
+.reply-icon{float:left;padding:2px 2px 2px 4px;width:26px;height:26px;background-image:url("../../media/image/mention1.png");background-size:55%;background-position:center}
 .reply-message{float:right;border:1px solid #ccc;width:75px;height:24px;margin-top:2px;margin-right:4px;background:#f00;}
 
 .group-item-reply-secition ul li{margin-top:1px;}
@@ -104,9 +105,9 @@
 
 #historyDate{	display: none;}
 
-#historyImg img{width:78px;height:78px;padding:2px;border:1px solid #eee;margin:4px;}
-.image-item{position:relative;}
-.image-item .delete-button{display:none;position:absolute;top:7px;right:7px;width:10px;height:10px;background:#f00;z-index:5}
+#historyImg img{max-width:78px;max-height:78px;}
+.image-item{position:relative;width:78px;height:78px;overflow:hidden;border:1px solid #eee;margin:4px;padding:2px;line-height:78px;text-align:center;}
+.image-item .delete-button{display:none;position:absolute;top:2px;right:2px;width:10px;height:10px;background:#f00;z-index:5}
 
 
 #write{
@@ -210,7 +211,7 @@ div#list{
    width: 40px;
    height: 800px;
    position: relative;
-   background: url('../../resources/media/image/writeicon.png');
+   background: url('../../media/image/writeicon.png');
    float: left;
 }
 

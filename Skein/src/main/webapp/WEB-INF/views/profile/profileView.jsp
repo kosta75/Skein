@@ -77,6 +77,8 @@ birthdayPublic
 			<div class="clearfix">
 				<div class="content_inner">
 					<!-- 왼쪽 -->
+					
+					<!-- 프로필 사진 Start -->
 					<div class="inform_elem">
 						<b>프로필사진</b>
 						<div class="inform_databox profileImage">
@@ -124,13 +126,14 @@ birthdayPublic
 									</select>
 									</form>
 									
-									<input type="button" value="저장" class="profile_editBtn profileImage">
-									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
-									<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
+									<input type="button" value="저장" class="profile-image-edit-button profileImage">
+									<input type="button" value="삭제" class="profile-image-delete-button profileImage">
+									<img class="profile-image-closeBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 								</div>
 							</div>
 						</div>
-					</div>
+					</div><!-- 프로필 사진 End -->
+					
 					<div class="inform_elem">
 						<b>생일</b>
 						<div class="inform_databox birthday">

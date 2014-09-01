@@ -18,7 +18,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/common/common.js"></script>
 	
 	<!-- 현재 페이지 -->
-	<script src="${pageContext.request.contextPath}/resources/js/index-not-logged.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/index/index-not-logged.js"></script>
 	
 	<!-- CSS -->
 	<!-- 공통 -->
@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
 	
 	<!-- 현재페이지 -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-not-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index/index-not-logged.css" />
 	
 </head>
 <body>
@@ -58,7 +58,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/common/logged/map.js"></script>
 	
 	<!-- 현재 페이지 -->
-	<script src="${pageContext.request.contextPath}/resources/js/index-logged.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/index/index-logged.js"></script>
 	
 	<!-- CSS -->
 	<!-- 공통 -->
@@ -72,7 +72,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/menu-logged.css" />
 	
 	<!-- 현재 페이지 -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index/index-logged.css" />
 	
 </head>
 <body>

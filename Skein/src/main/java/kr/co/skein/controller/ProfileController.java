@@ -32,8 +32,9 @@ public class ProfileController {
 	@Autowired
 	private View jsonView;
 	
-	@RequestMapping(value="update", method=RequestMethod.POST)
-	public View updateProfileInfo(ProfileCommand command, HttpSession session, MultipartHttpServletRequest multiRequest, Model model) throws ClassNotFoundException, SQLException{
+	//프로필 이미지 업데이트
+	@RequestMapping(value="/profileImageUpdate", method=RequestMethod.POST)
+	public View updateProfileImage(ProfileCommand command, HttpSession session, MultipartHttpServletRequest multiRequest, Model model) throws ClassNotFoundException, SQLException{
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		System.out.println(command.getEmail());
 		int code = command.getProfileCode();
@@ -56,6 +57,20 @@ public class ProfileController {
 				model.addAttribute("result","success");
 			}
 		}
+		
+		if(profileDao.countProfiles(command) > 0){
+			profileDao.updateProfile(command);
+		}else{
+			profileDao.insertProfile(command);
+		}
+
+		return jsonView;
+	}
+	
+	@RequestMapping(value="/profileUpdate", method=RequestMethod.POST)
+	public View updateProfileInfo(ProfileCommand command, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+		System.out.println(command.getEmail());
 		
 		if(profileDao.countProfiles(command) > 0){
 			profileDao.updateProfile(command);

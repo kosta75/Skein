@@ -20,7 +20,7 @@
 				FROM Friendship f JOIN Members m ON f.friendEmail = m.email
 				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 2) p ON f.friendEmail = p.email
 				LEFT OUTER JOIN (SELECT email, profileInfo, publicLevelCode, profileCode FROM profiles WHERE profileCode = 3) p2 ON f.friendEmail = p.email
-				WHERE f.email = #{param1} ORDER BY m.FullName ASC 
+				WHERE f.email = #{param1} AND m.isApproved = 1 AND m.isDomranted = 0 AND m.isDropedOut = 0 AND m.isLockedOut = 0 ORDER BY m.FullName ASC 
 			) s
 		)
 		WHERE r BETWEEN #{param2} AND #{param3}

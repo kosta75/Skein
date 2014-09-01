@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="YYYY년MM월dd일" var="today" />
+<fmt:formatDate value="${now}" pattern="YYYY년 MM월 dd일" var="today" />
 
 <!-- 왼쪽 사용자 개인정보  -->
 <div id="subUserProfileContainer">
@@ -25,9 +25,8 @@
 			</div>
 			
 			<div class="sub-user-proifle-info">
-				<p>${sessionScope.BASE_MEMBER_INFO.email}</p>
 				<div class="sub-user-profile-birthday">								
-					<fmt:formatDate value="${sessionScope.BASE_MEMBER_INFO.birthday}" type="date" pattern="YYYY년MM월dd일"/>
+					<fmt:formatDate value="${sessionScope.BASE_MEMBER_INFO.birthday}" type="date" pattern="YYYY년 MM월 dd일"/>
 					<c:if test="${sessionScope.BASE_MEMBER_INFO.birthday == toDay}">
 						<img src="${pageContext.request.contextPath}/resources/media/image/birthday.jpg" style="width: 30px;height: 30px;"/>
 					</c:if>
@@ -36,12 +35,12 @@
 		</div>
 	</div>
 	
-	<!--******************************날씨 정보******************************   -->
-        <div class="weather-info-container">
-        	<div id="whatweather">
-        		<div id="observinfo"></div>
-        		<div id="locationinfo"></div>
-        	</div>
-	</div>
-	<!--********************************************************************** -->
+	<!-- 날씨정보 Start -->
+	<div class="weather-info-container">
+		<div id="whatweather">
+			<div id="observinfo"></div>
+			<div id="locationinfo"></div>
+		</div>
+	</div><!-- 날씨정보 End -->
+	
 </div>

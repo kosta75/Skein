@@ -128,9 +128,13 @@
 	background-color: fuchsia;
 }
 .informdata.profileImage{
+	width:110px;height:110px;
 	font-size : 13px;
 	text-align: center;
 }
+
+.informdata.profileImage img{max-width:110px;max-height:110px;}
+
 .informdata.profileImage font{
 	top: 20px;
 }
@@ -141,8 +145,13 @@ input[type=text]{
 /* 글쓰기 */
 
 #profileImageForm{position:relative;}
-.dropzone{border:1px solid #dcdcdc;height:100px; width: 100px; position:relative;}
+.dropzone{border:1px solid #dcdcdc;height:110px;width:110px;padding:2px;position:relative;}
 .dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
+
+#file-list{width:110px;height:110px;overflow:hidden;}
+.profile-image-item{width:110px;height:110px;line-height:106px;text-align:center;}
+.profile-image-item img{max-width:110px;max-height:110px;}
+
 /* 
 #historyImg:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 #file-list li{float:left;}
