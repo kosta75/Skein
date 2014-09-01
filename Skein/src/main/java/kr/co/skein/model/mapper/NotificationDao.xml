@@ -150,4 +150,26 @@
 		WHERE email = #{email}
 	</update>
 	
+	
+	
+	
+	
+	
+	<!-- 알림리스트 최종판! -->
+	<select id="getFriendshipNotifications" resultType="kr.co.skein.model.vo.notification.FriendshipNotification">
+		SELECT n.NotificationSeq, n.Email, n.isRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm FROM Notification n JOIN FriendshipNotification f ON n.notificationSeq = f.notificationSeq
+		WHERE email = #{email}
+	</select>
+	
+	
+	<select id="getReplyNotifications" resultType="kr.co.skein.model.vo.notification.ReplyNotification">
+		SELECT n.NotificationSeq, n.Email, n.isRead, n.CreateDate, n.NotificationCode, r.replySeq FROM Notification n JOIN ReplyNotification r ON n.notificationSeq = r.notificationSeq
+		WHERE email = #{email}
+	</select>
+	
+	<select id="getShareNotifications" resultType="kr.co.skein.model.vo.notification.ShareNotification">
+		SELECT n.NotificationSeq, n.Email, n.isRead, n.CreateDate, n.NotificationCode, s.BoardSeq, s.OwnerEmail, s.ShareConfirm FROM Notification n JOIN ShareNotification s ON n.notificationSeq = s.notificationSeq
+		WHERE email = #{email}
+	</select>
+	
 </mapper>
