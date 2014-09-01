@@ -1,32 +1,26 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import kr.co.skein.model.dao.BoardDao;
-import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
-import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
-import kr.co.skein.model.vo.NotificationAllCommand;
-import kr.co.skein.model.vo.NotificationCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
+import kr.co.skein.model.vo.notification.FriendshipNotification;
+import kr.co.skein.model.vo.notification.MemberNotification;
+import kr.co.skein.model.vo.profile.MemberProfile;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -196,14 +190,19 @@ public class NotificationController {
 	}
 	
 	//알림 정렬 하기 
-	@RequestMapping(value = "/", method=RequestMethod.GET)
-	public String viewNotificationListSort(@RequestParam(value="alramSeq", defaultValue="1") String alramSeq, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		
+	@RequestMapping(value ="/", method=RequestMethod.GET)
+	public String viewNotificationListSort(HttpSession session, Model model) throws ClassNotFoundException, SQLException{	
 		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
+			List<MemberNotification> memberNotifications = notificationDao.getMemberNotificationList(baseMemberInfo.getEmail());
+			model.addAttribute("notificationList", memberNotifications);
+		}
 		
-		BaseMemberInfo baseMemberInfo = null;
-		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
-			List<NotificationAllCommand> list = notificationDao.getNotificationListSort(baseMemberInfo.getEmail(),alramSeq);
+		
+		//if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			/*List<NotificationAllCommand> list = notificationDao.getNotificationListSort(baseMemberInfo.getEmail(),alramSeq);
 			for(int i = 0; i < list.size(); i++){
 				if(list.get(i).getNotificationCode() == 1){
 					//공지사항
@@ -252,9 +251,40 @@ public class NotificationController {
 			}
 			model.addAttribute("notificationList", list);	
 			System.out.println("INFO : Skein-E252 - 조회 요청 이메일 정보, email=" + baseMemberInfo.getEmail());
-			System.out.println("INFO : Skein-F252 - 조회한 알림 게시물, size=" +  list.size());
-		}
+			System.out.println("INFO : Skein-F252 - 조회한 알림 게시물, size=" +  list.size());*/
+		//}
 		return "notification.notificationView";
+	}
+	
+	@RequestMapping(value="/notificationDetailInfo", method=RequestMethod.POST)
+	public View getNotificationDetailInfo(@RequestParam("notificationSeq") int notificationSeq, @RequestParam("notificationCode") int notificationCode, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+			BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
+			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+			
+			switch(notificationCode){
+			case 1:
+				break;
+			case 2:
+				ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+				FriendshipNotification friendshipNotification = notificationDao.getFriendshipNotificationDetail(notificationSeq);
+				
+				List<MemberProfile> memberProfiles = profileDao.getMemberProfileList(friendshipNotification.getFriendEmail(), "false");
+				
+				friendshipNotification.setMemberProfileList(memberProfiles);
+				
+				model.addAttribute("friendshipNotification", friendshipNotification);
+				break;
+			case 4:
+				break;
+			case 6:
+				break;
+			}
+			
+			
+		}
+
+		return jsonView;
 	}
 	
 }

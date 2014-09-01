@@ -3,6 +3,8 @@ package kr.co.skein.model.vo;
 import java.util.Date;
 import java.util.List;
 
+import kr.co.skein.model.vo.profile.MemberProfile;
+
 
 public class FriendshipListCommand {
 

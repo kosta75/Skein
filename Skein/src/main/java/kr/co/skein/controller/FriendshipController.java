@@ -13,7 +13,7 @@ import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.FriendshipList;
 import kr.co.skein.model.vo.FriendshipListCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
-import kr.co.skein.model.vo.MemberProfile;
+import kr.co.skein.model.vo.profile.MemberProfile;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class FriendshipController {
 		List<FriendshipList> friendshipList = friendshipDao.getFriendshipList(baseMemberInfo.getEmail(), startNum, endNum);
 		for(int i=0;i<friendshipList.size();i++){
 			FriendshipList friendship = friendshipList.get(i);
-			List<MemberProfile> list = profileDao.getMemberProfileList(friendship.getFriendEmail());
+			List<MemberProfile> list = profileDao.getMemberProfileList(friendship.getFriendEmail(), "true");
 			friendship.setMemberProfileList(list);
 		}
 

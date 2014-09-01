@@ -150,4 +150,37 @@
 		WHERE email = #{email}
 	</update>
 	
+	
+	<!-- 사용자 전체 알림 조회 -->
+	<select id="getMemberNotificationList" resultType="kr.co.skein.model.vo.notification.MemberNotification">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, 
+			CASE
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM FriendshipNotification) THEN (SELECT m.fullName FROM FriendshipNotification f JOIN Members m ON f.FriendEmail = m.email WHERE f.NotificationSeq = n.NotificationSeq)
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ReplyNotification) THEN (SELECT m.fullName FROM ReplyNotification r JOIN Reply re ON r.ReplySeq = re.ReplySeq JOIN Members m ON re.email = m.email WHERE r.NotificationSeq = n.NotificationSeq)
+				<!-- WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT m.fullName || '('||m.personalURI||')' FROM ShareNotification s JOIN Board b ON s.BoardSeq = b.BoardSeq WHERE s.NotificationSeq = n.NotificationSeq) -->
+				ELSE null
+			END AS notificationSenderName,
+			CASE
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM FriendshipNotification) THEN (SELECT m.personalURI FROM FriendshipNotification f JOIN Members m ON f.FriendEmail = m.email WHERE f.NotificationSeq = n.NotificationSeq)
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ReplyNotification) THEN (SELECT m.personalURI FROM ReplyNotification r JOIN Reply re ON r.ReplySeq = re.ReplySeq JOIN Members m ON re.email = m.email WHERE r.NotificationSeq = n.NotificationSeq)
+				<!-- WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT b.Email FROM ShareNotification s JOIN Board b ON s.BoardSeq = b.BoardSeq WHERE s.NotificationSeq = n.NotificationSeq) -->
+				ELSE null
+			END AS notificationSenderURI
+		FROM Notifications n
+		WHERE n.email = #{email}
+		ORDER BY n.CreateDate DESC
+	</select>
+	
+	<!-- 친구 알림 상세 정보 -->
+	<select id="getFriendshipNotificationDetail" parameterType="Integer" resultType="kr.co.skein.model.vo.notification.FriendshipNotification">
+		SELECT n.NotificationSeq, n.Email, n.IsRead, n.CreateDate, n.NotificationCode, f.FriendEmail, f.FriendshipConfirm
+		FROM Notifications n JOIN FriendshipNotification f ON n.NotificationSeq = f.NotificationSeq
+		WHERE n.NotificationSeq = #{notificationSeq}
+	</select>
+	
+	
+	<select id="getReplyNotificationDetail">
+		
+	</select>
+	
 </mapper>

@@ -42,7 +42,10 @@
 		WHERE email = #{email} AND profileCode = #{profileCode}
 	</delete>
 	
-	<select id="getMemberProfileList" resultType="kr.co.skein.model.vo.MemberProfile">
-		SELECT profileSeq, profileCode, profileInfo, publicLevelCode, Email FROM Profiles WHERE email = #{email}
+	<select id="getMemberProfileList" parameterType="String" resultType="kr.co.skein.model.vo.profile.MemberProfile">
+		SELECT profileSeq, profileCode, profileInfo, publicLevelCode, Email FROM Profiles WHERE email = #{param1}
+		<if test="param2 == 'false'">
+		AND publicLevelCode != 1
+		</if>
 	</select>
 </mapper>
