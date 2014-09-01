@@ -30,10 +30,10 @@
 	
 	<!-- 로그인 공통 -->
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/common-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/common-logged.css" />
 	<!-- 로그인 메뉴바, 상태사이드 메뉴 -->
 	<c:if test="${PROFILE_RESPONSE_CODE == 99}">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css//common/logged/menu-logged.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/logged/menu-logged.css" />
 	</c:if>
 	</se:authorize>
 	

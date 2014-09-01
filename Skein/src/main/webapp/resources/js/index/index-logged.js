@@ -1,7 +1,16 @@
 $(document).ready(function(){
 	
+	//기본 사용자 정보
+	var email = $(".content-container").data("email");
+	var profileImg = $(".content-container").data("profileImg");
+	if (profileImg == null || profileImg == '') {
+		profileImg = "default-profile-image.png";
+
+	}
+	
 	//헤더 Bar 색상
 	var color = $(".content-container").data("color");
+	
 	
 	//게시물 타임라인 설정 Start //////////////////////////////////////////////////////////////////////////
 	Highcharts.setOptions({
@@ -341,141 +350,250 @@ $(document).ready(function(){
 	});
 	
 
-	$('#sidemenu1').click(function() {
-		$('#sidemenu1').append($('#mon').toggle("display"));
-	});
-	$('#sidemenu2').click(function() {
-		$('#sidemenu2').after($('#mon').toggle("display"));
-	});
-	$('#sidemenu3').click(function() {
-		$('#sidemenu3').after($('#mon').toggle("display"));
-	});
-	
 	
 	var boardSeq = 0;
 	var fullname =$(".replyWrite").data("fullname");
 	// modal- 기능 구현
-	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function(){
-		var groupSeq = $(this).find("input").val();
-		
-		var publicLevel ;
-		
-		
-		boardSeq = $(this).data("boardseq");
-		$(".modal-Edit").css("display","block");
-	    $(".modal-edit-Div").css("display","none");
-	    $(".modalcontent").css("display","block");
-		$(".modalShare").find("input").val(groupSeq);
-		if ($(this).attr("id") == "modal-launcher") {
-			$("html").css("overflow-y", "hidden");
-			$('.content-wrapper').on('wheel.modal mousewheel.modal', 	function() {
-				return false;
-			});
+	$(document).on("click","#modal-launcher,#modal-close, #modal-background",function() {
+						var groupSeq = $(this).find("input")
+								.val();
 
-			$.ajax({
-				type : 'post',
-				url : 'board/detailView',
-				cache : false,
-				data : 'groupSeq=' + groupSeq,
-				success : function(data) {
-					if(data.detailView[0].publicLevelCode == 5){
-						publicLevel = "전체공개";
-					}else if(data.detailView[0].publicLevelCode == 4){
-						publicLevel = "친구공개(모두)";
-					}else if(data.detailView[0].publicLevelCode == 3){
-						publicLevel = "친구공개(공유)";
-					}else if(data.detailView[0].publicLevelCode == 2){
-						publicLevel = "사용자";
-					}else{
-						publicLevel = "나만보기";
-					}
-					
-					$(".modal-content-view").css("display","block");
-					$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
-							+"<div style='float:right;margin-right:25px;margin-top:5px;'>"+publicLevel+"</div>"
-							+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
-							+ data.detailView[0].fullname + "<br>"
-							+ data.detailView[0].writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView[0].content + "</div></div>");
-							
-							
-					detail = data.detailView.length;
-					$("#imglength").val(data.detailView.length);
-					
-					for (var i = 0; i < data.detailView.length; i++) {
-						$("#imgBtnList").append("<div class='imgBtn' data-boardSeq='"+data.detailView[i].boardSeq+"'>" + "<input type='hidden' value='" + i + "'>"
-								+ "<img class='imgbtn' data-imgBtnNumber = '"	+ i 	+ "'  src='./resources/upload/" + data.detailView[i].filename
-								+ "' style='width: 40px; height: 40px; padding-left:15px;padding-top:10px;opacity:0.4;'></div>" + "</div>");
-						$("#detailImg"+ i).attr("src",'./resources/upload/'+ data.detailView[i].filename);
-					
-					}
-					
-					$.ajax({
-						type : 'post',
-						url : 'reply/select',
-						cache : false,
-						data : "Count=0&boardSeq=" + boardSeq,
-						success : function(data) {
-							
-							for(var j =0;j<data.replylist.length;j++){
-								/*alert(data.replylist[j].replyContent);	
-								*/
-								
-			$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[j].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
-							
-							
-							}
-							
-							
+						var publicLevel;
+
+						boardSeq = $(this).data("boardseq");
+						$(".modal-Edit")
+								.css("display", "block");
+						$(".modal-edit-Div").css("display",
+								"none");
+						$(".modalcontent").css("display",
+								"block");
+						$(".modalShare").find("input").val(
+								groupSeq);
+						if ($(this).attr("id") == "modal-launcher") {
+							$("html").css("overflow-y",
+									"hidden");
+							$('.content-wrapper').on('wheel.modal mousewheel.modal',function() {
+												return false;
+											});
+
 							$.ajax({
-					  	  		   type:'post',
-					  	  	       url:"reply/replyCountSelect",
-					  	  	       data:"Count=0&boardSeq=" + boardSeq,
-					  	  	       success : function(data) {
-					  	  	    	 
-					  	  	    	   if(data.count>1){
-					  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
-					  	  	     	   	 
-					  	  	    	   }
-					  	  	       }, error: function(){
-					  	  	          alert('댓글 더보기 error :error while request..'   );
-					  	  	       }
-					  	  			
-					  	  		});
-						
-							
-							
-							
-						},
-						error : function() {
-							alert('indexlogged 354 : Error while request..');
-						}
-						
-						
-					});
-				},
-				error : function() {
-					alert('indexlogged 354 : Error while request..');
-				}
-			});
-		} else {
-			
-			$('.content-wrapper').off('wheel.modal mousewheel.modal');
-			$("html").css("overflow-y", "auto");
-			$("#modal-detile-view").remove();
-			$(".imgBtn").remove();
-			$(".modalViewinfo").remove();
-			$(".modalViewcontent").remove();
-			$(".replyList").empty();
-			 $("#modal-EditTextarea").empty();
-			 $("#modaleditcontent").val('');
-			 $("#modalemoticon").css("display","none");
-			$(".modal-user-profile-image").remove();
-		}
+										type : 'post',
+										url : 'board/detailView',
+										cache : false,
+										data : 'groupSeq='
+												+ groupSeq,
+										success : function(data) {
+											if (data.detailView[0].publicLevelCode == 5) {
+												publicLevel = "전체공개";
+											} else if (data.detailView[0].publicLevelCode == 4) {
+												publicLevel = "친구공개(모두)";
+											} else if (data.detailView[0].publicLevelCode == 3) {
+												publicLevel = "친구공개(공유)";
+											} else if (data.detailView[0].publicLevelCode == 2) {
+												publicLevel = "사용자";
+											} else {
+												publicLevel = "나만보기";
+											}
 
-		$("#modal-content, #modal-background").toggleClass("active");	
-		
-		
-		
+											$(".modal-content-view").css("display","block");
+											$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
+																	+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
+																	+ publicLevel
+																	+ "</div>"
+																	+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
+																	+ profileImg
+																	+ "' /></div>"
+																	+ data.detailView[0].fullname
+																	+ "<br>"
+																	+ data.detailView[0].writeDate
+																	+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
+																	+ data.detailView[0].content
+																	+ "</div></div>");
+
+											detail = data.detailView.length;
+											$("#imglength").val(data.detailView.length);
+
+											for (var i = 0; i < data.detailView.length; i++) {
+												$("#imgBtnList").append("<div class='imgBtn' data-boardSeq='"
+																		+ data.detailView[i].boardSeq
+																		+ "'>"
+																		+ "<input type='hidden' value='"
+																		+ i
+																		+ "'>"
+																		+ "<img class='imgbtn' data-imgBtnNumber = '"
+																		+ i
+																		+ "'  src='./resources/upload/"
+																		+ data.detailView[i].filename
+																		+ "' style='width: 40px; height: 40px; padding-left:15px;padding-top:10px;opacity:0.4;'></div>"
+																		+ "</div>");
+												$("#detailImg"+ i).attr("src",'./resources/upload/'
+																		+ data.detailView[i].filename);
+
+											}
+
+											$.ajax({
+														type : 'post',
+														url : 'reply/select',
+														cache : false,
+														data : "Count=0&boardSeq="
+																+ boardSeq,
+														success : function(data) {
+
+															for (var j = 0; j < data.replylist.length; j++) {
+																/*
+																 * alert(data.replylist[j].replyContent);
+																 */
+																var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
+																+data.replylist[j].fullName+"</div>"
+													replyContent += "<div class='replymodalList modal-bubble'>"
+														replyContent += data.replylist[j].replyContent
+														  if (email == data.replylist[j].email) {
+															replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
+															replyContent += "<img class='icon-box reply-Edit "
+																	+ color
+																	+ "' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "' style='margin-right:10px;float: left;'>	"
+															replyContent += "<img class='icon-box reply-Delete "
+																	+ color
+																	+ "'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "' style='float: right;'>"
+															replyContent += "</div>"
+															replyContent += "</div>"
+															replyContent += "<div class='modal-bubble'style='display: none;'>"
+															replyContent += "<div class='reply-Edit-Textarea' contenteditable='true' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "'></div>"
+															replyContent += "<input type='hidden' name='reply-Edit-Content' id='reply-Edit-Content' />"
+															replyContent += "</div>"
+
+														}
+														replyContent += "</div>"
+																$(".replyList").append(replyContent);
+
+															}
+
+															$.ajax({
+																		type : 'post',
+																		url : "reply/replyCountSelect",
+																		data : "Count=0&boardSeq="
+																				+ boardSeq,
+																		success : function(
+																				data) {
+
+																			if (data.count > 1) {
+																				$(".replyList").append("<div class='modal-reply-more-btn'>더보기("
+																										+ data.count
+																										+ ")</div>");
+
+																			}
+																		},
+																		error : function() {
+																			alert('댓글 더보기 error :error while request..');
+																		}
+
+																	});
+
+														},
+														error : function() {
+															alert('indexlogged 354 : Error while request..');
+														}
+
+													});
+										},
+										error : function() {
+											alert('indexlogged 354 : Error while request..');
+										}
+									});
+						} else {
+
+							$('.content-wrapper').off('wheel.modal mousewheel.modal');
+							$("html").css("overflow-y", "auto");
+							$("#modal-detile-view").remove();
+							$(".imgBtn").remove();
+							$(".modalViewinfo").remove();
+							$(".modalViewcontent").remove();
+							$(".replyList").empty();
+							$("#modal-EditTextarea").empty();
+							$("#modaleditcontent").val('');
+							$("#modalemoticon").css("display","none");
+							$(".modal-user-profile-image").remove();
+						}
+
+						$("#modal-content, #modal-background")
+								.toggleClass("active");
+
+					});
+	/* 댓글 수정 */
+	$(document).on("click",".reply-Edit",function() {
+
+				$(this).parent().parent()
+						.css("display", "none");
+				$(this).parent().parent().siblings().last()
+						.css("display", "block");
+
+			});
+	$(document).on('keydown',".reply-Edit-Textarea",
+					function(e) {
+						var replySeq = $(this).data("replyseq");
+
+						$(this).parent().find(
+								"input[type=hidden]").val(
+								$(this).text());
+						var replyeditform = $(this).parent();
+						if (e.keyCode === 13) {
+							replyeditBtn = replyeditform
+									.siblings().first().next()
+									.children().clone();
+							var replyEditContent = $(this)
+									.parent()
+									.find("input[type=hidden]")
+									.val();
+							$.ajax({
+										type : 'post',
+										url : "reply/replyUpdate",
+										data : "replySeq="
+												+ replySeq
+												+ "&replyEditContent="
+												+ replyEditContent,
+										success : function(data) {
+
+											if (data.result > 0) {
+												/* replyEditContent += */
+												replyeditform.css("display","none");
+												replyeditform.siblings().first().next().css("display","block");
+
+												replyeditform.siblings().first().next().html(replyEditContent);
+												replyeditform.siblings().first().next().prepend(replyeditBtn);
+
+											}
+										},
+										error : function() {
+											alert('댓글 수정 error :error while request..');
+										}
+
+									});
+						}
+					});
+	/* 댓글 삭제 */
+	$(document).on("click", ".reply-Delete", function() {
+
+		replySeq = $(this).data("replyseq");
+		replyContainer = $(this).parent().parent().parent();
+		alert(replySeq);
+		$.ajax({
+			type : 'post',
+			url : "reply/replyDelete",
+			data : "replySeq=" + replySeq,
+			success : function(data) {
+				replyContainer.remove();
+
+			},
+			error : function() {
+				alert('댓글 삭제 error :error while request..');
+			}
+		});
 	});
 
 		
@@ -613,360 +731,518 @@ $(document).ready(function(){
 		
 	});
 	
-	//모달 댓글 리스트 출력
-	$(document).on('click',".imgBtn", function(){
-		
-		$(".replyList").empty();
-		var publicLevel;
-		var imgBtn = "#imgBtn" + $(this).find("input").val();
-		var detailImg = "#detailImg"	+ $(this).find("input").val();
-		boardSeq = $(this).data("boardseq");
-		
-		var j = $(this).find("input").val();
-		for (var i = 0; i < 9; i++) {
-			if (i == j) {
-				$("#detailImg" + i).css("display", "block");
-			} else {
-				$("#detailImg" + i).css("display", "none");
-			}
-		}
-		$.ajax({
-			type : 'post',
-			url : 'board/DetailViewBoardSeq',
-			cache : false,
-			data : 'boardSeq=' + boardSeq,
-			success : function(data) {
-				if(data.detailView.publicLevelCode == 5){
-					publicLevel = "전체공개";
-				}else if(data.detailView.publicLevelCode == 4){
-					publicLevel = "친구공개(모두)";
-				}else if(data.detailView.publicLevelCode == 3){
-					publicLevel = "친구공개(공유)";
-				}else if(data.detailView.publicLevelCode == 2){
-					publicLevel = "사용자";
-				}else{
-					publicLevel = "나만보기";
-				}	
-				
-				$(".modalcontent").empty();
-				$(".modal-content-view").css("display","block");
-				$(".modalcontent").append(
-						"<div style='float: right'>" 
-						+"<img class='icon-box modal-Edit "+color+"' src='./resources/media/image/editImg.jpg' style='margin-right:10px;float: left;'>"	
-						+"<img class='icon-box modal-Delete "+color+"' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
-						+"</div>"
-						+"<div style='width:100%;height:50px;' class='modalViewinfo'>"
-						+"<div style='float:right;margin-right:25px;margin-top:5px;'>"+publicLevel+"</div>"
-						+"<div class='modal-user-profile-image' style='float: left;'><img src='${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}' /></div>"
-						+ data.detailView.fullname + "<br>"
-						+ data.detailView.writeDate + "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>" + data.detailView.content + "</div></div>");		
-						
-						
-						
-						
-						
-			
-				$.ajax({
-					type : 'post',
-					url : 'reply/select',
-					cache : false,
-					data : 'Count=0&boardSeq=' + boardSeq,
-					success : function(data) {
-						
-						for(var j =0;j<data.replylist.length;j++){
-							
-							
-							
-							$(".replyList").append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[j].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[j].replyContent+"</div>");
-											
+	// 모달 댓글 리스트 출력
+	$(document).on('click',".imgBtn",function() {
+
+						$(".replyList").empty();
+						var publicLevel;
+						var imgBtn = "#imgBtn"
+								+ $(this).find("input").val();
+						var detailImg = "#detailImg"
+								+ $(this).find("input").val();
+						boardSeq = $(this).data("boardseq");
+
+						var j = $(this).find("input").val();
+						for (var i = 0; i < 9; i++) {
+							if (i == j) {
+								$("#detailImg" + i).css(
+										"display", "block");
+							} else {
+								$("#detailImg" + i).css(
+										"display", "none");
+							}
 						}
 						$.ajax({
-				  	  		   type:'post',
-				  	  	       url:"reply/replyCountSelect",
-				  	  	       data:"Count=0&boardSeq=" + boardSeq,
-				  	  	       success : function(data) {
-				  	  	    	 
-				  	  	    	   if(data.count>1){
-				  	  	    		$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
-				  	  	     	   	 
-				  	  	    	   }
-				  	  	       }, error: function(){
-				  	  	          alert('댓글 더보기 error :error while request..'   );
-				  	  	       }
-				  	  			
-				  	  		});
-					
-					},
-					error : function() {
-						alert('indexlogged 354 : Error while request..');
-					}
-					
-					
-				});
-					
-			
-			
-			},
-			error : function() {
-				alert('indexlogged 354 : Error while request..');
-			}
-			
-			
-		});
-		
+									type : 'post',
+									url : 'board/DetailViewBoardSeq',
+									cache : false,
+									data : 'boardSeq='
+											+ boardSeq,
+									success : function(data) {
+										if (data.detailView.publicLevelCode == 5) {
+											publicLevel = "전체공개";
+										} else if (data.detailView.publicLevelCode == 4) {
+											publicLevel = "친구공개(모두)";
+										} else if (data.detailView.publicLevelCode == 3) {
+											publicLevel = "친구공개(공유)";
+										} else if (data.detailView.publicLevelCode == 2) {
+											publicLevel = "사용자";
+										} else {
+											publicLevel = "나만보기";
+										}
+
+										$(".modalcontent").empty();
+										$(".modal-content-view").css("display","block");
+										$(".modalcontent").append("<div style='float: right'>"
+																+ "<img class='icon-box modal-Edit "
+																+ color
+																+ "' src='./resources/media/image/editImg.jpg' style='margin-right:10px;float: left;'>"
+																+ "<img class='icon-box modal-Delete "
+																+ color
+																+ "' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
+																+ "</div>"
+																+ "<div style='width:100%;height:50px;' class='modalViewinfo'>"
+																+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
+																+ publicLevel
+																+ "</div>"
+																+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
+																+ profileImg
+																+ "' /></div>"
+																+ data.detailView.fullname
+																+ "<br>"
+																+ data.detailView.writeDate
+																+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
+																+ data.detailView.content
+																+ "</div></div>");
+
+										$.ajax({type : 'post',
+													url : 'reply/select',
+													cache : false,
+													data : 'Count=0&boardSeq='
+															+ boardSeq,
+													success : function(
+															data) {
+
+														for (var j = 0; j < data.replylist.length; j++) {
+													var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
+																+data.replylist[j].fullName+"</div>"
+													replyContent += "<div class='replymodalList modal-bubble'>"
+														replyContent += data.replylist[j].replyContent
+														  if (email == data.replylist[j].email) {
+															replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
+															replyContent += "<img class='icon-box reply-Edit "
+																	+ color
+																	+ "' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "' style='margin-right:10px;float: left;'>	"
+															replyContent += "<img class='icon-box reply-Delete "
+																	+ color
+																	+ "'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "' style='float: right;'>"
+															replyContent += "</div>"
+															replyContent += "</div>"
+															replyContent += "<div class='modal-bubble'style='display: none;'>"
+															replyContent += "<div class='reply-Edit-Textarea' contenteditable='true' data-replySeq='"
+																	+ data.replylist[j].replySeq
+																	+ "'></div>"
+															replyContent += "<input type='hidden' name='reply-Edit-Content' id='reply-Edit-Content' />"
+															replyContent += "</div>"
+
+														}
+														replyContent += "</div>"
+															
+															
+																
+															$(".replyList").append(replyContent);
+														}
+														$.ajax({
+																	type : 'post',
+																	url : "reply/replyCountSelect",
+																	data : "Count=0&boardSeq="
+																			+ boardSeq,
+																	success : function(
+																			data) {
+
+																		if (data.count > 1) {
+																			$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("
+																									+ data.count
+																									+ ")</div>");
+
+																		}
+																	},
+																	error : function() {
+																		alert('댓글 더보기 error :error while request..');
+																	}
+
+																});
+
+													},
+													error : function() {
+														alert('indexlogged 354 : Error while request..');
+													}
+
+												});
+
+									},
+									error : function() {
+										alert('indexlogged 354 : Error while request..');
+									}
+
+								});
+
+					});
+
+	// 모달 댓글
+	$(document)
+			.on(
+					'keydown',
+					".modalreplyWrite",
+					function(e) {
+						if (e.keyCode === 13) {
+
+							replywrite = $(this);
+							var replyContent = $(this).val();
+
+							if ($(this).val() != null&& $(this).val() != '') {
+								$.ajax({
+											type : 'post',
+											url : 'reply/insert',
+											cache : false,
+											data : 'boardSeq='
+													+ boardSeq
+													+ "&replyContent="
+													+ replyContent,
+											success : function(
+													data) {
+												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"
+																		+ profileImg
+																		+ "'>"
+																		+ fullname
+																		+ "</div><div class='replymodalList modal-bubble'>"
+																		+ replyContent
+																		+ "</div>");
+
+												replywrite.val('');
+											},
+											error : function() {
+												alert('indexlogged 354 : Error while request..');
+											}
+										});
+									}
+								} else {
+
+							$(this).focus();
+								}
+					});
 	
+	$(document).on("mouseover",".replymodalList",function(){
 		
-		
-		
-		
-		
-		
+		$(this).children().css("display","block");
 	});
+	$(document).on("mouseout",".replymodalList",function(){
 		
+		$(this).children().css("display","none");
+	});
+	// 댓글
+	$(document).on('keydown',".replyWrite",	function(e) {
+						if (e.keyCode === 13) {
+
+							if ($(this).val() != null&& $(this).val() != '') {
+
+								var boardSeq = $(this).parent().find("input[type=hidden]").val();
+								var replyContent = $(this).val();
+
+								// var reply =
+								// $(".group-item-reply-secition
+								// ul");
+								var reply = $(this).parent().siblings().next().next().next().find("ul");
+								console.log(reply);
+								$(this).val('');
+								$.ajax({
+											type : 'post',
+											url : 'reply/insert',
+											cache : false,
+											data : 'boardSeq='
+													+ boardSeq
+													+ "&replyContent="
+													+ replyContent,
+											success : function(data) {
+												/*
+												 * reply.prepend( "<li><div
+												 * class='group-item-reply-container'>" +"<div
+												 * class='group-item-reply-info-container'>" +"<div
+												 * class='group-item-reply-profile-image'>" +"<a
+												 * href='${pageContext.request.contextPath}/'>" +"<img
+												 * src='./resources/user-profile-image/"+profileImg+"'
+												 * alt='"+fullname+"'
+												 * title='"+fullname+"'
+												 * />" +"<span>"+fullname+"</span></a>" +"</div>" +"<div>"+fullname+"</div>" +"</div>" +"<div
+												 * class='group-item-reply-content-container
+												 * bubble'>"
+												 * +replyContent +"<div
+												 * class='reply-edit-container'
+												 * style='float:
+												 * right;margin-bottom:
+												 * 5px;' >" +"<img
+												 * class='icon-box
+												 * reply-Edit
+												 * "+color+"'
+												 * src='./resources/media/image/editImg.jpg'
+												 * style='margin-right:10px;float:
+												 * left;'> " +"<img
+												 * class='icon-box
+												 * reply-Delete
+												 * "+color+"'src='./resources/media/image/deleteImg.jpg'
+												 * data-replySeq='${replyItem.replySeq}'
+												 * style='float:
+												 * right;'>" +"</div>" +"</div>" +"<div
+												 * class='bubble'style='display:
+												 * none;'>" +"<div
+												 * class='reply-Edit-Textarea'
+												 * contenteditable='true'
+												 * data-replySeq=></div>" +"<input
+												 * type='hidden'
+												 * name='reply-Edit-Content'
+												 * id='reply-Edit-Content'
+												 * />" +"</div>" );
+												 */
+
+												location.reload();
+
+											},
+											error : function() {
+												alert('indexlogged 354 : Error while request..');
+											}
+										});
+							} else {
+
+								alert("댓글을 입력해주세요");
+
+								$(this).focus();
+
+							}
+
+						}
+
+					});
+	// 엔터키 처리
+	$("#writeTextarea").on('keydown',function(e) {
+
+				// trap the return key being pressed
+				if (e.keyCode === 13) {
+					// insert 2 br tags (if only one br tag is
+					// inserted the cursor won't go to the next
+					// line)
+					document.execCommand('insertHTML', false,
+							'<br><br>');
+					// prevent the default behaviour of return
+					// key pressed
+					return false;
+				}
+			}).on('keyup',function() {
+				if ($("#writeTextarea").text().length > 0) {
+					$("#dropzone .placeholder").css('display',
+							'none');
+				} else {
+					$("#dropzone .placeholder").css('display',
+							'block');
+				}
+			});
+	// 지역 정보 수정 시
+
+	$("#historyplace").click(function() {
+		$("#historyplace").val('');
+
+	});
+
+	// 댓글 더보기
+
+	$(document).on("click",
+					".reply-more-btn",
+					function() {
+						var replymorebtn = $(this);
+						var replySize = $(this).parent()
+								.siblings().size();
+						var boardSeq = $(this).data("boardseq");
+						var reply = $(this).parent().parent();
+						replymorebtn.parent().remove();
+
+						$.ajax({
+									type : 'post',
+									url : "reply/select",
+									data : "boardSeq="
+											+ boardSeq
+											+ "&Count="
+											+ replySize,
+									success : function(data) {
+										var replyContent;
+
+										console.log(data);
+										if (data.replylist.length > 0) {
+											for (var i = 0; i < data.replylist.length; i++) {
+												replyContent = "<li><div class='group-item-reply-container'>"
+												replyContent += "<div class='group-item-reply-info-container'>"
+												replyContent += "<div class='group-item-reply-profile-image'>"
+												replyContent += "<a href='${pageContext.request.contextPath}/'>"
+												replyContent += "<img src='./resources/user-profile-image/default-profile-image.png' alt='"
+														+ data.replylist[i].fullName
+														+ "' title='"
+														+ data.replylist[i].fullName
+														+ "' />"
+												replyContent += "<span>"
+														+ data.replylist[i].fullName
+														+ "</span></a>"
+												replyContent += "</div>"
+												replyContent += "<div>"
+														+ data.replylist[i].fullName
+														+ "</div>"
+												replyContent += "</div>"
+												replyContent += "<div class='group-item-reply-content-container bubble'>"
+												replyContent += data.replylist[i].replyContent
+												if (email == data.replylist[i].email) {
+													replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
+													replyContent += "<img class='icon-box reply-Edit "
+															+ color
+															+ "' src='./resources/media/image/editImg.jpg' data-replySeq='"
+															+ data.replylist[i].replySeq
+															+ "' style='margin-right:10px;float: left;'>	"
+													replyContent += "<img class='icon-box reply-Delete "
+															+ color
+															+ "'src='./resources/media/image/deleteImg.jpg' data-replySeq='"
+															+ data.replylist[i].replySeq
+															+ "' style='float: right;'>"
+													replyContent += "</div>"
+													replyContent += "</div>"
+													replyContent += "<div class='bubble'style='display: none;'>"
+													replyContent += "<div class='reply-Edit-Textarea' contenteditable='true' data-replySeq='"
+															+ data.replylist[i].replySeq
+															+ "'></div>"
+													replyContent += "<input type='hidden' name='reply-Edit-Content' id='reply-Edit-Content' />"
+													replyContent += "</div>"
+
+												}
+												replyContent += "</div></li>"
+
+												reply
+														.append(replyContent);
+
+											}
+										$.ajax({
+
+														type : 'post',
+														url : "reply/replyCountSelect",
+														data : "Count="
+																+ replySize
+																+ "&boardSeq="
+																+ boardSeq,
+														success : function(data) {
+															console.log(data);
+															if (data.count > 1) {
+
+																reply.append("<li><div class='reply-more-btn "
+																				+ data.baseMemberInfo.colorTheme
+																				+ "' data-boardSeq="
+																				+ boardSeq
+																				+ ">더보기("
+																				+ data.count
+																				+ ")</div></li>"
+
+																		);
+
+															}
+
+														},
+														error : function() {
+															alert('댓글 더보기 error :error while request..');
+														}
+
+													});
+										}
+
+									},
+									error : function() {
+										alert('댓글 더보기 error :error while request..');
+									}
+								});
+
+					});
+
+
+$(document).on("mouseover",".group-item-reply-content-container",function(){
+	$(this).children().css("display","block");
 	
-	//모달 댓글
-	$(document).on('keydown',".modalreplyWrite",function(e){
-		if (e.keyCode === 13) {
-		
-			replywrite = $(this);
-		 var replyContent =  $(this).val();
-		
-		if( $(this).val() != null &&  $(this).val() != ''){		
-		$.ajax({
-			type : 'post',
-			url : 'reply/insert',
-			cache : false,
-			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent,
-			success : function(data) {
-				$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+fullname+"</div><div class='replymodalList modal-bubble'>"+replyContent+"</div>");
-				
-				replywrite.val('');
-				},
-			error : function() {
-				alert('indexlogged 354 : Error while request..');
-			}
-		});
-	}
-		}else{
-			
-			
-			
-				$(this).focus();
-		}
 });
-	
-	
-	
-  //댓글
-	$(document).on('keydown',".replyWrite",function(e){
-		if (e.keyCode === 13) {
-			
-			
-		
-	if($(this).val() != null && $(this).val() !=''){
-				
-				
-				
-		 var boardSeq = $(this).parent().find("input[type=hidden]").val();
-		 var replyContent = $(this).val();
-		
-		 //var reply = $(".group-item-reply-secition ul");
-		 var reply = $(this).parent().siblings().next().next().next().find("ul");
-		 console.log(reply);
-		 $(this).val('');
-		$.ajax({
-			type : 'post',
-			url : 'reply/insert',
-			cache : false,
-			data : 'boardSeq=' + boardSeq +"&replyContent="+replyContent ,
-			success : function(data) {
-				reply.prepend(
-
-						"<li><div class='group-item-reply-container'>"
-						+"<div class='group-item-reply-info-container'>"
-						+"<div class='group-item-reply-profile-image'>"
-						+"<a href='${pageContext.request.contextPath}/'>"	
-					    +"<img src='${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png' alt='"+fullname+"' title='"+fullname+"' />"
-					    +"<span>"+fullname+"</span></a>"
-						+"</div>"
-						+"<div>"+fullname+"</div>"
-						+"</div>"	
-						+"<div class='group-item-reply-content-container bubble'>"
-						+replyContent+"</div>"
-						+"</div>"	
-					
-						
-				
-				);	
-				
-			},
-			error : function() {
-				alert('indexlogged 354 : Error while request..');
-			}
-		});
-			}else{
-				
-				alert("댓글을 입력해주세요");
-				
-			
-				$(this).focus();
-				
-			}
-	
-	
-	
-	}
-	
-	
-});
-//엔터키 처리
-$("#writeTextarea").on('keydown', function(e) {
-	
-	// trap the return key being pressed
-	if (e.keyCode === 13) {
-		// insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
-		document.execCommand('insertHTML', false, '<br><br>');
-		// prevent the default behaviour of return key pressed
-		return false;
-	}
-}).on('keyup', function(){
-	if($("#writeTextarea").text().length > 0){
-		$("#dropzone .placeholder").css('display', 'none');
-	}else{
-		$("#dropzone .placeholder").css('display', 'block');
-	}
-});
-//지역 정보 수정 시 
-
-$("#historyplace").click(function(){
-	$("#historyplace").val('');
-	
-});
-
-
-//댓글 더보기 
-
-$(document).on("click",".reply-more-btn",function(){
-	var replymorebtn = $(this);
-	  var replySize = $(this).parent().siblings().size();
-	var boardSeq = $(this).data("boardseq");
-    var reply = $(this).parent().parent();
-    replymorebtn.parent().remove();
-    
-	  $.ajax({
-          type:'post',
-       url:"reply/select",
-       data:"boardSeq=" + boardSeq + "&Count="+replySize,
-       success : function(data) {
-    	  
-    	
-    	console.log(data);
-    	if(data.replylist.length>0){
-    	  for(var i=0;i<data.replylist.length;i++){
-    		   
-    		  reply.append(   "<li><div class='group-item-reply-container'>"
-   			+"<div class='group-item-reply-info-container'>"
-   			+"<div class='group-item-reply-profile-image'>"
-   			+"<a href='${pageContext.request.contextPath}/'>"	
-   		    +"<img src='${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png' alt='"+data.replylist[i].fullName+"' title='"+data.replylist[i].fullName+"' />"
-   		    +"<span>"+data.replylist[i].fullName+"</span></a>"
-   			+"</div>"
-   			+"<div>"+data.replylist[i].fullName+"</div>"
-   			+"</div>"	
-   			+"<div class='group-item-reply-content-container bubble'>"
-   			+data.replylist[i].replyContent+"</div>"
-   			+"</div></li>"   
-    		   
-    		   );
-    		   
-    	   }
-    	  		$.ajax({
-    	  			
-    	  				
-    	  		   type:'post',
-    	  	       url:"reply/replyCountSelect",
-    	  	       data:"Count="+replySize+"&boardSeq=" + boardSeq,
-    	  	       success : function(data) {
-    	  	    	 console.log(data);
-    	  	    	   if(data.count>1){
-    	  	    		  
-    	  	    		 reply.append(
-    	  	    		"<li><div class='reply-more-btn "+ data.baseMemberInfo.colorTheme +"' data-boardSeq="+boardSeq+">더보기("+data.count+")</div></li>"	 
-    	  	    		 
-    	  	    		 );   
-    	  	    		   
-    	  	    	   }
-    	  	    	   
-    	  	    	   
-    	  	       }, error: function(){
-    	  	          alert('댓글 더보기 error :error while request..'   );
-    	  	       }
-    	  			
-    	  		});
-    	}
-     
-       },
-       error: function(){
-          alert('댓글 더보기 error :error while request..'   );
-       }
-    });
-	
+$(document).on("mouseout",".group-item-reply-content-container",function(){
+	$(this).children().css("display","none");
 	
 });
 
 
 //modal 댓글 더보기
 
-$(document).on("click",".modal-reply-more-btn",function(){
-	var reply = $(this).parent();
-	var replymorebtn = $(this);
-	  var replySize = $(this).siblings().size();
-  replymorebtn.remove();
-  
-	  $.ajax({
-        type:'post',
-     url:"reply/select",
-     data:"boardSeq=" + boardSeq + "&Count="+replySize,
-     success : function(data) {
-  	console.log(data);
-  	if(data.replylist.length>0){
-  	  for(var i=0;i<data.replylist.length;i++){  
+$(document).on("click",".modal-reply-more-btn",function() {
+					var reply = $(this).parent();
+					var replymorebtn = $(this);
+					var replySize = $(this).siblings()
+							.size();
+					replymorebtn.remove();
 
-		
-  		  reply.append("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'>"+data.replylist[i].fullName+"</div><div class='replymodalList modal-bubble'>"+data.replylist[i].replyContent+"</div>");  
-  	   
-  	  }
-  	  		$.ajax({
-  	  		   type:'post',
-  	  	       url:"reply/replyCountSelect",
-  	  	       data:"Count="+replySize+"&boardSeq=" + boardSeq,
-  	  	       success : function(data) {
-  	  	    	 
-  	  	    	   if(data.count>1){
-  	  	    		  reply.append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("+data.count+")</div>");  
-  	  	     	   	 
-  	  	    	   }
-  	  	       }, error: function(){
-  	  	          alert('댓글 더보기 error :error while request..'   );
-  	  	       }
-  	  			
-  	  		});
-  	}
-   
-     },
-     error: function(){
-        alert('댓글 더보기 error :error while request..'   );
-     }
-  });
-	
-	
-	
-	
-	
-	
-	
-	
-});
+					$.ajax({
+								type : 'post',
+								url : "reply/select",
+								data : "boardSeq="
+										+ boardSeq
+										+ "&Count="
+										+ replySize,
+								success : function(data) {
+									console.log(data);
+									if (data.replylist.length > 0) {
+										for (var i = 0; i < data.replylist.length; i++) {
+											
+											var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/'"+profileImg+"'>"
+											+data.replylist[i].fullName+"</div>"
+								replyContent += "<div class='replymodalList modal-bubble'>"
+									replyContent += data.replylist[i].replyContent
+									  if (email == data.replylist[i].email) {
+										replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
+										replyContent += "<img class='icon-box reply-Edit "
+												+ color
+												+ "' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"
+												+ data.replylist[i].replySeq
+												+ "' style='margin-right:10px;float: left;'>	"
+										replyContent += "<img class='icon-box reply-Delete "
+												+ color
+												+ "'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"
+												+ data.replylist[i].replySeq
+												+ "' style='float: right;'>"
+										replyContent += "</div>"
+										replyContent += "</div>"
+										replyContent += "<div class='modal-bubble'style='display: none;'>"
+										replyContent += "<div class='reply-Edit-Textarea' contenteditable='true' data-replySeq='"
+												+ data.replylist[i].replySeq
+												+ "'></div>"
+										replyContent += "<input type='hidden' name='reply-Edit-Content' id='reply-Edit-Content' />"
+										replyContent += "</div>"
+
+									}
+									replyContent += "</div>"
+											
+											
+											reply.append(replyContent);
+
+										}
+										$.ajax({
+													type : 'post',
+													url : "reply/replyCountSelect",
+													data : "Count="
+															+ replySize
+															+ "&boardSeq="
+															+ boardSeq,
+													success : function(data) {
+
+														if (data.count > 1) {
+															reply
+																	.append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("
+																			+ data.count
+																			+ ")</div>");
+
+														}
+													},
+													error : function() {
+														alert('댓글 더보기 error :error while request..');
+													}
+
+												});
+									}
+
+								},
+								error : function() {
+									alert('댓글 더보기 error :error while request..');
+								}
+							});
+
+				});
 
 
 //메인 더보기 

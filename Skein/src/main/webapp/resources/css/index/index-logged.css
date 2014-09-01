@@ -288,7 +288,7 @@ textarea {
 #modal-background.active, #modal-content.active {
    display: block;
 }
-#modal-EditTextarea, #editTextarea{
+#modal-EditTextarea,#editTextarea,.reply-Edit-Textarea{
 outline:  1px silver dashed;	
 	clear:both;
 	
@@ -388,5 +388,25 @@ margin-top: 7px;
 border-radius: 100px;
 margin-bottom: 3px;	
 	
+	
+}
+
+.reply-modal-edit-container{
+	display:none;
+}
+
+.modal-reply-more-btn{
+margin-top: 10px;
+width: 100%;
+clear: both;
+background: #e4e4e4;
+color: darkgrey;
+text-align: center;
+padding: 8px 0;	
+	
+}
+.reply-edit-container{
+	margin-top:5px;
+	display:none;
 	
 }
