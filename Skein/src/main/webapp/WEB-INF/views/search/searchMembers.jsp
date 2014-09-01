@@ -30,7 +30,7 @@
 									</c:when>
 									<c:when test="${friendshipList.friendshipConfirm == 1}">
 										<c:if test="${friendshipList.isFriend == 1}">
-											<span class="delete-friendship" data-uri="${friendshipList.personalURI}">친구끊기</span>
+											<span class="delete-friendship" data-uri="${friendshipList.personalURI}"><img class="minusfriendImg" src="${pageContext.request.contextPath}/resources/media/image/minusfriend2.png">친구끊기</span>
 										</c:if>
 									</c:when>
 									<c:when test="${friendshipList.friendshipConfirm == 2}">
@@ -45,7 +45,7 @@
 									</c:when>
 									<c:otherwise>
 										<c:if test="${friendshipList.isFriend == 0}">
-											<span class="add-friendship" data-uri="${friendshipList.personalURI}">친구신청</span>
+											<span class="add-friendship" data-uri="${friendshipList.personalURI}"><img class="addfriendImg" src="${pageContext.request.contextPath}/resources/media/image/addfriend.png">친구신청</span>
 										</c:if>
 									</c:otherwise>
 								</c:choose>

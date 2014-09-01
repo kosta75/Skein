@@ -15,8 +15,9 @@ body{background-color:#e9eaed;margin:0px;padding:0px;overflow-y:scroll;}
 
 #globalTop{position:relative;}
 
-.logo{width:70px;float:left;} /* 헤더에 있는 로고 */
+.logo{width:75px;float:left;} /* 헤더에 있는 로고 */
 .logo a{display:block;color:#fff;height:inherit;font-family:'맑은 고딕';font-weight:bold;font-size:40px;}
+.logo img{height: 30px; vertical-align: top; margin-top: 15px; }
 
 /* 사용자 지정 색상 */
 .green {background: #336666;}

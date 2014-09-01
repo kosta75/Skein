@@ -142,6 +142,21 @@ input[type=text]{
 	width:200px;
 }
 
+.openImg, .profile_editBtn{
+	height: 22px;
+	width: 22px;
+	cursor: pointer;
+}
+.profile_deleteBtn{
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+}
+.editImg {
+	height: 19px;
+	width: 19px;
+	cursor: pointer;
+}
 /* 글쓰기 */
 
 #profileImageForm{position:relative;}

@@ -8,7 +8,7 @@ $(document).ready(function() {
 			processData : false,
 			contentType : false,
 			success : function(data){
-				obj.after("<div>친구 수락 대기 중</div>");
+				obj.after("<span class='wait-friendship'>친구 수락 대기 중</span>");
 				obj.remove();
 			},error : function(){
 				
@@ -17,13 +17,13 @@ $(document).ready(function() {
 	});
 	
 	$(document).on('click', '.delete-friendship', function(){
-		var result = confirm('친구 관계를 끊습니다. (' + $(this).data('name') + ')\n다시 한번 확인해주세요.' );
+		var result = confirm('친구 관계를 끊습니다. (' + $(this).data('uri') + ')\n다시 한번 확인해주세요.' );
 		if(result){
 			var uri = $(this).data('uri')
 			var obj = $(this).parents('.friend-item-container');
 			$.ajax({
 				type : 'post',
-				url : 'delete/' + uri,
+				url : '../friendship/delete/' + uri,
 				cache : false,
 				success : function(data) {
 					if(data.result.trim() == 'true'){
