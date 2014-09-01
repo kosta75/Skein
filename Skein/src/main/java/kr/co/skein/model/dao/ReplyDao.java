@@ -15,4 +15,11 @@ public interface ReplyDao {
 	public List<Reply> selectReply(String boardSeq,int replyStartNum,int replyEndNum) throws ClassNotFoundException, SQLException;
 	//댓글 카운트
 	public int countReply(int replyCountNum,String boardSeq) throws ClassNotFoundException, SQLException;
+
+	//댓글 삭제
+	public int deleteReply(String replySeq)throws ClassNotFoundException, SQLException;
+
+	//댓글 수정
+	public int updateReply(String replyEditContent,int replySeq)throws ClassNotFoundException, SQLException;
+
 }

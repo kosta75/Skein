@@ -287,7 +287,7 @@ textarea {
 #modal-background.active, #modal-content.active {
    display: block;
 }
-#modal-EditTextarea, #editTextarea{
+#modal-EditTextarea,#editTextarea,.reply-Edit-Textarea{
 outline:  1px silver dashed;	
 	clear:both;
 	
@@ -333,8 +333,8 @@ z-index: 1;
 left: -12px;
 top: 11px;
 }
-/*모달 말풍선*/
 
+/*모달 말풍선*/
 .modal-bubble 
 {
 position: relative;
@@ -387,5 +387,24 @@ margin-top: 7px;
 border-radius: 100px;
 margin-bottom: 3px;	
 	
+	
+}
+.reply-modal-edit-container{
+	display:none;
+}
+
+.modal-reply-more-btn{
+margin-top: 10px;
+width: 100%;
+clear: both;
+background: #e4e4e4;
+color: darkgrey;
+text-align: center;
+padding: 8px 0;	
+	
+}
+.reply-edit-container{
+	margin-top:5px;
+	display:none;
 	
 }

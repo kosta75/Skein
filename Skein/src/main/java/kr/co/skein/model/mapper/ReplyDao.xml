@@ -11,7 +11,7 @@
 		VALUES(#{replySeq}, #{boardSeq}, #{email}, #{replyContent}, #{isActivated})
 	</insert>
 	
-	
+	<!--리플 목록  -->
 	<select id="selectReply" resultType="kr.co.skein.model.vo.Reply">
 			 SELECT * FROM (
      SELECT ROWNUM r  ,s.* from(SELECT r.replyseq,r.boardseq,r.email,r.replycontent,m.fullname FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{param1} ORDER BY r.replySeq desc)s 
@@ -20,4 +20,13 @@
 	<select id="countReply" resultType="Integer">
 		SELECT COUNT( * )-#{param1} FROM reply r JOIN members m ON r.email = m.email WHERE r.boardseq = #{param2}
 	</select>
+	<!--리플삭제  -->
+	<delete id="deleteReply" >
+		delete from reply where replySeq=#{replySeq}
+	</delete>
+	<!--리플 수정-->
+	<update id="updateReply">
+	  UPDATE reply SET REPLYCONTENT = #{param1} WHERE replySeq=#{param2}
+	</update>
+	
 </mapper>
