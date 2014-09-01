@@ -118,7 +118,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 				<div id="historyWriteTabs">
 					<div id="historyWriteForm">
 						<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
-						<form id="hitstoryForm" method="post"
+						<form id="historyForm" method="post"
 							enctype="multipart/form-data">
 							<div id="dropzone">
 								<span class="placeholder">내용을 입력해 주세요...</span>
@@ -150,17 +150,20 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 							<!--  -->
 							<div class="write-menu-bar">
 								<div id="writeicon">
-									<div class="icon_button" id="historyWriteMenu1"></div>
+									<div class="history-write-menu1">
+										<input type="file" id="file-uploader" multiple />
+									</div>
+									
 									<div class="icon_button" id="historyWriteMenu2"></div>
 									<div class="icon_button" id="historyWriteMenu3"></div>
 									<div class="icon_button" id="historyWriteMenu4"></div>
 									<div style="float: right; margin-right: 20px;">
-										<select name="publicLevelCode" style="margin-left: 120px;">
+										<select name="publicLevelCode" id="publicCode">
 											<c:forEach var="publicLevelList" items="${publicLevelList}">
 												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 											</c:forEach>
 										</select>
-										<input id="hitstoryWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
+										<input id="historyWriteBtn" type="button" value="게시" style="margin-top: 10px;" />
 									</div>
 								</div>
 								<%-- <input type='hidden' name="content" id="content" />

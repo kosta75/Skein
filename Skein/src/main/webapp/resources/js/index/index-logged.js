@@ -227,10 +227,10 @@ $(document).ready(function(){
 		}
 	};
 
-	$("#file-input, #dropzone").fileReaderJS(opts);
+	$("#file-uploader, #dropzone").fileReaderJS(opts);
 	$("body").fileClipboard(opts);
 
-	$("#hitstoryForm") .submit(	function(event) {
+	$("#historyForm") .submit(	function(event) {
 		event.preventDefault();
 		console.log("INFO : Skein-T543 - HistoryForm Submit 처리");
 		var data = new FormData();
@@ -602,7 +602,7 @@ $(document).ready(function(){
 
 	/*$("#writeTextarea").focus();*/
 	//개인기록 메뉴 
-	$("#historyWriteMenu1").click(function() {
+	/*$("#historyWriteMenu1").click(function() {
 		if($("#historyImg").css("display") == "block"){
 			$("#historyImg").css("display","none");
 		}else{
@@ -611,7 +611,7 @@ $(document).ready(function(){
 	$("#historyemoticon").css("display","none");
 	$("#historymap").css("display","none");
 		}
-		});
+		});*/
 
 	$("#historyWriteMenu2").click(function() {
 		
@@ -1491,11 +1491,11 @@ function lastPostFunc(pictureCount){
  
  
 //submit
-	$("#hitstoryWriteBtn").click(function(){
+	$("#historyWriteBtn").click(function(){
 		$("#content").val($("#writeTextarea").html());
 		$("#historyhiddenplace").val($("#historyplace").text());
 		if($("#content").val() != null && $("#content").val() != ''){
-			$("#hitstoryForm").submit();
+			$("#historyForm").submit();
 		}else{
 			alert("내용을 입력해주세요 ");
 			$("#writeTextarea").focus();

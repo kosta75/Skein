@@ -131,6 +131,7 @@
 	width:110px;height:110px;
 	font-size : 13px;
 	text-align: center;
+	line-height:110px;
 }
 
 .informdata.profileImage img{max-width:110px;max-height:110px;}
