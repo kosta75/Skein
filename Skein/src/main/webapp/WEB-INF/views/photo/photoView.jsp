@@ -37,8 +37,8 @@
 				
 				</c:when>
 				<c:otherwise>
-					<div class="informbox_content">
-						새로운 사진을 등록해 보세요
+					<div class="nophoto_content">
+						타임라인에서 새로운 사진을 등록해 보세요
 					</div>
 				</c:otherwise>
 			</c:choose>

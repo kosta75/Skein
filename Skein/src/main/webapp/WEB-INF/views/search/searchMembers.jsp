@@ -19,7 +19,7 @@
 							</c:choose> 
 							<p>
 							
-								<a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a>(${friendshipList.personalURI})
+								<a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a><br />(${friendshipList.personalURI})
 							</p>
 							<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 								<c:choose>
