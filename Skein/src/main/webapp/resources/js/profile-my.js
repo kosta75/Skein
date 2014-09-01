@@ -108,10 +108,10 @@ $(document).ready(function() {
 	//마우스오버시 버튼보이기
 	$(".inform_elem").mouseenter(function(){
 		if($(this).find("div.inform_edit").css("display") == "none"){
-			$(this).find("div.inform_button input[value=공개범위]").css("display", "");
-			$(this).find("div.inform_button").css("display", "block");
+			$(this).find("div.inform_button .openImg").css("display", "");
+			$(this).find("div.inform_button").css("display", "block").find("img").css("background", $("#menu2").css("background-color"));
 			if($(this).find("div.informdata").html().trim() == ""){
-				$(this).find("div.inform_button input[value=수정]").siblings().css("display", "none");
+				$(this).find("div.inform_button .editImg").siblings().css("display", "none");
 			}else{
 			}
 		}
@@ -122,9 +122,24 @@ $(document).ready(function() {
 	});
 	
 	// 수정버튼 클릭 후 수정form 보이기
-	$("input:button[value=수정]").click( function(){
+	/*$("input:button[value=수정]").click( function(){
 		$(this).parent().parent().parent().find("div.inform_edit").siblings().css("display","none");
-		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block");
+		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block").find("img").css("background-color", $("#menu2").css("background-color"));
+		profileName = $(this).parent().attr("class").substring(14);
+		PublicCode = $("input:hidden[name=" + profileName + "Public]").val();
+		if(PublicCode == ''){
+			PublicCode = 5;
+			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "none");
+		}else{
+			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "");
+		}
+		$(this).parent().parent().parent().find("select").val(PublicCode);
+		
+	});
+	*/
+	$(".editImg").click( function(){
+		$(this).parent().parent().parent().find("div.inform_edit").siblings().css("display","none");
+		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block").find("img").css("background", $("#menu2").css("background-color"));;
 		profileName = $(this).parent().attr("class").substring(14);
 		PublicCode = $("input:hidden[name=" + profileName + "Public]").val();
 		if(PublicCode == ''){
@@ -137,8 +152,9 @@ $(document).ready(function() {
 		
 	});
 	
+	
 	// 공개범위 클릭시 공개범위 선택지 보이기
-	$("input:button[value=공개범위]").click(function(){
+	/*$("input:button[value=공개범위]").click(function(){
 			publicBtn($(this));
 			if ($(this).parent().find("div.has-sub").css("display") == "none") {
 				$("div.has-sub").css("display", "none").css("z-index", "");
@@ -146,7 +162,17 @@ $(document).ready(function() {
 		    }else{
 				$("div.has-sub").css("display", "none").css("z-index", "");
 		    }
-	});
+	});*/
+	
+	$(".openImg").click(function(){
+		publicBtn($(this));
+		if ($(this).parent().find("div.has-sub").css("display") == "none") {
+			$("div.has-sub").css("display", "none").css("z-index", "");
+			$(this).parent().find("div.has-sub").css("display", "block").css("z-index", "100")
+	    }else{
+			$("div.has-sub").css("display", "none").css("z-index", "");
+	    }
+});
 	
 	//공개범위 선택지 마우스오버 색변화
 	$(".has-sub li a").hover(function(){

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="globalTop">
 	<div class="logo">
-		<a href="${pageContext.request.contextPath}">Sil</a>
+		<a href="${pageContext.request.contextPath}"><img style="height:30px;" src="${pageContext.request.contextPath }/resources/media/image/skein_w.png" />Sil</a>
 	</div>
 	<se:authorize ifNotGranted="ROLE_USER">
 	<div id="loginFormContainer">

@@ -92,7 +92,8 @@ birthdayPublic
 									</c:choose>
 								</div>
 								<div class="inform_button profileImage">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -124,8 +125,8 @@ birthdayPublic
 									</select>
 									</form>
 									
-									<input type="button" value="저장" class="profile_editBtn profileImage">
-									<input type="button" value="삭제" class="profile_deleteBtn profileImage">
+									<img class="profile_editBtn profileImage" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn profileImage" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 									<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 								</div>
 							</div>
@@ -138,7 +139,7 @@ birthdayPublic
 								<fmt:formatDate value="${sessionScope.BASE_MEMBER_INFO.birthday}" pattern="YYYY년 MM월 dd일" var="birthday" />
 								<div class="informdata birthday">${birthday}</div>
 								<div class="inform_button birthday">
-									<input type="button" value="공개범위">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -160,7 +161,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata statusComment">${statusComment }</div>
 								<div class="inform_button statusComment">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -180,8 +182,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn statusComment">
-								<input type="button" value="삭제" class="profile_deleteBtn statusComment">
+								<img class="profile_editBtn statusComment" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn statusComment" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -211,7 +213,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata openEmail">${openEmail }</div>
 								<div class="inform_button openEmail">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -231,8 +234,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn openEmail">
-								<input type="button" value="삭제" class="profile_deleteBtn openEmail">
+								<img class="profile_editBtn openEmail" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn openEmail" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -243,7 +246,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata phoneNumber">${phoneNumber }</div>
 								<div class="inform_button phoneNumber">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -263,8 +267,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn phoneNumber">
-								<input type="button" value="삭제" class="profile_deleteBtn phoneNumber">
+								<img class="profile_editBtn phoneNumber" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn phoneNumber" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -275,7 +279,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata blog">${blog }</div>
 								<div class="inform_button blog">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -295,8 +300,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn blog">
-								<input type="button" value="삭제" class="profile_deleteBtn blog">
+								<img class="profile_editBtn blog" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn blog" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -307,7 +312,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata address">${address }</div>
 								<div class="inform_button address">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -327,8 +333,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn address">
-								<input type="button" value="삭제" class="profile_deleteBtn address">
+								<img class="profile_editBtn address" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn address" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -339,7 +345,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata language">${language }</div>
 								<div class="inform_button language">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -359,8 +366,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn language">
-								<input type="button" value="삭제" class="profile_deleteBtn language">
+								<img class="profile_editBtn language" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn language" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -371,7 +378,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata politics">${politics }</div>
 								<div class="inform_button politics">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -391,8 +399,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn politics">
-								<input type="button" value="삭제" class="profile_deleteBtn politics">
+								<img class="profile_editBtn politics" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn politics" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
@@ -403,7 +411,8 @@ birthdayPublic
 							<div class="clearfix">
 								<div class="informdata religion">${religion }</div>
 								<div class="inform_button religion">
-									<input class="publichover" type="button" value="공개범위"><input type="button" value="수정">
+									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
+									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									<div class='has-sub' >
 								      <ul>
 								         <li><a class="publicbtn public">전체공개</a></li>
@@ -423,8 +432,8 @@ birthdayPublic
 									<option value="3">친구공개</option>
 									<option value="1">나만보기</option>
 								</select>
-								<input type="button" value="저장" class="profile_editBtn religion">
-								<input type="button" value="삭제" class="profile_deleteBtn religion">
+								<img class="profile_editBtn religion" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+								<img class="profile_deleteBtn religion" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 								<img class="profilecloseBtn" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 							</div>
 						</div>
