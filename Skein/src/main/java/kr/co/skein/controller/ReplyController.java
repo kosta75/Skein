@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.dao.ReplyDao;
@@ -111,9 +112,33 @@ public class ReplyController {
 	}
 	
 	
+	//댓글삭제
+	@RequestMapping(value="replyDelete",method=RequestMethod.POST)
+	public View replyDelete(String replySeq,Model model) throws ClassNotFoundException, SQLException{
+		System.out.println(replySeq);
+		ReplyDao replyDao = sqlSession.getMapper(ReplyDao.class);
+		
+		int result = replyDao.deleteReply(replySeq);
+		
+		model.addAttribute("result", result);
+		return jsonView;
+	}
 	
 	
+	//댓글 수정
+	@RequestMapping(value="replyUpdate",method=RequestMethod.POST)
+	public View replyUpdate(String replyEditContent,int replySeq,Model model) throws ClassNotFoundException, SQLException{
+		
+		ReplyDao replyDao = sqlSession.getMapper(ReplyDao.class);
+		
+		int result = replyDao.updateReply(replyEditContent,replySeq);
+		
+		model.addAttribute("result", result);
+		return jsonView;
+	}
 	
+	
+	//댓글 카운터 
 	@RequestMapping(value="/replyCountSelect", method=RequestMethod.POST)
 	public View replyList(int Count,String boardSeq,Model model, HttpSession session) throws ClassNotFoundException, SQLException{
 		

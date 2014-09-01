@@ -10,7 +10,7 @@
 
 <se:authentication property="name" var="LoginUser" />
 
-<section class="content-container" data-color="${sessionScope.BASE_MEMBER_INFO.colorTheme}">
+<section class="content-container" data-color="${sessionScope.BASE_MEMBER_INFO.colorTheme}" data-email="${sessionScope.BASE_MEMBER_INFO.email}" data-profileImg="${sessionScope.BASE_MEMBER_INFO.profileImageFileName}">
 
 <!-- SCM Music Player http://scmplayer.net -->
 <!-- <script type="text/javascript" src="http://scmplayer.net/script.js" 
@@ -310,7 +310,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								<div style="float: right;margin-right:120px;margin-top:5px;">
 								<c:choose >
 								<c:when test="${groupItem.publicLevelCode == 5}">
-									전체공개
+								전체공개
 								</c:when>
 								<c:when test="${groupItem.publicLevelCode == 4}">
 								사용자공개
@@ -366,9 +366,24 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 												</div>
 												<div>${replyItem.fullName}</div>
 											</div>
-											<div class="group-item-reply-content-container bubble">
-												${replyItem.replyContent}</div>
+											
+											<div class="group-item-reply-content-container bubble" style="clear: both;">
+												
+												${replyItem.replyContent}  
+												<c:if test="${sessionScope.BASE_MEMBER_INFO.email == replyItem.email}">
+													<div class="reply-edit-container" style="float: right;margin-bottom: 5px;" >
+												<img class='icon-box reply-Edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg'  style="margin-right:10px;float: left;">	
+												<img class='icon-box reply-Delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' data-replySeq="${replyItem.replySeq}" style="float: right;">
+													</div>
+												</c:if>
+												
+												</div>
+												<div class="bubble"style="display: none;">
+												<div class="reply-Edit-Textarea" contenteditable="true" data-replySeq="${replyItem.replySeq}"></div>
+												<input type='hidden' name="reply-Edit-Content" id="reply-Edit-Content" />
+												</div>
 										</div>
+										
 									</li>
 									
 									
