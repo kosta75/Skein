@@ -1,3 +1,34 @@
 @CHARSET "UTF-8";
 /* 알림 페이지 */
-.notification-content-wrapper{width:760px;margin-left:200px;position:relative;}
+.notification-content-wrapper{width:760px;margin-left:200px;position:relative;background:#fff;}
+
+.notification-middle-menu{min-height:500px;}
+
+.notification-list-container{padding:10px 15px;width:510px;display:table-cell;vertical-align:top;height:500px;}
+.notification-item-detial-container{padding:20px;width:180px;display:table-cell;vertical-align:top;background:rgba(0,0,0,.07);height:500px;}
+
+.notification-list-container ul{margin:0px -15px 0px -10px;}
+.notification-list-header{height:20px;padding:8px 4px 0px 4px;border-bottom:1px solid #ddd;margin-bottom:10px;font-size:11px;font-family:'맑은 고딕';color:#777;'}
+.notification-list-header .notification-create-date{padding:0px;}
+.notification-list-header .notification-item-code{width:25px;}
+
+.notification-item-container{height:16px;font-size:13px;font-family:'맑은 고딕';padding:8px 4px;cursor:pointer;}
+.notification-item-container:hover{background:#f3f3f3;}
+
+.notification-item-selected{background-color:rgba(0,0,0,.07)}
+.notification-item-selected:hover{background:rgba(0,0,0,.07)}
+
+
+
+.notification-create-date, .notification-item-code, .notification-message{float:left;height:16px;line-height:16px;}
+.notification-create-date{padding:0px 7px 0px 9px;width:80px;font-family:arial;}
+.notification-message{padding-left:20px;}
+.notification-message a{color:black;}
+.notification-message a:hover{color:#00f;}
+
+.notification-item-code{width:16px;}
+.notice-code{background:#f00;}
+.friendship-code{background:#00f;}
+.share-code{background:#0f0;}
+.reply-code{background:#f0f;}
+

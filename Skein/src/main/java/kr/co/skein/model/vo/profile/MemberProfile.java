@@ -1,4 +1,4 @@
-package kr.co.skein.model.vo;
+package kr.co.skein.model.vo.profile;
 
 public class MemberProfile {
 

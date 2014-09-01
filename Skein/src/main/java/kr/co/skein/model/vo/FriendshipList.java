@@ -2,6 +2,8 @@ package kr.co.skein.model.vo;
 
 import java.util.List;
 
+import kr.co.skein.model.vo.profile.MemberProfile;
+
 public class FriendshipList {
 
 	private String email;

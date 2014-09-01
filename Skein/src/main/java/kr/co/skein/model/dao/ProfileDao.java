@@ -3,7 +3,7 @@ package kr.co.skein.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import kr.co.skein.model.vo.MemberProfile;
+import kr.co.skein.model.vo.profile.MemberProfile;
 import kr.co.skein.model.vo.ProfileCommand;
 
 public interface ProfileDao {
@@ -29,7 +29,7 @@ public interface ProfileDao {
 	
 	
 	//사용자 프로필 조회
-	public List<MemberProfile> getMemberProfileList(String email) throws ClassNotFoundException, SQLException;
+	public List<MemberProfile> getMemberProfileList(String email, String isSelf) throws ClassNotFoundException, SQLException;
 	
 	
 }

@@ -97,6 +97,8 @@
 			</if>
 			AND m.isApproved = 1 AND m.isDomranted = 0 AND m.isDropedOut = 0 AND m.isLockedOut = 0
 		</where>
+		
+		ORDER BY m.fullName ASC, m.personalURI ASC
 	</select>
 	
 	<!-- 고유주소로 사용자 이메일 조회하기 -->

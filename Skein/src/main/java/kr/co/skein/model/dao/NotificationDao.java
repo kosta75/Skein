@@ -9,8 +9,12 @@ import kr.co.skein.model.vo.NotificationCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
 import kr.co.skein.model.vo.ReplyNotificationCommand;
 import kr.co.skein.model.vo.notification.FriendshipNotification;
+
 import kr.co.skein.model.vo.notification.ReplyNotification;
 import kr.co.skein.model.vo.notification.ShareNotification;
+
+import kr.co.skein.model.vo.notification.MemberNotification;
+
 
 public interface NotificationDao {
 	
@@ -53,13 +57,15 @@ public interface NotificationDao {
 	
 	
 	
-	
-	
-	
+
 	
 	public List<FriendshipNotification> getFriendshipNotifications(String email) throws ClassNotFoundException, SQLException;
 	public List<ReplyNotification> getReplyNotifications(String email) throws ClassNotFoundException, SQLException;
 	public List<ShareNotification> getShareNotifications(String email) throws ClassNotFoundException, SQLException;
 	
 	
+
+	public List<MemberNotification> getMemberNotificationList(String email) throws ClassNotFoundException, SQLException;
+	public FriendshipNotification getFriendshipNotificationDetail(int notificationSeq) throws ClassNotFoundException, SQLException;
+
 }
