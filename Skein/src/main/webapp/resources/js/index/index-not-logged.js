@@ -1,7 +1,16 @@
+function getContextPath(){
+	var offset = location.href.indexOf(location.host)+location.host.length;
+	var contextPath = location.href.substring(offset,location.href.indexOf('/',offset+1));
+	return contextPath;
+}//서비스 contextPath 얻기 end
+
+
+
 $(document).ready(function(){
 	
-	$(document).on('submit', '#memberJoinForm', function(e){
+	$(document).on('submit','#memberJoinForm',function(e){
 		e.preventDefault();
+		//alert('aa');
 		//do some verification
 		$.ajax({
 			type : 'POST',
@@ -29,28 +38,31 @@ $(document).ready(function(){
 	});
 	
 	
+	
+	
+	
 //*******************************************************첫 페이지 화면***********************************************************//	
 //*******************************************************************************************************************************//
 	 $(document).on('click','#login-tap p, #login-second-tap p',function(event){
 		 tabDelete();
-		 //alert("aa");
+		
 		 event.preventDefault();
 		  $('#login-tap').animate({
 			 width: '80%',
 			 height:'474px',
 			 opacity: '1',
 			 
-		 });
+		 },1000);
 		 $('#join-tap').animate({
 			 width: '10%',
 			 height:'474px',
 			 opacity: '.25'
-		 }); 	
+		 },1000); 	
 		 $('#bottom-tap').animate({
 			 both: 'clear',
 			 opacity: '.25',
 			 height: '70px'	
-		 }); 
+		 },1000); 
 		 $('#login-tap').append(
 				 '<div id="loginFormContainer">'+
 				 '<div id="Sil">'+
@@ -80,12 +92,13 @@ $(document).ready(function(){
 				 '<div id="join-second-tap"><p class="side-p" style="margin-left: 85px;margin-top:16px">J<br>O<br>I<br>N</p></div>'
 		 
 		 );	
-		 $('#login-tap').css("background-image","");
+		 
+
 		 $('#login-tap').css("background-image","url('./resources/media/image/join_login/back_1.jpg')");
 		 $('#login-tap').css("background-repeat","no-repeat");
 		 $('#login-tap').css("background-position-x","355px");
 		 
-		 //$("#join-tap").css("background-color","pink");
+		 $('#join-tap').css("background-image","url('./resources/media/image/join_login/1.jpg')");
 		 
 	 });
 	 
@@ -97,17 +110,17 @@ $(document).ready(function(){
 			 width: '80%',
 			opacity: '1',
 			height: '474px'	
-		 });
+		 },1000);
 		 $('#login-tap').animate({
 			 width: '10%',
 			 opacity: '.25',
 			 height: '474px'	
-		 }); 
+		 },1000); 
 		 $('#bottom-tap').animate({
 			 both: 'clear',
 			 opacity: '.25',
 			 height: '70px'	
-		 }); 
+		 },1000); 
 		 $('#join-tap').append(
 					 '<div id="memberJoinFormContainer">'+
 					 '<div class="join-message">'+
@@ -137,15 +150,16 @@ $(document).ready(function(){
 					'</div>'
 		 );
 		
-		 $('#login-tap').css("background-image","");
+		
 		 $('#login-tap').append(
-				 
 				 '<div id="login-second-tap"><p class="side-p">L<br>O<br>G<br>I<br>N</p></div>'
-		 
 		 );	
+		 
+		 $('#login-tap').css("background-image","");
 		 $('#join-tap').css("background-image","url('./resources/media/image/join_login/back_2.jpg')");
+		 
 		 $('#join-tap').css("background-repeat","no-repeat"); 
-		// $("#login-tap").css("background-color","skyblue");
+		
 		
 	 });
 	
@@ -197,8 +211,6 @@ $(document).ready(function(){
 		 $('#memberJoinFormContainer ').remove();
 		 $('#join-second-tap').remove();
 		 $('#login-second-tap').remove();
-		 $('#join-second-tap').remove();
-		 $('#login-second-tap').remove();
 		 $('#bottom-second-tap').remove();
 		 $('.main-p').remove();
 	}
@@ -243,3 +255,4 @@ $(document).ready(function(){
 	
 	
 });
+

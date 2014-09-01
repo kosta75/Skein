@@ -37,6 +37,7 @@ font-family:'Shadows Into Light';
 }
 body{
 	overflow-y:scroll; 
+	background-color: white;
 }
 
 a, a:visited{color:#000;}
@@ -48,7 +49,7 @@ a, a:visited{color:#000;}
 
 .text-hidden{text-indent:-10000px;;width:0px;height:0px;}
 
-#loginFormContainer{margin-left: 0px;width: 320px; opacity:0.65;height:434px;/* position:absolute;  */border-radius:8px;padding:20px;background:#eee;top:50px;right:50px;font-family:'맑은 고딕';}
+#loginFormContainer{margin-left: 0px;width: 320px; opacity:0.65;height:434px;position: inherit;border-radius:8px;padding:20px;background:#eee;top:50px;right:50px;font-family:'맑은 고딕';}
 #loginFormContainer fieldset{padding:0px 0px 10px 0px;}
 #loginFormContainer label{display:block;font-weight:bold;padding-left:5px;padding-bottom:5px;}
 #loginFormContainer input{padding:10px;font-size:25px;font-weight:bold;border-radius:3px;border:1px solid #777;}

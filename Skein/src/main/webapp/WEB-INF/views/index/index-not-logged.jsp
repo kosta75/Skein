@@ -12,7 +12,7 @@
 <div style="height:30px;" align="center">
 	<a id="refresh" href="/skein/">home</a>
 </div>
-<div id="join-tap" style="height: 474px; width: 45%; float: left; ">
+<div id="join-tap" style="margin-left: 75px;height: 474px; width: 45%; float: left; ">
 		<p class="main-p">JOIN</p>
 </div>
 

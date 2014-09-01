@@ -31,9 +31,9 @@
 </head>
 <body>
 <div class="not-logged-main-section-container">
-	<div class="wrapper">
+<!-- 	<div class="wrapper"> -->
 		<tiles:insertAttribute name="index-not-logged" />
-	</div>
+	<!-- </div> -->
 </div>
 </body>
 </se:authorize>
