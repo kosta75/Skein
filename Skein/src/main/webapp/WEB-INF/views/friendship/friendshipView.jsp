@@ -6,35 +6,100 @@
 <section class="content-container">
 	<div class="friendship-content-wrapper">
 		<div id="friendlist">
+		
 		<c:forEach var="friendshipList" items="${friendshipList}">
+			<c:set var="address" value=""></c:set>
+			<c:set var="profileImageFileName" value=""></c:set>
+			<c:set var="publicEmail" value=""></c:set>
+			<c:set var="phoneNumber" value=""></c:set>
+			<c:set var="stateMessage" value=""></c:set>
+			<c:set var="religion" value=""></c:set>
+			<c:set var="politics" value=""></c:set>
+			<c:set var="language" value=""></c:set>
+			<c:set var="blog" value=""></c:set>
+			<c:set var="birthDay" value=""></c:set>
+			
 			<div class="friend-item-container">
 				<div class="friend-image-wrapper">
+				<!-- 1 사는곳 2 프로필 사진 3 공개이메일 4 휴대폰번호 5 상태글 6종교 7정치성향 8 언어 9 블로그 10 생일 -->
+				<c:forEach var="profileList" items="${friendshipList.memberProfileList}">
 					<c:choose>
-						<c:when test="${friendshipList.profileImageFileName == null}">
-							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png">
+						<c:when test="${profileList.profileCode == 1}">
+							<c:set var="address" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 2}">
+							<c:set var="profileImageFileName" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 3}">
+							<c:set var="publicEmail" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 4}">
+							<c:set var="phoneNumber" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 5}">
+							<c:set var="stateMessage" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 6}">
+							<c:set var="religion" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 7}">
+							<c:set var="politics" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 8}">
+							<c:set var="language" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 9}">
+							<c:set var="blog" value="${profileList}"></c:set>
+						</c:when>
+						<c:when test="${profileList.profileCode == 10}">
+							<c:set var="birthDay" value="${profileList}"></c:set>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				
+				
+					<c:choose>
+						<c:when test="${profileImageFileName != ''}">
+							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/${profileImageFileName.profileInfo}">
 						</c:when>
 						<c:otherwise>
-							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileImageFileName}">
+							<img class="" src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png">
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="friend-item-info-container">
 					<div class="friend-info-wrapper">
 						<div>
-							<p><a href="${pageContext.request.contextPath}/${friendshipList.personaluri}">${friendshipList.fullname}</a></p>
+							<p><a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a></p>
 						</div>
 						
-						<c:if test="${friendshipList.publicEmail != null}">
-						<c:if test="${friendshipList.publicLevelCodeToEmail != null && friendshipList.publicLevelCodeToEmail > 1}">
-						<div>
-							<p>${friendshipList.email}</p>
-						</div>
-						</c:if>	
+						<c:if test="${publicEmail != ''}">
+							<c:if test="${publicEmail.publicLevelCode > 1}">
+							<div>
+								<p>${publicEmail.profileInfo}</p>
+							</div>
+							</c:if>	
+						</c:if>
+						
+						<c:if test="${address != ''}">
+							<c:if test="${address.publicLevelCode > 1}">
+							<div>
+								<p>${address.profileInfo}</p>
+							</div>
+							</c:if>	
+						</c:if>
+						
+						<c:if test="${phoneNumber != ''}">
+							<c:if test="${phoneNumber.publicLevelCode > 1}">
+							<div>
+								<p>${phoneNumber.profileInfo}</p>
+							</div>
+							</c:if>	
 						</c:if>
 												
 					</div>		
 				</div>
-				<div class="unfriend-button" data-uri="${friendshipList.personaluri}" data-name="${list.fullname}"></div>
+				<div class="unfriend-button" data-uri="${friendshipList.personalURI}" data-name="${friendshipList.fullName}"></div>
 			</div>  
 		</c:forEach>
 		</div>

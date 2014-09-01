@@ -25,7 +25,7 @@
 								<c:choose>
 									<c:when test="${friendshipList.friendshipConfirm == 0}">
 										<c:if test="${friendshipList.isFriend == 0}">
-											<span class="wait-friendship" data-uri="${friendshipList.personalURI}">친구 수락 대기중</span>
+											<span class="wait-friendship" data-uri="${friendshipList.personalURI}">친구 수락 대기 중</span>
 										</c:if>
 									</c:when>
 									<c:when test="${friendshipList.friendshipConfirm == 1}">

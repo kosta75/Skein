@@ -26,9 +26,9 @@ $(document).ready(function(){
 		    			}else if(obj == 1){
 		    				alert('회원 가입에 실패했습니다.');
 		    			}else if(obj == 2){
-		    				alert('이미 등록된 회원입니다.');
-		    			}else if(obj == 3){
 		    				alert('영구 정지된 계정으로 회원가입을 할 수 없습니다.');
+		    			}else if(obj == 3){
+		    				alert('이미 등록된 회원입니다.');
 		    			}
 		    		}
 		    	}
@@ -98,7 +98,7 @@ $(document).ready(function(){
 		 $('#login-tap').css("background-repeat","no-repeat");
 		 $('#login-tap').css("background-position-x","355px");
 		 
-		 $('#join-tap').css("background-image","url('./resources/media/image/join_login/1.jpg')");
+		 //$('#join-tap').css("background-image","url('./resources/media/image/join_login/1.jpg')");
 		 
 	 });
 	 

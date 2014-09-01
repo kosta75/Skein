@@ -41,4 +41,8 @@
 		DELETE Profiles
 		WHERE email = #{email} AND profileCode = #{profileCode}
 	</delete>
+	
+	<select id="getMemberProfileList" resultType="kr.co.skein.model.vo.MemberProfile">
+		SELECT profileSeq, profileCode, profileInfo, publicLevelCode, Email FROM Profiles WHERE email = #{email}
+	</select>
 </mapper>

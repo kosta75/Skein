@@ -16,7 +16,7 @@
 	
 	<!-- CSS -->
 	<!-- 공통 -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/reset.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/jquery-ui.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/common.css" />
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">

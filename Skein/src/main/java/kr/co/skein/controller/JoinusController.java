@@ -171,7 +171,7 @@ public class JoinusController {
 					//emailSender.SendEmail("univcss@gmail.com", member.getEmail(), "재등록 인증 메일!", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 				}else{
 					System.out.println("INFO : Skein-U006 - 계정 재등록에 실패하였습니다.");
-					model.addAttribute("JOIN_MESSAGE", 0);
+					model.addAttribute("JOIN_MESSAGE", 1);
 				}
 			}else{
 				if(member.getIsLockedOut() != 0){

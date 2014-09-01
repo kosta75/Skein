@@ -26,6 +26,26 @@
 		WHERE r BETWEEN #{param2} AND #{param3}
     </select>
     
+    
+<!--     private String email;
+	private String friendEmail;
+	
+	private String fullname;	
+	private String personalURI; -->
+    <!-- 친구 목록 페이징 처리 -->
+    <select id="getFriendshipList" resultType="kr.co.skein.model.vo.FriendshipList">
+    	SELECT * FROM 
+		(
+			SELECT ROWNUM r , s.* FROM
+			(
+				SELECT f.email, f.friendEmail, m.fullName, m.personalURI
+				FROM Friendship f JOIN Members m ON f.friendEmail = m.email
+				WHERE f.email = #{param1} AND m.isApproved = 1 AND m.isDomranted = 0 AND m.isDropedOut = 0 AND m.isLockedOut = 0 ORDER BY m.FullName ASC 
+			) s
+		)
+		WHERE r BETWEEN #{param2} AND #{param3}
+    </select>
+    
     <!-- 친구 삭제 -->
     <delete id="deleteFriendship">
     	DELETE FROM Friendship WHERE (Email = #{param1} AND FriendEmail = #{param2}) OR (Email = #{param2} AND FriendEmail = #{param1})  

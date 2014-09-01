@@ -1,6 +1,7 @@
 package kr.co.skein.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class FriendshipListCommand {
@@ -8,11 +9,24 @@ public class FriendshipListCommand {
 	private String email;
 	private String friendEmail;
 	private String fullname;
-	private Date birthday;
+	private Date birthday;	
 	private String personaluri;
+	
 	private String profileImageFileName;
 	private String publicEmail;
 	private int publicLevelCodeToEmail;
+	
+	private List<MemberProfile> memberProfileList;
+	
+	
+	
+	
+	public List<MemberProfile> getMemberProfileList() {
+		return memberProfileList;
+	}
+	public void setMemberProfileList(List<MemberProfile> memberProfileList) {
+		this.memberProfileList = memberProfileList;
+	}
 	public String getEmail() {
 		return email;
 	}

@@ -1,28 +1,22 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.FriendshipDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
+import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
+import kr.co.skein.model.vo.FriendshipList;
 import kr.co.skein.model.vo.FriendshipListCommand;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
-import kr.co.skein.model.vo.Member;
-import kr.co.skein.model.vo.NotificationCommand;
-import kr.co.skein.model.vo.SearchMemberCommand;
+import kr.co.skein.model.vo.MemberProfile;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -53,7 +47,14 @@ public class FriendshipController {
 		int	endNum = 8;
 		
 		FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
-		List<FriendshipListCommand> friendshipList = friendshipDao.getFriendList(baseMemberInfo.getEmail(), startNum, endNum);
+		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+		/*List<FriendshipListCommand> friendshipList = friendshipDao.getFriendList(baseMemberInfo.getEmail(), startNum, endNum);*/
+		List<FriendshipList> friendshipList = friendshipDao.getFriendshipList(baseMemberInfo.getEmail(), startNum, endNum);
+		for(int i=0;i<friendshipList.size();i++){
+			FriendshipList friendship = friendshipList.get(i);
+			List<MemberProfile> list = profileDao.getMemberProfileList(friendship.getFriendEmail());
+			friendship.setMemberProfileList(list);
+		}
 
 		model.addAttribute("friendshipList", friendshipList);
 		return "friendship.friendshipView";

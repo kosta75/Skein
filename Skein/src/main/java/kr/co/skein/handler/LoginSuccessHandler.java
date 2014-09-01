@@ -91,6 +91,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 						baseMemberInfo.setFullName(member.getFullName());
 						baseMemberInfo.setLastName(member.getLastName());
 						baseMemberInfo.setFirstName(member.getFirstName());
+						baseMemberInfo.setProfileImageFileName(profileDao.getMemberProfileByProfileCode(member.getPersonalURI(), 2));
 		
 						session.setAttribute("BASE_MEMBER_INFO", baseMemberInfo);
 						
@@ -114,6 +115,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 					baseMemberInfo.setFullName(member.getFullName());
 					baseMemberInfo.setLastName(member.getLastName());
 					baseMemberInfo.setFirstName(member.getFirstName());
+					baseMemberInfo.setProfileImageFileName(profileDao.getMemberProfileByProfileCode(member.getPersonalURI(), 2));
 	
 					session.setAttribute("BASE_MEMBER_INFO", baseMemberInfo);
 					

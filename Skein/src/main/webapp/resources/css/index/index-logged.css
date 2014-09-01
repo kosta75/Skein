@@ -85,7 +85,7 @@
 .group-item-reply-container{padding:7px 7px 7px 55px;background:#eee;position:relative;min-height:33px;margin-top:1px;}
 .group-item-reply-info-container{position:absolute;left:4px;top:4px;}
 .group-item-reply-profile-image span{text-indent:-10000px;font-size:0px;}
-.group-item-reply-profile-image img{width:37px;height:37px;border-radius:100px;border:1px solid #777;}
+.group-item-reply-profile-image img{width:37px;height:37px;border-radius:100px;border:1px solid #777;background:#fff}
 
 .group-item-reply-content-container{font-size:12px;font-family:'맑은 고딕';}
 

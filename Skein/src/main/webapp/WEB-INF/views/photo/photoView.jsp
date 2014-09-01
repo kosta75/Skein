@@ -7,14 +7,14 @@
 <section class="content-container">
 	<div class="photo-content-wrapper">
 		<div class="informbox photo">
-			
-			<c:choose>
-				<c:when test="${photoList.size() > 0}">
-				
 				<div class="informbox_header">
 				<!-- 정보헤더 -->
 					<img src="${pageContext.request.contextPath}/resources/media/image/photos_img.png">사진
 				</div>
+			<c:choose>
+				<c:when test="${list.size() > 0}">
+				
+				
 				
 				<div class="informbox_content">
 					<!-- 정보컨텐츠 -->
