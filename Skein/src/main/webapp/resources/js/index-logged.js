@@ -1158,61 +1158,73 @@ function lastPostFunc(pictureCount){
 	
 	//*************************************************************************************************
 	//*************************************************************************************************
-		//공유하기 버튼 클릭시 공유목록 출력!
-		$(document).on('click', '.share-btn', function(){
-
-			var parents = $(this).parents('.group-item-wrapper');
-
-			parents.find(".share-img-list ").empty();
-			var groupSeq = parents.find(".share-info-div .share-input").val();
-			//alert(groupSeq);
-
-			$('.share-info-div').hide(function(){
-				//해체 목록
-				$(document).find('input[type=checkbox]').attr("checked",false);
-			});
-			
-			
-			parents.find('.share-info-div').show("slide", {direction : "left"}, function(){
-				$.ajax({
-					type : 'post',
-					url : 'board/shareView',
-					cache : false,
-					data : 'groupSeq=' + groupSeq,
-					success : function(data) {
-						//alert(data);
-						
-						var boardsharedetail = data.boardshare.length;
-						//alert(boardsharedetail);
-						//console.log(data);
-						//console.log(data.boardshare);
-						//console.log(parents.find(".share-img-list"));
-						//alert(boardsharedetail);
-						if(boardsharedetail == 0 || boardsharedetail == 1){
-							parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[0].boardSeq +"' style='background-color : white;border-radius:10px 10px 10px 10px;'>"
-																+ "<div style='float:left;'>" 
-																+ "<input type='checkbox' checked disabled name='shareCheckBoxGroup' value="+data.boardshare[0].boardSeq+" data-boardSeq="+data.boardshare[0].boardSeq+"></div>" 
-																+ "<div class=''style='float:left;width:211px;'>"
-																+ "<input type='hidden' value='1'><p style='margin-left: -100px;'>현재 글 공유</p></div></div>");
-						}else{	
-							for (var j=0; j<boardsharedetail; j++) {
-								parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
-																		+ "<div style='float:left;margin-top:10px'>" 
-																			+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+" data-boardSeq="+data.boardshare[j].boardSeq+"></div>" 
-																		+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
-																			+ "<input type='hidden' value='"+j+"'>"
-																		+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
-																		+ "'style='border:1px black solid;clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
-							}
-						}
-					},
-					error : function() {
-						alert('indexlogged : Error while request..');
-					}
-				});
-			});
-		
+	/*$(document).on('dblclick', '.share-btn', function(){
+		$('.share-info-div').hide(function(){
+			//해체 목록
+			$(document).find('input[type=checkbox]').attr("checked",false);
 		});
+		
+		alert('한번만 누르세요!!');
+	});*/
+	
+	//공유하기 버튼 클릭시 공유목록 출력!
+	
+	$(document).on('click', '.share-btn', function(){
+		
+		var parents = $(this).parents('.group-item-wrapper');
+
+		//parents.find(".share-img-list ").empty();
+		var groupSeq = parents.find(".share-info-div .share-input").val();
+		//alert(groupSeq);
+
+		$('.share-info-div').hide(function(){
+			//해체 목록
+			$(document).find('input[type=checkbox]').attr("checked",false);
+		});
+		
+		parents.find('.share-info-div').show("slide", {direction : "left"}, function(){
+			$.ajax({
+				type : 'post',
+				url : 'board/shareView',
+				cache : false,
+				async: false,
+				data : 'groupSeq=' + groupSeq,
+				success : function(data) {
+					//alert(data);
+					parents.find(".share-img-list ").empty();
+					var boardsharedetail = data.boardshare.length;
+					//alert(boardsharedetail);
+					//console.log(data);
+					//console.log(data.boardshare);
+					//console.log(parents.find(".share-img-list"));
+					//alert(boardsharedetail);
+					if(boardsharedetail == 0 || boardsharedetail == 1){
+						parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[0].boardSeq +"' style='background-color : white;border-radius:10px 10px 10px 10px;'>"
+															+ "<div style='float:left;'>" 
+															+ "<input type='checkbox' checked disabled name='shareCheckBoxGroup' value="+data.boardshare[0].boardSeq+" data-boardSeq="+data.boardshare[0].boardSeq+"></div>" 
+															+ "<div class=''style='float:left;width:211px;'>"
+															+ "<input type='hidden' value='1'><p style='margin-left: -100px;'>현재 글 공유</p></div></div>");
+					}else{	
+						for (var j=0; j<boardsharedetail; j++) {
+							parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
+																	+ "<div style='float:left;margin-top:10px'>" 
+																		+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+" data-boardSeq="+data.boardshare[j].boardSeq+"></div>" 
+																	+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
+																		+ "<input type='hidden' value='"+j+"'>"
+																	+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
+																	+ "'style='border:1px black solid;clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
+						}
+					}
+				},
+				error : function() {
+					alert('indexlogged : Error while request..');
+				}
+			});
+		});
+			
+		});
+	
+
 		//*************************************************************************************************
 		//공유하기 상세 마우스 올렸을때!
 		$(document).on('mouseover','.shareimgBtn',function(){

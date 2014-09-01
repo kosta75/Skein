@@ -147,3 +147,13 @@ input[type=text]{
 #historyImg:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
 #file-list li{float:left;}
  */
+ 
+ 
+ 
+ 
+ #profile-img{
+hight:50px;
+width:50px;
+ 
+ }
+ 

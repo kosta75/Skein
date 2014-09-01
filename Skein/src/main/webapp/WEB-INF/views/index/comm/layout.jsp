@@ -40,6 +40,7 @@
 	
 	<script src="//code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<script src="http://path/to/your/copy/of/jquery.blockUI.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common-logged.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common-owner.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/index-logged.js"></script>

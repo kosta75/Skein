@@ -87,7 +87,7 @@ birthdayPublic
 										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
 										</c:when>
 										<c:otherwise>
-											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
+											<img id="profile-img" src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" />
 										</c:otherwise>
 									</c:choose>
 								</div>
