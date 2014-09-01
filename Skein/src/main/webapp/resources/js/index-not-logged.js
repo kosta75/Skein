@@ -1,6 +1,14 @@
+function getContextPath(){
+	var offset = location.href.indexOf(location.host)+location.host.length;
+	var contextPath = location.href.substring(offset,location.href.indexOf('/',offset+1));
+	return contextPath;
+}//서비스 contextPath 얻기 end
+
+
+
 $(document).ready(function(){
 	
-	$(document).on('submit', '#memberJoinForm', function(e){
+	$('#memberJoinForm').submit(function(e){
 		e.preventDefault();
 		//do some verification
 		$.ajax({
@@ -243,3 +251,4 @@ $(document).ready(function(){
 	
 	
 });
+
