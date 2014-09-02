@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	$(".unfriendImg").css("background", $("#menu2").css("background-color"));
+	
 	//친구 관계 삭제 버튼
 	$(document).on('mouseleave', ".friend-item-container", function(){
 	    $(this).find('.unfriend-button').css("display","none")

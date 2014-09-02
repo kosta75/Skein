@@ -66,6 +66,10 @@ $(document).ready(function() {
 	});
 
 	$("#profileImageForm").submit(function(event){
+		if(multiFiles == null ){
+			alert("사진을 등록해주세요.");
+			return false;
+		}
 		var requestMapping = "/profile/profileImageUpdate";
 		var requestContextPath = getContextPath() + requestMapping;
 		
@@ -198,6 +202,7 @@ $(document).ready(function() {
 	
 	//프로필 삭제 
 	$(".profile_deleteBtn").click(function(){
+		
 		var profileName = $(this).attr("class").substring(18);
 		var profileCode = $("input:hidden[name=" + profileName + "]").attr("value");
 		var email = $("input:hidden[name=email]").val();
@@ -248,22 +253,8 @@ $(document).ready(function() {
 		$(this).find("div.inform_button").css("display","none");
 	});
 	
-	// 수정버튼 클릭 후 수정form 보이기
-	/*$("input:button[value=수정]").click( function(){
-		$(this).parent().parent().parent().find("div.inform_edit").siblings().css("display","none");
-		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block").find("img").css("background-color", $("#menu2").css("background-color"));
-		profileName = $(this).parent().attr("class").substring(14);
-		PublicCode = $("input:hidden[name=" + profileName + "Public]").val();
-		if(PublicCode == ''){
-			PublicCode = 5;
-			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "none");
-		}else{
-			$(this).parent().parent().parent().find(".profile_deleteBtn").css("display", "");
-		}
-		$(this).parent().parent().parent().find("select").val(PublicCode);
-		
-	});
-	*/
+
+	//edit form 열기
 	$(".editImg").click( function(){
 		$(this).parent().parent().parent().find("div.inform_edit").siblings().css("display","none");
 		$(this).parent().parent().parent().find("div.inform_edit").css("display", "block").find("img").css("background", $("#menu2").css("background-color"));;
@@ -280,16 +271,7 @@ $(document).ready(function() {
 	});
 	
 	
-	// 공개범위 클릭시 공개범위 선택지 보이기
-	/*$("input:button[value=공개범위]").click(function(){
-			publicBtn($(this));
-			if ($(this).parent().find("div.has-sub").css("display") == "none") {
-				$("div.has-sub").css("display", "none").css("z-index", "");
-				$(this).parent().find("div.has-sub").css("display", "block").css("z-index", "100")
-		    }else{
-				$("div.has-sub").css("display", "none").css("z-index", "");
-		    }
-	});*/
+
 	
 	$(".openImg").click(function(){
 		publicBtn($(this));
@@ -299,7 +281,8 @@ $(document).ready(function() {
 	    }else{
 			$("div.has-sub").css("display", "none").css("z-index", "");
 	    }
-});
+	});
+
 	
 	//공개범위 선택지 마우스오버 색변화
 	$(".has-sub li a").hover(function(){
@@ -309,38 +292,9 @@ $(document).ready(function() {
 	});
 	
 	
-	
-	
-	
-	
-	
-	
-	/*$(".profile_editBtn.profileImage") .click(	function(event) {
-		event.preventDefault();
-		var file =  document.getElementById("profileImageUp");
-		var email = $("input:hidden[name=email]").val();
-		var publicLevelCode = $(this).parent().find("select").val();
-		var data = "profileInfo=" + file + "&email=" + email + "&profileCode=2" + '&publicLevelCode='+ publicLevelCode;
-	
-		$.ajax({
-			url : 'profile/',
-			type : "post",
-			data : data,
-			success : function(data) {
-				alert("정보가 수정되었습니다!");
-				var profileName = $("input:hidden[value=2]").attr("name");
-				var contextPath = $("input:hidden[name=contextPath]").val();
-				$("input:hidden[name=" + profileName + "Public]").val(publicLevelCode);
-				$(".informdata."+profileName).html('<img src="' + contextPath + '/resources/user-profile-image/' + file + '">');
-			},
-			error : function() {
-				alert("ERROR");
-			}
-		});
-		return false;
-	});*/
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////프로필사진 업데이트 ㅡㅡ하 
-	
+	if($(".informdata.profileImage").html().indexOf("profile-img") != -1){
+		$(".profileImage font").css("display", "none");
+	}
 	
 	
 });

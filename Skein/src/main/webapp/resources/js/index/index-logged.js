@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	
+	
 	//기본 사용자 정보
 	var email = $(".content-container").data("email");
 	var profileImg = $(".content-container").data("profileImg");
@@ -625,7 +626,15 @@ $(document).ready(function(){
 		
 		}
 		});
-
+	$("input[name=startDate]").on("focusout", function() { 
+		$("input[name=endDate]").val($(this).val());
+	});
+	$("input[name=endDate]").on("focusout", function() { 
+		if($("input[name=startDate]").val().replace("-", "") > $(this).val().replace("-", "") ){
+			alert("종료일자는 발생일자 이후로 입력하셔야 합니다.")
+			$(this).val($("input[name=startDate]").val());
+		}
+	});
 	$("#historyWriteMenu3").click(function() {
 		
 		if($("#historymap").css("display") == "block"){
