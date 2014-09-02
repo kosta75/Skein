@@ -39,22 +39,27 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 					<fmt:formatDate value="${notificationList.createDate}" pattern="YY. MM. dd." var="createDate" />
 					<c:set var="notificationCode" value=""></c:set>
 					<c:set var="notificationMessage" value=""></c:set>
+					<c:set var="notificationIcon" value=""></c:set>
 					<c:choose>
 						<c:when test="${notificationList.notificationCode == 1}">
 							<c:set var="notificationCode" value="notice-code"></c:set>
 							<c:set var="notificationMessage"></c:set>
+							<c:set var="notificationIcon" value=""></c:set>
 						</c:when>
 						<c:when test="${notificationList.notificationCode == 2}">
 							<c:set var="notificationCode" value="friendship-code"></c:set>
 							<c:set var="notificationMessage">님이 친구 신청을 하였습니다.</c:set>
+							<c:set var="notificationIcon" value="nFriendImg.png"></c:set>
 						</c:when>
 						<c:when test="${notificationList.notificationCode == 4}">
 							<c:set var="notificationCode" value="share-code"></c:set>
 							<c:set var="notificationMessage">님이 공유 신청을 하였습니다.</c:set>
+							<c:set var="notificationIcon" value="nshareImg.png"></c:set>
 						</c:when>
 						<c:when test="${notificationList.notificationCode == 6}">
 							<c:set var="notificationCode" value="reply-code"></c:set>
 							<c:set var="notificationMessage">님이 댓글을 작성하였습니다.</c:set>
+							<c:set var="notificationIcon" value="nReplyImg.png"></c:set>
 						</c:when>
 					</c:choose>
 					
@@ -63,7 +68,9 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 							<div class="notification-read-button${(notificationList.isRead == 0) ? ' un-read':' readed'}">R</div>
 							<div class="notification-create-date">${createDate}</div>
 							
-							<div class="notification-item-code ${notificationCode}"></div>
+							<div class="notification-item-code ${notificationCode}">
+								<img class="notification-icon" src="${pageContext.request.contextPath}/resources/media/image/${notificationIcon}">
+							</div>
 							<div class="notification-message">
 								<c:choose>
 									<c:when test="${notificationList.notificationCode == 1}">
