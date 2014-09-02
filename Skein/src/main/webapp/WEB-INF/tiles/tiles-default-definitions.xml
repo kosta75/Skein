@@ -34,7 +34,11 @@
 		<put-attribute name="title" value="{1}" />
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-	
+	  <!-- ***********************profile 게시물 더보기**********************  -->
+      <definition name="moreprofileboard" template="/WEB-INF/views/profile/comm/layout2.jsp">
+         <put-attribute name="morecontent" value="/WEB-INF/views/profile/publicMoreProfileView.jsp" />
+      </definition>
+   <!-- *******************************************************************  -->
    
     <!-- ***********************main 게시물 더보기**********************  -->
       <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp">

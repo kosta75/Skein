@@ -190,7 +190,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 	
 	<!-- 7. 사용자 그룹 게시물 조회 -->
 	<select id="getMemberBoardGroup" resultType="kr.co.skein.model.vo.BoardGroup">
-		SELECT * FROM
+    	SELECT * FROM
 		(
 		SELECT ROWNUM r, s.* from
 		(
@@ -205,8 +205,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 		               (
 		               SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, ROW_NUMBER() OVER(PARTITION BY groupSeq ORDER BY BOARDSEQ DESC) AS rnum, COUNT(*) OVER(PARTITION BY groupSeq) AS groupCount
 		               FROM Board
-		               
-		               <where>
+		              <where>
 		               		<if test="email != null">
 		               			 email = #{email}
 		               		</if>
@@ -233,7 +232,7 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
 		      JOIN MEMBERS m ON m.Email = b.Email
 		      LEFT OUTER JOIN MEDIA me ON me.BOARDSEQ = b.BOARDSEQ
 		      ORDER BY GROUPSEQ DESC
-		    ) s
+		    ) s LEFT OUTER JOIN (SELECT  email,profileinfo FROM profiles WHERE profilecode = 2)p ON s.email = p.email
 		    )
 
 		

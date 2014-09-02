@@ -29,7 +29,7 @@ public class BoardGroup {
 	private int isImportantGroup;
 	private Date groupStartDate;
 	private Date groupEndDate;
-	
+
 	private int groupCount;
 	private String boardSeq;
 	private String email;
