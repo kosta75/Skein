@@ -133,8 +133,14 @@
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
 													<a href="${pageContext.request.contextPath}/">
+													<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
+													<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
+														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
+													</c:if>
+													<c:if test="${replyItem.profileinfo != null && replyItem.profileinfo != ''}">
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
-														alt="${replyItem.fullName}" title="${replyItem.fullName}" /><span>${replyItem.fullName}</span></a>
+														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
+													</c:if><span>${replyItem.fullName}</span></a>
 												</div>
 												<div>${replyItem.fullName}</div>
 											</div>

@@ -101,8 +101,7 @@ public class MemberController {
 							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
 							if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
 								listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-							System.out.println("ddd"+listSource.get(i).getReplyList().get(i).getProfileinfo());
-							}
+						}
 						
 						}
 						
