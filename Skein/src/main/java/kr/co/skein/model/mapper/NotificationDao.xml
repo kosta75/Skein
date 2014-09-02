@@ -205,4 +205,8 @@
 		
 	</select>
 	
+	<update id="readNotification" parameterType="String">
+		UPDATE Notifications SET isRead = 1 WHERE email = #{param1} AND notificationSeq = #{param2}
+	</update>
+	
 </mapper>

@@ -81,6 +81,18 @@ public class NotificationController {
 		return jsonView;
 	}
 	
+	//알림 읽음
+	@RequestMapping(value="/notificationRead", method=RequestMethod.POST)
+	public View notificationRead(@RequestParam("notificationSeq") String notificationSeq, Model model, HttpSession session) throws ClassNotFoundException, SQLException{
+		BaseMemberInfo baseMemberInfo = null;
+		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+			notificationDao.readNotification(baseMemberInfo.getEmail(), notificationSeq);
+			System.out.println("INFO : Skein-R221 - 알림 읽음 처리, notificationSeq=" + notificationSeq + ", email=" + baseMemberInfo.getEmail());
+		}
+		return jsonView;
+	}
+	
 		
 	/*//알림 페이지 첫 진입점
 	@RequestMapping(value = "/", method=RequestMethod.GET)

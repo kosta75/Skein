@@ -4,11 +4,11 @@
 #subUserProfileContainer{width:180px;position:absolute;left:0px;z-index:10;top:75px;}
 
 .sub-user-profile-tip{height:50px; border-radius:6px 6px 0px 0px;}
-.sub-user-profile-wrapper{height:140px;background:#fff;border-bottom:1px solid #ccc;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
+.sub-user-profile-wrapper{padding-top:45px;background:#fff;border-bottom:1px solid #ccc;border-radius:0px 0px 6px 6px;margin-bottom:10px;}
 .sub-user-profile-image-container{position:absolute;top:5px;left:5px;border:1px solid #ddd;border-radius:6px}
 .sub-user-profile-image-container img{width:80px;height:80px;border:3px solid #fff;border-radius:5px;vertical-align:middle;background:#fff;}
-.sub-user-profile-name{margin-left:100px;padding:12px 0px;font-size:14px;}
-.sub-user-proifle-info{font-family:'맑은 고딕';font-size:14px;padding:8px;}
+.sub-user-profile-name{padding:4px 8px 4px; font-size:14px;}
+.sub-user-proifle-info{font-family:'맑은 고딕';font-size:14px;padding:4px 8px 10px;}
 .sub-user-profile-birthday{}
 
 /* 날씨 정보 */

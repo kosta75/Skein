@@ -67,5 +67,7 @@ public interface NotificationDao {
 
 	public List<MemberNotification> getMemberNotificationList(String email) throws ClassNotFoundException, SQLException;
 	public FriendshipNotification getFriendshipNotificationDetail(int notificationSeq) throws ClassNotFoundException, SQLException;
+	
+	public int readNotification(String email, String notificationSeq) throws ClassNotFoundException, SQLException;
 
 }

@@ -21,7 +21,7 @@ $(document).ready(function(){
 		    		if(data.JOIN_MESSAGE != null){
 		    			var obj = data.JOIN_MESSAGE;
 		    			if(obj == 0){
-		    				alert('회원 가입이 성공적으로 완료 되었습니다.');
+		    				alert('회원 가입이 성공적으로 완료 되었습니다.\n입력하신 이메일 계정으로 보낸 인증메일을 확인해 주세요.');
 		    				location.reload();
 		    			}else if(obj == 1){
 		    				alert('회원 가입에 실패했습니다.');

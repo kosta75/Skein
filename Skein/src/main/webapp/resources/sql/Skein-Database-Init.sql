@@ -998,7 +998,9 @@ ALTER TABLE ReplyNotification
 /* 공유알림 */
 CREATE TABLE ShareNotification (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
-	BoardSeq NUMBER NOT NULL /* 글번호 */
+	BoardSeq NUMBER NOT NULL, /* 글번호 */
+	OwnerEmail VARCHAR2(127), /* 이메일 */
+	ShareConfirm INT /* 공유승인여부 */
 );
 
 COMMENT ON TABLE ShareNotification IS '공유알림';
@@ -1006,6 +1008,10 @@ COMMENT ON TABLE ShareNotification IS '공유알림';
 COMMENT ON COLUMN ShareNotification.NotificationSeq IS '사용자알림번호';
 
 COMMENT ON COLUMN ShareNotification.BoardSeq IS '글번호';
+
+COMMENT ON COLUMN ShareNotification.OwnerEmail IS '이메일';
+
+COMMENT ON COLUMN ShareNotification.ShareConfirm IS '공유승인여부';
 
 CREATE UNIQUE INDEX PK_ShareNotification
 	ON ShareNotification (
@@ -1039,11 +1045,70 @@ ALTER TABLE ShareNotification
 			BoardSeq
 		) ON DELETE CASCADE;
 
+ALTER TABLE ShareNotification
+	ADD
+		CONSTRAINT FK_Members_TO_ShareNotif
+		FOREIGN KEY (
+			OwnerEmail
+		)
+		REFERENCES Members (
+			Email
+		) ON DELETE CASCADE;
 
 
 
 
 
+-----------------------------------------------------------------------------------------------
+-- 20. ShareBoard(공유)
+-----------------------------------------------------------------------------------------------
+-- 20.1 ShareBoard(공유) 테이블 생성
+/* 공유사용자 */
+CREATE TABLE ShareBoard (
+	ShareSeq NUMBER NOT NULL, /* 공유사용자번호 */
+	ShareEmail VARCHAR2(127) NOT NULL, /* 공유사용자이메일 */
+	BoardSeq NUMBER NOT NULL /* 글번호 */
+);
+
+COMMENT ON TABLE ShareBoard IS '공유사용자';
+
+COMMENT ON COLUMN ShareBoard.ShareSeq IS '공유사용자번호';
+
+COMMENT ON COLUMN ShareBoard.ShareEmail IS '공유사용자이메일';
+
+COMMENT ON COLUMN ShareBoard.BoardSeq IS '글번호';
+
+CREATE UNIQUE INDEX PK_ShareBoard
+	ON ShareBoard (
+		ShareSeq ASC
+	);
+
+ALTER TABLE ShareBoard
+	ADD
+		CONSTRAINT PK_ShareBoard
+		PRIMARY KEY (
+			ShareSeq
+		);
+
+ALTER TABLE ShareBoard
+	ADD
+		CONSTRAINT FK_Members_TO_ShareBoard
+		FOREIGN KEY (
+			ShareEmail
+		)
+		REFERENCES Members (
+			Email
+		) ON DELETE CASCADE;
+
+ALTER TABLE ShareBoard
+	ADD
+		CONSTRAINT FK_Board_TO_ShareBoard
+		FOREIGN KEY (
+			BoardSeq
+		)
+		REFERENCES Board (
+			BoardSeq
+		) ON DELETE CASCADE;
 
 
 

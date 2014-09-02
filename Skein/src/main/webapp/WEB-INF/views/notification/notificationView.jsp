@@ -28,6 +28,7 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 				</div>
 				
 				<header class="notification-list-header">
+					<div class="notification-read-confirm">확인</div>
 					<div class="notification-create-date">날짜</div>
 					<div class="notification-item-code">활동</div>
 					<div class="notification-message">내용</div>
@@ -58,7 +59,8 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 					</c:choose>
 					
 					<li>
-						<div class="notification-item-container${(c.index == 0) ? ' notification-item-selected':''}" data-notificationseq="${notificationList.notificationSeq}" data-notificationcode="${notificationList.notificationCode}">
+						<div class="notification-item-container${(c.index == 0) ? ' notification-item-selected':''}${(notificationList.isRead != 0) ? ' notification-read':''}" data-notificationseq="${notificationList.notificationSeq}" data-notificationcode="${notificationList.notificationCode}" data-sendername="${notificationList.notificationSenderName}" data-senderuri="${notificationList.notificationSenderURI}">
+							<div class="notification-read-button${(notificationList.isRead == 0) ? ' un-read':' readed'}">R</div>
 							<div class="notification-create-date">${createDate}</div>
 							
 							<div class="notification-item-code ${notificationCode}"></div>
@@ -68,10 +70,11 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 										 
 									</c:when>
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/${notificationList.notificationSenderURI}">${notificationList.notificationSenderName}(${notificationList.notificationSenderURI})</a>${notificationMessage}
+										<span>${notificationList.notificationSenderName}(${notificationList.notificationSenderURI})</span>${notificationMessage}
 									</c:otherwise>
 								</c:choose>
 							</div>
+							
 						</div>
 					</li>				
 				</c:forEach>
@@ -79,7 +82,7 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 			</div>
 			<div class="notification-item-detial-container">
 				<div class="notification-sender-info-wrapper">
-				
+					<div class="sending-notification-code"></div>
 				</div>
 				<div class="notification-info-wrapper">
 				</div>
