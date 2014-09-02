@@ -120,12 +120,15 @@
 	line-height: 16px;
 	padding: 1px 16px 1px 22px;
 	text-decoration: none;
+	cursor:pointer;
+	font-family:'맑은 고딕';
+	font-size:12px;
 }
 .has-sub li a.checked{
 	background: url(../../../resources/media/image/checked.png) left 4px no-repeat;
 }
 .has-sub li a.selected{
-	background-color: fuchsia;
+	background-color: lightgray;
 }
 .informdata.profileImage{
 	width:110px;height:110px;

@@ -23,7 +23,7 @@ function initFrienshipProfile(ListObj){
 	birthDay = "";
 	profileCounter = 0;
 	
-	console.log(ListObj);
+	//console.log(ListObj);
 	profileCounter = ListObj.length;
 	
 	for(var i=0;i<ListObj.length;i++){
@@ -92,7 +92,7 @@ function getNotificationDetailInfo(obj){
 				case 2:
 					//console.log(notificationObject)
 					//console.log(notificationObject.friendEmail)
-					console.log(profileImageFileName);
+					//console.log(profileImageFileName);
 					
 					codeClass = 'sending-friendship-code';
 					if(notificationObject.friendshipConfirm > 0){
@@ -101,7 +101,88 @@ function getNotificationDetailInfo(obj){
 						if(profileImageFileName != '' && profileImageFileName != null){
 							infoAddText += "<div class='notification-user-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImageFileName+"' />";
 							if(profileCounter > 1){
-								infoAddText += "";
+								infoAddText += "<div class='public-user-info'><ul>";
+								
+								if(birthDay.trim() != '' && birthDay != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>생일</div>";
+									infoAddText += "<div class='public-user-info-value'>"+birthDay+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								
+								if(publicEmail.trim() != '' && publicEmail != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>이메일</div>";
+									infoAddText += "<div class='public-user-info-value'>"+publicEmail+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								
+								if(phoneNumber.trim() != '' && phoneNumber != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>휴대전화번호</div>";
+									infoAddText += "<div class='public-user-info-value'>"+phoneNumber+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								
+								if(address.trim() != '' && address != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>사는 곳</div>";
+									infoAddText += "<div class='public-user-info-value'>"+address+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+																								
+								if(stateMessage.trim() != '' && stateMessage != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>상태글</div>";
+									infoAddText += "<div class='public-user-info-value'>"+stateMessage+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								
+								if(blog.trim() != '' && blog != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>블로그</div>";
+									infoAddText += "<div class='public-user-info-value'>"+blog+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								
+								if(religion.trim() != '' && religion != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>종교</div>";
+									infoAddText += "<div class='public-user-info-value'>"+religion+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								if(politics.trim() != '' && politics != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>정치성향</div>";
+									infoAddText += "<div class='public-user-info-value'>"+politics+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+								if(language.trim() != '' && language != null){
+									infoAddText += "<li>";
+									infoAddText += "<div class='public-user-info-wrapper'>";
+									infoAddText += "<div class='public-user-info-key'>언어</div>";
+									infoAddText += "<div class='public-user-info-value'>"+language+"</div>";
+									infoAddText += "</div>";
+									infoAddText += "</li>";
+								}
+
+								infoAddText += "</ul></div>";
 							}else{
 								infoAddText += "<div class='public-user-info-none'>공개된 사용자 프로필 정보가 존재하지 않습니다.</div>";
 							}
@@ -109,7 +190,7 @@ function getNotificationDetailInfo(obj){
 						}else{
 							infoAddText += "<div class='notification-user-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/default-profile-image.png' />";
 							if(profileCounter > 1){
-								infoAddText += "";
+								infoAddText += "<div class='public-user-info'>사용자 프로필</div>";
 							}else{
 								infoAddText += "<div class='public-user-info-none'>공개된 사용자 프로필 정보가 존재하지 않습니다.</div>";
 							}
@@ -253,24 +334,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-	$(".friendship-approved").on('click', function(){
-		var obj = $(this);
-		//console.log($(this).data("notificationseq"));
-		$.ajax({
-			type : 'post',
-			url : '../friendship/add',
-			data : 'personalURI=' + $(this).data("uri") + "&notificationSeq=" + $(this).data("notificationseq"),
-			cache : false,
-			success : function(data) {
-				obj.remove();
-				location.reload();
-			},
-			error : function() {
-				alert('친구 신청 요청 오류...');
-			}
-		});
-	});
+
 	
 ////////////////////////////////////////////////////////////////////////////////////
 	/*var jqDockOpts = {align: 'left', duration: 200, labels: 'tc', size: 48, distance: 85};
