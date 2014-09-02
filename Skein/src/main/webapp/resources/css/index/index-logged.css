@@ -410,3 +410,14 @@ padding: 8px 0;
 	display:none;
 	
 }
+.shareList{
+	clear:both;
+}
+.shareList input{
+	float: left;
+	
+}
+
+.share-data-boardSeq{
+	clear:both;
+}

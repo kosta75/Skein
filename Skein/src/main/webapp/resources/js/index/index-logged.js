@@ -1516,8 +1516,8 @@ function lastPostFunc(pictureCount){
 		$(document).on('click', '.share-btn', function(){
 
 			var parents = $(this).parents('.group-item-wrapper');
-
-			parents.find(".share-img-list ").empty();
+			parents.find(".share-freind-list-div").empty();
+			
 			var groupSeq = parents.find(".share-info-div .share-input").val();
 			//alert(groupSeq);
 
@@ -1535,14 +1535,16 @@ function lastPostFunc(pictureCount){
 					data : 'groupSeq=' + groupSeq,
 					success : function(data) {
 						//alert(data);
+						parents.find(".share-img-list ").empty();
 						
 						var boardsharedetail = data.boardshare.length;
 						//alert(boardsharedetail);
 						//console.log(data);
-						//console.log(data.boardshare);
+						console.log(data.boardshare);
 						//console.log(parents.find(".share-img-list"));
 						//alert(boardsharedetail);
 						if(boardsharedetail == 0 || boardsharedetail == 1){
+							
 							parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[0].boardSeq +"' style='background-color : white;border-radius:10px 10px 10px 10px;'>"
 																+ "<div style='float:left;'>" 
 																+ "<input type='checkbox' checked disabled name='shareCheckBoxGroup' value="+data.boardshare[0].boardSeq+" data-boardSeq="+data.boardshare[0].boardSeq+"></div>" 
@@ -1581,42 +1583,79 @@ function lastPostFunc(pictureCount){
 		$(document).on('click','.detailImg',function(){
 			
 			$("#modal-content-view").css("display","none");
-			$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10;width: 960px; height: 540px; ' src='"+$(this).find("img").attr("src")+"'></div>");
+			$('#modal-content').append("<div id='modal-detile-view'style='width:830px; height: 540px; display: block;z-index:100;position:absolute;'>	<img style='z-index:10;width: 960px; height: 540px; ' src='"+$(this).find("img").attr("src")+"'></div>");
 		});
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////////////////////////////////////////////////////////////////////////
-		//사용자가 선택한 공유 목록 가져오기 (수정중........................)
+		//사용자가 선택한 공유 목록 가져오기
 		$(document).on('click','#share-confirm-btn',function(){
 			
-			var checked = new Array();
+			var share_board_list = new Array();
 			$(document).find("input[name=shareCheckBoxGroup]:checked").each(function(i,j){
-				checked[i]= j.value;
+				share_board_list[i]= j.value;
+				//share_board_list.push({"boardSeq" : j.value})
 			});
-			//if(chked_val!="")chked_val = chked_val.substring(1);
-			var checkedLength = $(document).find("input[name=shareCheckBoxGroup]:checked").length;
-			
-			//alert(checkedLength);
-			for(var j=0;j<checkedLength;j++){
-				alert(checked[j]);
+			var boardCheckedLength = $(document).find("input[name=shareCheckBoxGroup]:checked").length;
+
+			var share_friend_list = new Array();
+			$(document).find("input[name=shareFriendCheckBox]:checked").each(function(i,j){
+				share_friend_list[i]= j.value;
+			});
+
+			var friendCheckedLength = $(document).find("input[name=shareFriendCheckBox]:checked").length;
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////Json형태///////////////////////////////////////////////////////////////////////////////////////
+			/*var jsonText ='';	
+			jsonText += "{ 'board' : [";
+			for(var a=0; a< boardCheckedLength; a++){
+				jsonText += "{'boardSeq': '"+share_board_list[a]+"'}";
+				if(boardCheckedLength!=(a+1)){
+					jsonText += ",";
+				}
 			}
+			jsonText += "],'friend':[";
+			for(var v=0; v< friendCheckedLength; v++){
+				jsonText +="{'friendEmail' : '"+share_friend_list[v] +"'}";
+				if(friendCheckedLength!=(v+1)){
+					jsonText += ',';
+				}
+			}
+			jsonText +="]}";*/
 			
-			if(checkedLength==0){
+			var obj = new Object();
+			
+			obj.board = share_board_list;
+			obj.friend = share_friend_list;
+			
+			var jsonData = JSON.stringify(obj);
+			console.log(jsonData);
+			
+			
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+			//alert(jsonText);
+
+			
+			if(boardCheckedLength==0){
 				alert("게시물을 선택 해주세요.");
+			}else if(friendCheckedLength==0){
+				alert('친구를 선택하세요');
 			}else{
 				$.ajax({
 					type : 'POST',
 					url : 'share/shareDo',
-					data:"checked="+ checked,
+					data : { json : jsonData },
+					dataType :"json",
 					success : function(data) {
+						//alert(data);
 						
-						
-						alert(data);
 					},
 					error : function() {
-						alert('Error while request..');
+						alert(' share 확인 버튼 : Error while request..');
 					}
 				});
+				
 				$('.share-info-div').hide("slide", {direction : "left"});
 			}
 			
@@ -1669,6 +1708,36 @@ function lastPostFunc(pictureCount){
 			}
 		});
 		 
+//공유하기  친구 선택하여 공유하기 이벤트
+	//친구 목록 가져오기 	
+	$(document).on('click','.share-freind-list img',function(){
+		var parent = $(this).parent();
+		parent.find('.share-freind-list-div').empty();
+		$.ajax({
+			type : 'POST',
+			url : 'share/sharefriendlist',
+			success : function(data) {
+				if(data.list.length ==0){
+					parent.find('.share-freind-list-div').append("<div><p>공유할 친구가 없습니다.<p></div>");		
+				}else{
+					for(var k=0 ; k< data.list.length; k++){
+						parent.find('.share-freind-list-div').append("<div class='shareList'><input type='checkbox' name='shareFriendCheckBox' value='"+data.list[k].email+"'><p >"+data.list[k].fullname+"</p></div>");
+					}
+				}
+			},
+			error : function() {
+				alert('Error while request..');
+			}
+		});
+		
+	});
+		
+		
+		
+		
+		
+		
+		
 });
 
 

@@ -192,7 +192,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 
 
 			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
-			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 330px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
+			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 440px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
 				<img id="share-detail-preview-imgtag" src=""	style="width: 100%; height: 100%">
 			</div>
 
@@ -252,7 +252,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>
@@ -269,11 +269,18 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								<div class="share-img-list" style="clear: both;">
 									<!-- 목록 들어가는 곳  -->
 								</div>
+								<div class="share-freind-list"style="clear: both;">
+									<img style="float:left;height:15px; width:97%; border : 3px solid red;">
+									<!--친구 목록 들어가는 곳  -->
+									<div class="share-freind-list-div" style="width:90%; background-color: skyblue; opactiy:0.2;clear:both;">
+										
+									</div>
+								</div>
 								<div style="clear: both;">
 									<a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
 									<c:if test="${groupItem.groupCount >= 2}">
-										<a id="share-ALL-choice-btn">전체선택</a>
-										<a id="share-ALL-clear-btn">전체해제</a>
+										<a id="share-ALL-choice-btn">All</a>
+										<a id="share-ALL-clear-btn">Clear</a>
 									</c:if>
 								</div>
 							</div>
