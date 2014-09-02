@@ -10,6 +10,10 @@ $(document).ready(function(){
 	
 	$(document).on('submit','#memberJoinForm',function(e){
 		e.preventDefault();
+		if($("#birthday").val().length >10){
+			alert("날짜형식이 잘못되었습니다. 예) 1991-01-05 ");
+			return;
+		}
 		//alert('aa');
 		//do some verification
 		$.ajax({

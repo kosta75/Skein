@@ -42,6 +42,7 @@ public class ProfileController {
 		if(code == 2){
 			System.out.println("이것은 프로필 이미지!!!");
 			
+			command.setPublicLevelCode(5);
 			//파일 업로드 경로 설정
 			String fileUploadDir = "resources"+ File.separator +"user-profile-image";
 			String rootPath = multiRequest.getSession().getServletContext().getRealPath("/");
@@ -82,10 +83,17 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value="delete", method=RequestMethod.POST)
-	public View deleteProfileInfo(ProfileCommand command, Model model) throws ClassNotFoundException, SQLException{
+	public View deleteProfileInfo(ProfileCommand command, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
 		if(profileDao.deleteProfile(command) > 0){
 			model.addAttribute("result", "success");
+		}
+		if(command.getProfileCode() == 2){
+			BaseMemberInfo baseMemberInfo = null;
+			if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
+				baseMemberInfo.setProfileImageFileName(null);
+				model.addAttribute("result","success");
+			}
 		}
 		return jsonView;
 	}

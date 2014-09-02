@@ -94,17 +94,8 @@ birthdayPublic
 									</c:choose>
 								</div>
 								<div class="inform_button profileImage">
-									<img class="openImg" src="${pageContext.request.contextPath}/resources/media/image/openImg.png">
 									<img class="editImg" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
-									<!-- <input class="publichover" type="button" value="공개범위"><input type="button" value="수정"> -->
-									<div class='has-sub' >
-								      <ul>
-								         <li><a class="publicbtn public">전체공개</a></li>
-								         <li><a class="publicbtn user">Sil사용자공개</a></li>
-								         <li><a class="publicbtn friend">친구공개</a></li>
-								         <li><a class="publicbtn privacy">나만보기</a></li>
-								      </ul>
-								   </div>
+									
 								</div>
 								<div class="inform_edit profileImage">
 									
@@ -115,21 +106,17 @@ birthdayPublic
 									<form id="profileImageForm" method="post" enctype="multipart/form-data">
 										<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email}" />
 										<input type="hidden" name="profileCode" value="2" />
+										<input type="hidden" name="profileImage" value="2" />
 										
 										<div class="dropzone profileImage">
 											<div id="file-list"></div>
 											<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
 										</div>
-										<select name="publicLevelCode">
-										<option value="5">전체공개</option>
-										<option value="4">Sil사용자공개</option>
-										<option value="3">친구공개</option>
-										<option value="1">나만보기</option>
-									</select>
+										
 									</form>
 									
 									<img class="profile-image-edit-button profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
-									<img class="profile-image-delete-button profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
+									<img class="profile_deleteBtn profileImage" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
 									<img class="profile-image-closeBtn profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
 								</div>
 							</div>
