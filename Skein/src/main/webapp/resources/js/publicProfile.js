@@ -789,11 +789,12 @@ $(document).on("click",".modal-reply-more-btn",function() {
 
 //메인 더보기 
 function lastPostFunc(pictureCount){ 
- 
+   var personalURI = $(".group-item-wrapper").data("personaluri");
+  
     $.ajax({
           type:'get',
        url:"moreMemberBoard",
-       data:"pictureCount="+ pictureCount,
+       data:"personalURI="+personalURI+"&pictureCount="+ pictureCount,
        dataType : "html",
        success : function(data) {
     	

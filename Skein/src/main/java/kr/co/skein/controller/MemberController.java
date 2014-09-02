@@ -152,8 +152,7 @@ public class MemberController {
 	
 	@RequestMapping(value="moreMemberBoard",method=RequestMethod.GET)
 	public String userMoreProfile(String personalURI,int pictureCount, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		personalURI = "seungji222";
-		System.out.println("탑니다");
+		System.out.println(personalURI);
 		if(!personalURI.endsWith("/")){
 
 			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);

@@ -94,7 +94,7 @@ PROFILE_RESPONSE_CODE
 						
 					
 						
-						<div class="group-item-wrapper">
+						<div class="group-item-wrapper" data-personalURI="${groupItem.personalURI}">
 							<div class="group-item-controller-container">
 								<ul>
 								<li>
@@ -120,7 +120,7 @@ PROFILE_RESPONSE_CODE
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>
