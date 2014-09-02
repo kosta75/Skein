@@ -221,23 +221,24 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 								</c:forEach>
 							</div>
-							<select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
-											<c:forEach var="publicLevelList" items="${publicLevelList}">
-												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
-											</c:forEach>
-										</select>	
-							<div style="clear: both; float: right;">
-								<div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
-								<div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
-								<div class="edit-emoticon" style="margin-right: 10px; float: right;">이모티콘</div>
-							</div>
+							<div class="editBtnDiv" >
+                        <div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
+                        <div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
+                        <!-- <div class="edit-emoticon" style="margin-right: 10px; float: right;">이모티콘</div> -->
+                        <img class="edit-emoticon ${sessionScope.BASE_MEMBER_INFO.colorTheme}" src="/skein/resources/media/image/emoticon.png">
+                     </div>
+                     <select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
+                        <c:forEach var="publicLevelList" items="${publicLevelList}">
+                           <option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+                        </c:forEach>
+                     </select> 
 						</div>
 						
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
 								<li>
-								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
+								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/openImg.png' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
 									<div class="group-item-public-level-cotroller">
 									<ul>
 									<c:forEach var="publicLevelList" items="${publicLevelList}">
