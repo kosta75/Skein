@@ -106,7 +106,9 @@ public class ReplyController {
 		
 		for(int i=0; i<replylist.size();i++){
 			
-			System.out.println(replylist.get(i).getReplyContent());
+			if(replylist.get(i).getProfileinfo() == null || replylist.get(i).getProfileinfo() == ""){
+				replylist.get(i).setProfileinfo("default-profile-image.png");
+			}
 		}
 		return jsonView;
 	}

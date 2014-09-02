@@ -64,6 +64,9 @@ public class IndexController {
 				for(int i=0;i<listSource.size();i++){
 					listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 					listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
+					if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
+						listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");
+						}
 					
 					System.out.println(listSource.get(i).getBoardSeq());
 					
@@ -98,7 +101,10 @@ public class IndexController {
 			for(int i=0;i<listSource.size();i++){
 				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 				listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-				
+				if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
+					listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
+				System.out.println("ddd"+listSource.get(i).getReplyList().get(i).getProfileinfo());
+				}
 			}
 
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 더보기 조회 결과, groupListSize=" + listSource.size());
