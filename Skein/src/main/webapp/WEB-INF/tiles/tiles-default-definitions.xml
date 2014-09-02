@@ -41,7 +41,7 @@
    <!-- *******************************************************************  -->
    
     <!-- ***********************main 게시물 더보기**********************  -->
-      <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp">
+      <definition name="moreboard" template="/WEB-INF/views/index/more/layout.jsp" preparer="publicLevelPreparer">
          <put-attribute name="morecontent" value="/WEB-INF/views/index/more/more-mainBoard.jsp" />
       </definition>
    <!-- *******************************************************************  -->

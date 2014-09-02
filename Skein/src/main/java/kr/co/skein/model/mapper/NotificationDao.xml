@@ -28,6 +28,20 @@
 		SELECT * FROM DUAL
 	</insert>
 	
+	
+	<!-- 공유 알림 등록 -->
+	<insert id="shareNotificationReg" parameterType="kr.co.skein.model.vo.notification.ShareNotification">
+		<selectKey order="BEFORE" keyProperty="notificationSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(NotificationSeq)),0)+1 FROM Notifications
+		</selectKey>
+		INSERT ALL
+			INTO Notifications(NotificationSeq, Email, IsRead, CreateDate, NotificationCode)
+			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
+			INTO ShareNotification(NotificationSeq, BoardSeq, OwnerEmail, ShareConfirm)
+			VALUES(#{notificationSeq},#{boardSeq}, #{ownerEmail}, #{shareConfirm})
+		SELECT * FROM DUAL
+	</insert>
+	
 	<!--  친구알림 등록  -->
 	
 	<!-- 1	공지사항
@@ -172,6 +186,11 @@
 		WHERE email = #{email}
 	</select>
 	
+	<select id="hasShareNotification" resultType="Integer">
+		SELECT COUNT(n.NotificationSeq) FROM Notifications n JOIN ShareNotification s ON n.notificationSeq = s.notificationSeq
+		WHERE s.ownerEmail = #{param1} AND n.email = #{param2} AND s.boardSeq = #{param3} 
+	</select>
+	
 	
 	<!-- 사용자 전체 알림 조회 -->
 	<select id="getMemberNotificationList" resultType="kr.co.skein.model.vo.notification.MemberNotification">
@@ -179,13 +198,13 @@
 			CASE
 				WHEN NotificationSeq IN (SELECT NotificationSeq FROM FriendshipNotification) THEN (SELECT m.fullName FROM FriendshipNotification f JOIN Members m ON f.FriendEmail = m.email WHERE f.NotificationSeq = n.NotificationSeq)
 				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ReplyNotification) THEN (SELECT m.fullName FROM ReplyNotification r JOIN Reply re ON r.ReplySeq = re.ReplySeq JOIN Members m ON re.email = m.email WHERE r.NotificationSeq = n.NotificationSeq)
-				<!-- WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT m.fullName || '('||m.personalURI||')' FROM ShareNotification s JOIN Board b ON s.BoardSeq = b.BoardSeq WHERE s.NotificationSeq = n.NotificationSeq) -->
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT m.fullName FROM ShareNotification s JOIN Members m ON s.OwnerEmail = m.Email WHERE s.NotificationSeq = n.NotificationSeq)
 				ELSE null
 			END AS notificationSenderName,
 			CASE
 				WHEN NotificationSeq IN (SELECT NotificationSeq FROM FriendshipNotification) THEN (SELECT m.personalURI FROM FriendshipNotification f JOIN Members m ON f.FriendEmail = m.email WHERE f.NotificationSeq = n.NotificationSeq)
 				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ReplyNotification) THEN (SELECT m.personalURI FROM ReplyNotification r JOIN Reply re ON r.ReplySeq = re.ReplySeq JOIN Members m ON re.email = m.email WHERE r.NotificationSeq = n.NotificationSeq)
-				<!-- WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT b.Email FROM ShareNotification s JOIN Board b ON s.BoardSeq = b.BoardSeq WHERE s.NotificationSeq = n.NotificationSeq) -->
+				WHEN NotificationSeq IN (SELECT NotificationSeq FROM ShareNotification) THEN (SELECT m.personalURI FROM ShareNotification s JOIN Members m ON s.OwnerEmail = m.Email WHERE s.NotificationSeq = n.NotificationSeq)
 				ELSE null
 			END AS notificationSenderURI
 		FROM Notifications n

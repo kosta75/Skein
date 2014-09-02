@@ -24,6 +24,9 @@ public interface NotificationDao {
 	//댓글 알림 등록
 	public int replyNotificationReg(ReplyNotificationCommand replyNotificationCommand) throws ClassNotFoundException, SQLException;
 	
+	//공유 알림 등록
+	public int shareNotificationReg(ShareNotification shareNotification) throws ClassNotFoundException, SQLException;
+	
 	//사용자 알림 조회
 	public List<NotificationCountCommand> getNotifications(String email) throws ClassNotFoundException, SQLException;
 	
@@ -55,6 +58,8 @@ public interface NotificationDao {
 	public int allNotificationRead(String email) throws ClassNotFoundException, SQLException;
 	
 	
+	//공유 알림 정리
+	public int hasShareNotification(String ownerEmail, String email, int boardSeq) throws ClassNotFoundException, SQLException;
 	
 	
 

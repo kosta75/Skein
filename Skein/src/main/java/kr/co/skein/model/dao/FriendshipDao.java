@@ -22,4 +22,7 @@ public interface FriendshipDao {
 
 	//친구 여부 확인
 	public int isFriend(String email, String friendEmail) throws ClassNotFoundException, SQLException;
+	
+	//share 친구 불러오기 
+	public List<FriendshipListCommand> getAllFriendList(String email) throws ClassNotFoundException, SQLException;
 }

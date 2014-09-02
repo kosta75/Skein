@@ -1429,6 +1429,11 @@ ALTER TABLE ShareBoard
 
 ALTER TABLE ShareBoard
 	DROP
+		CONSTRAINT FK_Board_TO_ShareBoard2
+		CASCADE;
+
+ALTER TABLE ShareBoard
+	DROP
 		PRIMARY KEY
 		CASCADE
 		KEEP INDEX;
@@ -1443,7 +1448,8 @@ DROP TABLE ShareBoard
 CREATE TABLE ShareBoard (
 	ShareSeq NUMBER NOT NULL, /* 공유사용자번호 */
 	ShareEmail VARCHAR2(127) NOT NULL, /* 공유사용자이메일 */
-	BoardSeq NUMBER NOT NULL /* 글번호 */
+	BoardSeq NUMBER NOT NULL, /* 글번호 */
+	SourceBoardSeq NUMBER NOT NULL /* 공유원본글번호 */
 );
 
 COMMENT ON TABLE ShareBoard IS '공유사용자';
@@ -1453,6 +1459,8 @@ COMMENT ON COLUMN ShareBoard.ShareSeq IS '공유사용자번호';
 COMMENT ON COLUMN ShareBoard.ShareEmail IS '공유사용자이메일';
 
 COMMENT ON COLUMN ShareBoard.BoardSeq IS '글번호';
+
+COMMENT ON COLUMN ShareBoard.SourceBoardSeq IS '공유원본글번호';
 
 CREATE UNIQUE INDEX PK_ShareBoard
 	ON ShareBoard (
@@ -1485,6 +1493,17 @@ ALTER TABLE ShareBoard
 		REFERENCES Board (
 			BoardSeq
 		) ON DELETE CASCADE;
+
+ALTER TABLE ShareBoard
+	ADD
+		CONSTRAINT FK_Board_TO_ShareBoard2
+		FOREIGN KEY (
+			SourceBoardSeq
+		)
+		REFERENCES Board (
+			BoardSeq
+		) ON DELETE CASCADE;
+
 
 
 

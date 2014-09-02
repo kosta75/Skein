@@ -43,6 +43,11 @@ function countOfUnCheckNotificationList(){
 				$(".notification-list").empty();
 				$(".notification-list").append(notificationText);
 			}else{
+				$("#notificationCounter").hide();
+				$(".notification-title").hide();
+				$(".notification-count-number").text(totalNotificationCount);
+				$(".notification-list").empty();
+				
 				notificationText = "<div class='not-exist'><span>읽지 않은 알림이 없습니다.</span></div>";
 				if($(".not-exist").length == 0){
 					$("#notificationListContainer").append(notificationText);

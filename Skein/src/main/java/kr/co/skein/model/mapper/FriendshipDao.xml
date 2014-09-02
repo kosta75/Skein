@@ -56,5 +56,15 @@
     	SELECT COUNT(*) FROM Friendship WHERE (email=#{param1} AND friendEmail=#{param2}) OR (email=#{param2} AND friendEmail=#{param1})
     </select>
     
-	
+	<!--share 친구 전체 불러오기  -->
+	<select id="getAllFriendList" resultType="kr.co.skein.model.vo.FriendshipListCommand">
+		SELECT f.*, m.* FROM friendship f
+	JOIN members m ON f.email=m.email
+	WHERE f.friendemail=#{email}
+    </select>
+    
+    
+    
+    
+    
 </mapper>

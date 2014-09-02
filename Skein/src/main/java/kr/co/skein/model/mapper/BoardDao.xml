@@ -47,6 +47,18 @@
 		WHERE m.PERSONALURI = #{personalURI} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
 	</select>
 	
+	<!-- 5.2 사용자 게시물 조회 1개 -->
+	<select id="getBoardByBoardSeq" resultType="kr.co.skein.model.vo.MemberBoardCommand">
+		SELECT m.EMAIL, m.FULLNAME, m.BIRTHDAY, m.PERSONALURI, b.BOARDSEQ, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED, b.GROUPSEQ,
+			h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE, bg.GROUPNAME, bg.ISIMPORTANTGROUP, bg.GROUPSTARTDATE, bg.GROUPENDDATE,
+			me.FILENAME, me.FILESIZE, me.EXTENSION
+			FROM MEMBERS m JOIN BOARD b ON m.EMAIL = b.email
+			JOIN BOARDGROUP bg ON b.GROUPSEQ = bg.GROUPSEQ
+			JOIN HISTORY h ON b.BOARDSEQ = h.BOARDSEQ
+			LEFT OUTER JOIN MEDIA me ON b.BOARDSEQ = me.BOARDSEQ
+		WHERE m.PERSONALURI = #{param1} AND b.boardSeq = #{param2} ORDER BY b.GROUPSEQ DESC, b.BOARDSEQ DESC 
+	</select>
+	
 	<!--6. 사용자 게시물 상세 조회  -->
 	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">	
 
@@ -263,6 +275,12 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
    <update id="editBoard">
    UPDATE board SET  CONTENT = #{param1},PUBLICLEVELCODE =#{param2} WHERE BOARDSEQ = #{param3}
    </update>
+   
+   
+	<!-- 게시물 게시판 번호 조회 -->
+	<select id="getBoardKindSeq" resultType="Integer" parameterType="Integer">
+ 		SELECT BoardKindSeq FROM Board WHRER boardSeq = #{boardSeq}
+	</select>
    
    
 </mapper>

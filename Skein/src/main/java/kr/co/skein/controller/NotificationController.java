@@ -288,6 +288,8 @@ public class NotificationController {
 				model.addAttribute("friendshipNotification", friendshipNotification);
 				break;
 			case 4:
+				
+				
 				break;
 			case 6:
 				break;

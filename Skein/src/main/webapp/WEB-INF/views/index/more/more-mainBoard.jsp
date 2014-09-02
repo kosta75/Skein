@@ -72,11 +72,18 @@
 								<div class="share-img-list" style="clear: both;">
 									<!-- 목록 들어가는 곳  -->
 								</div>
+								<div class="share-freind-list"style="clear: both;">
+									<img style="float:left;height:15px; width:97%; border : 3px solid red;">
+									<!--친구 목록 들어가는 곳  -->
+									<div class="share-freind-list-div" style="width:90%; background-color: skyblue; opactiy:0.2;clear:both;">
+										
+									</div>
+								</div>
 								<div style="clear: both;">
 									<a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
 									<c:if test="${groupItem.groupCount >= 2}">
-										<a id="share-ALL-choice-btn">전체선택</a>
-										<a id="share-ALL-clear-btn">전체해제</a>
+										<a id="share-ALL-choice-btn">All</a>
+										<a id="share-ALL-clear-btn">Clear</a>
 									</c:if>
 								</div>
 							</div>

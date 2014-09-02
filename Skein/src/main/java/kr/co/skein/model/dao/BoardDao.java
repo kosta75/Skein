@@ -31,6 +31,10 @@ public interface BoardDao {
 	//5. 사용자 게시물 조회
 	public List<MemberBoardCommand> getBoards(String personalURI) throws ClassNotFoundException, SQLException;
 	
+	//5.1 
+	public MemberBoardCommand getBoardByBoardSeq(String personalURI, int boardSeq) throws ClassNotFoundException, SQLException;
+	
+	
 	//6. 사용자 게시물 상세조회
 	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
 	
@@ -57,17 +61,21 @@ public interface BoardDao {
 	
 	
 	//게시물 그룹 전체 삭제
-	public int boardGroupDelete(int groupSeq)throws ClassNotFoundException, SQLException;
+	public int boardGroupDelete(int groupSeq) throws ClassNotFoundException, SQLException;
 	//게시물별 삭제
-	public int boardDelete(int boardSeq)throws ClassNotFoundException, SQLException;
+	public int boardDelete(int boardSeq) throws ClassNotFoundException, SQLException;
 	//게시물 수정
-	public int editBoard(String editContent,int publicLevelCode,int boardSeq)throws ClassNotFoundException, SQLException;
+	public int editBoard(String editContent,int publicLevelCode,int boardSeq) throws ClassNotFoundException, SQLException;
 
 
 	//게시물 조회
-	public BoardDetailView detailViewBoardSeq(int boardSeq)throws ClassNotFoundException, SQLException;
+	public BoardDetailView detailViewBoardSeq(int boardSeq) throws ClassNotFoundException, SQLException;
 	
 	//알림(게시물번호로 내용 얻어오기)
-	public List<BoardCommand> getBoardsInfo(String boardSeq)throws ClassNotFoundException, SQLException;
+	public List<BoardCommand> getBoardsInfo(String boardSeq) throws ClassNotFoundException, SQLException;
+	
+	
+	//게시판 번호 조회
+	public int getBoardKindSeq(int boardSeq) throws ClassNotFoundException, SQLException;
 		
 }
