@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	//기본 사용자 정보
 	var email = $(".content-container").data("email");
-	var profileImg = $(".content-container").data("profileImg");
+	var profileImg = $(".content-container").data("profileimg");
 	if (profileImg == null || profileImg == '') {
 		profileImg = "default-profile-image.png";
 

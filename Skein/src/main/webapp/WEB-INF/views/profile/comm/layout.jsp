@@ -17,10 +17,10 @@
 	<!-- 로그인 공통 -->
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<script src="${pageContext.request.contextPath}/resources/js/common/logged/common-logged.js"></script>
-	<!-- 로그인 메뉴바, 상태사이드 메뉴 -->
-	<c:if test="${PROFILE_RESPONSE_CODE == 99}">
+ <!-- 로그인 메뉴바, 상태사이드 메뉴 -->
+	 <c:if test="${PROFILE_RESPONSE_CODE == 99}">
 	<script src="${pageContext.request.contextPath}/resources/js/common/logged/menu-logged.js"></script>
-	</c:if>
+	</c:if> 
 	</se:authorize>
 
 	<!-- CSS -->
@@ -44,7 +44,7 @@
 
 <body>
 
-<div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}"">
+<div class="header-container ${sessionScope.BASE_MEMBER_INFO.colorTheme}">
 	<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div id="changeBackgroundColor">
 		<ul>
