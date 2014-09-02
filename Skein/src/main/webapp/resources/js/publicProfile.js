@@ -1,15 +1,15 @@
 $(document).ready(function(){
 	
 	//기본 사용자 정보
-	var email = $(".content-container").data("email");
-	var profileImg = $(".content-container").data("profileImg");
+	var email = $(".public-profile-content-container").data("email");
+	var profileImg = $(".public-profile-content-container").data("profileImg");
 	if (profileImg == null || profileImg == '') {
 		profileImg = "default-profile-image.png";
 
 	}
 	
 	//헤더 Bar 색상
-	var color = $(".content-container").data("color");
+	var color = $(".public-profile-content-container").data("color");
 	
 
 	$(document).on('mouseout', ".imgBtn", function(){
@@ -23,48 +23,6 @@ $(document).ready(function(){
 	});
 
 
-	/*$(document).on(	'click', '.members', function() {
-		var result = confirm($(this).data("name") + "(" + $(this).data("uri") + ") 님께 친구를 신청하시겠습니까?");
-		if (result) {
-			$.ajax({
-				type : 'POST',
-				url : 'friendship/add/' + $(	this).data("uri"),
-				success : function(data) {
-					alert(data.result);
-				},
-				error : function() {
-					alert('Error while request..');
-				}
-			});
-		} else {
-			console.log("친구 추가취소");
-		}
-	});
-
-	$('#search .textbox').on('keyup', function() {
-		if ($("#search .textbox").val().length > 0) {
-			$.ajax({
-				type : 'POST',
-				url : 'search/members',
-				data : "fullName=" + $("#search .textbox").val(),
-				success : function(data) {
-					console.log(data);
-					console.log(data.list);
-					var obj = data.list;
-					var msg = "";
-					
-					for (var i = 0; i < obj.length; i++) {
-						msg += "<div class='members' data-name='"	+ obj[i].fullName + "' data-uri='"	+ obj[i].personalURI + "'>" + obj[i].fullName + "/" + obj[i].personalURI + "</div>";
-					}
-					
-					$("#searchMembers").html(msg);
-				},
-				error : function() {
-					alert('Error while request..');
-				}
-			});
-		}
-	});*/
 
 	$(document).on('click',".imgBtn", function(){
 		$("#modalemoticon").css("display","none");
@@ -110,7 +68,7 @@ $(document).ready(function(){
 
 							$.ajax({
 										type : 'post',
-										url : 'board/detailView',
+										url : 'profileDetailView',
 										cache : false,
 										data : 'groupSeq='
 												+ groupSeq,
@@ -126,13 +84,22 @@ $(document).ready(function(){
 											} else {
 												publicLevel = "나만보기";
 											}
+											if(data.detailView.profileinfo == null || data.detailView.profileinfo == ''){
+												
+												profileimg	 = "default-profile-image.png";
+											}else{
+												profileimg = data.detailView.profileinfo;
+											}
+											
+											
+											
 											$(".modal-content-view").css("display","block");
 											$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
 																	+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
 																	+ publicLevel
 																	+ "</div>"
 																	+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
-																	+ data.detailView[0].profileinfo
+																	+ profileimg
 																	+ "' /></div>"
 																	+ data.detailView[0].fullname
 																	+ "<br>"
@@ -182,16 +149,8 @@ $(document).ready(function(){
 														replyContent += data.replylist[j].replyContent
 														  if (email == data.replylist[j].email) {
 															replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
-															replyContent += "<img class='icon-box reply-Edit "
-																	+ color
-																	+ "' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"
-																	+ data.replylist[j].replySeq
-																	+ "' style='margin-right:10px;float: left;'>	"
-															replyContent += "<img class='icon-box reply-Delete "
-																	+ color
-																	+ "'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"
-																	+ data.replylist[j].replySeq
-																	+ "' style='float: right;'>"
+															replyContent += "<img class='icon-box reply-Edit' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"+ data.replylist[j].replySeq+"'style='margin-right:10px;float: left;'>	"
+															replyContent += "<img class='icon-box reply-Delete 'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"+ data.replylist[j].replySeq+"' style='float: right;'>"
 															replyContent += "</div>"
 															replyContent += "</div>"
 															replyContent += "<div class='modal-bubble'style='display: none;'>"
@@ -240,7 +199,7 @@ $(document).ready(function(){
 										}
 									});
 						} else {
-
+							$(".modalcontent").empty();
 							$('.content-wrapper').off('wheel.modal mousewheel.modal');
 							$("html").css("overflow-y", "auto");
 							$("#modal-detile-view").remove();
@@ -331,115 +290,6 @@ $(document).ready(function(){
 
 		
 
-
-	/*$("#writeTextarea").focus();*/
-	//개인기록 메뉴 
-	$("#historyWriteMenu1").click(function() {
-		if($("#historyImg").css("display") == "block"){
-			$("#historyImg").css("display","none");
-		}else{
-	$("#historyImg").css("display","block");
-	$("#historyDate").css("display","none");
-	$("#historyemoticon").css("display","none");
-	$("#historymap").css("display","none");
-		}
-		});
-
-	$("#historyWriteMenu2").click(function() {
-		
-		if($("#historyDate").css("display") == "block"){
-			$("#historyDate").css("display","none");
-		}else{
-		$("#historyImg").css("display","none");
-		$("#historyDate").css("display","block");
-		$("#historymap").css("display","none");
-		$("#historyemoticon").css("display","none");
-		
-		}
-		});
-
-	$("#historyWriteMenu3").click(function() {
-		
-		if($("#historymap").css("display") == "block"){
-			$("#historymap").css("display","none");
-		}else{
-		$("#historyImg").css("display","none");
-		$("#historyDate").css("display","none");
-		$("#historymap").css("display","block");
-		$("#historyemoticon").css("display","none");
-		if(	$("#historyplace").text($("#city").text()) ==null || 	$("#historyplace").text($("#city").text()) ==''){
-			
-			$("#historyplace").text($("#city").text());
-			$("#historyhiddenplace").val($("#historyplace").text($("#city").text()));
-	
-			
-		}
-		}
-		});
-		//input 선택시 도시명 삭제 
-		$("#historyplace").click(function(){
-			$("#historyplace").text('');
-		});
-		
-	
-
-	
-	
-	$("#historyWriteMenu4").click(function() {
-		if($("#historyemoticon").css("display") == "block"){
-			$("#historyemoticon").css("display","none");
-		}else{
-		$("#historyImg").css("display","none");
-		$("#historyDate").css("display","none")
-		$("#historyemoticon").css("display","block");
-		$("#historymap").css("display","none");
-		}
-		
-	});
-	
-	//다이어리 메뉴
-	
-	
-	$("#diaryWriteMenu1").click(function() {
-		if($("#diaryImg").css("display") == "block"){
-			$("#diaryImg").css("display","none");
-		}else{
-	$("#diaryImg").css("display","block");
-	$("#diaryemoticon").css("display","none");
-	$("#diarymap").css("display","none");
-		}
-		});
-
-	$("#diaryWriteMenu3").click(function() {
-		
-		if($("#diarymap").css("display") == "block"){
-			$("#diarymap").css("display","none");
-		}else{
-		$("#diaryImg").css("display","none");
-		$("#diarymap").css("display","block");
-		$("#diaryemoticon").css("display","none");
-		
-		}
-		});
-
-	$("#diaryWriteMenu4").click(function() {
-		
-		if($("#diaryemoticon").css("display") == "block"){
-			$("#diaryemoticon").css("display","none");
-		}else{
-		$("#diaryImg").css("display","none");
-		$("#diarymap").css("display","none");
-		$("#diaryemoticon").css("display","block");
-		
-		}
-		});
-
-	
-	
-
-	
-	
-
 	
 	
 	// 모달 댓글 리스트 출력
@@ -463,6 +313,7 @@ $(document).ready(function(){
 										"display", "none");
 							}
 						}
+						var profileimg;
 						$.ajax({
 									type : 'post',
 									url : 'board/DetailViewBoardSeq',
@@ -481,22 +332,28 @@ $(document).ready(function(){
 										} else {
 											publicLevel = "나만보기";
 										}
-
+										
+										if(data.detailView.profileinfo == null || data.detailView.profileinfo == ''){
+											
+											profileimg	 = "default-profile-image.png";
+										}else{
+											profileimg = data.detailView.profileinfo;
+										}
+								
 										$(".modalcontent").empty();
 										$(".modal-content-view").css("display","block");
 										$(".modalcontent").append(
-																+ "<div style='width:100%;height:50px;' class='modalViewinfo'>"
-																+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
-																+ publicLevel
-																+ "</div>"
-																+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"+ data.detailView.profileinfo
-																+ "' /></div>"
-																+ data.detailView.fullname
-																+ "<br>"
-																+ data.detailView.writeDate
-																+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
-																+ data.detailView.content
-																+ "</div></div>");
+												"<div style='width:100%;height:50px;' class='modalViewinfo'>"
+												+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
+												+ publicLevel
+												+ "</div>"
+												+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"+profileimg+"'></div>"
+												+ data.detailView.fullname
+												+ "<br>"
+												+ data.detailView.writeDate
+												+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
+												+ data.detailView.content
+												+ "</div></div>");
 
 										$.ajax({type : 'post',
 													url : 'reply/select',
@@ -513,16 +370,8 @@ $(document).ready(function(){
 														replyContent += data.replylist[j].replyContent
 														  if (email == data.replylist[j].email) {
 															replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
-															replyContent += "<img class='icon-box reply-Edit "
-																	+ color
-																	+ "' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"
-																	+ data.replylist[j].replySeq
-																	+ "' style='margin-right:10px;float: left;'>	"
-															replyContent += "<img class='icon-box reply-Delete "
-																	+ color
-																	+ "'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"
-																	+ data.replylist[j].replySeq
-																	+ "' style='float: right;'>"
+															replyContent += "<img class='icon-box reply-Edit' src='./resources/media/image/modal-editImg.jpg' data-replySeq='"+ data.replylist[j].replySeq+"' style='margin-right:10px;float: left;'>	"
+															replyContent += "<img class='icon-box reply-Delete 'src='./resources/media/image/modal-deleteImg.jpg' data-replySeq='"+ data.replylist[j].replySeq+ "' style='float: right;'>"
 															replyContent += "</div>"
 															replyContent += "</div>"
 															replyContent += "<div class='modal-bubble'style='display: none;'>"
@@ -784,16 +633,8 @@ $(document).ready(function(){
 												replyContent += data.replylist[i].replyContent
 												if (email == data.replylist[i].email) {
 													replyContent += "<div class='reply-edit-container' style='float: right;margin-bottom: 5px;' >"
-													replyContent += "<img class='icon-box reply-Edit "
-															+ color
-															+ "' src='./resources/media/image/editImg.jpg' data-replySeq='"
-															+ data.replylist[i].replySeq
-															+ "' style='margin-right:10px;float: left;'>	"
-													replyContent += "<img class='icon-box reply-Delete "
-															+ color
-															+ "'src='./resources/media/image/deleteImg.jpg' data-replySeq='"
-															+ data.replylist[i].replySeq
-															+ "' style='float: right;'>"
+													replyContent += "<img class='icon-box reply-Edit "+color+"'     src='./resources/media/image/editImg.jpg' data-replySeq='"+ data.replylist[i].replySeq+ "' style='margin-right:10px;float: left;'>	"
+													replyContent += "<img class='icon-box reply-Delete "+color+"'   src='./resources/media/image/deleteImg.jpg' data-replySeq='"+ data.replylist[i].replySeq+ "' style='float: right;'>"
 													replyContent += "</div>"
 													replyContent += "</div>"
 													replyContent += "<div class='bubble'style='display: none;'>"

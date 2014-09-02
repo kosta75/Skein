@@ -13,6 +13,7 @@ import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.dao.ReplyDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
+import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
 import kr.co.skein.model.vo.Member;
 import kr.co.skein.model.vo.MemberBoardCommand;
@@ -151,7 +152,7 @@ public class MemberController {
 	
 	@RequestMapping(value="moreMemberBoard",method=RequestMethod.GET)
 	public String userMoreProfile(String personalURI,int pictureCount, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
-		personalURI="seungji222";
+		personalURI = "seungji222";
 		System.out.println("탑니다");
 		if(!personalURI.endsWith("/")){
 
@@ -266,4 +267,23 @@ public class MemberController {
 			return "error.incorrectRequest";
 		}
 	}
+	
+	
+	
+	
+	
+		//게시물 상세보기
+		@RequestMapping(value ="/profileDetailView", method = RequestMethod.POST)
+		public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+			List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+			model.addAttribute("detailView",boardDetailView);
+			
+			return jsonView;
+		}
+	
+	
+	
+	
+	
 }

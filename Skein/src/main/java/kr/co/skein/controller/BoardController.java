@@ -61,13 +61,12 @@ public class BoardController {
 		return jsonView;
 	}
 	//사용자 게시물 조회 boardSeq 기준
-	
-	
 	@RequestMapping(value="/DetailViewBoardSeq" ,method=RequestMethod.POST)
 	public View detailViewBoard(int boardSeq,Model model) throws ClassNotFoundException, SQLException{
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		
 		BoardDetailView boardDetailView  = boardDao.detailViewBoardSeq(boardSeq);
+		System.out.println(boardDetailView.getProfileinfo());
 		model.addAttribute("detailView", boardDetailView);
 		return jsonView;
 	}
