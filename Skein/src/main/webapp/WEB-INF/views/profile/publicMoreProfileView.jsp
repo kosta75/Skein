@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:forEach var="groupItem" items="${boardGroupList}">
-			<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
+					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
+						
+					
+						
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
@@ -63,12 +66,12 @@
 											<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" />
 										</c:when>
 										<c:otherwise>
-											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${boardGroupList.profileImageFileName}" />
+											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${groupItem.fileName}" />
 										</c:otherwise>
 									</c:choose>
 								</div>
 								<div class="group-item-user-info-wrapper">
-									<a href="<%-- ${pageContext.request.contextPath}/${boardGroupList.personalURI} --%>"><%-- ${boardGroupList.fullName} --%></a>
+									<a href="${pageContext.request.contextPath}/${groupItem.personalURI}"> ${groupItem.fullName}</a>
 									<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
 									<span class="group-item-write-date">${writeDate}</span>
 								</div>

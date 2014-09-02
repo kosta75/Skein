@@ -66,8 +66,7 @@ $(document).ready(function(){
 												return false;
 											});
 
-							$.ajax({
-										type : 'post',
+							$.ajax({type : 'post',
 										url : 'profileDetailView',
 										cache : false,
 										data : 'groupSeq='
@@ -84,11 +83,11 @@ $(document).ready(function(){
 											} else {
 												publicLevel = "나만보기";
 											}
-											if(data.detailView.profileinfo == null || data.detailView.profileinfo == ''){
+											if(data.detailView[0].profileinfo == null || data.detailView[0].profileinfo == ''){
 												
 												profileimg	 = "default-profile-image.png";
 											}else{
-												profileimg = data.detailView.profileinfo;
+												profileimg = data.detailView[0].profileinfo;
 											}
 											
 											
@@ -434,6 +433,7 @@ $(document).ready(function(){
 						if (e.keyCode === 13) {
 
 							replywrite = $(this);
+							
 							var replyContent = $(this).val();
 
 							if ($(this).val() != null&& $(this).val() != '') {
@@ -447,8 +447,7 @@ $(document).ready(function(){
 													+ replyContent,
 											success : function(
 													data) {
-												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+profileImg
-																		+ "'>"
+												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='"+$(".replyImg").attr("src")+ "'>"
 																		+ fullname
 																		+ "</div><div class='replymodalList modal-bubble'>"
 																		+ replyContent
