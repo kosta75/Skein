@@ -148,8 +148,7 @@ PROFILE_RESPONSE_CODE
 
 							<div class="group-item-user-info-container">
 								<div class="group-item-user-profile-image-wrapper">
-								<img src="./resources/user-profile-image/${groupItem.fileName}" />
-									
+						<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileInfo}" />
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${groupItem.personalURI}"> ${groupItem.fullName}</a>
@@ -161,7 +160,7 @@ PROFILE_RESPONSE_CODE
 							<div class="group-item-content-wrapper">
 								<div>
 									<c:if test="${groupItem.fileName != null}">
-										<div id="modal-launcher" data-boardSeq="${groupItem.boardSeq}">
+										<div id="modal-launcher"  style="text-align: center;" data-boardSeq="${groupItem.boardSeq}">
 											<div id="imghover">
 												<input type="hidden" value="${groupItem.groupSeq}"
 													id="boardSeq${groupItem.boardSeq}"> <img

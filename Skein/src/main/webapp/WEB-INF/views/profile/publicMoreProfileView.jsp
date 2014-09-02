@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:forEach var="groupItem" items="${boardGroupList}">
+	<c:forEach var="groupItem" items="${boardGroupList}">
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 						
 					
 						
-						<div class="group-item-wrapper">
+						<div class="group-item-wrapper" data-personalURI="${groupItem.personalURI}">
 							<div class="group-item-controller-container">
 								<ul>
 								<li>
@@ -33,7 +33,7 @@
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>
@@ -61,14 +61,7 @@
 
 							<div class="group-item-user-info-container">
 								<div class="group-item-user-profile-image-wrapper">
-									<c:choose>
-										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
-											<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" />
-										</c:when>
-										<c:otherwise>
-											<img src="${pageContext.request.contextPath}/resources/user-profile-image/${groupItem.fileName}" />
-										</c:otherwise>
-									</c:choose>
+						<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileInfo}" />
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${groupItem.personalURI}"> ${groupItem.fullName}</a>
@@ -80,7 +73,7 @@
 							<div class="group-item-content-wrapper">
 								<div>
 									<c:if test="${groupItem.fileName != null}">
-										<div id="modal-launcher" data-boardSeq="${groupItem.boardSeq}">
+										<div id="modal-launcher" style="text-align: center;"data-boardSeq="${groupItem.boardSeq}">
 											<div id="imghover">
 												<input type="hidden" value="${groupItem.groupSeq}"
 													id="boardSeq${groupItem.boardSeq}"> <img

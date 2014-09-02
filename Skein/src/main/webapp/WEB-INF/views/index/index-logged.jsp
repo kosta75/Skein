@@ -309,7 +309,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 							<div class="group-item-content-wrapper">
 								<div>
 									<c:if test="${groupItem.fileName != null}">
-										<div id="modal-launcher" data-boardSeq="${groupItem.boardSeq}">
+										<div id="modal-launcher" style="text-align: center;"data-boardSeq="${groupItem.boardSeq}">
 											<div id="imghover">
 												<input type="hidden" value="${groupItem.groupSeq}"
 													id="boardSeq${groupItem.boardSeq}"> <img

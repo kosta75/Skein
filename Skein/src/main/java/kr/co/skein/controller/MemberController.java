@@ -62,7 +62,10 @@ public class MemberController {
 						System.out.println("INFO : Skein-M560 - 사용자 본인의 프로필을 조회합니다.");
 						
 						profiles = profileDao.getMemberProfiles(baseMemberInfo.getEmail());						
-						model.addAttribute("memberProfile", profiles);						
+						
+						
+						
+						model.addAttribute("memberProfile", profiles);			
 						model.addAttribute("PROFILE_RESPONSE_CODE", 99);
 						return "profile.profileView"; 					
 					}else{
@@ -101,8 +104,9 @@ public class MemberController {
 						}
 						
 						BaseMemberInfo publicMember = memberDao.getPublicMember(email);
-						if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
-							publicMember.setProfileImageFileName("default-profile-image.png");
+						System.out.println("프로필파일 네임"+publicMember.getProfileInfo());
+						if(publicMember.getProfileInfo() == null || publicMember.getProfileInfo().trim().equals("")){
+							publicMember.setProfileInfo("default-profile-image.png");
 						}
 						
 						model.addAttribute("boardGroupList", listSource);
@@ -216,7 +220,7 @@ public class MemberController {
 							
 						
 						}
-						
+					
 						BaseMemberInfo publicMember = memberDao.getPublicMember(email);
 						if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
 							publicMember.setProfileImageFileName("default-profile-image.png");

@@ -12,7 +12,13 @@ public class BaseMemberInfo {
 	private String lastName;
 	private String firstName;
 	private String profileImageFileName;
-	
+	private String profileInfo;
+	public String getProfileInfo() {
+		return profileInfo;
+	}
+	public void setProfileInfo(String profileInfo) {
+		this.profileInfo = profileInfo;
+	}
 	public String getEmail() {
 		return email;
 	}

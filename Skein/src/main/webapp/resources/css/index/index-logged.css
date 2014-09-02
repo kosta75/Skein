@@ -68,7 +68,7 @@
 
 /* 게시물의 내용 */
 .group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;overflow-y:scroll;overflow:hidden;word-wrap:break-word;}
-#modal-launcher img{max-width:598px;height:auto;}
+#modal-launcher img{max-width:598px;height:auto;text-align: center;}
 
 /* 게시물 댓글 */
 
