@@ -75,11 +75,11 @@ $(document).ready(function(){
 											if (data.detailView[0].publicLevelCode == 5) {
 												publicLevel = "전체공개";
 											} else if (data.detailView[0].publicLevelCode == 4) {
-												publicLevel = "친구공개(모두)";
-											} else if (data.detailView[0].publicLevelCode == 3) {
-												publicLevel = "친구공개(공유)";
-											} else if (data.detailView[0].publicLevelCode == 2) {
 												publicLevel = "사용자";
+											} else if (data.detailView[0].publicLevelCode == 3) {
+												publicLevel = "친구공개(모두)";
+											} else if (data.detailView[0].publicLevelCode == 2) {
+												publicLevel = "친구공개(공유)";
 											} else {
 												publicLevel = "나만보기";
 											}
@@ -323,11 +323,11 @@ $(document).ready(function(){
 										if (data.detailView.publicLevelCode == 5) {
 											publicLevel = "전체공개";
 										} else if (data.detailView.publicLevelCode == 4) {
-											publicLevel = "친구공개(모두)";
-										} else if (data.detailView.publicLevelCode == 3) {
-											publicLevel = "친구공개(공유)";
-										} else if (data.detailView.publicLevelCode == 2) {
 											publicLevel = "사용자";
+										} else if (data.detailView.publicLevelCode == 3) {
+											publicLevel = "친구공개(모두)";
+										} else if (data.detailView.publicLevelCode == 2) {
+											publicLevel = "친구공개(공유)";
 										} else {
 											publicLevel = "나만보기";
 										}

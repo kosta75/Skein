@@ -73,7 +73,7 @@
 							<div class="group-item-content-wrapper">
 								<div>
 									<c:if test="${groupItem.fileName != null}">
-										<div id="modal-launcher" style="text-align: center;"data-boardSeq="${groupItem.boardSeq}">
+										<div id="modal-launcher"  style="text-align: center;" data-boardSeq="${groupItem.boardSeq}">
 											<div id="imghover">
 												<input type="hidden" value="${groupItem.groupSeq}"
 													id="boardSeq${groupItem.boardSeq}"> <img
@@ -104,14 +104,15 @@
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
 													<a href="${pageContext.request.contextPath}/">
-												<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
+													<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 													</c:if>
 													<c:if test="${replyItem.profileinfo != null && replyItem.profileinfo != ''}">
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
-													</c:if><span>${replyItem.fullName}</span></a>
+													</c:if>
+													<span>${replyItem.fullName}</span></a>
 												</div>
 												<div>${replyItem.fullName}</div>
 											</div>

@@ -69,7 +69,7 @@
 
 							
 
-							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 250px; /* height: 300px; */ display: none; right: -254px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
+							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 130px; /* height: 300px; */ display: none; right: -132px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
 								<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}" class="share-input">
 								<b>공 유 하 기</b>
 
@@ -77,19 +77,20 @@
 									<!-- 목록 들어가는 곳  -->
 								</div>
 								<div class="share-freind-list"style="clear: both;">
-									<img style="float:left;height:15px; width:97%; border : 3px solid red;">
+									<img class="${sessionScope.BASE_MEMBER_INFO.colorTheme}" src="${pageContext.request.contextPath}/resources/media/image/friend-list.jpg"style="float: left;height: 15px;margin-left: 36%;margin-top: 20px;margin-bottom: 20px;">
 									<!--친구 목록 들어가는 곳  -->
-									<div class="share-freind-list-div" style="width:90%; background-color: skyblue; opactiy:0.2;clear:both;">
+									<div class="share-freind-list-div" style="width:90%; background-color: #fff; opactiy:0.2;clear:both;">
 										
 									</div>
 								</div>
-								<div style="clear: both;">
-									<a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
-									<c:if test="${groupItem.groupCount >= 2}">
-										<a id="share-ALL-choice-btn">All</a>
-										<a id="share-ALL-clear-btn">Clear</a>
-									</c:if>
-								</div>
+								<div class="shareBtnDiv" >
+                           <c:if test="${groupItem.groupCount >= 2}">
+                              ALL<input type="checkbox" class="share-ALL-Btn">
+                              <!-- <a id="share-ALL-choice-btn">All</a> -->
+                              <!-- <a id="share-ALL-clear-btn">Clear</a> -->
+                           </c:if>
+                           <a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
+                        </div>
 							</div>
 
 							<div class="group-item-user-info-container">

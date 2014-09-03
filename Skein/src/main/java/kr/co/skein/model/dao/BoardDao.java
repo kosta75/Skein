@@ -36,7 +36,7 @@ public interface BoardDao {
 	
 	
 	//6. 사용자 게시물 상세조회
-	public List<BoardDetailView> getBoardDetail(int groupSeq) throws ClassNotFoundException, SQLException;
+	public List<BoardDetailView> getBoardDetail(int groupSeq,int publicLevelCode) throws ClassNotFoundException, SQLException;
 	
 	//7. 사용자 그룹 게시물 조회
 	public List<BoardGroup> getBoardGroup(String email) throws ClassNotFoundException, SQLException;

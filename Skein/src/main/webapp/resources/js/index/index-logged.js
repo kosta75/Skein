@@ -387,11 +387,11 @@ $(document).ready(function(){
 											if (data.detailView[0].publicLevelCode == 5) {
 												publicLevel = "전체공개";
 											} else if (data.detailView[0].publicLevelCode == 4) {
-												publicLevel = "친구공개(모두)";
-											} else if (data.detailView[0].publicLevelCode == 3) {
-												publicLevel = "친구공개(공유)";
-											} else if (data.detailView[0].publicLevelCode == 2) {
 												publicLevel = "사용자";
+											} else if (data.detailView[0].publicLevelCode == 3) {
+												publicLevel = "친구공개(모두)";
+											} else if (data.detailView[0].publicLevelCode == 2) {
+												publicLevel = "친구공개(공유)";
 											} else {
 												publicLevel = "나만보기";
 											}
@@ -800,11 +800,11 @@ $(document).on("mouseout",".edit-emoticon",function(){
 										if (data.detailView.publicLevelCode == 5) {
 											publicLevel = "전체공개";
 										} else if (data.detailView.publicLevelCode == 4) {
-											publicLevel = "친구공개(모두)";
-										} else if (data.detailView.publicLevelCode == 3) {
-											publicLevel = "친구공개(공유)";
-										} else if (data.detailView.publicLevelCode == 2) {
 											publicLevel = "사용자";
+										} else if (data.detailView.publicLevelCode == 3) {
+											publicLevel = "친구공개(모두)";
+										} else if (data.detailView.publicLevelCode == 2) {
+											publicLevel = "친구공개(공유)";
 										} else {
 											publicLevel = "나만보기";
 										}
@@ -1495,14 +1495,13 @@ function lastPostFunc(pictureCount){
 	 	var editContainer = $(this);
 	 $(this).siblings().first().next().val( $(this).siblings().first().html());
 	 var editContent =$(this).siblings().first().next().val();
- var publicLevelCode = $(".publicLevelCode").val();
- 
+
 
  $.ajax({
 	type : 'post',
 	url : 'board/editBoard',
 	cache : false,
-	data : 'editContent='+editContent+'&publicLevelCode='+publicLevelCode+'&boardSeq='+boardSeq,
+	data : 'editContent='+editContent+'&publicLevelCode='+$(".publicLevelCode").val()+'&boardSeq='+boardSeq,
 	success : function(data) {
 	
 		if(data.result >= 1){
@@ -1590,12 +1589,12 @@ function lastPostFunc(pictureCount){
 						}else{	
 							for (var j=0; j<boardsharedetail; j++) {
 								parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
-																		+ "<div style='float:left;margin-top:10px'>" 
+																		+ "<div style='display: inline-block;margin-top:10px'>" 
 																			+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+" data-boardSeq="+data.boardshare[j].boardSeq+"></div>" 
-																		+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
+																		+ "<div class='shareimgBtn'style='display: inline-block;width:50px;'>"
 																			+ "<input type='hidden' value='"+j+"'>"
 																		+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
-																		+ "'style='border:1px black solid;clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
+																		+ "'style='border:1px black solid;width: 40px; height: 40px; opacity:0.9;'></div></div>");
 							}
 						}
 					},
@@ -1710,23 +1709,19 @@ function lastPostFunc(pictureCount){
 			}
 		//----------------------------------------------------------------------
 		$(document).on('click','#share-cancel-btn',function(){
-			alert("취소 버튼");
+			
 			$('.share-info-div').hide("slide", {direction : "left"});
 			return false;
 		});
 		
 		
-		$(document).on('click','#share-ALL-choice-btn',function(){
-			console.log("dd");
-			$('input[name=shareCheckBoxGroup]').prop("checked",true);
-			return false;
-		});
-		
-		$(document).on('click','#share-ALL-clear-btn',function(){
-			console.log("zz");;
-			$(document).find('input[type=checkbox]').prop("checked",false);
-			return false;
-		});
+	      $(document).on("change", ".share-ALL-Btn", function(){
+	          if(this.checked){
+	             $('input[name=shareCheckBoxGroup]').prop("checked",true);
+	          }else{
+	             $(document).find('input[type=checkbox]').prop("checked",false);
+	          }
+	       });
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////////	
 	

@@ -83,7 +83,7 @@ PROFILE_RESPONSE_CODE
 
 
 			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
-			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 330px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
+			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 440px; margin-top:50px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
 				<img id="share-detail-preview-imgtag" src=""	style="width: 100%; height: 100%">
 			</div>
 

@@ -480,3 +480,21 @@ padding: 8px 0;
 .share-data-boardSeq{
 	clear:both;
 }
+#share-cancel-btn, #share-confirm-btn{
+   border: 1px solid #006600;
+   border-radius: 3px;
+   background: #99FF66;
+   padding: 0 1px;
+}
+.shareBtnDiv{
+   clear: both;
+   border-top: 3px double;
+   margin-top: 5px;
+   padding: 5px;
+   text-align: center;
+}
+.share-freind-list-div{
+   background-color: #fff;
+   clear: both;
+   padding: 0 5px;
+}

@@ -37,10 +37,12 @@ public class MemberController {
 	
 	@Autowired
 	private View jsonView;
-
+	
+	String personaluri;
 	//사용자 프로필 조회
 	@RequestMapping("/{personalURI}")
 	public String userProfile(@PathVariable String personalURI, HttpSession session, Model model) throws ClassNotFoundException, SQLException{
+		personaluri = personalURI;
 		if(!personalURI.endsWith("/")){
 
 			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -99,9 +101,7 @@ public class MemberController {
 						for(int i=0;i<listSource.size();i++){
 							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-							if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-								listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-						}
+						
 						
 						}
 						
@@ -219,10 +219,7 @@ public class MemberController {
 						for(int i=0;i<listSource.size();i++){
 							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-							if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-								listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-							System.out.println("ddd"+listSource.get(i).getReplyList().get(i).getProfileinfo());
-							}
+							
 						
 						}
 					
@@ -282,9 +279,34 @@ public class MemberController {
 	
 		//게시물 상세보기
 		@RequestMapping(value ="/profileDetailView", method = RequestMethod.POST)
-		public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
+		public View detailView(int groupSeq, Model model,HttpSession session)	throws ClassNotFoundException, SQLException {
+			int publicLevelCode;
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-			List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+			  FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
+			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
+			String email = memberDao.getEmailByPersonalURI(personaluri);
+			
+			if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
+				System.out.println("INFO : Skein-M231 - 로그인된 사용자입니다.");
+				BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
+			String friendEmail = baseMemberInfo.getEmail();
+			int result= friendshipDao.isFriend(email, friendEmail);
+			
+			if(result>=1){
+				
+				publicLevelCode = 2;
+				System.out.println("친구입니다");
+			}else{
+				System.out.println("친구가아닙니다");
+				publicLevelCode = 4;
+			}
+			}else{
+				System.out.println("로그인한 사용자가 아닙니다");
+				publicLevelCode = 5;
+			}
+			
+			System.out.println("publiLevelCode"+publicLevelCode);
+			List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq,publicLevelCode);
 			model.addAttribute("detailView",boardDetailView);
 			
 			return jsonView;
