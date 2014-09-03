@@ -12,8 +12,8 @@
 					<img src="${pageContext.request.contextPath}/resources/media/image/photos_img.png">사진
 				</div>
 			<c:choose>
-				<c:when test="${list.size() > 0}">
-				
+				<c:when test="${list.get(0).fileName !=null}">
+					
 				
 				
 				<div class="informbox_content">

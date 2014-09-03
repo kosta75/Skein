@@ -614,7 +614,7 @@ $(document).ready(function(){
 												replyContent = "<li><div class='group-item-reply-container'>"
 												replyContent += "<div class='group-item-reply-info-container'>"
 												replyContent += "<div class='group-item-reply-profile-image'>"
-												replyContent += "<a href='${pageContext.request.contextPath}/'>"
+												replyContent += "<a href='./" + data.replylist[i].personalURI + "'>"
 												replyContent += "<img src='./resources/user-profile-image/"+data.replylist[i].profileinfo+"' alt='"
 														+ data.replylist[i].fullName
 														+ "' title='"
