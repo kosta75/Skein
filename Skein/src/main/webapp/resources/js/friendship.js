@@ -21,6 +21,9 @@ $(document).ready(function(){
 				success : function(data) {
 					if(data.result.trim() == 'true'){
 						obj.remove();
+						if($("#friendlist").html().indexOf("friend-item-container") == -1){
+							$(".informbox.photo").append('<div class="nofriend_content">당신의 친구를 검색해서 친구를 신청해 보세요</div>');
+						}
 					}
 				},
 				error : function() {

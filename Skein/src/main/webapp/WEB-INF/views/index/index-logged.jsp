@@ -111,6 +111,12 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 	<div class="main-content-wrapper">
 		<!-- 메인 화면 가운데 부분 -->
 		<div class="content-center-wrapper" >
+			<c:if test="${groupList.size() < 1}">
+				<div class="no-timeline">
+					Sil에서 당신의 추억을 기록해 보세요
+					<img class="no-timelineImg"src="${pageContext.request.contextPath}/resources/media/image/no-timelineImg.png">
+				</div>
+			</c:if>
 			<c:if test="${groupList.size() > 0}">
 				<div id="boardListTimelineContainer"></div>
 			</c:if>
