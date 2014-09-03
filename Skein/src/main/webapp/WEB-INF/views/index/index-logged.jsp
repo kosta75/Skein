@@ -268,7 +268,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 
 							
 
-							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 130px; /* height: 300px; */ display: none; right: -132px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
+							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 160px; /* height: 300px; */ display: none; right: -165px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
 								<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}" class="share-input">
 								<b>공 유 하 기</b>
 
