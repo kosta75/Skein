@@ -56,7 +56,8 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
 											</c:forEach>
 										</select>		
-								<div class="modaleditEmoticon" style="clear:both;float: right;">이모티콘</div>
+											<img class="modaleditEmoticon ${sessionScope.BASE_MEMBER_INFO.colorTheme}" src="/skein/resources/media/image/emoticon.png" style="clear:both;float: right;">
+							
 								<div class="modaleditCancleBtn" style="float: right; margin-right: 10px">취소</div>
 								<div class="modaleditBtn" style="float: right; margin-right: 10px">수정</div>
 							

@@ -140,11 +140,11 @@ padding: 2px;
 	width: 75px;
 	height: 75px;
 }
-.edit-emoticon{
+.edit-emoticon,.modaleditEmoticon{
 	width:24px;margin-right: 10px; float: right;
 	margin-top:0.5px;
 }
-.edit-Btn{
+.edit-Btn,.modaleditBtn{
    display: block;
    position: relative;
    padding: 2px 7px;
@@ -152,7 +152,7 @@ padding: 2px;
    color: #777;
    cursor: pointer;
 }
-.edit-cancle{
+.edit-cancle,.modaleditCancleBtn{
    display: block;
    position: relative;
    padding: 2px 7px;
