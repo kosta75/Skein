@@ -506,18 +506,20 @@ padding: 8px 0;
    padding: 0 5px;
 }
 .no-timeline{
-	position: relative;
-	width: 100%;
-	-webkit-border-radius: 3px;
-	margin: 0 auto;
-	margin-bottom: 40px;
-	height: auto;
-	padding: 20px 0;
-	text-align: center;
-	font-size: 22px;
-	color: #0000A2;
-	font-family: '맑은 고딕';
-	background: transparent;
+position: relative;
+-webkit-border-radius: 3px;
+margin: 0 auto;
+margin-bottom: 5px;
+height: 200px;
+line-height:200px;
+padding: 20px 0;
+text-align: center;
+font-size: 22px;
+color: #fff;
+font-weight: bold;
+font-family: '맑은 고딕';
+background: url('../../media/image/default_cover_3.jpg') no-repeat center transparent;
+background-size: 100%;
 }
 .no-timelineImg{
 	height:50px;
