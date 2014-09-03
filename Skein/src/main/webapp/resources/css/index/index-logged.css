@@ -19,6 +19,7 @@
 #writeTabs ul{margin:0px;}
 #historyWriteForm{position:relative;}
 #writeTextarea{padding:5px;border:1px solid #dcdcdc;font-size:12px;height:140px;overflow-y:auto;}
+#writeTextarea .emoticonImg{cursor:default;}
 #dropzone{height:150px;position:relative;}
 #dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
 #dropzone .placeholder{position:absolute;color:#aaa;left:5px;top:5px;font-size:12px;}
@@ -135,8 +136,11 @@ padding: 2px;
 	display: none;
 	
 }
-.emoticon,.edit-emoticon-icon,.modal-edit-emoticon,.emoticonImg{
-	  cursor: pointer;
+
+#historyemoticon .emoticonImg{cursor:pointer}
+.emoticonImg{width:75px;height:75px;}
+.emoticon,.edit-emoticon-icon,.modal-edit-emoticon{
+	cursor: pointer;
 	width: 75px;
 	height: 75px;
 }
