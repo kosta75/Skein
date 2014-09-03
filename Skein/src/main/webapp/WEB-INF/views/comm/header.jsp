@@ -68,7 +68,7 @@
 							<ul class="notification-list"></ul>
 						</div>
 					</li>
-					<li><a href="">고객센터</a></li>
+					
 					<li><a href="${pageContext.request.contextPath}/security/logout">로그아웃</a></li>
 				</ul>
 			</nav>
