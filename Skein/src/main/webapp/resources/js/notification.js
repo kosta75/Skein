@@ -85,6 +85,8 @@ function getNotificationDetailInfo(obj){
 				notificationObject = data.friendshipNotification;
 			}else if(data.shareNotification != null){
 				notificationObject = data.shareNotification;
+			}else if(data.replyNotification != null){
+				notificationObject = data.replyNotification;
 			}
 
 			var codeClass = "";
@@ -103,7 +105,7 @@ function getNotificationDetailInfo(obj){
 					
 					if(notificationObject.friendshipConfirm > 0){
 						var infoAddText = "<div class='sending-notification-info'>";
-						infoAddText += "<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
+						infoAddText += "<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님과 친구를 맺었습니다.</div>";
 						infoAddText += "<div class='notification-user-profile-wrapper'>"
 						infoAddText += "<div class='notification-user-profile-image'>";
 						if(profileImageFileName != '' && profileImageFileName != null){
@@ -205,11 +207,11 @@ function getNotificationDetailInfo(obj){
 						
 					}else{
 						var infoAddText = "<div class='sending-notification-info'>" +
-								"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 친구가 되기를 원합니다." +
+								"<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님 께서 친구가 되기를 원합니다." +
 										"</div>" +
 										"<div class='confirm-button-wrapper friendship-confirm-button-wrapper'>" +
-										"<button class='friendship-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>수락</button>" +
-										"<button class='friendship-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절</button>" +
+										"<button class='friendship-confirm-ok' data-notificationseq='"+notificationSeq+"' data-notificationcode='"+ notificationCode +"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"' data-senderuri='"+notificationSenderURI+"' data-sendername='"+notificationSenderName+"'>수락</button>" +
+										"<button class='friendship-confirm-reject' data-notificationseq='"+notificationSeq+"' data-notificationcode='"+ notificationCode +"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"' data-senderuri='"+notificationSenderURI+"' data-sendername='"+notificationSenderName+"'>거절</button>" +
 										"</div>";
 					}
 					
@@ -233,13 +235,47 @@ function getNotificationDetailInfo(obj){
 					
 					if(notificationObject.shareConfirm > 0){
 						var infoAddText = "";
+						if(notificationObject.shareType > 0){
+							//내 글에 대한 공유 신청
+							var infoAddText = "<div class='sending-notification-info'>";
+							infoAddText += "<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님의 글타래 공유 요청을 수락 했습니다.";
+							infoAddText += "</div>";
+							
+							infoAddText += "<div class='content-thumb'>";
+							infoAddText += "<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span></div>";
+							
+							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
+								infoAddText += "<div class='thumb-image-wrapper'><img src='"+getContextPath()+"/resources/upload/"+boardCommand.fileName+"' /></div>";
+							}
+							
+							infoAddText += "<div class='thumb-content'>"+ boardCommand.content +"</div>"
+							infoAddText += "</div>";
+							
+						}else{
+							//상대방이 나에게 글을 내보내기 해줌
+							var infoAddText = "<div class='sending-notification-info'>";
+							infoAddText += "<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님의 글타래를 공유하였습니다.";
+							infoAddText += "</div>";
+							
+							infoAddText += "<div class='content-thumb'>";
+							infoAddText += "<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span></div>";
+							
+							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
+								infoAddText += "<div class='thumb-image-wrapper'><img src='"+getContextPath()+"/resources/upload/"+boardCommand.fileName+"' /></div>";
+							}
+							
+							infoAddText += "<div class='thumb-content'>"+ boardCommand.content +"</div>"
+							infoAddText += "</div>";
+							
+						}
+						
 					}else{
 						
 						var infoAddText = "";
 						if(notificationObject.shareType > 0){
 							//내 글에 대한 공유 신청
 							infoAddText += "<div class='sending-notification-info'>" +
-							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 글타래 공유를 신청하셨습니다." +
+							"<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님 께서 글타래 공유를 신청하셨습니다." +
 							
 							"</div>" +
 							"<div class='content-thumb'>"+
@@ -255,13 +291,13 @@ function getNotificationDetailInfo(obj){
 							+"</div>"+
 							"<div class='confirm-button-wrapper share-confirm-button-wrapper'>" +
 							"<div class='share-confirm-help-message'>공유를 수락 하시겠습니까?</div>"+
-							"<button class='share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+boardCommand.personalURI+"' data-name='"+boardCommand.fullName+"'>수락하기</button>" +
-							"<button class='share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+boardCommand.personalURI+"' data-name='"+boardCommand.fullName+"'>거절하기</button>" +
+							"<button class='send-share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>수락하기</button>" +
+							"<button class='send-share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절하기</button>" +
 							"</div>";
 						}else{
 							//상대방이 글을 내보내기 해줌
 							infoAddText += "<div class='sending-notification-info'>" +
-							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 글타래를 보내셨습니다." +
+							"<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님 께서 글타래를 보내셨습니다." +
 							
 							"</div>" +
 							"<div class='content-thumb'>"+
@@ -283,18 +319,24 @@ function getNotificationDetailInfo(obj){
 						}
 						
 					}
-					//console.log(notificationObject);
-					
-					
-					
-					
-					
-					
-					
+
 					$('.notification-info-wrapper').append(infoAddText);
 					break;
 				case 6:
 					codeClass = 'sending-reply-code';
+					
+					
+					
+					//내글에 댓글을 작성한 정보
+					var infoAddText = "<div class='sending-notification-info'>";
+					infoAddText += "<strong><a href='"+getContextPath()+"/"+notificationSenderURI+"'>"+notificationSenderName + "("+ notificationSenderURI  +")</a></strong>님이 댓글을 작성하였습니다.";
+					infoAddText += "</div>";
+					
+					infoAddText += "<div class='reply-content-wrapper'>";
+					infoAddText += notificationObject.replyContent + " / " + notificationObject.writeDate;
+					infoAddText += "</div>";
+					
+					$('.notification-info-wrapper').append(infoAddText);
 					
 					break;
 			}
@@ -307,47 +349,6 @@ function getNotificationDetailInfo(obj){
 	});
 }
 
-
-
-
-
-
-/*
-<div class="friend-item-container">
-	<div class="friend-image-wrapper">
-	<!-- 1 사는곳 2 프로필 사진 3 공개이메일 4 휴대폰번호 5 상태글 6종교 7정치성향 8 언어 9 블로그 10 생일 -->
-	<c:forEach var="profileList" items="${friendshipList.memberProfileList}">
-		<c:choose>
-			<c:when test="${profileList.profileCode == 1}">
-				<c:set var="address" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 2}">
-				<c:set var="profileImageFileName" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 3}">
-				<c:set var="publicEmail" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 4}">
-				<c:set var="phoneNumber" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 5}">
-				<c:set var="stateMessage" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 6}">
-				<c:set var="religion" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 7}">
-				<c:set var="politics" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 8}">
-				<c:set var="language" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 9}">
-				<c:set var="blog" value="${profileList}"></c:set>
-			</c:when>
-			<c:when test="${profileList.profileCode == 10}">
-				<c:set var="birthDay" value="${profileList}"></c:set>
-			</c:when>*/
 
 $(document).ready(function(){
 	
@@ -372,7 +373,8 @@ $(document).ready(function(){
 		var notificationSeq = $(this).data("notificationseq");
 		var notificationSenderURI = $(this).data("personaluri"); 
 		var notificationSenderName = $(this).data("name");
-		
+		//var requestObject = $(this);
+		//console.log(requestObject);
 		
 		$.ajax({
 			type: 'POST',
@@ -380,14 +382,16 @@ $(document).ready(function(){
 			data: 'personalURI='+ notificationSenderURI +'&notificationSeq=' + notificationSeq,
 			success:function(data){
 				$('.notification-info-wrapper').empty();
-				var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
-				$('.notification-info-wrapper').append(infoAddText);
+				/*var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
+				$('.notification-info-wrapper').append(infoAddText);*/
+				
 				
 				var targetObject = $("#notificationItemSeq-"+notificationSeq);
-				console.log(targetObject);
+				//console.log(targetObject);
 				targetObject.addClass('notification-read');
 				$("#notificationReadButton").addClass('readed').removeClass('un-read');
 				countOfUnCheckNotificationList();
+				getNotificationDetailInfo(targetObject);
 			},error:function(){
 				alert('친구 등록 요청 중 오류가 발생하였습니다. ERROR_CODE : 4422');
 			}
@@ -410,19 +414,23 @@ $(document).ready(function(){
 			data: 'personalURI='+ notificationSenderURI +'&notificationSeq=' + notificationSeq,
 			success:function(data){
 				$('.notification-info-wrapper').empty();
-				var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
-				$('.notification-info-wrapper').append(infoAddText);
+				/*var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
+				$('.notification-info-wrapper').append(infoAddText);*/
 				
 				var targetObject = $("#notificationItemSeq-"+notificationSeq);
-				console.log(targetObject);
+				//console.log(targetObject);
 				targetObject.addClass('notification-read');
 				$("#notificationReadButton").addClass('readed').removeClass('un-read');
 				countOfUnCheckNotificationList();
+				getNotificationDetailInfo(targetObject);
 			},error:function(){
 				alert('글타래 공유 수락 요청 중 오류가 발생하였습니다. ERROR_CODE : 4422');
 			}
 		});
 	});
+	
+	
+	
 	
 	//알림 읽기 버튼
 	$(document).on('click', '.un-read', function(){

@@ -246,8 +246,13 @@
 	</select>
 	
 	
-	<select id="getReplyNotificationDetail">
-		
+	<select id="getReplyNotificationDetail" parameterType="Integer" resultType="kr.co.skein.model.vo.notification.ReplyNotification">
+		SELECT n.NotificationSeq, n.email, n.isRead, n.CreateDate, n.NotificationCode, r.ReplySeq, re.BoardSeq, b.Content, re.email AS replyWriterEmail, re.ReplyContent, re.IsActivated
+		FROM Notifications n
+		JOIN ReplyNotification r ON n.NotificationSeq = r.NotificationSeq
+		JOIN Reply re ON r.replySeq = re.replySeq
+		JOIN Board b ON re.BoardSeq = b.boardSeq
+		WHERE n.NotificationSeq = #{notificationSeq}
 	</select>
 	
 	<update id="readNotification" parameterType="String">

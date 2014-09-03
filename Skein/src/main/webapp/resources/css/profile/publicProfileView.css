@@ -8,7 +8,8 @@
 #side {height: 100%;list-style-image: url('../../resources/media/image/sidebar.png');font-size:12px;text-align: left;font-weight: bold;vertical-align: top;}
 
 /* 메인 가운데 내용 */
-.main-content-wrapper{width:760px;min-height:300px;margin-left:200px;position:relative;}
+.main-content-wrapper{width:660px;min-height:300px;position:relative;}
+.public-profile-content-container{margin-top:30px;padding:20px 0px;}
 
 /* 그래프 */
 #boardListTimelineContainer{width:760px;height:320px;margin-bottom:10px;}
@@ -65,6 +66,9 @@
 
 .group-item-user-info-wrapper a{display:block;color:#000;font-family:'맑은 고딕';font-size:16px;font-weight:bold;}
 .group-item-write-date{font-family:'맑은 고딕';font-size:12px;}
+
+.source-owner-info{float:left;padding-left:20px;font-size:13px;font-family:'맑은 고딕';height:28px;line-height:28px;color:#999;}
+.source-owner-info img{width:28px;height:28px;}
 
 /* 게시물의 내용 */
 .group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;overflow-y:scroll;overflow:hidden;word-wrap:break-word;}

@@ -61,6 +61,8 @@ $(document).ready(function() {
 	};
 
 	$(".dropzone").fileReaderJS(opts);
+	$("#profileImageUploader").fileReaderJS(opts);
+	
 	$(".profile-image-edit-button").on('click', function(){
 		$("#profileImageForm").submit();
 	});
@@ -305,7 +307,7 @@ $(document).ready(function() {
 	
 	
 	if($(".informdata.profileImage").html().indexOf("profile-img") != -1){
-		$(".profileImage font").css("display", "none");
+		$(".profile-help-message").hide();
 	}
 	
 	

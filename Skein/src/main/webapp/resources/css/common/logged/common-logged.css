@@ -28,7 +28,7 @@
 /* 헤더에 있는 알림페이지 */
 #notification{position:relative;}
 #notification{color:#fff;}
-#notificationListContainer {z-index:5;display:none;border:1px solid #ccc;border-radius:0px 0px 8px 8px ;border-top:0px;border-bottom-color:#999; background-color:#fff;width:240px;position:absolute;top:55px;right:0px;}
+#notificationListContainer {z-index:15;display:none;border:1px solid #ccc;border-radius:0px 0px 8px 8px ;border-top:0px;border-bottom-color:#999; background-color:#fff;width:240px;position:absolute;top:55px;right:0px;}
 
 #notificationCounter{display:none;height:19px;top:2px;left:-35px;position:absolute;}
 #notificationCounter a.notification-count-number{display:block;width:19px;max-width:25px;height:19px;padding:0px 3px;background:#fff;font-size:12px;line-height:19px;border-radius:100px;text-align:center;font-weight:bold;color:#555;overflow:hidden;text-overflow:ellipsis;}

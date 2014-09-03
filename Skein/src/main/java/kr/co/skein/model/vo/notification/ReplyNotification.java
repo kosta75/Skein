@@ -9,7 +9,7 @@ public class ReplyNotification extends Notification{
 	private String boardSeq;
 	private String content;
 	
-	private String email;
+	private String replyWriterEmail;
 	private String replyContent;
 	private int isActivated;
 	
@@ -39,12 +39,14 @@ public class ReplyNotification extends Notification{
 		this.content = content;
 	}
 
-	public String getEmail() {
-		return email;
+	
+
+	public String getReplyWriterEmail() {
+		return replyWriterEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setReplyWriterEmail(String replyWriterEmail) {
+		this.replyWriterEmail = replyWriterEmail;
 	}
 
 	public String getReplyContent() {

@@ -82,8 +82,7 @@ public class ShareController {
 			historyCommand.setGroupStartDate(memberBoardCommand.getGroupStartDate());
 			historyCommand.setGroupEndDate(memberBoardCommand.getGroupEndDate());
 			
-			historyCommand.setIsShare(1);
-			
+			if(memberBoardCommand.getIsShare() !=0){ historyCommand.setIsShare(memberBoardCommand.getIsShare()); }
 			if(memberBoardCommand.getIsImportant() != 0){ historyCommand.setIsImportant(memberBoardCommand.getIsImportant());}
 			if(memberBoardCommand.getIsImportantGroup() != 0){ historyCommand.setIsImportantGroup(memberBoardCommand.getIsImportantGroup());}
 						

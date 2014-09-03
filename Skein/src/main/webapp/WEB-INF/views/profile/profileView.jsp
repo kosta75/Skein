@@ -83,7 +83,7 @@ birthdayPublic
 						<b>프로필사진</b>
 						<div class="inform_databox profileImage">
 							<div class="clearfix">
-								<font> 프로필사진을 등록해보세요.</font>
+								<div class="profile-help-message">프로필사진을 등록해보세요.</div>
 								<div class="informdata profileImage">
 									<c:choose>
 										<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
@@ -93,7 +93,7 @@ birthdayPublic
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<div class="inform_button profileImage">
+								<div id="profileImageEditButton" class="inform_button profileImage">
 									<img class="editImg" title="수정" src="${pageContext.request.contextPath}/resources/media/image/editImg.jpg">
 									
 								</div>
@@ -110,14 +110,18 @@ birthdayPublic
 										
 										<div class="dropzone profileImage">
 											<div id="file-list"></div>
-											<span class="help-message">* 이미지를 등록하시려면 여기에 끌어다 놓으세요!</span>
+											<div class="help-message">
+												<span>이미지를 드래그 앤 드랍 하시거나 상자를 클릭 하시면 파일을 등록하실 수 있습니다.</span>
+												<input id="profileImageUploader" type="file" />
+											</div>
 										</div>
 										
 									</form>
-									
-									<img class="profile-image-edit-button profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
-									<img title="삭제" class="profile_deleteBtn profileImage" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
-									<img class="profile-image-closeBtn profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
+									<!-- <div class="profile-image-uploader-controller"> -->
+										<img class="profile-image-edit-button profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/saveImg.png"/>
+										<img title="삭제" class="profile_deleteBtn profileImage" src="${pageContext.request.contextPath}/resources/media/image/deleteImg.jpg"/>
+										<img class="profile-image-closeBtn profile-info-control-icon" src="${pageContext.request.contextPath}/resources/media/image/closeBtn.png" />
+									<!-- </div> -->
 								</div>
 							</div>
 						</div>

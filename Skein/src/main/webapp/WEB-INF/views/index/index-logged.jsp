@@ -256,16 +256,21 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
 									<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
 									<c:if test="${groupItem.publicLevelCode > 1}">
-									<li>
-										<c:choose>
-											<c:when test="${groupItem.groupCount > 1}">
-											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
-											</c:when>
-											<c:otherwise>
-											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
-											</c:otherwise>
-										</c:choose>
-									</li>
+									<c:choose>
+										<c:when test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}"></c:when>
+										<c:otherwise>
+										<li>
+											<c:choose>
+												<c:when test="${groupItem.groupCount > 1}">
+												<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+												</c:when>
+												<c:otherwise>
+												<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+												</c:otherwise>
+											</c:choose>
+										</li>
+										</c:otherwise>
+									</c:choose>
 									</c:if>
 									
 									
@@ -315,16 +320,13 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<span class="group-item-write-date">${writeDate}</span>
 								</div>
 								
-								<c:if test="${groupItem.isShare > 0}">
-								
-									<c:if test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}">
-									
-									<div class="source-owner-info">
-										<img src="${pageContext.request.contextPath}/resources/media/image/share_icon.png" />
-										<span>${groupItem.resourceOwnerFullName}(${groupItem.resourceOwnerPersonalURI})</span>님의 글타래를 공유하였습니다.
-									</div>
-									</c:if>
+								<c:if test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}">
+								<div class="source-owner-info">
+									<img src="${pageContext.request.contextPath}/resources/media/image/share_icon.png" />
+									<span>${groupItem.resourceOwnerFullName}(${groupItem.resourceOwnerPersonalURI})</span>님의 글타래를 공유하였습니다.
+								</div>
 								</c:if>
+								
 
 							</div>
 							<div class="group-item-content-wrapper">

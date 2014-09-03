@@ -44,6 +44,8 @@
 .sending-Icon{width: 36px;}
 
 .sending-notification-info{font-size:16px;margin-top:20px;padding:5px 0px 30px 0px;font-family:'맑은 고딕';}
+.sending-notification-info a{color:#000;}
+
 .confirm-button-wrapper button{cursor:pointer;outline:none;margin:0px;width:90px;border-width:1px 1px 1px 0px;border-style:solid;border-color:#ddd;background:#fff;padding:10px 10px;font-family:'맑은 고딕';font-size:14px;}
 .confirm-button-wrapper button:first-child{border-left:1px solid #ddd;}
 .confirm-button-wrapper button:hover{background:#b14e50;color:#fff;}

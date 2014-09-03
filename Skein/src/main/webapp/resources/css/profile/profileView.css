@@ -30,9 +30,7 @@
 
 }
 
-.informbox_content{
-	background-color: white;
-}
+.informbox_content{background-color:white;font-family:'맑은 고딕';}
 .content_inner {
 	padding: 0 10px;
 	float: left;
@@ -80,7 +78,7 @@
 }
 .informdata.profileImage{
 	height:100px;width:100px;
-	border: 1px dashed black;
+	/* border: 1px dashed black; */
 }
 .informdata {
 	float: left;
@@ -91,6 +89,7 @@
 	float: right;
 	vertical-align: top;
 	display:none;
+	z-index:13
 }
 
 .inform_edit {
@@ -136,6 +135,7 @@
 	font-size : 13px;
 	text-align: center;
 	line-height:110px;
+	margin-left:20px;
 }
 
 .informdata.profileImage img{max-width:110px;max-height:110px;}
@@ -181,9 +181,16 @@ input[type=text]{
 }
 /* 글쓰기 */
 
+.profile-help-message{position:absolute;margin-left:20px;width:396px;height:112px;line-height:112px;text-align:center;background:#f3f3f3;color:#aaa;}
+
 #profileImageForm{position:relative;}
-.dropzone{border:1px solid #dcdcdc;height:110px;width:110px;padding:2px;position:relative;}
-.dropzone .help-message{position:absolute;color:#aaa;right:5px;bottom:5px;font-size:12px;}
+.dropzone{border:1px solid #dcdcdc;margin-left:20px;width:396px;height:112px;text-align:center;position:relative;}
+.dropzone:hover{background:rgba(0,0,0,0.2);}
+.dropzone:hover .help-message{color:#fff;}
+.dropzone .help-message{position:absolute;color:#999;font-size:12px;width:396px;height:112px;top:0px;left:0px;overflow:hidden;}
+#profileImageUploader{width:inherit;height:112px;font-size:50px;opacity:0;position:absolute;top:0px;right:0px;}
+
+.profile-image-uploader-controller{position:absolute;}
 
 #file-list{width:110px;height:110px;overflow:hidden;}
 .profile-image-item{width:110px;height:110px;line-height:106px;text-align:center;}

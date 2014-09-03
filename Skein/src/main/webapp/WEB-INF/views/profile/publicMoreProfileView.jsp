@@ -27,17 +27,24 @@
 							</div>
 					</li>
 				
-					<li>
-						<c:choose>
-							<c:when test="${groupItem.groupCount > 1}">
-							<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
-							</c:when>
-							<c:otherwise>
-							<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
-							</c:otherwise>
-						</c:choose>
-					</li>
 					
+					<c:if test="${sessionScope.BASE_MEMBER_INFO.email != null}">
+						<c:choose>
+						<c:when test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}"></c:when>
+						<c:otherwise>
+						<li>
+							<c:choose>
+								<c:when test="${groupItem.groupCount > 1}">
+								<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+								</c:when>
+								<c:otherwise>
+								<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+								</c:otherwise>
+							</c:choose>
+						</li>
+						</c:otherwise>
+						</c:choose>
+					</c:if>								
 				</ul>
 			</div>
 
@@ -68,6 +75,13 @@
 					<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
 					<span class="group-item-write-date">${writeDate}</span>
 				</div>
+				
+				<c:if test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}">
+				<div class="source-owner-info">
+					<img src="${pageContext.request.contextPath}/resources/media/image/share_icon.png" />
+					<span>${groupItem.resourceOwnerFullName}(${groupItem.resourceOwnerPersonalURI})</span>님의 글타래를 공유하였습니다.
+				</div>
+				</c:if>
 
 			</div>
 			<div class="group-item-content-wrapper">
