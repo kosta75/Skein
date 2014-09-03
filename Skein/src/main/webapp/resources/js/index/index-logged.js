@@ -734,6 +734,35 @@ $(document).ready(function(){
 		$(this).parent().siblings().first().append("<img class='emoticonImg' src="+$(this).attr("src")+">");
 		
 	});
+	
+	//이모티콘 마우스 오버
+	
+	$(document).on("mouseover",".edit-emoticon-icon,.emoticon,.modal-edit-emoticon",function(){
+		
+
+		$(this).css("background", "rgba(228,228,228,0.5)");
+	
+		$(this).css("border-radius", "5px 5px 5px 5px");
+		
+	});
+	$(document).on("mouseout",".edit-emoticon-icon,.emoticon,.modal-edit-emoticon",function(){
+		
+
+		$(this).css("background", "");
+		
+		$(this).css("border-radius", "");
+		
+		
+	});
+	$(document).on("mouseover",".edit-emoticon",function(){
+		
+		$(this).css("background", "#e4e4e4");
+	});
+$(document).on("mouseout",".edit-emoticon",function(){
+		
+		$(this).css("background", "");
+	});
+	
 	//모달 수정 이모티콘 추가
 	$(document).on("click",".modal-edit-emoticon",function(){
 		

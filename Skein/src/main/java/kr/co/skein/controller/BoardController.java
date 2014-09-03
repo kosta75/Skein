@@ -66,6 +66,12 @@ public class BoardController {
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		
 		BoardDetailView boardDetailView  = boardDao.detailViewBoardSeq(boardSeq);
+
+		
+			if(boardDetailView.getProfileinfo() == null || boardDetailView.getProfileinfo() == " " ){
+				boardDetailView.setProfileinfo("default-profile-image.png");
+			}
+		
 		System.out.println(boardDetailView.getProfileinfo());
 		model.addAttribute("detailView", boardDetailView);
 		return jsonView;
@@ -76,6 +82,15 @@ public class BoardController {
 	public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
 		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+		
+		
+		for(int i=0;i<boardDetailView.size();i++){
+			if(boardDetailView.get(i).getProfileinfo() == null || boardDetailView.get(i).getProfileinfo() == " " ){
+				boardDetailView.get(i).setProfileinfo("default-profile-image.png");
+			}
+			
+		}
+		
 		model.addAttribute("detailView",boardDetailView);
 		
 		return jsonView;

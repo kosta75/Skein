@@ -136,10 +136,45 @@ padding: 2px;
 	
 }
 .emoticon,.edit-emoticon-icon,.modal-edit-emoticon,.emoticonImg{
-	
+	  cursor: pointer;
 	width: 75px;
 	height: 75px;
 }
+.edit-emoticon,.modaleditEmoticon{
+	width:24px;margin-right: 10px; float: right;
+	margin-top:0.5px;
+}
+.edit-Btn,.modaleditBtn{
+   display: block;
+   position: relative;
+   padding: 2px 7px;
+   border: 1px solid #c6c6c6;
+   color: #777;
+   cursor: pointer;
+}
+.edit-cancle,.modaleditCancleBtn{
+   display: block;
+   position: relative;
+   padding: 2px 7px;
+   border: 1px solid #c6c6c6;
+   color: #777;
+   cursor: pointer;
+}
+.editemoticon{
+   padding: 10px 20px 15px 20px;
+   border-bottom: 3px double gray;
+   border-top: 0;
+}
+.publicLevelCode{
+   margin: 13px 10px 10px 0;
+   float: right;
+   height:24px;
+}
+.editBtnDiv{
+   float: right;
+   margin-top: 13px;
+}
+
 #writeTextarea div{
 	clear: both;
 }
