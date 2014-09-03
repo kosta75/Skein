@@ -60,7 +60,7 @@ public class ShareController {
 			String personalURI = memberDao.getPersonalURI(ownerEmail);
 			
 			if(boardDao.getBoardKindSeq(boardSeq) == 2){
-				MemberBoardCommand memberBoardCommand = boardDao.getBoardByBoardSeq(personalURI, boardSeq);
+				MemberBoardCommand memberBoardCommand = boardDao.getBoardByBoardSeq(boardSeq);
 				if(memberBoardCommand.getFileName() != null && !memberBoardCommand.getFileName().equals("")){
 					System.out.println("INFO - Skein-R124 - 이미지가 있는 게시물 공유");
 					
@@ -160,12 +160,12 @@ public class ShareController {
 			
 			//1 사람에 1게시물 공유 보냄
 			if(boardSize == 1 && friendSize == 1){
-				String ownerEmail = baseMemberInfo.getEmail();
+				String senderEmail = baseMemberInfo.getEmail();
 				String email = friend.get(0).toString();
 				int boardSeq = Integer.valueOf(board.get(0).toString());
 				
 				int hasShareBoardResult = shareDao.hasShareBoard(email, boardSeq);
-				int hasSaherNotificationResult = notificationDao.hasShareNotification(ownerEmail, email, boardSeq);
+				int hasSaherNotificationResult = notificationDao.hasShareNotification(senderEmail, email, boardSeq);
 				
 				System.out.println("INFO : Skein-H324 - 공유 상황 조회 결과, hasShareBoardResult="+hasShareBoardResult);
 				System.out.println("INFO : Skein-H324 - 공유 알림 조회 결과, hasSaherNotificationResult="+hasSaherNotificationResult);
@@ -178,7 +178,7 @@ public class ShareController {
 					shareNotification.setIsRead(0);
 					shareNotification.setNotificationCode(4);
 					shareNotification.setBoardSeq("" + boardSeq);
-					shareNotification.setOwnerEmail(ownerEmail);
+					shareNotification.setSenderEmail(senderEmail);
 					shareNotification.setShareConfirm(0);
 					
 					notificationDao.shareNotificationReg(shareNotification);
@@ -213,7 +213,7 @@ public class ShareController {
 						shareNotification.setIsRead(0);
 						shareNotification.setNotificationCode(4);
 						shareNotification.setBoardSeq("" + boardSeq);
-						shareNotification.setOwnerEmail(ownerEmail);
+						shareNotification.setSenderEmail(ownerEmail);
 						shareNotification.setShareConfirm(0);
 						
 						notificationDao.shareNotificationReg(shareNotification);

@@ -79,9 +79,12 @@ function getNotificationDetailInfo(obj){
 			$('.notification-info-wrapper').empty();
 
 			var notificationObject;
+			
 			if(data.friendshipNotification != null){
 				initFrienshipProfile(data.friendshipNotification.memberProfileList);
 				notificationObject = data.friendshipNotification;
+			}else if(data.shareNotification != null){
+				notificationObject = data.shareNotification;
 			}
 
 			var codeClass = "";
@@ -97,107 +100,106 @@ function getNotificationDetailInfo(obj){
 					//console.log(profileImageFileName);
 					
 					codeClass = 'sending-friendship-code';
-					iconName = "nFriendImg";
+					
 					if(notificationObject.friendshipConfirm > 0){
 						var infoAddText = "<div class='sending-notification-info'>";
 						infoAddText += "<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
+						infoAddText += "<div class='notification-user-profile-wrapper'>"
+						infoAddText += "<div class='notification-user-profile-image'>";
 						if(profileImageFileName != '' && profileImageFileName != null){
-							infoAddText += "<div class='notification-user-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImageFileName+"' />";
-							if(profileCounter > 1){
-								infoAddText += "<div class='public-user-info'><ul>";
-								
-								if(birthDay.trim() != '' && birthDay != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>생일</div>";
-									infoAddText += "<div class='public-user-info-value'>"+birthDay+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								
-								if(publicEmail.trim() != '' && publicEmail != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>이메일</div>";
-									infoAddText += "<div class='public-user-info-value'>"+publicEmail+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								
-								if(phoneNumber.trim() != '' && phoneNumber != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>휴대전화번호</div>";
-									infoAddText += "<div class='public-user-info-value'>"+phoneNumber+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								
-								if(address.trim() != '' && address != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>사는 곳</div>";
-									infoAddText += "<div class='public-user-info-value'>"+address+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-																								
-								if(stateMessage.trim() != '' && stateMessage != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>상태글</div>";
-									infoAddText += "<div class='public-user-info-value'>"+stateMessage+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								
-								if(blog.trim() != '' && blog != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>블로그</div>";
-									infoAddText += "<div class='public-user-info-value'>"+blog+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								
-								if(religion.trim() != '' && religion != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>종교</div>";
-									infoAddText += "<div class='public-user-info-value'>"+religion+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								if(politics.trim() != '' && politics != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>정치성향</div>";
-									infoAddText += "<div class='public-user-info-value'>"+politics+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-								if(language.trim() != '' && language != null){
-									infoAddText += "<li>";
-									infoAddText += "<div class='public-user-info-wrapper'>";
-									infoAddText += "<div class='public-user-info-key'>언어</div>";
-									infoAddText += "<div class='public-user-info-value'>"+language+"</div>";
-									infoAddText += "</div>";
-									infoAddText += "</li>";
-								}
-
-								infoAddText += "</ul></div>";
-							}else{
-								infoAddText += "<div class='public-user-info-none'>공개된 사용자 프로필 정보가 존재하지 않습니다.</div>";
+							infoAddText += "<img src='"+getContextPath()+"/resources/user-profile-image/"+profileImageFileName+"' />";
+						}else{
+							infoAddText += "<img src='"+getContextPath()+"/resources/user-profile-image/default-profile-image.png' />";
+						}
+						infoAddText += "</div>";
+						
+						
+						if(profileCounter > 1){
+							infoAddText += "<div class='public-user-info'><ul>";
+							
+							if(birthDay.trim() != '' && birthDay != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>생일</div>";
+								infoAddText += "<div class='public-user-info-value'>"+birthDay+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
 							}
+							
+							if(publicEmail.trim() != '' && publicEmail != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>이메일</div>";
+								infoAddText += "<div class='public-user-info-value'>"+publicEmail+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							
+							if(phoneNumber.trim() != '' && phoneNumber != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>휴대전화번호</div>";
+								infoAddText += "<div class='public-user-info-value'>"+phoneNumber+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							
+							if(address.trim() != '' && address != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>사는 곳</div>";
+								infoAddText += "<div class='public-user-info-value'>"+address+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+																							
+							if(stateMessage.trim() != '' && stateMessage != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>상태글</div>";
+								infoAddText += "<div class='public-user-info-value'>"+stateMessage+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							
+							if(blog.trim() != '' && blog != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>블로그</div>";
+								infoAddText += "<div class='public-user-info-value'>"+blog+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							
+							if(religion.trim() != '' && religion != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>종교</div>";
+								infoAddText += "<div class='public-user-info-value'>"+religion+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							if(politics.trim() != '' && politics != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>정치성향</div>";
+								infoAddText += "<div class='public-user-info-value'>"+politics+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+							if(language.trim() != '' && language != null){
+								infoAddText += "<li>";
+								infoAddText += "<div class='public-user-info-wrapper'>";
+								infoAddText += "<div class='public-user-info-key'>언어</div>";
+								infoAddText += "<div class='public-user-info-value'>"+language+"</div>";
+								infoAddText += "</div>";
+								infoAddText += "</li>";
+							}
+
+							infoAddText += "</ul></div>";
 							infoAddText += "</div>";
 						}else{
-							infoAddText += "<div class='notification-user-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/default-profile-image.png' />";
-							if(profileCounter > 1){
-								infoAddText += "<div class='public-user-info'>사용자 프로필</div>";
-							}else{
-								infoAddText += "<div class='public-user-info-none'>공개된 사용자 프로필 정보가 존재하지 않습니다.</div>";
-							}
-							infoAddText += "</div>";
+							infoAddText += "<div class='public-user-info-none'>공개된 사용자 프로필 정보가 존재하지 않습니다.</div>";
 						}
 						
 						
@@ -205,7 +207,7 @@ function getNotificationDetailInfo(obj){
 						var infoAddText = "<div class='sending-notification-info'>" +
 								"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 친구가 되기를 원합니다." +
 										"</div>" +
-										"<div class='friendship-confirm-button-wrapper'>" +
+										"<div class='confirm-button-wrapper friendship-confirm-button-wrapper'>" +
 										"<button class='friendship-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>수락</button>" +
 										"<button class='friendship-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절</button>" +
 										"</div>";
@@ -217,17 +219,73 @@ function getNotificationDetailInfo(obj){
 					break;
 				case 4:
 					codeClass = 'sending-share-code';
-					iconName = "nshareImg";
+					boardCommand = notificationObject.memberBoardCommand;
+					var profileImg = "";
 					
 					
+					if(notificationObject.profileImageFileName != null && notificationObject.profileImageFileName.trim() != ''){
+						profileImg = notificationObject.profileImageFileName;
+					}else{
+						profileImg = 'default-profile-image.png';
+					}
+					
+					
+					
+					if(notificationObject.shareConfirm > 0){
+						var infoAddText = "";
+					}else{
+						var infoAddText = "";
+						if(notificationObject.shareType > 0){
+							//내 글에 대한 공유 신청
+							infoAddText += "<div class='sending-notification-info'>" +
+							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 공유를 신청 하셨습니다." +
+									"</div>" +
+									"<div class='friendship-confirm-button-wrapper'>" +
+									"<button class='friendship-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>수락</button>" +
+									"<button class='friendship-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절</button>" +
+									"</div>";
+						}else{
+							//상대방이 글을 내보내기 해줌
+							infoAddText += "<div class='sending-notification-info'>" +
+							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 글타래를 보내셨습니다." +
+							
+							"</div>" +
+							"<div class='content-thumb'>"+
+							
+							"<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+notificationSenderName+ "("+notificationSenderURI+")"+"</span>"
+							
+							+"</div>";
+							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
+								infoAddText += "<div class='thumb-image-wrapper'><img src='"+getContextPath()+"/resources/upload/"+boardCommand.fileName+"' /></div>";
+							}
+							
+							infoAddText += "<div class='thumb-content'>"+ boardCommand.content +"</div>"
+							+"</div>"+
+							"<div class='confirm-button-wrapper share-confirm-button-wrapper'>" +
+							"<div class='share-confirm-help-message'>글타래를 공유 하시겠습니까?</div>"+
+							"<button class='share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>공유하기</button>" +
+							"<button class='share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절하기</button>" +
+							"</div>";
+						}
+						
+					}
+					console.log(notificationObject);
+					
+					
+					
+					
+					
+					
+					
+					$('.notification-info-wrapper').append(infoAddText);
 					break;
 				case 6:
 					codeClass = 'sending-reply-code';
-					iconName = "nReplyImg";
+					
 					break;
 			}
 			
-			$(".sending-notification-code").html("<div class='"+codeClass+"'><img class='sending-Icon' src='"+getContextPath()+"/resources/media/image/" + iconName +".png' /></div>");
+			$(".sending-notification-code").html("<div class='"+codeClass+"'></div>");
 			
 		},error:function(){
 			alert('알림 상세 정보 요청 중 오류가 발생하였습니다. ERROR_CODE : 3425');
@@ -301,6 +359,7 @@ $(document).ready(function(){
 		var notificationSenderURI = $(this).data("personaluri"); 
 		var notificationSenderName = $(this).data("name");
 		
+		
 		$.ajax({
 			type: 'POST',
 			url: requestContextPath,
@@ -309,6 +368,11 @@ $(document).ready(function(){
 				$('.notification-info-wrapper').empty();
 				var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
 				$('.notification-info-wrapper').append(infoAddText);
+				
+				var targetObject = $("#notificationItemSeq-"+notificationSeq);
+				console.log(targetObject);
+				targetObject.addClass('notification-read');
+				$("#notificationReadButton").addClass('readed').removeClass('un-read');
 				countOfUnCheckNotificationList();
 			},error:function(){
 				alert('친구 등록 요청 중 오류가 발생하였습니다. ERROR_CODE : 4422');

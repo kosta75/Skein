@@ -32,7 +32,7 @@ public interface BoardDao {
 	public List<MemberBoardCommand> getBoards(String personalURI) throws ClassNotFoundException, SQLException;
 	
 	//5.1 
-	public MemberBoardCommand getBoardByBoardSeq(String personalURI, int boardSeq) throws ClassNotFoundException, SQLException;
+	public MemberBoardCommand getBoardByBoardSeq(int boardSeq) throws ClassNotFoundException, SQLException;
 	
 	
 	//6. 사용자 게시물 상세조회

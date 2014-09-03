@@ -1353,7 +1353,7 @@ DROP TABLE ShareNotification
 CREATE TABLE ShareNotification (
 	NotificationSeq NUMBER NOT NULL, /* 사용자알림번호 */
 	BoardSeq NUMBER NOT NULL, /* 글번호 */
-	OwnerEmail VARCHAR2(127), /* 이메일 */
+	SenderEmail VARCHAR2(127), /* 이메일 */
 	ShareConfirm INT /* 공유승인여부 */
 );
 
@@ -1363,7 +1363,7 @@ COMMENT ON COLUMN ShareNotification.NotificationSeq IS '사용자알림번호';
 
 COMMENT ON COLUMN ShareNotification.BoardSeq IS '글번호';
 
-COMMENT ON COLUMN ShareNotification.OwnerEmail IS '이메일';
+COMMENT ON COLUMN ShareNotification.SenderEmail IS '이메일';
 
 COMMENT ON COLUMN ShareNotification.ShareConfirm IS '공유승인여부';
 
@@ -1403,7 +1403,7 @@ ALTER TABLE ShareNotification
 	ADD
 		CONSTRAINT FK_Members_TO_ShareNotif
 		FOREIGN KEY (
-			OwnerEmail
+			SenderEmail
 		)
 		REFERENCES Members (
 			Email

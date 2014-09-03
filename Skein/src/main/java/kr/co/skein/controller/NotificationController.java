@@ -7,15 +7,18 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.FriendshipNotificationCommand;
 import kr.co.skein.model.vo.Member;
+import kr.co.skein.model.vo.MemberBoardCommand;
 import kr.co.skein.model.vo.NotificationCountCommand;
 import kr.co.skein.model.vo.notification.FriendshipNotification;
 import kr.co.skein.model.vo.notification.MemberNotification;
+import kr.co.skein.model.vo.notification.ShareNotification;
 import kr.co.skein.model.vo.profile.MemberProfile;
 
 import org.apache.ibatis.session.SqlSession;
@@ -273,12 +276,14 @@ public class NotificationController {
 		if (session.getAttribute("SPRING_SECURITY_CONTEXT") != null) {
 			BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
 			NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
+			ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+			MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 			
 			switch(notificationCode){
 			case 1:
 				break;
 			case 2:
-				ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
+				
 				FriendshipNotification friendshipNotification = notificationDao.getFriendshipNotificationDetail(notificationSeq);
 				
 				List<MemberProfile> memberProfiles = profileDao.getMemberProfileList(friendshipNotification.getFriendEmail(), "false");
@@ -289,7 +294,18 @@ public class NotificationController {
 				break;
 			case 4:
 				
+				BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+				ShareNotification shareNotification = notificationDao.getShareNotificationDetail(notificationSeq);
 				
+				int boardSeq = Integer.valueOf(shareNotification.getBoardSeq());
+				String personalURI = memberDao.getPersonalURI(shareNotification.getSenderEmail());
+				MemberBoardCommand memberBoardCommand = boardDao.getBoardByBoardSeq(boardSeq);
+				String profileImageFileName = profileDao.getMemberProfileByProfileCode(personalURI, 2);
+				
+				shareNotification.setMemberBoardCommand(memberBoardCommand);
+				shareNotification.setProfileImageFileName(profileImageFileName);
+				
+				model.addAttribute("shareNotification", shareNotification);
 				break;
 			case 6:
 				break;

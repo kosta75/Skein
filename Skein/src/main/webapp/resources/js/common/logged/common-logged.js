@@ -77,6 +77,8 @@ $(document).ready(function(){
 			type : 'post',
 			url : requestContextPath,
 			success : function(){
+				$('.notification-item-container').addClass('notification-read');
+				$(".un-read").addClass('readed').removeClass('un-read');
 				$('#notificationListContainer').hide("slide", {direction: "up"});
 				countOfUnCheckNotificationList();
 				//location.reload();
