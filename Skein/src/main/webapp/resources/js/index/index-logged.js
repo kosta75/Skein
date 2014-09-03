@@ -1421,7 +1421,7 @@ $(window).scroll(function(){
  $(document).on("click",".edit-Btn",function(){
 	 
 	 $(this).parent().siblings().first().next().val($(this).parent().siblings().first().html());
-	 var editContent =  $(this).parent().siblings().first().next().val();
+	 var editContent = $(this).parent().siblings().first().next().val();
 	 var boardSeq = $(this).parent().siblings().first().next().data("boardseq");
 	 var publicLevelCode = $(".publicLevelCode").val();
 
@@ -1496,7 +1496,7 @@ $(window).scroll(function(){
 	 
 	 	var editContainer = $(this);
 	 $(this).siblings().first().next().val( $(this).siblings().first().html());
-	 var editContent =$(this).siblings().first().next().val();
+	 var editContent = $(this).siblings().first().next().val();
 
 
  $.ajax({

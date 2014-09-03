@@ -52,12 +52,13 @@ public class ReplyController {
 	@Transactional
 	public View reply(String boardSeq, String replyContent, HttpSession session) throws ClassNotFoundException, SQLException{
 		BaseMemberInfo baseMemberInfo = null;
+		String content ="<xmp>"+replyContent+"</xmp>";
 		if((baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO")) != null){
 			
 		}
 		
 	
-		System.out.println("INFO : Skein-R245 - 댓글 입력, boardSeq="+boardSeq+", replyContent="+replyContent);
+		System.out.println("INFO : Skein-R245 - 댓글 입력, boardSeq="+boardSeq+", replyContent="+content);
 		
 		ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 		NotificationDao notificationDao = sqlSession.getMapper(NotificationDao.class);
@@ -68,7 +69,7 @@ public class ReplyController {
 		Reply reply = new Reply();
 		reply.setEmail(baseMemberInfo.getEmail());
 		reply.setBoardSeq(boardSeq);
-		reply.setReplyContent(replyContent);
+		reply.setReplyContent(content);
 		
 		replydao.insertReply(reply);
 		
@@ -130,10 +131,10 @@ public class ReplyController {
 	//댓글 수정
 	@RequestMapping(value="replyUpdate",method=RequestMethod.POST)
 	public View replyUpdate(String replyEditContent,int replySeq,Model model) throws ClassNotFoundException, SQLException{
-		
+		String content ="<xmp>"+replyEditContent+"</xmp>";
 		ReplyDao replyDao = sqlSession.getMapper(ReplyDao.class);
 		
-		int result = replyDao.updateReply(replyEditContent,replySeq);
+		int result = replyDao.updateReply(content,replySeq);
 		
 		model.addAttribute("result", result);
 		return jsonView;

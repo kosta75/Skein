@@ -256,8 +256,8 @@ public class BoardController {
 		System.out.println("boardSeq ="+boardSeq+"/"+"editContent"+editContent+"/"+"publicLevelCode"+publicLevelCode);
 
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-		
-	    int result=boardDao.editBoard(editContent,publicLevelCode,boardSeq);
+		String content = "<xmp>"+editContent+"</xmp>";
+	    int result=boardDao.editBoard(content,publicLevelCode,boardSeq);
 		
 		model.addAttribute("result", result);
 		
