@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-				<c:forEach var="groupItem" items="${groupList}">
+	<c:forEach var="groupItem" items="${groupList}">
 					<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 						
 						<div class="editDiv" style="margin: auto; display: none;">														
@@ -14,23 +14,24 @@
 									<img class="edit-emoticon-icon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.gif">
 								</c:forEach>
 							</div>
-							<select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
-											<c:forEach var="publicLevelList" items="${publicLevelList}">
-												<option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
-											</c:forEach>
-										</select>	
-							<div style="clear: both; float: right;">
-								<div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
-								<div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
-								<div class="edit-emoticon" style="margin-right: 10px; float: right;">이모티콘</div>
-							</div>
+							<div class="editBtnDiv" >
+                        <div class="edit-cancle" style="margin-right: 10px; float: right;">취소</div>
+                        <div class="edit-Btn" style="margin-right: 10px; float: right;">수정완료</div>
+                        <!-- <div class="edit-emoticon" style="margin-right: 10px; float: right;">이모티콘</div> -->
+                        <img class="edit-emoticon ${sessionScope.BASE_MEMBER_INFO.colorTheme}" src="/skein/resources/media/image/emoticon.png">
+                     </div>
+                     <select class="publicLevelCode" name="publicLevelCode" style="margin-left: 120px;float:right;">
+                        <c:forEach var="publicLevelList" items="${publicLevelList}">
+                           <option value="${publicLevelList.publicLevelCode}">${publicLevelList.publicLevelDescription}</option>
+                        </c:forEach>
+                     </select> 
 						</div>
 						
 						<div class="group-item-wrapper">
 							<div class="group-item-controller-container">
 								<ul>
 								<li>
-								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
+								<img class='icon-box group-item-public-level ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/openImg.png' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="글 공개범위" />
 									<div class="group-item-public-level-cotroller">
 									<ul>
 									<c:forEach var="publicLevelList" items="${publicLevelList}">
@@ -47,18 +48,21 @@
 											</div>
 									</li>
 								
-								<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
-								<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
+									<li><img class='icon-box group-item-edit ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/editImg.jpg' style="float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="수정">	</li>
+									<li><img class='icon-box group-item-delete ${sessionScope.BASE_MEMBER_INFO.colorTheme}'src='./resources/media/image/deleteImg.jpg' style="float: right;"data-groupSeq="${groupItem.groupSeq}" data-groupCount="${groupItem.groupCount}" title="삭제">	</li>
+									<c:if test="${groupItem.publicLevelCode > 1}">
 									<li>
 										<c:choose>
 											<c:when test="${groupItem.groupCount > 1}">
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:when>
 											<c:otherwise>
-																			<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
+											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
 									</li>
+									</c:if>
+									
 									
 								</ul>
 							</div>
@@ -139,8 +143,7 @@
 										<div class="group-item-reply-container">
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
-													<a href="${pageContext.request.contextPath}/">
-													<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
+													<a href="${pageContext.request.contextPath}/"><c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 													</c:if>

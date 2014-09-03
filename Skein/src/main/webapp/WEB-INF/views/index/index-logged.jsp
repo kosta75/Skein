@@ -114,16 +114,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 			<c:if test="${groupList.size() > 0}">
 				<div id="boardListTimelineContainer"></div>
 			</c:if>
-			
-			<div id="writeTabs">
-				<ul>
-					<li><a href="#diaryWriteTabs">다이어리</a></li>
-					<li><a href="#historyWriteTabs">개인기록</a></li>
-				</ul>
-				<div id="diaryWriteTabs">
-					<div>Content</div>
-				</div>
-				<div id="historyWriteTabs">
+				<div id="historyWriteTabs" style="background: #fff;margin-bottom: 15px;">
 					<div id="historyWriteForm">
 						<%-- <form id="postReg" action="${pageContext.request.contextPath}/post/postReg" method="post"> --%>
 						<form id="historyForm" method="post"
@@ -177,7 +168,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								<%-- <input type='hidden' name="content" id="content" />
 								<input type="hidden" name="email" value="${sessionScope.BASE_MEMBER_INFO.email}" /> --%>
 								<!--이미지  -->
-								<div id="historyImg" class="offset2 arrow_box">
+								<%-- <div id="historyImg" class="offset2 arrow_box">
 									<ul id="file-list"></ul>
 								</div>
 								<!--날짜  -->
@@ -194,7 +185,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<c:forEach var="i" begin="1" end="16" step="1">
 										<img class="emoticon" id="emoticon${i}" src="${pageContext.request.contextPath}/resources/media/emoticon/emoticon${i}.png">
 									</c:forEach>
-								</div>
+								</div> --%>
 							</div>
 						</form>
 					</div>

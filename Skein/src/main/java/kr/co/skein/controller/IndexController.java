@@ -62,11 +62,12 @@ public class IndexController {
 			    //답글은 각각의 글의 답글을 조회해서 리스트로 담아준다.
 				ReplyDao replydao = sqlSession.getMapper(ReplyDao.class);
 				for(int i=0;i<listSource.size();i++){
-					listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
-					listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-					if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-						listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");
-						}
+				
+						
+							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
+							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
+							
+						
 					
 					System.out.println(listSource.get(i).getBoardSeq());
 					
@@ -101,10 +102,7 @@ public class IndexController {
 			for(int i=0;i<listSource.size();i++){
 				listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 				listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-				if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-					listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-				System.out.println("ddd"+listSource.get(i).getReplyList().get(i).getProfileinfo());
-				}
+				
 			}
 
 			System.out.println("INFO : Skein-I101 - 사용자 게시물 더보기 조회 결과, groupListSize=" + listSource.size());

@@ -619,7 +619,7 @@ $(document).ready(function(){
 		if($("#historyDate").css("display") == "block"){
 			$("#historyDate").css("display","none");
 		}else{
-		$("#historyImg").css("display","none");
+	
 		$("#historyDate").css("display","block");
 		$("#historymap").css("display","none");
 		$("#historyemoticon").css("display","none");
@@ -640,7 +640,7 @@ $(document).ready(function(){
 		if($("#historymap").css("display") == "block"){
 			$("#historymap").css("display","none");
 		}else{
-		$("#historyImg").css("display","none");
+	
 		$("#historyDate").css("display","none");
 		$("#historymap").css("display","block");
 		$("#historyemoticon").css("display","none");
@@ -666,7 +666,6 @@ $(document).ready(function(){
 		if($("#historyemoticon").css("display") == "block"){
 			$("#historyemoticon").css("display","none");
 		}else{
-		$("#historyImg").css("display","none");
 		$("#historyDate").css("display","none")
 		$("#historyemoticon").css("display","block");
 		$("#historymap").css("display","none");

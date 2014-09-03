@@ -97,7 +97,7 @@ $(document).ready(function(){
 		 
 		 );	
 		 
-
+		 $('#join-tap').css("background-image","");
 		 $('#login-tap').css("background-image","url('./resources/media/image/join_login/back_1.jpg')");
 		 $('#login-tap').css("background-repeat","no-repeat");
 		 $('#login-tap').css("background-position-x","355px");
