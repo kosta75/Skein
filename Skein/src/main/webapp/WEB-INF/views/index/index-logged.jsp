@@ -194,7 +194,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 
 
 			<!--공유하기 클릭시 해당 이미지 미리 보기  -->
-			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 440px; margin-top: -400px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
+			<div id="share-detail-preview" style="border-radius: 5px 5px 5px 5px; padding: 10px; width: 300px; height: 400px; margin-left: 440px; margin-top: -525px; background-color: skyblue; opacity: 1; display: none; z-index: 100; position: fixed;">
 				<img id="share-detail-preview-imgtag" src=""	style="width: 100%; height: 100%">
 			</div>
 
@@ -268,7 +268,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 
 							
 
-							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 250px; /* height: 300px; */ display: none; right: -254px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
+							<div class="share-info-div" style="text-align: center; border-radius: 10px 10px 10px 10px; width: 130px; /* height: 300px; */ display: none; right: -132px; margin-top: 0px; background-color: white; z-index: 1; position: absolute;">
 								<input type="hidden" value="${groupItem.groupSeq}" id="boardSeq${groupItem.boardSeq}" class="share-input">
 								<b>공 유 하 기</b>
 
@@ -276,9 +276,9 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<!-- 목록 들어가는 곳  -->
 								</div>
 								<div class="share-freind-list"style="clear: both;">
-									<img style="float:left;height:15px; width:97%; border : 3px solid red;">
+									<img class="${sessionScope.BASE_MEMBER_INFO.colorTheme}" src="${pageContext.request.contextPath}/resources/media/image/friend-list.jpg"style="float: left;height: 15px;margin-left: 36%;margin-top: 20px;margin-bottom: 20px;">
 									<!--친구 목록 들어가는 곳  -->
-									<div class="share-freind-list-div" style="width:90%; background-color: skyblue; opactiy:0.2;clear:both;">
+									<div class="share-freind-list-div" style="width:90%; background-color: #fff; opactiy:0.2;clear:both;">
 										
 									</div>
 								</div>
@@ -388,7 +388,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 				</c:forEach>
 			</div>
 		</div>
-	</div>
+	
 </section>
 <script src="${pageContext.request.contextPath}/resources/js/index/filereader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/index/highstock.js"></script>

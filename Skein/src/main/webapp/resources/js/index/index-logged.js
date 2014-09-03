@@ -1590,12 +1590,12 @@ function lastPostFunc(pictureCount){
 						}else{	
 							for (var j=0; j<boardsharedetail; j++) {
 								parents.find(".share-img-list").append("<div class='share-data-boardSeq' data-boardSeq='"+data.boardshare[j].boardSeq +"'style='background-color : white;border-radius:10px 10px 10px 10px;' >" 
-																		+ "<div style='float:left;margin-top:10px'>" 
+																		+ "<div style='display: inline-block;margin-top:10px'>" 
 																			+ "<input type='checkbox' name='shareCheckBoxGroup' value="+data.boardshare[j].boardSeq+" data-boardSeq="+data.boardshare[j].boardSeq+"></div>" 
-																		+ "<div class='shareimgBtn'style='float:left;width:211px;'>"
+																		+ "<div class='shareimgBtn'style='display: inline-block;width:50px;'>"
 																			+ "<input type='hidden' value='"+j+"'>"
 																		+ "<img class='shareimgBtn' data-imgBtnNumber = '"+ j + "'  src='./resources/upload/" + data.boardshare[j].filename
-																		+ "'style='border:1px black solid;clear:both; width: 40px; height: 40px; opacity:0.9;margin-left: -100px;'></div></div>");
+																		+ "'style='border:1px black solid;width: 40px; height: 40px; opacity:0.9;'></div></div>");
 							}
 						}
 					},
@@ -1710,7 +1710,7 @@ function lastPostFunc(pictureCount){
 			}
 		//----------------------------------------------------------------------
 		$(document).on('click','#share-cancel-btn',function(){
-			alert("취소 버튼");
+			
 			$('.share-info-div').hide("slide", {direction : "left"});
 			return false;
 		});

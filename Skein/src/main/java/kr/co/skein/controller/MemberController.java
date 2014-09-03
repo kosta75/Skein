@@ -99,9 +99,7 @@ public class MemberController {
 						for(int i=0;i<listSource.size();i++){
 							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-							if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-								listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-						}
+						
 						
 						}
 						
@@ -219,10 +217,7 @@ public class MemberController {
 						for(int i=0;i<listSource.size();i++){
 							listSource.get(i).setReplyList(replydao.selectReply(listSource.get(i).getBoardSeq(),replyStartNum,replyEndNum));
 							listSource.get(i).setReplyCount(replydao.countReply(replyCountNum,listSource.get(i).getBoardSeq()));
-							if(listSource.get(i).getReplyList().get(i).getProfileinfo() == null || listSource.get(i).getReplyList().get(i).getProfileinfo() == " " ){
-								listSource.get(i).getReplyList().get(i).setProfileinfo("default-profile-image.png");;
-							System.out.println("ddd"+listSource.get(i).getReplyList().get(i).getProfileinfo());
-							}
+							
 						
 						}
 					
