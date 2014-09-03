@@ -1751,7 +1751,7 @@ function lastPostFunc(pictureCount){
 			url : 'share/sharefriendlist',
 			success : function(data) {
 				if(data.list.length ==0){
-					parent.find('.share-freind-list-div').append("<div><p>공유할 친구가 없습니다.<p></div>");		
+					parent.find('.share-freind-list-div').append("<div><p>친구가 없습니다.<p></div>");		
 				}else{
 					for(var k=0 ; k< data.list.length; k++){
 						parent.find('.share-freind-list-div').append("<div class='shareList'><input type='checkbox' name='shareFriendCheckBox' value='"+data.list[k].email+"'><p >"+data.list[k].fullname+"</p></div>");
