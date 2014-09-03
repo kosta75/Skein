@@ -1046,34 +1046,47 @@ function lastPostFunc(pictureCount){
 		//사용자가 선택한 공유 목록 가져오기 (수정중........................)
 		$(document).on('click','#share-confirm-btn',function(){
 			
-			var checked = new Array();
+			var share_board_list = new Array();
 			$(document).find("input[name=shareCheckBoxGroup]:checked").each(function(i,j){
-				checked[i]= j.value;
+				share_board_list[i]= j.value;
+				//share_board_list.push({"boardSeq" : j.value})
 			});
-			//if(chked_val!="")chked_val = chked_val.substring(1);
-			var checkedLength = $(document).find("input[name=shareCheckBoxGroup]:checked").length;
+			var boardCheckedLength = $(document).find("input[name=shareCheckBoxGroup]:checked").length;
 			
-			//alert(checkedLength);
-			for(var j=0;j<checkedLength;j++){
-				alert(checked[j]);
-			}
 			
-			if(checkedLength==0){
+			var obj = new Object();
+			
+			obj.board = share_board_list;
+			
+			//obj.friend=
+			
+			var friendURI =  $(document).find('#group-item-wrapper').data("personaluri");
+			//alert("송광효"+friendURI);
+			
+			obj.friend= friendURI;
+			
+			var jsonData = JSON.stringify(obj);
+			console.log(jsonData);
+			
+			if(boardCheckedLength==0){
 				alert("게시물을 선택 해주세요.");
 			}else{
 				$.ajax({
 					type : 'POST',
-					url : 'share/shareDo',
-					data:"checked="+ checked,
+					url : 'share/publicShareDo',
+					data : { json : jsonData },
+					dataType :"json",
 					success : function(data) {
-						
-						
-						alert(data);
+						//alert(data);
+						//console.log(data);
+						alert(data.resultMessage);
 					},
 					error : function() {
-						alert('Error while request..');
+						alert(' public share 확인 버튼 : Error while request..');
 					}
 				});
+				
+				
 				$('.share-info-div').hide("slide", {direction : "left"});
 			}
 			

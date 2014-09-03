@@ -37,8 +37,8 @@
 		INSERT ALL
 			INTO Notifications(NotificationSeq, Email, IsRead, CreateDate, NotificationCode)
 			VALUES(#{notificationSeq}, #{email}, #{isRead}, SYSDATE, #{notificationCode})
-			INTO ShareNotification(NotificationSeq, BoardSeq, OwnerEmail, ShareConfirm)
-			VALUES(#{notificationSeq},#{boardSeq}, #{ownerEmail}, #{shareConfirm})
+			INTO ShareNotification(NotificationSeq, BoardSeq, SenderEmail, ShareConfirm)
+			VALUES(#{notificationSeq},#{boardSeq}, #{SenderEmail}, #{shareConfirm})
 		SELECT * FROM DUAL
 	</insert>
 	
@@ -188,7 +188,7 @@
 	
 	<select id="hasShareNotification" resultType="Integer">
 		SELECT COUNT(n.NotificationSeq) FROM Notifications n JOIN ShareNotification s ON n.notificationSeq = s.notificationSeq
-		WHERE s.ownerEmail = #{param1} AND n.email = #{param2} AND s.boardSeq = #{param3} 
+		WHERE  s.senderemail = #{param1} AND n.email = #{param2} AND s.boardSeq = #{param3} 
 	</select>
 	
 	

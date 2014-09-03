@@ -94,7 +94,7 @@ PROFILE_RESPONSE_CODE
 						
 					
 						
-						<div class="group-item-wrapper" data-personalURI="${groupItem.personalURI}">
+						<div class="group-item-wrapper" id="group-item-wrapper" data-personalURI="${groupItem.personalURI}">
 							<div class="group-item-controller-container">
 								<ul>
 								<li>

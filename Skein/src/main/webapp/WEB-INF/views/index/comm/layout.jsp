@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index/index-not-logged.css" />
 	
 </head>
-<body>
+<body onresize="parent.resizeTo(500,400)" onload="parent.resizeTo(500,400)">
 <div class="not-logged-main-section-container">
 <!-- 	<div class="wrapper"> -->
 		<tiles:insertAttribute name="index-not-logged" />
@@ -73,7 +73,7 @@
 	
 	<!-- 현재 페이지 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index/index-logged.css" />
-	
+
 </head>
 <body>
 

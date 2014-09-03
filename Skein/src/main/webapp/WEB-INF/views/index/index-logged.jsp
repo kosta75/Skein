@@ -283,9 +283,9 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<!-- 목록 들어가는 곳  -->
 								</div>
 								<div class="share-freind-list"style="clear: both;">
-									<img style="float:left;height:15px; width:97%; border : 3px solid red;">
+									<img style="float:left;height:15px; width:97%; b order : 3px solid red;">
 									<!--친구 목록 들어가는 곳  -->
-									<div class="share-freind-list-div" style="width:90%; background-color: skyblue; opactiy:0.2;clear:both;">
+									<div class="share-freind-list-div" style="width:90%; background-color:                                   ; opactiy:0.2;clear:both;">
 										
 									</div>
 								</div>

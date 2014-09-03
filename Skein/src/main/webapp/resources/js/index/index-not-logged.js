@@ -60,11 +60,11 @@ $(document).ready(function(){
 		 $('#join-tap').animate({
 			 width: '10%',
 			 height:'474px',
-			 opacity: '.25'
+			// opacity: '.25'
 		 },1000); 	
 		 $('#bottom-tap').animate({
 			 both: 'clear',
-			 opacity: '.25',
+			// opacity: '.25',
 			 height: '70px'	
 		 },1000); 
 		 $('#login-tap').append(
@@ -97,7 +97,8 @@ $(document).ready(function(){
 		 
 		 );	
 		 
-
+		 
+		 $('#join-tap').css("background-image","");
 		 $('#login-tap').css("background-image","url('./resources/media/image/join_login/back_1.jpg')");
 		 $('#login-tap').css("background-repeat","no-repeat");
 		 $('#login-tap').css("background-position-x","355px");
@@ -117,12 +118,12 @@ $(document).ready(function(){
 		 },1000);
 		 $('#login-tap').animate({
 			 width: '10%',
-			 opacity: '.25',
+			// opacity: '.25',
 			 height: '474px'	
 		 },1000); 
 		 $('#bottom-tap').animate({
 			 both: 'clear',
-			 opacity: '.25',
+			// opacity: '.25',
 			 height: '70px'	
 		 },1000); 
 		 $('#join-tap').append(
@@ -175,12 +176,12 @@ $(document).ready(function(){
 		 },1000);
 		
 		 $('#login-tap').animate({
-				opacity: '0.25',
+				//opacity: '0.25',
 				height: '50px'
 			 },1000);
 		 
 		 $('#join-tap').animate({
-				opacity: '0.25',
+				//opacity: '0.25',
 				height: '50px'
 			 },1000);
 		 /*$(this).append(
@@ -234,28 +235,6 @@ $(document).ready(function(){
 	$(document).on("click","#refresh",function(event){
 		
 	});
-	/*
-	$(document).on("oumseover","#join-tap p,#login-tap p, #bottom-tap p, #join-second-tap p,  #login-second-tap p",function(event){
-		$(this).css("opacity","1");
-	});
-	$(document).on("mouseout","#bottom-tap p",function(event){
-		$(this).css("opacity","0.25");
-	});*/
-	
-	
-	/*$(document).on("mouseover","#login-tap",function(event){
-		$(this).css("opacity","1");
-	});
-	$(document).on("mouseout","#login-tap",function(event){
-		$(this).css("opacity","0.25");
-	});
-	$(document).on("mouseover","#bottom-tap",function(event){
-		$(this).css("opacity","1");
-	});
-	$(document).on("mouseout","#bottom-tap",function(event){
-		$(this).css("opacity","0.25");
-	});
-	*/
 	
 	
 });
