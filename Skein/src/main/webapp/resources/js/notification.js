@@ -234,16 +234,30 @@ function getNotificationDetailInfo(obj){
 					if(notificationObject.shareConfirm > 0){
 						var infoAddText = "";
 					}else{
+						
 						var infoAddText = "";
 						if(notificationObject.shareType > 0){
 							//내 글에 대한 공유 신청
 							infoAddText += "<div class='sending-notification-info'>" +
-							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 공유를 신청 하셨습니다." +
-									"</div>" +
-									"<div class='friendship-confirm-button-wrapper'>" +
-									"<button class='friendship-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>수락</button>" +
-									"<button class='friendship-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절</button>" +
-									"</div>";
+							"<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님 께서 글타래 공유를 신청하셨습니다." +
+							
+							"</div>" +
+							"<div class='content-thumb'>"+
+							
+							"<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span>"
+							
+							+"</div>";
+							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
+								infoAddText += "<div class='thumb-image-wrapper'><img src='"+getContextPath()+"/resources/upload/"+boardCommand.fileName+"' /></div>";
+							}
+							
+							infoAddText += "<div class='thumb-content'>"+ boardCommand.content +"</div>"
+							+"</div>"+
+							"<div class='confirm-button-wrapper share-confirm-button-wrapper'>" +
+							"<div class='share-confirm-help-message'>공유를 수락 하시겠습니까?</div>"+
+							"<button class='share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+boardCommand.personalURI+"' data-name='"+boardCommand.fullName+"'>수락하기</button>" +
+							"<button class='share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+boardCommand.personalURI+"' data-name='"+boardCommand.fullName+"'>거절하기</button>" +
+							"</div>";
 						}else{
 							//상대방이 글을 내보내기 해줌
 							infoAddText += "<div class='sending-notification-info'>" +
@@ -269,7 +283,7 @@ function getNotificationDetailInfo(obj){
 						}
 						
 					}
-					console.log(notificationObject);
+					//console.log(notificationObject);
 					
 					
 					

@@ -1280,35 +1280,37 @@ $(document).on("click",".modal-reply-more-btn",function() {
 
 				});
 
-
+var stateOfSscroll = false;
 //메인 더보기 
 function lastPostFunc(pictureCount){ 
- 
-    $.ajax({
-          type:'get',
-       url:"mainMoreBoard",
-       data:"pictureCount="+ pictureCount,
-       dataType : "html",
-       success : function(data) {
-    	
-        if(data.trim()==""){
-        }else{
-           $('#boardListContainer').append(data);  
-        }  
-       },
-       error: function(){
-          alert('스크롤 에러 인덱스-로그드 :error while request..'   );
-       }
-    });
+	if(!stateOfSscroll){
+		stateOfSscroll = true;
+	    $.ajax({
+	          type:'get',
+	       url:"mainMoreBoard",
+	       data:"pictureCount="+ pictureCount,
+	       dataType : "html",
+	       success : function(data) {
+	    	
+	        if(data.trim()==""){
+	        }else{
+	           $('#boardListContainer').append(data);
+	           stateOfSscroll = false;
+	        }  
+	       },
+	       error: function(){
+	          alert('스크롤 에러 인덱스-로그드 :error while request..'   );
+	       }
+	    });
+    }
  }; 
  
- $(window).scroll(function(){ 
-    if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
-      var pictureCount = $('.group-item-container').size();
-     
-       lastPostFunc(pictureCount); 
-    }      
- });
+$(window).scroll(function(){ 
+	if ($(window).scrollTop() == $(document).height() - $(window).height()){ 
+		var pictureCount = $('.group-item-container').size();
+		lastPostFunc(pictureCount);
+	}      
+});
  //댓글 숨김 
  
  $(document).on("click",".reply-show-hide-btn",function(){
@@ -1725,21 +1727,6 @@ function lastPostFunc(pictureCount){
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
-		
-		var name = "#subUserProfileContainer";
-		var menuYloc = null;
-
-		menuYloc = parseInt($(name).css("top").substring(0,$(name).css("top").indexOf("px")))
-		$(window).scroll(function () { 
-			offset = menuYloc+$(document).scrollTop()+"px";
-			$(name).animate({top:offset},{duration:800,queue:false});
-				 
-			if ($(window).scrollTop() == $(document).height() - $(window).height()){
-				$(name).css("margin-top","-100px");
-			}else{
-				$(name).css("margin-top","0px");
-			}
-		});
 		 
 //공유하기  친구 선택하여 공유하기 이벤트
 	//친구 목록 가져오기 	

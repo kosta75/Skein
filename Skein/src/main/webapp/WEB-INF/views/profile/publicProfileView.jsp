@@ -115,6 +115,7 @@ PROFILE_RESPONSE_CODE
 									</li>
 								
 									<li>
+									<c:if test="${sessionScope.BASE_MEMBER_INFO.email != null}">
 										<c:choose>
 											<c:when test="${groupItem.groupCount > 1}">
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
@@ -123,6 +124,7 @@ PROFILE_RESPONSE_CODE
 											<img class='icon-box group-share share-btn ${sessionScope.BASE_MEMBER_INFO.colorTheme}' src='./resources/media/image/shareImg.png' style="margin-right:10px;float: left;" data-boardSeq="${groupItem.boardSeq}" data-groupCount="${groupItem.groupCount}" title="그룹 공유하기">
 											</c:otherwise>
 										</c:choose>
+										</c:if>
 									</li>
 									
 								</ul>
@@ -148,7 +150,7 @@ PROFILE_RESPONSE_CODE
 
 							<div class="group-item-user-info-container">
 								<div class="group-item-user-profile-image-wrapper">
-						<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileInfo}" />
+									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${publicMember.profileInfo}" />
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${groupItem.personalURI}"> ${groupItem.fullName}</a>

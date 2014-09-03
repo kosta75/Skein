@@ -22,7 +22,7 @@ public class MemberBoardCommand {
 	private String email;
 	private String fullName;
 	private Date birthday;
-	private String personaURI;
+	private String personalURI;
 	
 	private String boardSeq;
 	private int boardKindSeq;
@@ -70,11 +70,11 @@ public class MemberBoardCommand {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getPersonaURI() {
-		return personaURI;
+	public String getPersonalURI() {
+		return personalURI;
 	}
-	public void setPersonaURI(String personaURI) {
-		this.personaURI = personaURI;
+	public void setPersonalURI(String personalURI) {
+		this.personalURI = personalURI;
 	}
 
 	public int getBoardKindSeq() {

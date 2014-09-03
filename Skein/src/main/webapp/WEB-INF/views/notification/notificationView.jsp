@@ -61,7 +61,7 @@ a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-a
 					
 					<li>
 						<div id="notificationItemSeq-${notificationList.notificationSeq}" class="notification-item-container${(c.index == 0) ? ' notification-item-selected':''}${(notificationList.isRead != 0) ? ' notification-read':''}" data-notificationseq="${notificationList.notificationSeq}" data-notificationcode="${notificationList.notificationCode}" data-sendername="${notificationList.notificationSenderName}" data-senderuri="${notificationList.notificationSenderURI}">
-							<div id="notificationReadButton" class="notification-read-button${(notificationList.isRead == 0) ? ' un-read':' readed'}">R</div>
+							<div id="notificationReadButton" class="notification-read-button${(notificationList.isRead == 0) ? ' un-read':' readed'}" ${(notificationList.isRead == 0) ? 'title="알림을 확인하세요."':'title="확인된 알림"'}>R</div>
 							<div class="notification-create-date">${createDate}</div>
 							
 							<div class="notification-item-code ${notificationCode}"></div>

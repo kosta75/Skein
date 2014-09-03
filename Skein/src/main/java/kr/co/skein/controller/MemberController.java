@@ -136,8 +136,8 @@ public class MemberController {
 					System.out.println("INFO : Skein-R123 - 조회된 게시물, size=" + list.size());
 					
 					BaseMemberInfo publicMember = memberDao.getPublicMember(email);
-					if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
-						publicMember.setProfileImageFileName("default-profile-image.png");
+					if(publicMember.getProfileInfo() == null || publicMember.getProfileInfo().trim().equals("")){
+						publicMember.setProfileInfo("default-profile-image.png");
 					}
 					
 					model.addAttribute("boardGroupList", list);
@@ -224,9 +224,10 @@ public class MemberController {
 						}
 					
 						BaseMemberInfo publicMember = memberDao.getPublicMember(email);
-						if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
-							publicMember.setProfileImageFileName("default-profile-image.png");
+						if(publicMember.getProfileInfo() == null || publicMember.getProfileInfo().trim().equals("")){
+							publicMember.setProfileInfo("default-profile-image.png");
 						}
+						System.out.println("INFO : Skein-T234 - test" +publicMember.getProfileImageFileName());
 						
 						model.addAttribute("boardGroupList", listSource);
 						model.addAttribute("requestPersonalURI", personalURI);
@@ -253,8 +254,8 @@ public class MemberController {
 					System.out.println("INFO : Skein-R123 - 조회된 게시물, size=" + list.size());
 					
 					BaseMemberInfo publicMember = memberDao.getPublicMember(email);
-					if(publicMember.getProfileImageFileName() == null || publicMember.getProfileImageFileName().trim().equals("")){
-						publicMember.setProfileImageFileName("default-profile-image.png");
+					if(publicMember.getProfileInfo() == null || publicMember.getProfileInfo().trim().equals("")){
+						publicMember.setProfileInfo("default-profile-image.png");
 					}
 					
 					model.addAttribute("boardGroupList", list);

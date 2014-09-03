@@ -298,8 +298,18 @@ public class NotificationController {
 				ShareNotification shareNotification = notificationDao.getShareNotificationDetail(notificationSeq);
 				
 				int boardSeq = Integer.valueOf(shareNotification.getBoardSeq());
-				String personalURI = memberDao.getPersonalURI(shareNotification.getSenderEmail());
 				MemberBoardCommand memberBoardCommand = boardDao.getBoardByBoardSeq(boardSeq);
+				
+				String personalURI = "";
+				if(shareNotification.getShareType() > 0){
+					personalURI = memberDao.getPersonalURI(shareNotification.getEmail());
+					//memberBoardCommand.setPersonalURI(personalURI);
+				}else{
+					personalURI = memberDao.getPersonalURI(shareNotification.getSenderEmail());
+					//memberBoardCommand.setPersonalURI(personalURI);
+				}
+				
+				
 				String profileImageFileName = profileDao.getMemberProfileByProfileCode(personalURI, 2);
 				
 				shareNotification.setMemberBoardCommand(memberBoardCommand);
