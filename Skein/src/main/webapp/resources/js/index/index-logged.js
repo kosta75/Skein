@@ -1471,7 +1471,7 @@ function lastPostFunc(pictureCount){
  });
  //modal 수정취소
  $(document).on("click",".modaleditCancleBtn",function(){
-
+	 $("#modalemoticon").hide("slide",{direction : "left"});
 	 $(".modal-EditTextarea").empty();
 	 $(this).parent().css("display","none");
 	 $(this).parent().siblings().first().next().css("display","block");
