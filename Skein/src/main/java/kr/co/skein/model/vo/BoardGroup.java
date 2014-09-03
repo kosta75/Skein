@@ -59,6 +59,24 @@ public class BoardGroup {
 	private String fullName;
 	private Date birthday;
 	private String personalURI;
+	
+	private String resourceOwnerFullName;
+	private String resourceOwnerPersonalURI;
+	
+	
+	
+	public String getResourceOwnerFullName() {
+		return resourceOwnerFullName;
+	}
+	public void setResourceOwnerFullName(String resourceOwnerFullName) {
+		this.resourceOwnerFullName = resourceOwnerFullName;
+	}
+	public String getResourceOwnerPersonalURI() {
+		return resourceOwnerPersonalURI;
+	}
+	public void setResourceOwnerPersonalURI(String resourceOwnerPersonalURI) {
+		this.resourceOwnerPersonalURI = resourceOwnerPersonalURI;
+	}
 	public String getGroupSeq() {
 		return groupSeq;
 	}

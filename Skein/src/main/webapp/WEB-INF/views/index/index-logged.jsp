@@ -314,6 +314,17 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 									<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
 									<span class="group-item-write-date">${writeDate}</span>
 								</div>
+								
+								<c:if test="${groupItem.isShare > 0}">
+								
+									<c:if test="${groupItem.resourceOwnerFullName != null && groupItem.resourceOwnerFullName != ''}">
+									
+									<div class="source-owner-info">
+										<img src="${pageContext.request.contextPath}/resources/media/image/share_icon.png" />
+										<span>${groupItem.resourceOwnerFullName}(${groupItem.resourceOwnerPersonalURI})</span>님의 글타래를 공유하였습니다.
+									</div>
+									</c:if>
+								</c:if>
 
 							</div>
 							<div class="group-item-content-wrapper">

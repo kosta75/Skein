@@ -51,6 +51,11 @@ public interface NotificationDao {
 	//사용자 알림 수정
 	public int updateNotification(NotificationCommand notificationCommand) throws ClassNotFoundException, SQLException;
 	
+	public int updateShareNotificationParent(ShareNotification shareNotification) throws ClassNotFoundException, SQLException;
+	public int updateShareNotification(ShareNotification shareNotification) throws ClassNotFoundException, SQLException;
+	
+	
+	
 	//사용자 알림 삭제
 	public int deleteNotification(int notificationSeq) throws ClassNotFoundException, SQLException;
 	

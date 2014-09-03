@@ -41,8 +41,19 @@ body{
 }
 
 a, a:visited{color:#000;}
-#Sil{font-size:120px;font-family:'맑은 고딕';font-weight:bold;margin:0px auto;width:279px;margin-left: 70px;}
-#Sil a{color:skyblue;}
+#Sil {
+	font-size: 120px;
+	font-family:'Shadows Into Light';
+	font-weight: bold
+	/* margin: 0px auto;
+	width: 279px;
+	margin-left: 70px; */
+}
+
+#Sil a{
+	color:skyblue;
+	margin-left: 90px
+}
 
 
 

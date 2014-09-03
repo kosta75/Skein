@@ -277,8 +277,8 @@ function getNotificationDetailInfo(obj){
 							+"</div>"+
 							"<div class='confirm-button-wrapper share-confirm-button-wrapper'>" +
 							"<div class='share-confirm-help-message'>글타래를 공유 하시겠습니까?</div>"+
-							"<button class='share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>공유하기</button>" +
-							"<button class='share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절하기</button>" +
+							"<button class='send-share-confirm-ok' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>공유하기</button>" +
+							"<button class='send-share-confirm-reject' data-notificationseq='"+notificationSeq+"' data-personaluri='"+notificationSenderURI+"' data-name='"+notificationSenderName+"'>거절하기</button>" +
 							"</div>";
 						}
 						
@@ -390,6 +390,36 @@ $(document).ready(function(){
 				countOfUnCheckNotificationList();
 			},error:function(){
 				alert('친구 등록 요청 중 오류가 발생하였습니다. ERROR_CODE : 4422');
+			}
+		});
+	});
+	
+	//글타래 공유하기 버튼!
+	$(document).on('click', '.send-share-confirm-ok', function(){
+		var requestMapping = "/share/add";
+		var requestContextPath = getContextPath() + requestMapping;
+		
+		var notificationSeq = $(this).data("notificationseq");
+		var notificationSenderURI = $(this).data("personaluri"); 
+		var notificationSenderName = $(this).data("name");
+		
+		
+		$.ajax({
+			type: 'POST',
+			url: requestContextPath,
+			data: 'personalURI='+ notificationSenderURI +'&notificationSeq=' + notificationSeq,
+			success:function(data){
+				$('.notification-info-wrapper').empty();
+				var infoAddText = "<div class='sending-notification-info'><strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
+				$('.notification-info-wrapper').append(infoAddText);
+				
+				var targetObject = $("#notificationItemSeq-"+notificationSeq);
+				console.log(targetObject);
+				targetObject.addClass('notification-read');
+				$("#notificationReadButton").addClass('readed').removeClass('un-read');
+				countOfUnCheckNotificationList();
+			},error:function(){
+				alert('글타래 공유 수락 요청 중 오류가 발생하였습니다. ERROR_CODE : 4422');
 			}
 		});
 	});

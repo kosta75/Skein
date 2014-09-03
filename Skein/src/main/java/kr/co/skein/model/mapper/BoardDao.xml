@@ -103,7 +103,15 @@ SELECT bg.GroupSeq, bg.GroupName, bg.IsImportantGroup, bg.GroupStartDate, bg.Gro
             b.GroupCount, b.BoardSeq, b.Email, b.BOARDKINDSEQ, b.CONTENT, b.WRITEDATE, b.PUBLICLEVELCODE, b.ISACTIVATED,
             h.STARTDATE, h.ENDDATE, h.FEELINGS, h.WEATHER, h.ISIMPORTANT, h.ISSHARE, h.KEYWORD, h.PLACE,
             me.FILENAME, me.FILESIZE, me.EXTENSION,
-            m.FULLNAME, m.BIRTHDAY, m.PERSONALURI
+            m.FULLNAME, m.BIRTHDAY, m.PERSONALURI,
+            CASE
+            	WHEN b.boardSeq IN (SELECT boardSeq FROM ShareBoard) THEN (SELECT m2.fullName FROM ShareBoard ssb JOIN Board b2 ON ssb.sourceBoardSeq = b2.boardSeq JOIN Members m2 ON b2.email = m2.email  WHERE ssb.boardSeq = b.boardSeq)
+              ELSE null
+            END AS resourceOwnerFullName,
+            CASE
+            	WHEN b.boardSeq IN (SELECT boardSeq FROM ShareBoard) THEN (SELECT m2.personalURI FROM ShareBoard ssb JOIN Board b2 ON ssb.sourceBoardSeq = b2.boardSeq JOIN Members m2 ON b2.email = m2.email  WHERE ssb.boardSeq = b.boardSeq)
+              ELSE null
+            END AS resourceOwnerPersonalURI
             FROM BOARDGROUP bg JOIN
             (
             SELECT BOARDSEQ, BoardKindSeq, Email, GroupSeq, Content, WRITEDATE, PUBLICLEVELCODE, ISACTIVATED, GroupCount FROM

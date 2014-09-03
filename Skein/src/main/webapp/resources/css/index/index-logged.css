@@ -67,6 +67,10 @@
 .group-item-user-info-wrapper a{display:block;color:#000;font-family:'맑은 고딕';font-size:16px;font-weight:bold;}
 .group-item-write-date{font-family:'맑은 고딕';font-size:12px;}
 
+
+.source-owner-info{float:left;padding-left:20px;font-size:13px;font-family:'맑은 고딕';height:28px;line-height:28px;color:#999;}
+.source-owner-info img{width:28px;height:28px;}
+
 /* 게시물의 내용 */
 .group-item-content-wrapper{clear:both;padding:0px 5px;font-size:13px;font-family:'맑은 고딕';margin-bottom:10px;overflow-y:scroll;overflow:hidden;word-wrap:break-word;}
 #modal-launcher img{max-width:598px;height:auto;text-align: center;}
@@ -358,7 +362,7 @@ outline:  1px silver dashed;
 }
 .detailContent{
 	max-height:150px;
-	height:150px;
+	
 	overflow-y:auto; 
 	
 }

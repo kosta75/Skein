@@ -52,6 +52,9 @@ public class MemberBoardCommand {
 	private int fileSize;
 	private String extension;
 	
+	private String resourceOwnerFullName;
+	private String resourceOwnerPersonalURI;
+
 	public String getEmail() {
 		return email;
 	}
@@ -76,7 +79,12 @@ public class MemberBoardCommand {
 	public void setPersonalURI(String personalURI) {
 		this.personalURI = personalURI;
 	}
-
+	public String getBoardSeq() {
+		return boardSeq;
+	}
+	public void setBoardSeq(String boardSeq) {
+		this.boardSeq = boardSeq;
+	}
 	public int getBoardKindSeq() {
 		return boardKindSeq;
 	}
@@ -113,7 +121,6 @@ public class MemberBoardCommand {
 	public void setGroupSeq(int groupSeq) {
 		this.groupSeq = groupSeq;
 	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -186,7 +193,6 @@ public class MemberBoardCommand {
 	public void setGroupEndDate(Date groupEndDate) {
 		this.groupEndDate = groupEndDate;
 	}
-
 	public String getFileName() {
 		return fileName;
 	}
@@ -205,5 +211,19 @@ public class MemberBoardCommand {
 	public void setExtension(String extension) {
 		this.extension = extension;
 	}
+	public String getResourceOwnerFullName() {
+		return resourceOwnerFullName;
+	}
+	public void setResourceOwnerFullName(String resourceOwnerFullName) {
+		this.resourceOwnerFullName = resourceOwnerFullName;
+	}
+	public String getResourceOwnerPersonalURI() {
+		return resourceOwnerPersonalURI;
+	}
+	public void setResourceOwnerPersonalURI(String resourceOwnerPersonalURI) {
+		this.resourceOwnerPersonalURI = resourceOwnerPersonalURI;
+	}
+	
+	
 
 }

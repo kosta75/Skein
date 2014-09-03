@@ -153,6 +153,20 @@
 		SET friendshipConfirm = #{friendshipConfirm}
 		WHERE notificationSeq = #{notificationSeq}
 	</update>
+	
+	<!-- 공유 알림 -->
+	<update id="updateShareNotificationParent" parameterType="kr.co.skein.model.vo.notification.ShareNotification">
+		UPDATE Notifications
+		SET isRead = #{isRead}
+		WHERE notificationSeq = #{notificationSeq}
+	</update>
+	
+	<update id="updateShareNotification" parameterType="kr.co.skein.model.vo.notification.ShareNotification">
+		UPDATE ShareNotification
+		SET ShareConfirm = #{shareConfirm}
+		WHERE notificationSeq = #{notificationSeq}
+	</update>
+	<!-- 공유 알림 끝 -->
 
 	<delete id="deleteNotification" parameterType="Integer">
 		DELETE FROM Notifications WHERE NotificationSeq = #{param1}

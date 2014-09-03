@@ -7,4 +7,12 @@
 		SELECT COUNT(*) FROM ShareBoard WHERE shareEmail = #{param1} AND boardSeq = #{param2}
 	</select>
 	
+	<insert id="shareBoardReg" parameterType="kr.co.skein.model.vo.ShareBoard">
+		<selectKey order="BEFORE" keyProperty="shareSeq" resultType="String">
+			SELECT NVL(MAX(TO_NUMBER(ShareSeq)),0)+1 FROM ShareBoard
+		</selectKey>
+		INSERT INTO ShareBoard(ShareSeq, ShareEmail, BoardSeq, SourceBoardSeq)
+		VALUES(#{shareSeq}, #{shareEmail}, #{boardSeq}, #{sourceBoardSeq})
+	</insert>
+	
 </mapper>
