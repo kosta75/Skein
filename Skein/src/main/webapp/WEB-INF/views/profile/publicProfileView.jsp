@@ -200,11 +200,11 @@ PROFILE_RESPONSE_CODE
 						<div class="group-item-reply-section">
 							<ul>
 								<c:forEach items="${groupItem.replyList}" var="replyItem">
-									<li>
+									<li>i
 										<div class="group-item-reply-container">
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
-													<a href="${pageContext.request.contextPath}/">
+													<a href="${pageContext.request.contextPath}/${replyItem.personalURI }">
 													<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" />

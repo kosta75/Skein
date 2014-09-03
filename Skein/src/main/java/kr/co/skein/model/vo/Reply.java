@@ -1,6 +1,14 @@
 package kr.co.skein.model.vo;
 
 public class Reply extends Member {
+	private String personalURI;
+
+	public String getPersonalURI() {
+		return personalURI;
+	}
+	public void setPersonalURI(String personalURI) {
+		this.personalURI = personalURI;
+	}
 	private String profileinfo;
 	public String getProfileinfo() {
 		return profileinfo;

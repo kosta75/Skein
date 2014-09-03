@@ -13,9 +13,7 @@
 				</div>
 			<c:choose>
 				<c:when test="${list.get(0).fileName !=null}">
-				
-				
-				
+
 				<div class="informbox_content">
 					<!-- 정보컨텐츠 -->
 					<div class="clearfix">
