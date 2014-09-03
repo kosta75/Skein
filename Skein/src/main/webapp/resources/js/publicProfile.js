@@ -790,7 +790,7 @@ $(document).on("click",".modal-reply-more-btn",function() {
 //메인 더보기 
 function lastPostFunc(pictureCount){ 
    var personalURI = $(".group-item-wrapper").data("personaluri");
-  
+  if(pictureCount >0){
     $.ajax({
           type:'get',
        url:"moreMemberBoard",
@@ -807,6 +807,7 @@ function lastPostFunc(pictureCount){
           alert('스크롤 에러 인덱스-로그드 :error while request..'   );
        }
     });
+  }
  }; 
  
  $(window).scroll(function(){ 
