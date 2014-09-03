@@ -77,3 +77,10 @@
 .friend-info-wrapper p a:hover{
 	color : #3b5998;'
 }
+.nofriend_content{
+	height: 50px;
+	padding-top:20px;
+	text-align: center;
+	font-size: 22px;
+	font-family: '맑은 고딕';
+}
