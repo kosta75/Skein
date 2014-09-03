@@ -85,9 +85,11 @@ function getNotificationDetailInfo(obj){
 			}
 
 			var codeClass = "";
+			var iconName = "";
 			switch(notificationCode){
 				case 1:
 					codeClass = 'sending-notice-code';
+					iconName= ""; //공지 아이콘 설정
 					break;
 				case 2:
 					//console.log(notificationObject)
@@ -95,6 +97,7 @@ function getNotificationDetailInfo(obj){
 					//console.log(profileImageFileName);
 					
 					codeClass = 'sending-friendship-code';
+					iconName = "nFriendImg";
 					if(notificationObject.friendshipConfirm > 0){
 						var infoAddText = "<div class='sending-notification-info'>";
 						infoAddText += "<strong>"+notificationSenderName + "("+ notificationSenderURI  +")</strong>님과 친구를 맺었습니다.</div>";
@@ -214,16 +217,17 @@ function getNotificationDetailInfo(obj){
 					break;
 				case 4:
 					codeClass = 'sending-share-code';
-					
+					iconName = "nshareImg";
 					
 					
 					break;
 				case 6:
 					codeClass = 'sending-reply-code';
+					iconName = "nReplyImg";
 					break;
 			}
 			
-			$(".sending-notification-code").html("<div class='"+codeClass+"'></div>");
+			$(".sending-notification-code").html("<div class='"+codeClass+"'><img class='sending-Icon' src='"+getContextPath()+"/resources/media/image/" + iconName +".png' /></div>");
 			
 		},error:function(){
 			alert('알림 상세 정보 요청 중 오류가 발생하였습니다. ERROR_CODE : 3425');

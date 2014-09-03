@@ -145,6 +145,10 @@ $(document).ready(function() {
 					profileName = $("input:hidden[value=" + profileCode + "]").attr("name");
 					$("input:hidden[name=" + profileName + "Public]").val(publicLevelCode);
 					$(".informdata."+profileName).html(profileInfo);
+					$(".inform_databox."+profileName).parent().css("background", $("#menu2").css("background-color")).css("opacity", "0.5");
+					setTimeout(function(){
+						$(".inform_databox."+profileName).parent().css("background", "").css("opacity", "");
+					}, 300);
 				},
 				error : function() {
 					alert('Error');
@@ -189,6 +193,10 @@ $(document).ready(function() {
 					/*alert("정보가 수정되었습니다!");*/
 					$("input:hidden[name=" + profileName + "Public]").val(publicCode);
 					$("div.has-sub").css("display", "none").css("z-index", "");
+					$(".inform_databox."+profileName).parent().css("background", $("#menu2").css("background-color")).css("opacity", "0.5");
+					setTimeout(function(){
+						$(".inform_databox."+profileName).parent().css("background", "").css("opacity", "");
+					}, 300);
 				},
 				error : function() {
 					alert('Error');
@@ -219,6 +227,10 @@ $(document).ready(function() {
 				$(".informdata."+profileName).html('');
 				deletebtn.parent().css("display", "none").siblings().css("display", "block");
 				deletebtn.parent().find("input[name=profileInfo]").val('');
+				$(".inform_databox."+profileName).parent().css("background", $("#menu2").css("background-color")).css("opacity", "0.5");
+				setTimeout(function(){
+					$(".inform_databox."+profileName).parent().css("background", "").css("opacity", "");
+				}, 300);
 			},
 			error : function() {
 				alert('Error');

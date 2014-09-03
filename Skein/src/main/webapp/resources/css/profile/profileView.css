@@ -76,6 +76,7 @@
 	margin-top: 8px;
 	min-height: 26px;
 	padding-left: 10px;
+	font-family: '맑은 고딕';
 }
 .informdata.profileImage{
 	height:100px;width:100px;
@@ -148,10 +149,12 @@ input[type=text]{
 .profile-image-edit-button {
 	width: 22px;
 	height: 22px;
+	cursor: pointer;
 }
 .profile-image-closeBtn{
 	width: 20px;
 	height: 20px;
+	cursor: pointer;
 }
 .profile-image-delete-button {
 	height: 16px;
@@ -171,6 +174,9 @@ input[type=text]{
 .editImg {
 	height: 19px;
 	width: 19px;
+	cursor: pointer;
+}
+.profilecloseBtn{
 	cursor: pointer;
 }
 /* 글쓰기 */
