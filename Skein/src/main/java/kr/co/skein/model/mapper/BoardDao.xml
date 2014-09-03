@@ -63,8 +63,9 @@
 	<select id="getBoardDetail" resultType="kr.co.skein.model.vo.BoardDetailView">	
 
  select mb.fullName,b.boardSeq,b.boardkindseq,b.email,b.content,b.writedate,b.publicLevelCode,b.groupSeq,b.publicLevelcode,m.filename,m.boardSeq,p.profileinfo
-	from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email LEFT OUTER JOIN (SELECT  email,profileinfo FROM profiles WHERE profilecode = 2)p ON b.email = p.email where  b.groupseq = #{groupSeq} ORDER BY b.groupSeq DESC, b.boardSeq DESC 
-	</select>
+	from board b  JOIN  media m  ON  b.boardSeq = m.boardSeq  JOIN members mb ON b.email = mb.email LEFT OUTER JOIN (SELECT  email,profileinfo FROM profiles WHERE profilecode = 2)p ON b.email = p.email WHERE  b.groupseq = #{param1} and b.publiclevelcode >= #{param2}
+  ORDER BY b.groupSeq DESC, b.boardSeq DESC
+  	</select>
 	
 	
 	

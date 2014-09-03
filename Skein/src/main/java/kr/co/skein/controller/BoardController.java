@@ -81,7 +81,7 @@ public class BoardController {
 	@RequestMapping(value ="/detailView", method = RequestMethod.POST)
 	public View detailView(int groupSeq, Model model)	throws ClassNotFoundException, SQLException {
 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq);
+		List<BoardDetailView> boardDetailView = boardDao.getBoardDetail(groupSeq,1);
 		
 		
 		for(int i=0;i<boardDetailView.size();i++){

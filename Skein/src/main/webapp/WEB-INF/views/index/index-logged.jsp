@@ -282,13 +282,14 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 										
 									</div>
 								</div>
-								<div style="clear: both;">
-									<a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
-									<c:if test="${groupItem.groupCount >= 2}">
-										<a id="share-ALL-choice-btn">All</a>
-										<a id="share-ALL-clear-btn">Clear</a>
-									</c:if>
-								</div>
+								<div class="shareBtnDiv" >
+                           <c:if test="${groupItem.groupCount >= 2}">
+                              ALL<input type="checkbox" class="share-ALL-Btn">
+                              <!-- <a id="share-ALL-choice-btn">All</a> -->
+                              <!-- <a id="share-ALL-clear-btn">Clear</a> -->
+                           </c:if>
+                           <a id="share-confirm-btn">확인</a> <a id="share-cancel-btn">취소</a>
+                        </div>
 							</div>
 
 							<div class="group-item-user-info-container">
