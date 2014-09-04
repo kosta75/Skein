@@ -56,8 +56,8 @@
 
 
 .notification-sender-profile-image{padding:0px 0px 6px 0px;border-bottom:1px solid #ccc;}
-.notification-sender-profile-image-wrapper{width:30px;height:30px;margin-right:5px;border-radius:100px;text-align:center;vertical-align:middle;float:left;}
-.notification-sender-profile-image-wrapper img{width:80%;height:auto;}
+.notification-sender-profile-image-wrapper{width:30px;height:30px;margin-right:5px;border-radius:100px;text-align:center;vertical-align:middle;float:left;overflow:hidden;}
+.notification-sender-profile-image-wrapper img{width:100%;height:auto;}
 .notification-sender-profile-image span{font-size:13px;font-weight:bold;font-family:'맑은 고딕';line-height:30px;}
 
 .thumb-content{text-overflow:ellipsis;max-height:100px;overflow:hidden;}

@@ -1,12 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- <meta http-equiv="refresh" content="3; url=http://192.168.7.127:8080/skein"> -->
-</head>
-<body>
 <div class="login-error-message">
 		<div class="full_wrap">
 			<div class="help_subject_container">
@@ -18,11 +10,14 @@
 				</div>
 				<div id="buttons">
 					<strong class="reg_link">3초 후 메인페이지로 이동합니다.</strong>
+					<script>
+						$(document).ready(function(){
+							getContextPath();
+							setTimeout(function(){location.href=getContextPath()}, 3000)
+						});
+					</script>
 				</div>
 			</div>
 		</div>
 
 </div>
-
-</body>
-</html>

@@ -141,9 +141,9 @@ $(document).ready(function(){
 																 * alert(data.replylist[j].replyContent);
 																 */
 																var	replyContent	= "<div style='clear:both;'>" +
-																		"<div style='width:50px;float:left'>" +
-																		"<img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"'>"
-																		+data.replylist[j].fullName+"</div>"
+																		"<div class='modal-reply-profile-image-wrapper'>" +
+																		"<img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"' />"
+																		+"</div><div class='reply-linker'>"+data.replylist[j].fullName+"</div>"
 														replyContent += "<div class='replymodalList modal-bubble'>"
 														replyContent += data.replylist[j].replyContent
 														  if (email == data.replylist[j].email) {
@@ -173,7 +173,7 @@ $(document).ready(function(){
 																		success : function(
 																				data) {
 
-																			if (data.count > 1) {
+																			if (data.count > 0) {
 																				$(".replyList").append("<div class='modal-reply-more-btn'>더보기("
 																										+ data.count
 																										+ ")</div>");
@@ -366,8 +366,9 @@ $(document).ready(function(){
 															data) {
 
 														for (var j = 0; j < data.replylist.length; j++) {
-													var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"'>"
-																+data.replylist[j].fullName+"</div>"
+													var	replyContent	= "<div style='clear:both;'><div class='modal-reply-profile-image-wrapper' style='width:50px;float:left'><img class='modal-reply-profile-img' src='./resources/user-profile-image/"+data.replylist[j].profileinfo+"' />"
+																+"</div><div class='reply-linker'>"+data.replylist[j].fullName+"</div>";
+																
 													replyContent += "<div class='replymodalList modal-bubble'>"
 														replyContent += data.replylist[j].replyContent
 														  if (email == data.replylist[j].email) {
@@ -450,9 +451,9 @@ $(document).ready(function(){
 													+ replyContent,
 											success : function(
 													data) {
-												$(".replyList").prepend("<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='"+$(".replyImg").attr("src")+ "'>"
-																		+ fullname
-																		+ "</div><div class='replymodalList modal-bubble'>"
+												$(".replyList").prepend("<div style='clear:both;'><div class='modal-reply-profile-image-wrapper' style='width:50px;float:left'><img class='modal-reply-profile-img' src='"+$(".replyImg").attr("src")+ "'>"
+														
+																		+ "</div><div class='reply-linker'>"+ fullname +"</div><div class='replymodalList modal-bubble'>"
 																		+ replyContent
 																		+ "</div>");
 
@@ -724,8 +725,10 @@ $(document).on("click",".modal-reply-more-btn",function() {
 									if (data.replylist.length > 0) {
 										for (var i = 0; i < data.replylist.length; i++) {
 											
-											var	replyContent	= "<div style='clear:both;'><div style='width:50px;float:left'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[i].profileinfo+"'>"
-											+data.replylist[i].fullName+"</div>"
+											var	replyContent	= "<div style='clear:both;'><div class='modal-reply-profile-image-wrapper'><img class='modal-reply-profile-img'src='./resources/user-profile-image/"+data.replylist[i].profileinfo+"'>"
+														+"</div><div class='reply-linker'>"+data.replylist[i].fullName+"</div>";
+																
+											
 								replyContent += "<div class='replymodalList modal-bubble'>"
 									replyContent += data.replylist[i].replyContent
 									  if (email == data.replylist[i].email) {
@@ -765,7 +768,7 @@ $(document).on("click",".modal-reply-more-btn",function() {
 															+ boardSeq,
 													success : function(data) {
 
-														if (data.count > 1) {
+														if (data.count > 0) {
 															reply
 																	.append("<div style='margin-top:10px;width:100%;clear:both;' class='modal-reply-more-btn'>더보기("
 																			+ data.count

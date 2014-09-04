@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.Member;
@@ -50,7 +52,7 @@ public class JoinusController {
 	//사용자 등록 처리
 	@RequestMapping(value="/registerMember", method=RequestMethod.POST)
 	@Transactional
-	public View registerMember(Member member, Model model) throws Exception{
+	public View registerMember(Member member, Model model, HttpServletRequest request) throws Exception{
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		System.out.println("INFO : Skein-P001 - 회원등록처리 시작");
 		//1. form 유효성 검사
@@ -118,13 +120,16 @@ public class JoinusController {
 				
 				profileDao.insertProfile(profileCommand);
 				
+				
+				String contextPath = "http://" + request.getLocalAddr() + ":" + request.getLocalPort() + request.getContextPath();
+				
 				String from = "univcss@gmail.com";
 				String to = member.getEmail();
 				String subject = "Sil - 신규 계정 인증 메일!";
 				String formUrl = "emailJoinus.html";
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("certificationText", member.getCertificationText());
-				map.put("certificationURL", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+				map.put("certificationURL", contextPath + "/"+personalURI + "/account/certification/check/" + member.getCertificationText());
 				
 				emailSender.SendEmail(from, to, subject, map, formUrl);
 				model.addAttribute("JOIN_MESSAGE", 0);
@@ -156,6 +161,7 @@ public class JoinusController {
 				if(result > 0){
 					System.out.println("INFO : Skein-U005 - 계정 재등록에 성공하였습니다.");
 					
+					String contextPath = "http://" + request.getLocalAddr() + ":" + request.getLocalPort() + request.getContextPath();
 					
 					String from = "univcss@gmail.com";
 					String to = member.getEmail();
@@ -163,7 +169,7 @@ public class JoinusController {
 					String formUrl = "emailReapp.html";
 					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("certificationText", member.getCertificationText());
-					map.put("certificationURL", "http://192.168.7.127:8080/skein/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
+					map.put("certificationURL", contextPath + "/"+member.getPersonalURI() + "/account/certification/check/" + member.getCertificationText());
 					
 					emailSender.SendEmail(from, to, subject, map, formUrl);
 					model.addAttribute("JOIN_MESSAGE", 0);

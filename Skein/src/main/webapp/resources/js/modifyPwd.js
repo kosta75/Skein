@@ -47,4 +47,9 @@ $(document).ready(function() {
 		});
 
 	});
+	
+	
+	$("#resetBtnPwd").click(function() {
+		history.back();
+	});
 });

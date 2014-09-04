@@ -46,7 +46,7 @@ body{background-color:#e9eaed;margin:0px;padding:0px;overflow-y:scroll;}
 
 /* 가운데 전체 컨테이너 */
 /* main-section 공통 스타일 */
-.main-section-container{min-height:550px;}
+.main-section-container{}
 .main-section-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;margin-bottom:100px;}
 .content-container{position:relative;}
 

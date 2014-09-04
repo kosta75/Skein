@@ -484,7 +484,7 @@ $(document).ready(function(){
 																		success : function(
 																				data) {
 
-																			if (data.count > 1) {
+																			if (data.count > 0) {
 																				$(".replyList").append("<div class='modal-reply-more-btn'>더보기("
 																										+ data.count
 																										+ ")</div>");
@@ -880,7 +880,7 @@ $(document).on("mouseout",".edit-emoticon",function(){
 																	success : function(
 																			data) {
 
-																		if (data.count > 1) {
+																		if (data.count > 0) {
 																			$(".replyList").append("<div style='margin-top:10px;width:100%;clear:both;background: #e4e4e4;color: darkgrey;text-align: center;padding: 8px 0;' class='modal-reply-more-btn'>더보기("
 																									+ data.count
 																									+ ")</div>");

@@ -247,6 +247,7 @@ public class ShareController {
 		BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
 		FriendshipDao friendshipDao = sqlSession.getMapper(FriendshipDao.class);
 
+		
 		System.out.println("이메일"+baseMemberInfo.getEmail());
 		List<FriendshipListCommand> list = friendshipDao.getAllFriendList(baseMemberInfo.getEmail());
 		System.out.println();

@@ -189,7 +189,7 @@ birthdayPublic
 						<b>계정 설정</b>
 						<div class="inform_status">
 							<div>
-								<a href="${pageContext.request.contextPath}/account/modifypwd"> 비빌번호변경 </a><br>
+								<a href="${pageContext.request.contextPath}/account/modifypwd">비밀번호변경 </a><br>
 							</div>
 							<div>
 								<a href="${pageContext.request.contextPath}/account/modifydomrant"> 휴면계정신청 </a> || 

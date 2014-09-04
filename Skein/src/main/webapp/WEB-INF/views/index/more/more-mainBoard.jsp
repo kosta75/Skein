@@ -157,7 +157,8 @@
 						<div class="group-item-reply-container">
 							<div class="group-item-reply-info-container">
 								<div class="group-item-reply-profile-image">
-									<a href="${pageContext.request.contextPath}/"><c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
+									<a href="${pageContext.request.contextPath}/${replyItem.personalURI}">
+									<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
 									<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
 										alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 									</c:if>
@@ -166,9 +167,9 @@
 										alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 									</c:if>
 									</a>
-									<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
+									
 								</div>
-								
+								<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 							</div>
 							
 							<div class="group-item-reply-content-container bubble" style="clear: both;">

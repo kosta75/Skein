@@ -102,11 +102,11 @@
 
 
 /* 모달 */
-.modal-user-profile-image{width:45px;height:45px;text-align:center;vertical-align:middle;float:left;}
-.modal-user-profile-image img{width:80%;height:auto;}
+.modal-user-profile-image{width:45px;height:45px;text-align:center;vertical-align:middle;float:left;overflow:hidden;}
+.modal-user-profile-image img{width:100%;height:auto;}
 
 
-
+.detailImg img{max-width:566px;width:100%;}
 
 
 .write-menu-bar{width:100%;background:#dcdcdc;height:40px;}

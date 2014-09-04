@@ -376,6 +376,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 												<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 											</div>
 											
+											
 											<div class="group-item-reply-content-container bubble" style="clear: both;">
 												
 												${replyItem.replyContent}  

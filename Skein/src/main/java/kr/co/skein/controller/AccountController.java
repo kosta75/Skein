@@ -79,17 +79,11 @@ public class AccountController {
 			formUrl = "emailDomrant.html";
 		}
 		
-		System.out.println(request.getContextPath());
-		System.out.println(request.getLocalPort());
-		System.out.println(request.getLocalAddr());
-		System.out.println(request.getPathInfo());
-		
-		
-		
+		String contextPath = "http://" + request.getLocalAddr() + ":" + request.getLocalPort() + request.getContextPath();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("certificationText", member.getCertificationText());
-		map.put("certificationURL", request.getContextPath()+personalURI + "/account/certification/check/" + member.getCertificationText());
+		map.put("certificationURL", contextPath+ "/" +personalURI + "/account/certification/check/" + member.getCertificationText());
 		
 		emailSender.SendEmail(from, to, subject, map, formUrl);
 		

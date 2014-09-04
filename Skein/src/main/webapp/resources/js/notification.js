@@ -258,7 +258,7 @@ function getNotificationDetailInfo(obj){
 							infoAddText += "</div>";
 							
 							infoAddText += "<div class='content-thumb'>";
-							infoAddText += "<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span></div>";
+							infoAddText += "<div class='notification-sender-profile-image'><div class='notification-sender-profile-image-wrapper'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/></div><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span></div>";
 							
 							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
 								infoAddText += "<div class='thumb-image-wrapper'><img src='"+getContextPath()+"/resources/upload/"+boardCommand.fileName+"' /></div>";
@@ -280,7 +280,7 @@ function getNotificationDetailInfo(obj){
 							"</div>" +
 							"<div class='content-thumb'>"+
 							
-							"<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span>"
+							"<div class='notification-sender-profile-image'><div class='notification-sender-profile-image-wrapper'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/></div><span>"+boardCommand.fullName+ "("+boardCommand.personalURI+")"+"</span>"
 							
 							+"</div>";
 							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){
@@ -302,7 +302,7 @@ function getNotificationDetailInfo(obj){
 							"</div>" +
 							"<div class='content-thumb'>"+
 							
-							"<div class='notification-sender-profile-image'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/><span>"+notificationSenderName+ "("+notificationSenderURI+")"+"</span>"
+							"<div class='notification-sender-profile-image'><div class='notification-sender-profile-image-wrapper'><img src='"+getContextPath()+"/resources/user-profile-image/"+profileImg+"'/></div><span>"+notificationSenderName+ "("+notificationSenderURI+")"+"</span>"
 							
 							+"</div>";
 							if(boardCommand.fileName != null && boardCommand.fileName.trim() != ''){

@@ -22,6 +22,10 @@ $(document).ready(function() {
 		modifyAccount("modifylockout", data);
 	});
 	
+	$("#resetAccountBtn").click(function(){
+		history.back();
+	});
+	
 });
 
 function modifyAccount(url, data){
