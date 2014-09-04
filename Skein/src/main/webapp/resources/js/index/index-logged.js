@@ -395,18 +395,18 @@ $(document).ready(function(){
 											} else {
 												publicLevel = "나만보기";
 											}
+											var date = data.detailView[0].writeDate;
+											var writeday = new Date(date);
+											var writedate = writeday.getFullYear()+"년"+(writeday.getMonth()+1)+"월"+writeday.getDay()+"일";
 											$(".modal-content-view").css("display","block");
 											$(".modalcontent").append("<div style='width:100%;height:50px;' class='modalViewinfo'>"
-																	+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
-																	+ publicLevel
-																	+ "</div>"
 																	+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"
 																	+ data.detailView[0].profileinfo
 																	+ "' /></div>"
 																	+ data.detailView[0].fullname
 																	+ "<br>"
-																	+ data.detailView[0].writeDate
-																	+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
+																	+ "<div style='float:left'>"+writedate+"</div><div style='font-family: 맑은 고딕;font-size: 12px;float: left'>("+publicLevel+")</div>"
+																	+ "</div><div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
 																	+ data.detailView[0].content
 																	+ "</div></div>");
 
@@ -808,7 +808,9 @@ $(document).on("mouseout",".edit-emoticon",function(){
 										} else {
 											publicLevel = "나만보기";
 										}
-
+										var date = data.detailView.writeDate;
+										var writeday = new Date(date);
+										var writedate = writeday.getFullYear()+"년"+(writeday.getMonth()+1)+"월"+writeday.getDay()+"일";
 										$(".modalcontent").empty();
 										$(".modal-content-view").css("display","block");
 										$(".modalcontent").append("<div style='float: right'>"
@@ -820,14 +822,11 @@ $(document).on("mouseout",".edit-emoticon",function(){
 																+ "' src='./resources/media/image/deleteImg.jpg' style='float: right;'>"
 																+ "</div>"
 																+ "<div style='width:100%;height:50px;' class='modalViewinfo'>"
-																+ "<div style='float:right;margin-right:25px;margin-top:5px;'>"
-																+ publicLevel
-																+ "</div>"
 																+ "<div class='modal-user-profile-image' style='float: left;'><img src='./resources/user-profile-image/"+ data.detailView.profileinfo
 																+ "' /></div>"
 																+ data.detailView.fullname
 																+ "<br>"
-																+ data.detailView.writeDate
+																+ "<div style='float:left'>"+writedate+"</div><div style='font-family: 맑은 고딕;font-size: 12px;float: left'>("+publicLevel+")</div>"
 																+ "</div>    <div style='clear:both;width:380px; margin-top:15px;margin-bottom:15px;'  class='modalViewcontent'><div class='detailContent'>"
 																+ data.detailView.content
 																+ "</div></div>");
@@ -1109,10 +1108,9 @@ $(document).on("mouseout",".edit-emoticon",function(){
 												replyContent += "<span>"
 														+ data.replylist[i].fullName
 														+ "</span></a>"
-												replyContent += "</div>"
-												replyContent += "<div>"
+												replyContent +="</div><div class='reply-linker'><a href='/skein/"+data.replylist[i].personalURI+"'>"
 														+ data.replylist[i].fullName
-														+ "</div>"
+														+ "</a></div>"
 												replyContent += "</div>"
 												replyContent += "<div class='group-item-reply-content-container bubble'>"
 												replyContent += data.replylist[i].replyContent
