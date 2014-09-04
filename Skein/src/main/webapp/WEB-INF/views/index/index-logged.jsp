@@ -88,13 +88,13 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 						</div>
 
 						<div id="reply" style="clear: both; background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
-							<div style="float: left; padding: 5px; padding-left: 10px;">
+							<div class="modal-reply-icon">
 									<c:choose>
 					<c:when test="${sessionScope.BASE_MEMBER_INFO.profileImageFileName == null}">
-						<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" style="border-radius:100px;width: 40px; height: 40px;"/>
+						<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"/>
 					</c:when>
 					<c:otherwise>
-						<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}" style="border-radius:100px;width: 40px; height: 40px;"/>
+						<img src="${pageContext.request.contextPath}/resources/user-profile-image/${sessionScope.BASE_MEMBER_INFO.profileImageFileName}"/>
 					</c:otherwise>
 				</c:choose>
 							</div>
@@ -362,16 +362,18 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 										<div class="group-item-reply-container">
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
-													<a href ="${pageContext.request.contextPath}/${replyItem.personalURI }"><c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
-													<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png"
-														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
+													<a href ="${pageContext.request.contextPath}/${replyItem.personalURI}">
+													<c:if test="${replyItem.profileinfo == null || replyItem.profileinfo == ''}">
+														<img src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png" alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 													</c:if>
 													<c:if test="${replyItem.profileinfo != null && replyItem.profileinfo != ''}">
-													<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
-														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
-													</c:if><span>${replyItem.fullName}</span></a>
+														<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}" alt="${replyItem.fullName}" title="${replyItem.fullName}" />
+													</c:if>
+													</a>
+													
+													
 												</div>
-												<div>${replyItem.fullName}</div>
+												<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 											</div>
 											
 											<div class="group-item-reply-content-container bubble" style="clear: both;">

@@ -9,6 +9,7 @@
 				<div class="search-detail-info" >
 					
 						<div>
+							<div class="s-d-i-image-wrapper">
 							<c:choose>
 								<c:when test="${friendshipList.profileInfo == null}">
 									<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/user-profile-image/default-profile-image.png">
@@ -16,7 +17,8 @@
 								<c:otherwise>
 									<img class="s-d-i-image" src="${pageContext.request.contextPath}/resources/user-profile-image/${friendshipList.profileInfo}">
 								</c:otherwise>
-							</c:choose> 
+							</c:choose>
+							</div> 
 							<p>
 							
 								<a href="${pageContext.request.contextPath}/${friendshipList.personalURI}">${friendshipList.fullName}</a><br />(${friendshipList.personalURI})

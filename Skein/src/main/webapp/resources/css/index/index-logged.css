@@ -60,8 +60,8 @@
 /* 게시물 각각의 사용자 정보 */
 .group-item-user-info-container{position:relative;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #ddd;}
 .group-item-user-info-container:after{content:".";visibility:hidden;display:block;height:0;clear:both;}
-.group-item-user-profile-image-wrapper{float:left;overflow:hidden;height:50px;}
-.group-item-user-profile-image-wrapper img{border-radius:100px;background:#fff;width:50px;height:50px;}
+.group-item-user-profile-image-wrapper{float:left;overflow:hidden;width:50px;height:50px;border-radius:100px;background:#fff;text-align:center;vertical-align:middle;}
+.group-item-user-profile-image-wrapper img{width:80%;height:auto;}
 .group-item-user-info-wrapper{float:left;padding-left:10px;padding-top:6px;}
 
 .group-item-user-info-wrapper a{display:block;color:#000;font-family:'맑은 고딕';font-size:16px;font-weight:bold;}
@@ -89,16 +89,21 @@
 .group-item-reply-secition ul li:first-child{margin-top:0px;}
 .group-item-reply-container{padding:7px 7px 7px 55px;background:#eee;position:relative;min-height:33px;margin-top:1px;}
 .group-item-reply-info-container{position:absolute;left:4px;top:4px;}
+
+.group-item-reply-profile-image{max-width:37px;overflow:hidden;height:37px;border-radius:100px;background:#fff;text-align:center;vertical-align:middle;}
 .group-item-reply-profile-image span{text-indent:-10000px;font-size:0px;}
-.group-item-reply-profile-image img{width:37px;height:37px;border-radius:100px;border:1px solid #777;background:#fff}
+.group-item-reply-profile-image img{width:80%;height:auto;border-radius:100px;}
+
 
 .group-item-reply-content-container{font-size:12px;font-family:'맑은 고딕';}
+.reply-linker{font-size:12px;font-family:'맑은 고딕';text-overflow:ellipsis;overflow:hidden;}
 
 
 
 
 /* 모달 */
-.modal-user-profile-image img{width:45px;height:45px;}
+.modal-user-profile-image{width:45px;height:45px;text-align:center;vertical-align:middle;float:left;}
+.modal-user-profile-image img{width:80%;height:auto;}
 
 
 
@@ -461,6 +466,10 @@ margin-bottom: 3px;
 .reply-modal-edit-container{
 	display:none;
 }
+
+.modal-reply-icon{width:40px;height:40px;text-align:center;vertical-align:middle;padding:5px;float:left;}
+.modal-reply-icon img{width:80%;height:auto;}
+.replyWriteForm{margin-left:5px;}
 
 .modal-reply-more-btn{
 margin-top: 10px;

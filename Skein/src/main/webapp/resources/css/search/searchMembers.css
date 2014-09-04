@@ -19,12 +19,9 @@
 	padding: 5px;
 }
 
-.s-d-i-image {
-	border-radius: 0;
-	height: 50px;
-	width: 50px;
-	float: left;
-}
+.s-d-i-image-wrapper{height:50px;width:50px;text-align:center;vertical-align:middle;float:left;}
+.s-d-i-image-wrapper img{width:80%;height:auto;}
+
 .search-detail-info span{
 	float: right;
 	margin: 10px 2px 0 0;

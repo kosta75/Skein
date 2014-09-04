@@ -9,8 +9,9 @@
 .friendship-content-wrapper{width:760px;margin-left:200px;position:relative;}
 .friend-item-container:FIRST-CHILD {border : 0;}
 .friend-item-container{position:relative;background:#fff;height:120px;border-top:1px solid #C5C8CF;padding:10px;margin-bottom:5px;}
-.friend-image-wrapper{position:absolute;}
-.friend-image-wrapper img{width:120px;height:120px;}
+
+.friend-image-wrapper{position:absolute;width:120px;height:120px;background:#fff;text-align:center;vertical-align:middle;}
+.friend-image-wrapper img{width:80%;height:auto;}
 
 .friend-item-info-container{margin-left:130px;}
 .friend-info-wrapper{font-family:'맑은 고딕';font-size:14px;}

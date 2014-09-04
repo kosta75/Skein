@@ -164,9 +164,11 @@
 									<c:if test="${replyItem.profileinfo != null && replyItem.profileinfo != ''}">
 									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
 										alt="${replyItem.fullName}" title="${replyItem.fullName}" />
-									</c:if><span>${replyItem.fullName}</span></a>
+									</c:if>
+									</a>
+									<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 								</div>
-								<div>${replyItem.fullName}</div>
+								
 							</div>
 							
 							<div class="group-item-reply-content-container bubble" style="clear: both;">
