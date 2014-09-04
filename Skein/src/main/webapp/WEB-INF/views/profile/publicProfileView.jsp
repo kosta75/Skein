@@ -55,6 +55,7 @@ PROFILE_RESPONSE_CODE
 							<div class="replyList" style="width: 95%; margin: auto; border: 1px solid #fff;"></div>
 						</div>
 
+						<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 						<div id="reply" style="clear: both; background: #e4e4e4; width: 99%; height: 50px; border: 1px solid; border-color: #e4e4e4;">
 							<div style="float: left; padding: 5px; padding-left: 10px;">
 									<c:choose>
@@ -70,6 +71,7 @@ PROFILE_RESPONSE_CODE
 								<input class="modalreplyWrite" type="text" 	style="width: 310px; height: 20px;">
 							</div>
 						</div>
+						</se:authorize>
 					</div>
 				</div>
 			</div>
@@ -189,18 +191,20 @@ PROFILE_RESPONSE_CODE
 							</div>
 						</div>
 				
-					<div class="group-item-reply-write-form-container">
+						<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+						<div class="group-item-reply-write-form-container">
 							<div class="image-icon reply-icon">댓글</div>
 							<input type="hidden" id="boardSeq" name="boardSeq"
 								value="${groupItem.boardSeq}" /> <input type="text"
 								id="boardSeq" class="replyWrite" name="replyWrite" data-fullname="${sessionScope.BASE_MEMBER_INFO.fullName }" />
 								<input class="reply-show-hide-btn" style="width:80px;" type="button" value="숨김/보이기">
 						</div>
+						</se:authorize>
 
 						<div class="group-item-reply-section">
 							<ul>
 								<c:forEach items="${groupItem.replyList}" var="replyItem">
-									<li>i
+									<li>
 										<div class="group-item-reply-container">
 											<div class="group-item-reply-info-container">
 												<div class="group-item-reply-profile-image">
@@ -213,9 +217,9 @@ PROFILE_RESPONSE_CODE
 													<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
 														alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 													</c:if>
-													<span>${replyItem.fullName}</span></a>
+													</a>
 												</div>
-												<div>${replyItem.fullName}</div>
+												<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 											</div>
 											
 											<div class="group-item-reply-content-container bubble" style="clear: both;">

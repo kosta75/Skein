@@ -65,7 +65,7 @@ public class PhotoController {
 
 			List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI,
 					startNum, endNum);
-			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			/*List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();*/
 
 
 			int groupStatus = -1;
@@ -135,7 +135,7 @@ public class PhotoController {
 
 			List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI,
 					startNum, endNum);
-			List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();
+			/*List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();*/
 
 			for(int i =0; i< list.size(); i++){
 				System.out.println("ddd"+list.get(i).getEmail());

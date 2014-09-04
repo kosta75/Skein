@@ -40,8 +40,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_ADDPeer;
-
 @Controller
 @RequestMapping("/share/*")
 public class ShareController {
@@ -331,7 +329,7 @@ public class ShareController {
 					model.addAttribute("resultMessage", "해당 사용자에게 이미 내보내기를 해서 수락을 대기 중입니다.");
 				}
 			}else if(boardSize == 1 && friendSize > 1){
-				List<String> failedList = new ArrayList();
+				List<String> failedList = new ArrayList<String>();
 				for(int i=0;i<friendSize;i++){
 					String ownerEmail = baseMemberInfo.getEmail();
 					String email = friend.get(i).toString();
@@ -387,7 +385,7 @@ public class ShareController {
 				
 			}else if(boardSize > 1 && friendSize == 1){
 				//여러 게시물을 한 사람의 친구에게 보내주는 상황
-				List<String> failedList = new ArrayList();
+				List<String> failedList = new ArrayList<String>();
 				for(int i=0; i<boardSize; i++){
 					String ownerEmail = baseMemberInfo.getEmail();
 					String email = friend.get(0).toString();
@@ -434,8 +432,8 @@ public class ShareController {
 			}else if(boardSize > 1 && friendSize > 1){
 				//여러게시물을 여러명에게 보내주는 경우
 				
-				List<String> boardFailedList = new ArrayList();
-				List<String> memberFailedList = new ArrayList();
+				List<String> boardFailedList = new ArrayList<String>();
+				List<String> memberFailedList = new ArrayList<String>();
 				
 				for(int i=0; i<boardSize; i++){
 					for(int j=0; j<friendSize; j++){	
@@ -570,7 +568,7 @@ public class ShareController {
 				
 			}else if(boardSize > 1){
 				System.out.println("송광효"+ "if 들어옴 boardSize if 들어옴   boardsize 1  이상!!");
-				List<String> failedList = new ArrayList();
+				List<String> failedList = new ArrayList<String>();
 				for(int i=0; i<boardSize; i++){
 					String senderEmail = baseMemberInfo.getEmail();
 					String email = friendEmail;

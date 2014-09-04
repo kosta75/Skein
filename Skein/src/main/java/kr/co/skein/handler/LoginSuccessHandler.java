@@ -1,7 +1,6 @@
 package kr.co.skein.handler;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,6 @@ import kr.co.skein.model.dao.MemberDao;
 import kr.co.skein.model.dao.ProfileDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Member;
-import kr.co.skein.util.PasswordEncryptor;
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 

@@ -20,8 +20,8 @@
 
 .user-profile-info-container{float:left;width:150px;height:inherit;}
 .user-profile-info-container div{float:left;}
-.user-profile-image{margin-top:7px;margin-right:10px;width:40px;height:40px;border-radius:100px;background:#fff;margin-left:-35px;text-align:center;vertical-align:middle;}
-.user-profile-image img{width:80%;height:auto;}
+.user-profile-image{margin-top:7px;margin-right:10px;width:40px;height:40px;border-radius:100px;background:#fff;margin-left:-35px;text-align:center;vertical-align:middle;overflow:hidden;}
+.user-profile-image img{width:100%;height:auto;}
 .user-profile-uri{height:inherit;line-height:55px;}
 .user-profile-uri a{font-family:arial;font-size:15px;font-weight:bold;}
 

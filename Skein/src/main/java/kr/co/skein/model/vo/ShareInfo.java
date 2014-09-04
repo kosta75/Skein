@@ -1,7 +1,6 @@
 package kr.co.skein.model.vo;
 
 import java.util.List;
-import java.util.Map;
 
 public class ShareInfo {
 	

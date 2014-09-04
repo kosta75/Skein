@@ -1,32 +1,20 @@
 package kr.co.skein.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.MemberDao;
-import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.dao.ReplyDao;
-import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
-import kr.co.skein.model.vo.Member;
-import kr.co.skein.model.vo.MemberBoardCommand;
-import kr.co.skein.model.vo.NotificationCountCommand;
-import kr.co.skein.model.vo.Reply;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

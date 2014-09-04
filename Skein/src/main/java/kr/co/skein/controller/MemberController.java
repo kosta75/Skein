@@ -15,9 +15,6 @@ import kr.co.skein.model.dao.ReplyDao;
 import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;
-import kr.co.skein.model.vo.Member;
-import kr.co.skein.model.vo.MemberBoardCommand;
-import kr.co.skein.model.vo.MemberProfileCommand;
 import kr.co.skein.model.vo.ProfileCommand;
 
 import org.apache.ibatis.session.SqlSession;

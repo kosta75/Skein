@@ -6,7 +6,6 @@ import kr.co.skein.model.vo.BaseMemberInfo;
 import kr.co.skein.model.vo.Reply;
 import kr.co.skein.model.vo.ReplyNotificationCommand;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +25,6 @@ import javax.servlet.http.HttpSession;
 import kr.co.skein.model.dao.BoardDao;
 import kr.co.skein.model.dao.NotificationDao;
 import kr.co.skein.model.dao.ReplyDao;
-import kr.co.skein.model.vo.BoardCommand;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

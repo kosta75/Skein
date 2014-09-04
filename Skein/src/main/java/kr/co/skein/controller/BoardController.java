@@ -11,7 +11,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import kr.co.skein.model.dao.BoardDao;
-import kr.co.skein.model.vo.Board;
 import kr.co.skein.model.vo.BoardCommand;
 import kr.co.skein.model.vo.BoardDetailView;
 import kr.co.skein.model.vo.BoardGroup;

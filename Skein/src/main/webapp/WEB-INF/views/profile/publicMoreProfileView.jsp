@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <c:forEach var="groupItem" items="${boardGroupList}">
 	<div id="groupItem[${groupItem.groupSeq}]" class="group-item-container">
 		
@@ -101,7 +102,7 @@
 				<div>${groupItem.content}</div>
 			</div>
 		</div>
-
+<se:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
 	<div class="group-item-reply-write-form-container">
 			<div class="image-icon reply-icon">댓글</div>
 			<input type="hidden" id="boardSeq" name="boardSeq"
@@ -109,6 +110,7 @@
 				id="boardSeq" class="replyWrite" name="replyWrite" data-fullname="${sessionScope.BASE_MEMBER_INFO.fullName }" />
 				<input class="reply-show-hide-btn" style="width:80px;" type="button" value="숨김/보이기">
 		</div>
+		</se:authorize>
 
 		<div class="group-item-reply-section">
 			<ul>
@@ -126,9 +128,9 @@
 									<img src="${pageContext.request.contextPath}/resources/user-profile-image/${replyItem.profileinfo}"
 										alt="${replyItem.fullName}" title="${replyItem.fullName}" />
 									</c:if>
-									<span>${replyItem.fullName}</span></a>
+									</a>
 								</div>
-								<div>${replyItem.fullName}</div>
+								<div class="reply-linker"><a href="${pageContext.request.contextPath}/${replyItem.personalURI}">${replyItem.fullName}</a></div>
 							</div>
 							
 							<div class="group-item-reply-content-container bubble" style="clear: both;">
