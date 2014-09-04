@@ -43,7 +43,7 @@ public class AccountController {
 	
 	//사용자 계정인증 메일 보내기
 	@RequestMapping("/{personalURI}/account/certification/mailsend")
-	public String sendCertificationText(@PathVariable String personalURI, @RequestParam("type") String type) throws ClassNotFoundException, SQLException, FileNotFoundException, URISyntaxException{
+	public String sendCertificationText(@PathVariable String personalURI, @RequestParam("type") String type, HttpServletRequest request) throws ClassNotFoundException, SQLException, FileNotFoundException, URISyntaxException{
 		System.out.println("INFO: Skein-U142 - 계정 인증 메일을 보냅니다. personalURI=" + personalURI);
 		
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
@@ -79,10 +79,17 @@ public class AccountController {
 			formUrl = "emailDomrant.html";
 		}
 		
+		System.out.println(request.getContextPath());
+		System.out.println(request.getLocalPort());
+		System.out.println(request.getLocalAddr());
+		System.out.println(request.getPathInfo());
+		
+		
+		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("certificationText", member.getCertificationText());
-		map.put("certificationURL", "http://192.168.7.127:8080/skein/"+personalURI + "/account/certification/check/" + member.getCertificationText());
+		map.put("certificationURL", request.getContextPath()+personalURI + "/account/certification/check/" + member.getCertificationText());
 		
 		emailSender.SendEmail(from, to, subject, map, formUrl);
 		
