@@ -75,11 +75,11 @@ $(document).ready(function(){
 					'<form action="'+getContextPath()+'/security/login"	method="post">'+
 						'<fieldset>'+
 							'<legend><label for="email">이메일</label></legend>'+
-							'<input type="text" id="email" name="email" />'+
+							'<input type="text" id="email" name="email" required />'+
 						'</fieldset>'+
 						'<fieldset>'+
 							'<legend><label for="password">비밀번호</label></legend>'+
-							'<input type="password" id="password" name="password" />'+
+							'<input type="password" id="password" name="password" required />'+
 						'</fieldset>'+
 						'<fieldset>'+
 							'<input id="loginBtn" type="submit" value="Login" />'+
