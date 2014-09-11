@@ -316,7 +316,7 @@ data-config="{'skin':'skins/simpleOrange/skin.css','volume':50,'autoplay':true,'
 								</div>
 								<div class="group-item-user-info-wrapper">
 									<a href="${pageContext.request.contextPath}/${sessionScope.BASE_MEMBER_INFO.personalURI}">${sessionScope.BASE_MEMBER_INFO.fullName}</a>
-									<fmt:formatDate value="${groupItem.writeDate}" pattern="YYYY.MM.dd" var="writeDate" />
+									<fmt:formatDate value="${groupItem.startDate}" pattern="YYYY.MM.dd" var="writeDate" />
 									<span class="group-item-write-date">${writeDate}</span>
 								</div>
 								
