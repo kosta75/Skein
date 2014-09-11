@@ -28,10 +28,10 @@ LOGIN_ERROR_CODE
 					
 						비밀번호가 5회 이상 틀렸습니다.
 					
-	        			<!-- <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Ld6e_kSAAAAAIARTVF28eYpN9t-DyOripjcvCzC"></script> -->
+	        			<script src="http://www.google.com/recaptcha/api/challenge?k=6LdafvkSAAAAAODGvRHZWWny8GoCMDJ7BaQZmIc3"></script>
 						
 					</div>
-					<!-- <script>
+					<script>
 					$("#loginForm").submit(function(){
 						var parent_element = '';
 	
@@ -67,7 +67,7 @@ LOGIN_ERROR_CODE
 						document.body.removeChild(new_form);
 						return false;
 					});
-					</script> -->
+					</script>
 					</c:if>
 					<div class="fail_login">
 						<div class="help_fail">잘못된 비밀번호</div>

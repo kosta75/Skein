@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+body{background:#fff !important;}
+.error-info-container{margin:0px auto;text-align:center;padding-top:50px;}
+.error-info-container table {
+	border: 0;
+	border-collapse: collapse;
+	padding-top: 20px;
+	margin:0px auto;
+}
+tr {
+	border: 0;
+}
+.btnDiv{
+	margin-top:20px;
+	text-align: center;
+	font-size: 14px;
+}
+.btn{
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	width: 90px;
+	border: 1px solid #ddd;
+	background: #fff;
+	padding: 10px 10px;
+	margin: 0 5px;
+}
+.btn a{color:#696767;}
+.error-image{
+	width: 150px; 
+	padding-top: 30px;
+}

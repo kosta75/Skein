@@ -17,7 +17,9 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<task:annotation-driven executor="executor" scheduler="scheduler" />
+	
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler />
 	

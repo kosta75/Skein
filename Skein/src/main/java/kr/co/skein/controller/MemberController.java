@@ -145,11 +145,11 @@ public class MemberController {
 				}
 			}else{
 				System.out.println("INFO : Skein-U516 - 요청된 URI의 사용자가 존재하지 않습니다.");
-				return "error.notFound";
+				return "error.error";
 			}							
 		}else{
 			System.out.println("INFO : Skein-M014 - 잘못된 URI 요청");
-			return "error.incorrectRequest";
+			return "error.error";
 		}
 	}
 	
@@ -263,11 +263,11 @@ public class MemberController {
 				}
 			}else{
 				System.out.println("INFO : Skein-U516 - 요청된 URI의 사용자가 존재하지 않습니다.");
-				return "error.notFound";
+				return "error.error";
 			}							
 		}else{
 			System.out.println("INFO : Skein-M014 - 잘못된 URI 요청");
-			return "error.incorrectRequest";
+			return "error.error";
 		}
 	}
 	

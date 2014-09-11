@@ -35,33 +35,33 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		ProfileDao profileDao = sqlSession.getMapper(ProfileDao.class);
-
-    	System.out.println("INFO : Skein-U202 - 로그인에 성공하였습니다.");
-    	request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-
-    	logger.info("Login, user="+auth.getName()+",Authorities="+auth.getAuthorities().toString());
-
-    	//권한이 부족할시 이동할 URL
-    	//String url = request.getContextPath() + "/login?error=denied";
-    	
-    	try {
-    		
-    		if(memberDao.hasMemberByEmail(request.getParameter("email")) > 0){
-    			System.out.println("INFO : Skein-P103 - 로그인 후 첫 진입시 사용자 세션을 생성합니다.");
-    			
-    			HttpSession session = request.getSession();
-    			BaseMemberInfo baseMemberInfo = new BaseMemberInfo();
-    			
-    			Map<String, String> param = new HashMap<String, String>();
-    			param.put("searchKey", "email");
-    			param.put("searchValue", auth.getName());
-    			
-    			List<Member> list = memberDao.getMembers(param);
-    			Member member = list.get(0);
-    			
-    			if (request.getParameter("recaptcha_challenge_field") != null && request.getParameter("recaptcha_response_field") != null) {
+	
+		System.out.println("INFO : Skein-U202 - 로그인에 성공하였습니다.");
+		request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+	
+		logger.info("Login, user="+auth.getName()+",Authorities="+auth.getAuthorities().toString());
+	
+		//권한이 부족할시 이동할 URL
+		//String url = request.getContextPath() + "/login?error=denied";
+		
+		try {
+			
+			if(memberDao.hasMemberByEmail(request.getParameter("email")) > 0){
+				System.out.println("INFO : Skein-P103 - 로그인 후 첫 진입시 사용자 세션을 생성합니다.");
+				
+				HttpSession session = request.getSession();
+				BaseMemberInfo baseMemberInfo = new BaseMemberInfo();
+				
+				Map<String, String> param = new HashMap<String, String>();
+				param.put("searchKey", "email");
+				param.put("searchValue", auth.getName());
+				
+				List<Member> list = memberDao.getMembers(param);
+				Member member = list.get(0);
+				
+				if (request.getParameter("recaptcha_challenge_field") != null && request.getParameter("recaptcha_response_field") != null) {
 					System.out.println("INFO : Skein - 비밀번호 5회이상 틀린 계정이므로 보안문자 확인");
-    				String remoteAddr = request.getRemoteAddr();
+					String remoteAddr = request.getRemoteAddr();
 			        ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
 			        
 			        reCaptcha.setPrivateKey("6Ld6e_kSAAAAAIrC-VARWLSIDdnupUl6vxDiob8M");
@@ -119,9 +119,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 					
 					response.sendRedirect(request.getContextPath());
 		        }
-    		}
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

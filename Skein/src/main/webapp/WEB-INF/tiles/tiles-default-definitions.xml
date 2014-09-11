@@ -23,6 +23,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/profile/{1}.jsp" />
 	</definition>
 	
+	<definition name="error.*" template="/WEB-INF/views/error/comm/layout.jsp" extends="index">
+		<put-attribute name="css" value="/resources/css/error/{1}.css" />
+		<put-attribute name="title" value="Error" />
+		<put-attribute name="content" value="/WEB-INF/views/error/{1}.jsp" />
+	</definition>
+	
 	<definition name="account.*" template="/WEB-INF/views/account/comm/layout.jsp" extends="index">
 		<put-attribute name="css" value="/resources/css/account/{1}.css" />
 		<put-attribute name="title" value="Account" />

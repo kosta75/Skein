@@ -62,12 +62,12 @@ public class PhotoController {
 								+ user);
 			}
 			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
-
+	
 			List<MemberBoardCommand> list = boardDao.getBoardsPage(personalURI,
 					startNum, endNum);
 			/*List<List<MemberBoardCommand>> allList = new ArrayList<List<MemberBoardCommand>>();*/
-
-
+	
+	
 			int groupStatus = -1;
 			boolean isGrouped = false;
 			List<MemberBoardCommand> l = null;

@@ -544,7 +544,7 @@ $(document).ready(function(){
 		
 		
 		
-		alert();
+		
 		$("#writeTextarea").append("<img class='emoticonImg' src="+$(this).attr("src")+">");	
 		$("#writeTextarea").focus();
 	
@@ -1237,7 +1237,7 @@ function lastPostFunc(pictureCount){
 		//*************************************************************************************************
 		//*************************************************************************************************
 		$(document).on('click','.detailImg',function(){
-			alert($(this).find("img").attr("src"));
+			
 			$("#modal-content-view").css("display","none");
 			$('#modal-content').append("<div id='modal-detile-view'style='width: 960px; height: 540px; display: block;z-index:1000;position:absolute;'>	<img style='z-index:10' src='"+$(this).find("img").attr("src")+"'></div>");
 		});
@@ -1256,7 +1256,7 @@ function lastPostFunc(pictureCount){
 			
 			//alert(checkedLength);
 			for(var j=0;j<checkedLength;j++){
-				alert(checked[j]);
+				/*alert(checked[j])*/
 			}
 			
 			if(checkedLength==0){
@@ -1268,8 +1268,8 @@ function lastPostFunc(pictureCount){
 					data:"checked="+ checked,
 					success : function(data) {
 						
-						
-						alert(data);
+						/*
+						alert(data);*/
 					},
 					error : function() {
 						alert('Error while request..');

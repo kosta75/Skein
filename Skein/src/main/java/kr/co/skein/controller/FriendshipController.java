@@ -55,7 +55,7 @@ public class FriendshipController {
 			List<MemberProfile> list = profileDao.getMemberProfileList(friendship.getFriendEmail(), "true");
 			friendship.setMemberProfileList(list);
 		}
-
+	
 		model.addAttribute("friendshipList", friendshipList);
 		return "friendship.friendshipView";
 	}

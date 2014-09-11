@@ -333,7 +333,7 @@ function getNotificationDetailInfo(obj){
 					infoAddText += "</div>";
 					
 					infoAddText += "<div class='reply-content-wrapper'>";
-					infoAddText += notificationObject.replyContent + " / " + notificationObject.writeDate;
+					infoAddText += notificationObject.replyContent;
 					infoAddText += "</div>";
 					
 					$('.notification-info-wrapper').append(infoAddText);

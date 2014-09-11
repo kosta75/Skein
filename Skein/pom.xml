@@ -282,11 +282,7 @@
 			<artifactId>spring-oxm</artifactId>
 			<version>3.0.5.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.2</version>
-		</dependency>
+
 
 	</dependencies>
     <build>

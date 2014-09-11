@@ -44,24 +44,24 @@ $(document).ready(function(){
 				}
 			);
 		});
-
+	
 		$('#boardListTimelineContainer').highcharts('StockChart', {
-            rangeSelector: {
-                inputEnabled: $('#container').width() > 480,
-                selected: 1
-            },
-            title: {
-                text: '전체 게시물'
-            },
-            series: [{
-                //type:'column',
-                name: '게시물 수',
-                data: source,
-                tooltip: {
-                    valueDecimals: 0
-                },
-                id : 'dataseries'
-                }, {
+	        rangeSelector: {
+	            inputEnabled: $('#container').width() > 480,
+	            selected: 1
+	        },
+	        title: {
+	            text: '전체 게시물'
+	        },
+	        series: [{
+	            //type:'column',
+	            name: '게시물 수',
+	            data: source,
+	            tooltip: {
+	                valueDecimals: 0
+	            },
+	            id : 'dataseries'
+	            }, {
 				type : 'flags',
 				data : flagSource,
 				onSeries : 'dataseries',
@@ -82,7 +82,7 @@ $(document).ready(function(){
 	                	
 	                	/*var obj = $(target_id);
 	                	var posY = 0;
-
+	
 	                	try{
 	                		posY = document.getElementById(""+target_id).offsetTop;
 	                	}catch(e){
@@ -93,8 +93,8 @@ $(document).ready(function(){
 	                	window.scrollTo(0, posY);*/
 	                }
 	            }
-            }]
-        });
+	        }]
+	    });
 	});
 	//게시물 타임라인 설정 End //////////////////////////////////////////////////////////////////////////
 	
@@ -191,7 +191,7 @@ $(document).ready(function(){
 			load : function(e, file) {
 				var fileDiv = $("#group_" + file.extra.groupID	+ "_file_" + file.extra.fileID)
 				fileDiv.addClass("done");
-
+	
 				var ms = file.extra.ended - file.extra.started;
 				fileDiv.find(".time-to-load").text(ms);
 				if (file.type.match(/image/)) {
@@ -1279,29 +1279,29 @@ $(document).on("click",".modal-reply-more-btn",function() {
 				});
 
 var stateOfSscroll = false;
-//메인 더보기 
-function lastPostFunc(pictureCount){ 
-	if(!stateOfSscroll){
+// 메인 더보기
+function lastPostFunc(pictureCount) {
+	if (!stateOfSscroll) {
 		stateOfSscroll = true;
-	    $.ajax({
-	          type:'get',
-	       url:"mainMoreBoard",
-	       data:"pictureCount="+ pictureCount,
-	       dataType : "html",
-	       success : function(data) {
-	    	
-	        if(data.trim()==""){
-	        }else{
-	           $('#boardListContainer').append(data);
-	           stateOfSscroll = false;
-	        }  
-	       },
-	       error: function(){
-	          alert('스크롤 에러 인덱스-로그드 :error while request..'   );
-	       }
-	    });
-    }
- }; 
+		$.ajax({
+				type : 'get',
+				url : "mainMoreBoard",
+				data : "pictureCount=" + pictureCount,
+				dataType : "html",
+				success : function(data) {
+
+				if (data.trim() == "") {
+				} else {
+					$('#boardListContainer').append(data);
+					stateOfSscroll = false;
+				}
+			},
+			error : function() {
+				alert('스크롤 에러 인덱스-로그드 :error while request..');
+			}
+		});
+	}
+}; 
  
 $(window).scroll(function(){ 
 	if ($(window).scrollTop() == $(document).height() - $(window).height()){ 

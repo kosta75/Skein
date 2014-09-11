@@ -114,12 +114,12 @@ public class BoardController {
 			String rootPath = multiRequest.getSession().getServletContext().getRealPath("/");
 			String fileUploadPath = rootPath + fileUploadDir;
 			System.out.println("INFO : Skein-P151 - 파일 업로드 경로, rootPath="+rootPath+",fileUploadDir="+fileUploadDir+",fileUploadPath="+fileUploadPath);
-
+	
 			List<MultipartFile> files = command.getFiles();
 			
 			if(files.size()>0 && files != null){
 				List<String> fileNames = fileUpload(fileUploadPath, files);
-
+	
 				if(files.size() == fileNames.size()){
 					System.out.println("INFO : Skein-T553 - groupSeq=" + command.getGroupSeq());
 					int groupReqResult = boardDao.groupReg(command);

@@ -78,7 +78,7 @@ public class ProfileController {
 		}else{
 			profileDao.insertProfile(command);
 		}
-
+	
 		return jsonView;
 	}
 	

@@ -48,7 +48,7 @@ public class SearchController {
 			BaseMemberInfo baseMemberInfo = (BaseMemberInfo) session.getAttribute("BASE_MEMBER_INFO");
 			parameters.put("ignoreEmailValue", baseMemberInfo.getEmail());
 		}
-
+	
 		List<SearchMemberCommand> friendshipList = memberDao.searchMembers(parameters);
 		System.out.println("INFO : Skein-M006 - 검색 결과, " + friendshipList.size());
 		
